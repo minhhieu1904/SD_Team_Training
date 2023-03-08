@@ -10,7 +10,13 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
+    children: [
+      { 
+        path: 'shift-data-maintain',
+        loadChildren: () => import('./views/shift-data-maintain/shift-data-maintain.module').then(m => m.ShiftDataMaintainModule)
+
+      }
+    ]
   }
 ];
 
