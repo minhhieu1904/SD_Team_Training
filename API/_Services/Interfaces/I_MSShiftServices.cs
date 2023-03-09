@@ -21,5 +21,7 @@ namespace API._Services.Interfaces
         Task<OperationResult> UpdateShift(MS_Shift model);
         // Xóa Shift
         Task<OperationResult> Delete(MS_Shift model);
+        // Lấy item theo khóa chính Manuf và Shift
+        Task<MS_Shift> GetItem(string manuf, string shift);
     }
 }

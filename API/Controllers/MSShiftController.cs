@@ -9,7 +9,7 @@ using SD3_API.Helpers.Utilities;
 
 namespace API.Controllers
 {
-    public class MSShiftController: APIController
+    public class MSShiftController : APIController
     {
         private readonly IMSShiftServices _services;
 
@@ -20,35 +20,47 @@ namespace API.Controllers
 
         // Hien thi data bang MS_Shift
         [HttpGet("GetData")]
-        public async Task<IActionResult> GetData() { 
+        public async Task<IActionResult> GetData()
+        {
             var result = await _services.GetAllShift();
             return Ok(result);
         }
 
         //Them moi
         [HttpPost("AddNew")]
-        public async Task<IActionResult> Add([FromBody]MS_Shift model) {
+        public async Task<IActionResult> Add([FromBody] MS_Shift model)
+        {
             var result = await _services.AddNewShift(model);
             return Ok(result);
         }
 
+        // Lấy 1 item để chỉnh sửa
+        [HttpGet("get-item")]
+        public async Task<IActionResult> GetItem(string manuf, string shift)
+        {
+            return Ok(await _services.GetItem(manuf, shift));
+        }
+
         //Sua
         [HttpPut("Edit")]
-        public async Task<IActionResult> Edit([FromBody]MS_Shift model) {
+        public async Task<IActionResult> Edit([FromBody] MS_Shift model)
+        {
             var result = await _services.UpdateShift(model);
             return Ok(result);
         }
 
         //Xoa
         [HttpPost("Delete")]
-        public async Task<IActionResult> Delete([FromBody]MS_Shift model) {
+        public async Task<IActionResult> Delete([FromBody] MS_Shift model)
+        {
             var result = await _services.Delete(model);
             return Ok(result);
         }
 
         //Phan trang
         [HttpGet("GetDataPaging")]
-        public async Task<IActionResult> GetDataPaging([FromQuery]PaginationParam param, string shift, string shiftName) {
+        public async Task<IActionResult> GetDataPaging([FromQuery] PaginationParam param, string shift, string shiftName)
+        {
             var result = await _services.GetDataPagination(param, shift, shiftName);
             return Ok(result);
         }

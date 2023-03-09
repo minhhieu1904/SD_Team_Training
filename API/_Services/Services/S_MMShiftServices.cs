@@ -90,5 +90,13 @@ namespace API._Services.Services
                 return new OperationResult(true);
             return new OperationResult(false);
         }
+
+        public async Task<MS_Shift> GetItem(string manuf, string shift)
+        {
+            // Lấy 1 item theo khóa chính 
+            // Nếu item không có thì trả về nulll
+            // có thì trả  về item
+            return await _repositoryAccessor.MSShift.FirstOrDefaultAsync(msShift => msShift.Manuf == manuf && msShift.Shift == shift);
+        }
     }
 }
