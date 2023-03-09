@@ -17,6 +17,7 @@
       </div>
       <div class="col pt-4">
         <button class="btn btn-primary" (click)="search()"> Search</button>
+        <button class="btn btn-success" (click)="add()"> Add</button>
       </div>
     </div>
   </div>
@@ -31,14 +32,20 @@
     </thead>
 
     <tbody >
-      <tr *ngFor="let msshift of data">
+      <tr *ngFor="let msshift of data ">
           <td> {{msshift.manuf}}</td>
           <td> {{msshift.shift}}</td>
           <td> {{msshift.shiftName}}</td>
       </tr>
+      
 
 
     </tbody>
-
   </table>
+  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
+      (pageChanged)="pageChanged($event)"  >
+  <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+        {{pagination.totalPage}}</span>
+ 
+</pagination>
 </div>

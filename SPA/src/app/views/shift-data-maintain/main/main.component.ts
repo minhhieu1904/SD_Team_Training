@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Pagination } from '@utilities/pagination-utility';
 import { MS_Shift, ShiftDataMaintainParam } from '../../../_core/models/shift-data-maintain';
 import { ShiftDataMaintainService } from '../../../_core/services/shift-data-maintain.service';
 import { InjectBase } from '../../../_core/utilities/inject-base-app';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -28,7 +30,6 @@ export class MainComponent extends InjectBase implements OnInit {
   getData() { 
     this.service.getData(this.pagination,this.param).subscribe({
       next: res => { 
-        console.log(res)
         this.data = res.result;
         this.pagination = res.pagination;
       },
@@ -40,6 +41,16 @@ export class MainComponent extends InjectBase implements OnInit {
   search() { 
     this.pagination.pageNumber = 1;
     this.getData();
+  }
+
+  add(){
+    this.router.navigate(["shift-data-maintain/add"])
+  }
+
+  pageChanged(e: any) { 
+    this.pagination.pageNumber = e.page;
+    this.getData()
+
   }
 
 }
