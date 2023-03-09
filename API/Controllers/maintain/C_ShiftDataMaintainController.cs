@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API._Services.Interfaces;
+using API.DTOs.ShiltDataMaintain;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
+using SD3_API.Helpers.Utilities;
 
 namespace API.Controllers.maintain
 {
@@ -19,9 +21,9 @@ namespace API.Controllers.maintain
         }
 
         [HttpGet("get-data")]
-        public async Task<IActionResult> GetData()
+        public async Task<IActionResult> GetData([FromQuery]PaginationParam pagination ,[FromQuery] ShiftDataMaintainParam param)
         {
-            var result = await _services.GetData();
+            var result = await _services.GetData(pagination,param);
             return Ok(result);
         }
 

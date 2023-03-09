@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MS_Shift } from '../../../_core/models/shift-data-maintain';
+import { Pagination } from '@utilities/pagination-utility';
+import { MS_Shift, ShiftDataMaintainParam } from '../../../_core/models/shift-data-maintain';
 import { ShiftDataMaintainService } from '../../../_core/services/shift-data-maintain.service';
 import { InjectBase } from '../../../_core/utilities/inject-base-app';
 @Component({
@@ -8,7 +9,15 @@ import { InjectBase } from '../../../_core/utilities/inject-base-app';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent extends InjectBase implements OnInit {
-  model: MS_Shift = <MS_Shift>{}
+  data: MS_Shift[] = [];
+  pagination: Pagination = <Pagination>{
+    pageNumber: 1, 
+    pageSize: 10
+  };
+  param: ShiftDataMaintainParam = <ShiftDataMaintainParam>{
+    shift: '',
+    shift_Name: ''
+  }
   constructor(private service: ShiftDataMaintainService) { super()}
 
   ngOnInit() {
@@ -17,10 +26,11 @@ export class MainComponent extends InjectBase implements OnInit {
 
 
   getData() { 
-    this.service.getData().subscribe({
+    this.service.getData(this.pagination,this.param).subscribe({
       next: res => { 
         console.log(res)
-        this.model = res
+        this.data = res.result;
+        this.pagination = res.pagination;
       },
       error: () => { 
       }
@@ -28,8 +38,8 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   search() { 
-    console.log(this.model)
-
+    this.pagination.pageNumber = 1;
+    this.getData();
   }
 
 }

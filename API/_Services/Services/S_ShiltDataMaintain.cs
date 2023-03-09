@@ -1,6 +1,8 @@
 using API._Repositories;
 using API._Services.Interfaces;
+using API.DTOs.ShiltDataMaintain;
 using API.Models;
+using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using SD3_API.Helpers.Utilities;
 
@@ -16,9 +18,17 @@ namespace API._Services.Services
             _reposioryAccessor = reposioryAccessor;
         }
 
-        public async Task<List<MS_Shift>> GetData()
+        public async Task<PaginationUtility<MS_Shift>> GetData(PaginationParam pagination ,ShiftDataMaintainParam param)
         {
-            return await _reposioryAccessor.MS_Shift.FindAll().ToListAsync();
+            var pred_MS_Shift = PredicateBuilder.New<MS_Shift>(true);
+            if(!string.IsNullOrEmpty(param.Shift)) { 
+                pred_MS_Shift.And(x => x.Shift == param.Shift);
+            }
+            if(!string.IsNullOrEmpty(param.Shift_Name)) { 
+                pred_MS_Shift.And(x => x.ShiftName == param.Shift_Name);
+            }
+            var data = _reposioryAccessor.MS_Shift.FindAll(pred_MS_Shift);
+            return await PaginationUtility<MS_Shift>.CreateAsync(data, pagination.PageNumber, pagination.PageSize);
         }
         public async Task<OperationResult> Addnew(MS_Shift model)
         {

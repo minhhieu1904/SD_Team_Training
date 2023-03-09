@@ -9,11 +9,11 @@
     <div class="row">
       <div class="col-md-2">
         <span class="badge badge-warning">Shift</span>
-        <input type="text" name="shift"  class="form-control" [(ngModel)]="model.shift">
+        <input type="text" name="shift"  class="form-control" [(ngModel)]="param.shift">
       </div>
       <div class="col-md-2">
         <span class="badge badge-warning">Shift Name</span>
-        <input type="text" name="shift-name"  class="form-control" [(ngModel)]="model.shiftName">
+        <input type="text" name="shift-name"  class="form-control" [(ngModel)]="param.shift_Name">
       </div>
       <div class="col pt-4">
         <button class="btn btn-primary" (click)="search()"> Search</button>
@@ -30,11 +30,11 @@
       </tr>
     </thead>
 
-    <tbody *ngFor="let msshift of model">
-      <tr>
-          <th> {{msshift.manuf}}</th>
-          <th> {{msshift.shift}}</th>
-          <th> {{msshift.shiftName}}</th>
+    <tbody >
+      <tr *ngFor="let msshift of data">
+          <td> {{msshift.manuf}}</td>
+          <td> {{msshift.shift}}</td>
+          <td> {{msshift.shiftName}}</td>
       </tr>
 
 
