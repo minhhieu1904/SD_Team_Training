@@ -1,4 +1,4 @@
-export interface MS_Shift_DTO {
+export interface MS_Shift {
   manuf: string;
   shift: string;
   shiftName: string;

@@ -5,6 +5,7 @@ import { ShiftDataMaintenanceRoutingModule } from './shift-data-maintenance-rout
 import { MainComponent } from './main/main.component';
 import { FormComponent } from './form/form.component';
 import { FormsModule } from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ShiftDataMaintenanceRoutingModule,
+    PaginationModule.forRoot(),
     FormsModule
   ]
 })

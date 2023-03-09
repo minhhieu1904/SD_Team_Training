@@ -15,11 +15,15 @@ namespace API.Controllers
             _service = service;
         }
 
+        
         [HttpPost("Create")]
         public async Task<IActionResult> Create([FromQuery]MS_Shift_DTO dto) => Ok(await _service.Create(dto));
 
         [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] PaginationParam pagination, [FromQuery] MS_Shift_DTO dto) => Ok(await _service.Search(pagination ,dto));
+        public async Task<IActionResult> Search([FromQuery] PaginationParam pagination, [FromQuery] MS_Shift_DTO dto){
+            var data = await _service.Search(pagination ,dto);
+            return Ok(data);
+        }
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update(MS_Shift_DTO dto) {
@@ -27,8 +31,6 @@ namespace API.Controllers
         return Ok(data);
         }
 
-
-        //async await này trên trường thầy Hiếu có dạy đồng bộ và bất đồng bộ dó a, có gì a gg thêm nhé Oke anh có clip có gì xem lại
         [HttpGet("GetDetail")]
         public async Task<IActionResult> GetDetail(MS_Shift_DTO dto) {
         var data=  await _service.GetDetail(dto);
