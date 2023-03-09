@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-header">
+    <h5>1.1 Shift Data Maintenance</h5>
+  </div>
+  <div class="card-body">
+      <div class="card">
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Shift</label>
+            <input class="form-control" [(ngModel)]="param.shift">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Shift Name</label>
+            <input class="form-control">
+          </div>
+        </form>
+        <div class="button">
+          <div class="d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2" type="button">Search</button>
+            <button class="btn btn-danger" type="button">Clear</button>
+            <button class="btn btn-success" type="button">Add New</button>
+          </div>
+        </div>
+      </div>
+      <table class="table table-bordered border-primary">
+        <thead>
+          <tr>
+            <th scope="col">Shift</th>
+            <th scope="col">Shift Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
