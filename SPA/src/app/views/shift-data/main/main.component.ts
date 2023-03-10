@@ -1,8 +1,10 @@
+import { IconButton } from './../../../_core/constants/common.constants';
 import { Component, OnInit } from '@angular/core';
 import { MS_Shift, MS_ShiftParam } from '@models/shift_data/shift_Data';
 import { Shift_dataService } from '@services/shift_data.service';
 import { InjectBase } from '@utilities/inject-base-app';
 import { Pagination } from '@utilities/pagination-utility';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-main',
@@ -45,7 +47,31 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   search(){
-
+    this.getData();
   }
 
+  pageChanged(event: PageChangedEvent) {
+    this.pagination.pageNumber = event.page;
+    this.getData();
+  }
+
+  iconButton: typeof IconButton = IconButton
+
+  clear() {
+    this.params.shift = '';
+    this.params.shiftName = '';
+    this.getData();
+  }
+
+  add() {
+    this.router.navigate(['/shift-data/add']);
+  }
+  edit(model: MS_Shift) {
+    this.params = {
+      shift: model.shift,
+      shiftName: model.shiftName
+    }
+    this.service.dataSource.next(this.params)
+    this.router.navigate(['/shift-data/edit']);
+  }
 }

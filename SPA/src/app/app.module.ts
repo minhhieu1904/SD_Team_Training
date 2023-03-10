@@ -45,10 +45,10 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { HeaderContainerComponent } from './containers/header-container/header-container.component';
 import { FooterContainerComponent } from './containers/footer-container/footer-container.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-//import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPrintModule} from 'ngx-print';
 export function HttpLoaderFactory(http: HttpClient) {
-  //return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 @NgModule({
   imports: [

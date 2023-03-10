@@ -13,7 +13,7 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'shift_data',
+        path: 'shift-data',
         loadChildren: () => import('./views/shift-data/shift-data.module').then(m => m.ShiftDataModule )
       }
     ]
