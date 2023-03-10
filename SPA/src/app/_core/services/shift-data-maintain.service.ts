@@ -21,5 +21,15 @@ export class ShiftDataMaintainService {
     return this.http.post<OperationResult>(this.apiUrl + "C_ShiftDataMaintain/add", msshift);
   }
 
+  getItem(manuf:string, shift:string){
+    //khai bao bien
+    let params = new HttpParams().set('manuf', manuf).set('shift',shift);
+    return this.http.get<MS_Shift>(this.apiUrl + "C_ShiftDataMaintain/getDataOnly" , { params });
+  }
+  updateShift(msshift: MS_Shift){
+    return this.http.post<OperationResult>(this.apiUrl + "C_ShiftDataMaintain/update", msshift);
+  }
+
+
 
 }

@@ -53,4 +53,15 @@ export class MainComponent extends InjectBase implements OnInit {
 
   }
 
+  edit(ms_Shift: MS_Shift){
+    // console.log('duwx lieu can ' , ms_Shift);
+    // truyền đi cùng dữ liệu
+    this.router.navigate([`shift-data-maintain/edit/${ms_Shift.manuf}/${ms_Shift.shift}`])
+  }
+  clear(){
+    this.param.shift='';
+    this.param.shift_Name=''
+    this.search()
+  }
+
 }

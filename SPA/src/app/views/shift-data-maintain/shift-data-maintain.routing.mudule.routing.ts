@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormComponent } from './form/form.component';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
 import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
@@ -10,11 +11,12 @@ const routes: Routes = [
   },
   {  
     path: 'add',
-    component: FormComponent
+    component: AddComponent
   },
   {  
-    path: 'edit',
-    component: FormComponent
+    // ở đây thêm các data cần truyền đi
+    path: 'edit/:manuf/:shift',
+    component: EditComponent
   },
 ];
 @NgModule({

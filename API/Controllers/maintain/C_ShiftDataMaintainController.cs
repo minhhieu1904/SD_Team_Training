@@ -34,7 +34,7 @@ namespace API.Controllers.maintain
             return Ok(result);
         }
 
-        [HttpGet("get-data-only")]
+        [HttpGet("getDataOnly")]
         public async Task<IActionResult> GetDataOnly(string manuf, string shift)
         {
             var result = await _services.GetDataOnly(manuf, shift);
