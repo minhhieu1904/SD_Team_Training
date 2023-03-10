@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Pagination } from './../../../../_core/utilities/pagination-utility';
 import { ShiftDataMaintainService } from './../../../../_core/services/shift-data-maintain.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,10 +19,11 @@ export class MainComponent implements OnInit {
   } as Pagination;
 
   constructor(
-    private service: ShiftDataMaintainService
+    private service: ShiftDataMaintainService,
+    private route: Router,
     ) {}
 
-    //gọi hàm trong ngOinit, vừa chạy lên thì ngOnInit load đầu tiên
+  //gọi hàm trong ngOinit, vừa chạy lên thì ngOnInit load đầu tiên
   ngOnInit(): void {
     this.getData();
   }
@@ -45,6 +47,18 @@ export class MainComponent implements OnInit {
 
   search(){
     this.pagination.pageNumber === 1 ? this.getData() : this.pagination.pageNumber = 1;
+  }
+
+  addNew(){
+    this.route.navigate(["maintain/shift-data-maintenance/add"])
+  }
+
+  //tách riêng từng cái ra cho dê hiểu nhé
+  update(item:MS_Shift){
+    //khúc này bắt đầu truyền data qua bên trang update
+    let msShiftEdit = {...item};
+    this.service.msShift.next(msShiftEdit);
+    this.route.navigate(["maintain/shift-data-maintenance/update"])//nhảy qua trang update
   }
 
   // clear thì chỉ cần cho cái param về lại giá trị mặc dịnh là xong

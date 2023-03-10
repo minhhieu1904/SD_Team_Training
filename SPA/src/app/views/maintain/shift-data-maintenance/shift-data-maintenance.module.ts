@@ -1,3 +1,4 @@
+import { UpdateComponent } from './update/update.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +12,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 @NgModule({
   declarations: [
     MainComponent,
-    FormComponent
+    FormComponent,
+    UpdateComponent
   ],
   imports: [
     CommonModule,

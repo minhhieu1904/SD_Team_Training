@@ -17,7 +17,10 @@ namespace API.Controllers
 
         
         [HttpPost("Create")]
-        public async Task<IActionResult> Create([FromQuery]MS_Shift_DTO dto) => Ok(await _service.Create(dto));
+        public async Task<IActionResult> Create([FromBody] MS_Shift_DTO dto){
+            var result = await _service.Create(dto);
+            return Ok(result);
+        }
 
         [HttpGet("Search")]
         public async Task<IActionResult> Search([FromQuery] PaginationParam pagination, [FromQuery] MS_Shift_DTO dto){

@@ -17,26 +17,32 @@
         <div class="button">
           <div class="d-md-flex justify-content-md-end">
             <!-- khi click vào button thì sinh ra sự kiện search -->
-            <button class="btn btn-primary me-md-2" type="button" (click)="search()">Search</button>
-            <button class="btn btn-danger" type="button" (click)="clear()">Clear</button>
-            <button class="btn btn-success" type="button">Add New</button>
+            <button class="btn btn-primary me-md-2" type="button" (click)="search()"><i class="fa fa-search"></i> Search</button>
+            <button class="btn btn-danger" type="button" (click)="clear()"><i class="fa fa-eraser"></i> Clear</button>
+            <button class="btn btn-success" type="button" (click)="addNew()"><i class="fa fa-plus"></i> Add New</button>
           </div>
         </div>
       </div>
       <table class="table table-bordered border-primary">
         <thead>
           <tr>
+            <th scope="col">Stt</th>
             <th scope="col">Manuf</th>
             <th scope="col">Shift</th>
             <th scope="col">Name Of Shift</th>
+            <th colspan="2">Action</th>
           </tr>
         </thead>
         <tbody>
-          <!--  -->
-          <tr *ngFor="let item of data">
+          <!-- Đổ data ra table -->
+          <tr *ngFor="let item of data; let i =index">
+            <td>{{i+1}}</td>
             <td>{{item.manuf}}</td>
             <td>{{item.shift}}</td>
             <td>{{item.shiftName}}</td>
+            <!-- Sử dụng các hàm update và xóa -->
+            <td><button type="button" class="btn btn-primary" (click)="update(item)"><i class="fa fa-edit"></i></button></td>
+            <td><button type="button" class="btn btn-danger"><i class="fa fa-remove"></i></button></td>
           </tr>
         </tbody>
       </table>

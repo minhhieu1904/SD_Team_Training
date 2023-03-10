@@ -30,6 +30,8 @@
       ]
     },
     "outDir": "./dist/out-tsc",
+    "experimentalDecorators": true,
+    "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "noImplicitOverride": true,
@@ -38,7 +40,6 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
-    "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",
