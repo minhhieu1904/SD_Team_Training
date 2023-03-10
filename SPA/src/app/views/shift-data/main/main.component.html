@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-10">
+        <h5>Shift Data Maintain</h5>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <span class="badge badge-warning">Shift </span>
+        <input type="text" name="shift" class="form-control">
+      </div>
+      <div class="col-md-2">
+        <span class="badge badge-warning">Name Of Shift </span>
+        <input type="text" name="shiftName" class="form-control">
+      </div>
+      <div class="col pt-4">
+        <button class="btn btn-primary" (click)="search()">Search </button>
+      </div>
+
+
+
+    </div>
+  </div>
+
+</div>
+<div class="card">
+<table class="table table-bordered" >
+  <thead>
+    <tr >
+      <th scope="col"></th>
+      <th scope="col">Shift</th>
+      <th scope="col">Name Of Shift</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      <th scope="row"></th>
+      <td>{{item.shift}}</td>
+      <td>{{item.shiftName}}</td>
+
+    </tr>
+  </tbody>
+</table>
+</div>
