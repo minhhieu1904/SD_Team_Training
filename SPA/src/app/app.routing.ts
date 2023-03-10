@@ -1,3 +1,4 @@
+import { MS_Shift, MS_ShiftParam } from './_core/_models/shift_data/shift_Data';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,7 +11,12 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
+    children: [
+      {
+        path: 'shift_data',
+        loadChildren: () => import('./views/shift-data/shift-data.module').then(m => m.ShiftDataModule )
+      }
+    ]
   }
 ];
 

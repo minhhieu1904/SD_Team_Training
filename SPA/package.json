@@ -52,7 +52,7 @@
     "core-js": "^3.21.1",
     "flag-icon-css": "^3.5.0",
     "font-awesome": "^4.7.0",
-    "ng-snotify": "~9.0.1",
+    "ng-snotify": "^9.0.1",
     "ng2-charts": "2.4.2",
     "ngx-bootstrap": "9.0.0",
     "ngx-dynamic-breadcrumb": "^2.0.0",
