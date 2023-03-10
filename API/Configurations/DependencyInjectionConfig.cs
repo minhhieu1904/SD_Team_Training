@@ -15,6 +15,7 @@ namespace API.Configurations
              services.AddScoped<IRepositoryAccessor, RepositoryAccessor>();
 
             // Add Service
+             services.AddScoped<IWarehouseBasicdataService, WarehouseBasicdataService>();
              services.AddScoped<IShiftDataMaintenanceService, ShiftDataMaintenanceService>();
         }
     }

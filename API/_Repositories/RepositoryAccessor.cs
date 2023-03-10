@@ -10,15 +10,13 @@ namespace API._Repositories
     public class RepositoryAccessor : IRepositoryAccessor
     {
         private DBContext _dbContext;
-
-        public IMS_ShiftRepository MS_ShiftRepository => throw new NotImplementedException();
-
         public RepositoryAccessor(DBContext dbContext)
         {
             _dbContext = dbContext;
-             MS_Shift = new MS_ShiftRepository(_dbContext);
+            MS_Shift = new MS_ShiftRepository(_dbContext);
+            MS_Location = new MS_LocationRepository(_dbContext);
         }
-
+        public IMS_LocationRepository MS_Location {get;set;}
         public IMS_ShiftRepository MS_Shift {get;set;}
         public async Task<bool> Save()
         {
