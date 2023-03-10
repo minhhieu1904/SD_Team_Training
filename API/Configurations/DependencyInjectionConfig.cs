@@ -2,6 +2,7 @@
 using API._Repositories;
 using API._Services.Interfaces;
 using API._Services.Services;
+using API._Services.Services.WarehouseBasicDataMaintenance;
 
 namespace API.Configurations
 {
@@ -16,7 +17,9 @@ namespace API.Configurations
 
             // Add Service
             // services.AddScoped<IShiltDataMaintainServices, ShiltDataMaintainServices>();
-           services.AddScoped<I_ShiltDataMaintain, S_ShiltDataMaintain>();
+           services.AddScoped<I_ShiftDataMaintain, S_ShiltDataMaintain>();
+           
+           services.AddScoped<I_WarehouseBasicData, S_WarehouseBasicData>();
         }
     }
 }

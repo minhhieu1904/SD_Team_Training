@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    // MS_Shift
-    public class MS_Shift
+    public class MS_Location
     {
         [Key]
         [Required]
@@ -17,9 +16,9 @@ namespace API.Models
         [Key]
         [Required]
         [MaxLength(1)]
-        public string Shift { get; set; }
+        public string StoreH { get; set; }
 
         [MaxLength(50)]
-        public string ShiftName { get; set; }
+        public string LocationName { get; set; }
     }
 }

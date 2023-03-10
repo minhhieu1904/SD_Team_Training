@@ -8,7 +8,7 @@ using SD3_API.Helpers.Utilities;
 
 namespace API._Services.Services
 {
-    public class S_ShiltDataMaintain : I_ShiltDataMaintain
+    public class S_ShiltDataMaintain : I_ShiftDataMaintain
     {
         // Khai báo Repository Accessor
         private readonly IRepositoryAccessor _reposioryAccessor;

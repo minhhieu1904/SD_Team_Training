@@ -17,10 +17,13 @@ namespace API._Repositories
             // ERP_ISSUE_DTL = new ERP_ISSUE_DTL_Repository(_dbContext);
 
             MS_Shift = new MS_Shift_Repository(_dbContext);
+            
+            MS_Location = new MS_Location_Respository(_dbContext);
         }
 
         // public IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;set;}
         public IMS_Shift_Repository MS_Shift { get; private set; }
+        public IMS_Location_Repository MS_Location { get; private set; }
 
         public async Task<bool> Save()
         {

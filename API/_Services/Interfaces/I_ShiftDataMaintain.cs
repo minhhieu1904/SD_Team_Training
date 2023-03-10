@@ -8,7 +8,7 @@ using SD3_API.Helpers.Utilities;
 
 namespace API._Services.Interfaces
 {
-    public interface I_ShiltDataMaintain
+    public interface I_ShiftDataMaintain
     {
         Task<PaginationUtility<MS_Shift>> GetData(PaginationParam pagination ,ShiftDataMaintainParam param);
         Task<OperationResult> Addnew(MS_Shift model);
