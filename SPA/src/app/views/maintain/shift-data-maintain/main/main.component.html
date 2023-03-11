@@ -15,23 +15,23 @@
                   <div class="row form-group border-shadow">
                       <div class="col-xxl-2 col-xl-6 col-lg-6 col-md-6">
                           <label class="badge badge-warning"></label>
-                          <input type="text" class="form-control" name="shift" id="shift"
+                          <input type="text" [(ngModel)]="param.shift" class="form-control" name="shift" id="shift"
                               placeholder="Shift"
                               >
                       </div>
                       <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
                           <label class="badge badge-warning"></label>
-                          <input type="text" class="form-control" name="shiftName" id="shiftName"
+                          <input type="text" [(ngModel)]="param.shiftName" class="form-control" name="shiftName" id="shiftName"
                               placeholder="Name of Shift"
                            >
                       </div>
                       <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12">
                           <label class="d-block">&nbsp;</label>
-                          <button type="button" class="btn btn-success" 
+                          <button type="button" class="btn btn-success" (click)="search()" 
                               [disabled]="">
                               <i class="">Search</i>
                           </button>
-                          <button type="button"  class="btn btn-danger ml-2"
+                          <button type="button"  class="btn btn-danger ml-2"  (click)="clear()"
                               [disabled]="">
                               <i class="">Clear</i> 
                           </button>
@@ -58,14 +58,15 @@
                                                 class="fa fa-edit fa-lg"></i></button>
                                           </td>
                                           <td class="text-center">
-                                              {{ item.shift }}
+                                                {{ item.shift }}
                                           </td>
                                           <td class="text-center">
-                                               {{ item.shiftName }}
+                                                {{ item.shiftName }}
                                           </td>
                                       </tr>
                                   </tbody>                            
                               </table>
+                              <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5" (pageChanged)="pageChanged($event)"></pagination>
                           </div>                         
                       </div>
                   </div>

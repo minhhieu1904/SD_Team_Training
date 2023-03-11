@@ -14,7 +14,7 @@ namespace API.Configurations
             // Add RepositoryAccessor
             services.AddScoped<IRepositoryAccessor, RepositoryAccessor>();
             services.AddScoped<IMSShiftServices, SMMShiftServices>();
-
+            services.AddScoped<IMSLocationServices, SMSLocationServices>();
             // Add Service
         }
     }

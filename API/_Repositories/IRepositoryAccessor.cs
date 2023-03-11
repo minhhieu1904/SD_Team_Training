@@ -8,6 +8,7 @@ namespace API._Repositories
     {
         // IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;}
         IMSShift_Repository MSShift {get;}
+        IMSLocation_Repository MSLocation {get;}
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

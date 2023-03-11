@@ -34,6 +34,7 @@ export class EditComponent implements OnInit {
       this.getMsShift(manuf, shift);
     });
     console.log('dữ liệu lấy tại đường dẫn:', manuf, shift);
+    this.updateShift();
   }
 
   // Anh sẽ viết 1 hàm để lấy dữ liệu theo 2 khóa chính  về : Trả về 1 item có mã khóa chính đã lấy 
@@ -50,6 +51,18 @@ export class EditComponent implements OnInit {
       },
       error: (err) => console.log(err), // có 1 dòng thì viết ngắn gon như này cũng được
       complete: () => console.log('complete')
+    })
+  }
+
+  updateShift() {
+    this.service.updateShift(this.msShiftUpdate).subscribe ({
+      next: result => {
+        if(result.isSuccess)
+        alert('Update thanh cong')   
+      }, error: error => {
+        alert('Khong them duoc')
+      }, complete: () => {
+      }
     })
   }
 

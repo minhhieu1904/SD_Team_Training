@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { MSShift } from '../models/ms-shift';
+import { MSShift, MSShiftParam } from '../models/ms-shift';
 import { OperationResult } from "../utilities/operation-result";
+import { Pagination, PaginationResult } from '@utilities/pagination-utility';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class MsShiftService {
   constructor(private _htp: HttpClient) { }
 
   //Lay du lieu
-  getData() {
-    return this._htp.get<MSShift[]>(this.baseUrl + 'GetData');
+  getData(pagination: Pagination, param: MSShiftParam) {
+    let params = new HttpParams().appendAll({...pagination, ...param})
+    return this._htp.get<PaginationResult<MSShift>>(this.baseUrl + 'GetDataPaging', { params });
   }
 
   // Lấy 1 item để chỉnh sửa
@@ -31,5 +33,5 @@ export class MsShiftService {
   updateShift(msshift: MSShift) {
     return this._htp.put<OperationResult>(this.baseUrl + 'Edit', msshift);
   }
-
+  //
 }

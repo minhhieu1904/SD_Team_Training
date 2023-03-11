@@ -64,10 +64,8 @@ namespace API._Services.Services
             if (msShift == null)
                 return new OperationResult(false);
             // Ngược lại , msShift có thì sửa 
-
             // gán data chỉnh sửa 
             msShift.ShiftName = model.ShiftName;
-
             // 3.Lưu lại 
             if (await _repositoryAccessor.Save())
                 return new OperationResult(true);
@@ -92,10 +90,7 @@ namespace API._Services.Services
         }
 
         public async Task<MS_Shift> GetItem(string manuf, string shift)
-        {
-            // Lấy 1 item theo khóa chính 
-            // Nếu item không có thì trả về nulll
-            // có thì trả  về item
+        {            
             return await _repositoryAccessor.MSShift.FirstOrDefaultAsync(msShift => msShift.Manuf == manuf && msShift.Shift == shift);
         }
     }

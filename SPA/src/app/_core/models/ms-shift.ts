@@ -3,3 +3,7 @@ export interface MSShift {
     shift: string;
     shiftName: string;
 }
+
+export interface MSShiftParam extends MSShift {
+
+}

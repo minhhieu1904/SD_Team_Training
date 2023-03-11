@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MSShift } from 'src/app/_core/models/ms-shift';
-import {MsShiftService} from 'src/app/_core/services/ms-shift.service';
+import { Pagination } from 'src/app/_core/utilities/pagination-utility'
+import { MSShift, MSShiftParam } from 'src/app/_core/models/ms-shift';
+import { MsShiftService } from 'src/app/_core/services/ms-shift.service';
 
 @Component({
   selector: 'app-main',
@@ -10,6 +11,17 @@ import {MsShiftService} from 'src/app/_core/services/ms-shift.service';
 })
 export class MainComponent implements OnInit {
   msshifts: MSShift[] = [];
+  
+  pagination: Pagination = <Pagination>{
+    pageNumber: 1,
+    pageSize: 3
+  };
+
+  param: MSShift = <MSShift>{
+    manuf: '',
+    shift: '',
+    shiftName: ''
+  }
   constructor(private service: MsShiftService, private router: Router) { }
 
   // Chạy lần đầu khi trang được load lên
@@ -19,9 +31,10 @@ export class MainComponent implements OnInit {
   
   //Lay du lieu
   getData() {
-    this.service.getData().subscribe({
-      next: result => {
-        this.msshifts = result;
+    this.service.getData(this.pagination, this.param).subscribe({
+      next: res => {
+        this.msshifts = res.result;
+        this.pagination = res.pagination;
       }
     }) 
   }
@@ -36,6 +49,24 @@ export class MainComponent implements OnInit {
     // thiệt lập đường dẫn với data truyền vào 
     // ở đây có 2 khóa chính nên ta truyền vào 2 khóa chính : manuf và shift
     this.router.navigate([`maintain/shift-data-maintain/edit/${msShift.manuf}/${msShift.shift}`])
-    
   }
+
+  //Tim kiem
+  search(){
+    this.pagination.pageNumber = 1;
+    this.getData();
+  }
+
+
+  pageChanged(e:any){
+    this.pagination.pageNumber=e.page;
+    this.getData();
+  }
+
+  clear() {
+    this.param.shift = "";
+    this.param.shiftName = "";
+    this.getData() == null;
+  }
+
 }

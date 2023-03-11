@@ -38,7 +38,8 @@ namespace API.Controllers
         [HttpGet("get-item")]
         public async Task<IActionResult> GetItem(string manuf, string shift)
         {
-            return Ok(await _services.GetItem(manuf, shift));
+            var result = await _services.GetItem(manuf, shift);
+            return Ok(result);
         }
 
         //Sua

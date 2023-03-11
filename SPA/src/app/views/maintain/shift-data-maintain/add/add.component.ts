@@ -27,12 +27,11 @@ export class AddComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.save();
-    this.saveAndNext();
+    
   }
 
   backList() {
-    this.router.navigate(['/maintain/shift-data-maintain/']);
+    this.router.navigate(['maintain/shift-data-maintain']);
   }
 
   save() {
@@ -64,8 +63,7 @@ export class AddComponent implements OnInit {
       error: () => {
         alert('Khong them duoc');
            },
-      complete: () => {
-        
+      complete: () => {        
       }
     })
   }

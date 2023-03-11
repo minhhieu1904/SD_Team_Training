@@ -11,12 +11,14 @@ namespace API._Repositories
         private DBContext _dbContext;
 
         public IMSShift_Repository MSShift {get;set;}
+        public IMSLocation_Repository MSLocation {get; set;}
 
         public RepositoryAccessor(DBContext dbContext)
         {
             _dbContext = dbContext;
             // ERP_ISSUE_DTL = new ERP_ISSUE_DTL_Repository(_dbContext);
-             MSShift = new MSShift_Repository(_dbContext);
+            MSShift = new MSShift_Repository(_dbContext);
+            MSLocation = new MSLocation_Repository(_dbContext);
         }
 
         // public IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;set;}
