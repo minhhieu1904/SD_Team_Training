@@ -17,29 +17,29 @@ namespace API._Services.Services
         {
             _repoAccessor = repoAccessor;
         }
-        public async Task<OperationResult> Add(MS_Location location)
+        public async Task<OperationResult> Add(MS_Location StoreH)
         {
-            var data = await _repoAccessor.MS_Location.FindSingle(x => x.StoreH==location.StoreH);
+            var data = await _repoAccessor.MS_Location.FindSingle(x => x.StoreH==StoreH.StoreH);
             if(data != null)
             {
                 return new OperationResult(false, "đã tồn tại");
             }
             else{
                 //truyền dữ liệu location vào models
-                var item = Mapper.Map(location).ToANew<MS_Location>(x => x.MapEntityKeys());
+                var item = Mapper.Map(StoreH).ToANew<MS_Location>(x => x.MapEntityKeys());
                 _repoAccessor.MS_Location.Add(item);
             }
             await _repoAccessor.Save();
             return new OperationResult(true, "add successfully");
         }
 
-        public async Task<PaginationUtility<MS_Location>> LoadData(PaginationParam paginationParams, string location, string locationName)
+        public async Task<PaginationUtility<MS_Location>> LoadData(PaginationParam paginationParams, string StoreH, string locationName)
         {
             var pred = PredicateBuilder.New<MS_Location>(true);
 
-            if(!string.IsNullOrEmpty(location))
+            if(!string.IsNullOrEmpty(StoreH))
             {
-                pred.And(x=> x.StoreH == location.Trim());
+                pred.And(x=> x.StoreH == StoreH.Trim());
             }
             
             if(!string.IsNullOrEmpty(locationName))
@@ -51,15 +51,15 @@ namespace API._Services.Services
 
         }
 
-        public async Task<OperationResult> Update(MS_Location location)
+        public async Task<OperationResult> Update(MS_Location StoreH)
         {
-            var item = await _repoAccessor.MS_Location.FirstOrDefaultAsync(x=>x.Manuf.Trim() == "N"  && x.StoreH == location.StoreH);
+            var item = await _repoAccessor.MS_Location.FirstOrDefaultAsync(x=>x.Manuf.Trim() == "N"  && x.StoreH == StoreH.StoreH);
             if (item == null)
             {
                 return new OperationResult(false);
             }
             else{
-                item.LocationName= location.LocationName.Trim();
+                item.LocationName= StoreH.LocationName.Trim();
                 _repoAccessor.MS_Location.Update(item);
                 await _repoAccessor.Save();
             }

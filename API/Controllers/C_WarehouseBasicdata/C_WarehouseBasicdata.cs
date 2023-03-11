@@ -21,22 +21,22 @@ namespace API.Controllers.C_WarehouseBasicdata
             _locationData = locationData;
         }
 
-        [HttpGet("getData")]
-        public async Task<ActionResult> GetMs_Location([FromQuery]PaginationParam pagination,string location, string locationName)
+        [HttpGet("getdata")]
+        public async Task<ActionResult> GetMs_Location([FromQuery]PaginationParam pagination,string StoreH, string locationName)
         {
-            var data = await _locationData.LoadData(pagination, location,locationName);
+            var data = await _locationData.LoadData(pagination, StoreH,locationName);
             return Ok(data);
         } 
-        [HttpPost("Add")]
-        public async Task<ActionResult> Add([FromBody] MS_Location location)
+        [HttpPost("add")]
+        public async Task<ActionResult> Add([FromBody] MS_Location StoreH)
         {
-            location.Manuf = "N";
-            var data = await _locationData.Add(location);
+            StoreH.Manuf = "N";
+            var data = await _locationData.Add(StoreH);
             return Ok(data);
         }
-        [HttpPut("update")]
-         public async Task<ActionResult> Update([FromBody] MS_Location location ){
-            var data = await _locationData.Update(location);
+        [HttpPut("upDate")]
+         public async Task<ActionResult> Update([FromBody] MS_Location StoreH ){
+            var data = await _locationData.Update(StoreH);
             return Ok(data);
         }
     }

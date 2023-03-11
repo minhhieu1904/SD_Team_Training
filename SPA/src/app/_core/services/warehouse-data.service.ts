@@ -18,23 +18,22 @@ export class WarehouseDataService {
   dataSources = new BehaviorSubject<MS_LocationParam>(null);
   currentDataSource = this.dataSources.asObservable();
   constructor(private http: HttpClient) { }
+
   getData(searchParam: MS_LocationParam, pagination: Pagination) {
     let params = new HttpParams().appendAll({ ...searchParam, ...pagination });
     return this.http.get<PaginationResult<MS_Location>>(this.baseUrl + 'C_WarehouseBasicdata/getdata', { params });
 
   }
   add(params: MS_LocationParam) {
-    return this.http.post<OperationResult>(this.baseUrl + ' C_WarehouseBasicdata/add', params);
+    return this.http.post<OperationResult>(this.baseUrl + 'C_WarehouseBasicdata/add', params);
 
   }
   upDate(params: MS_LocationParam) {
-
-
-    return this.http.put<OperationResult>(this.baseUrl + 'C_WarehouseBasicdata/update', params);
+    return this.http.put<OperationResult>(this.baseUrl + 'C_WarehouseBasicdata/upDate', params);
   }
-  getItem(manuf: string, storeH: string) {
+  getItem(manuf: string, location: string) {
     // cach 2 ... la` lay tat ca ben trong models
-    let params = new HttpParams().set('manuf', manuf).set('storeH', storeH);
-    return this.http.get<MS_Location>(this.baseUrl + 'C_WarehouseBasicdata/getdata', { params });
+     let params = new HttpParams().set('manuf', manuf).set('location', location);
+    return this.http.get<MS_Location>(this.baseUrl + 'C_WarehouseBasicdata/getdata', {params} );
   }
 }

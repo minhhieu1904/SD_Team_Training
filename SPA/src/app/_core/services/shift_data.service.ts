@@ -33,8 +33,6 @@ add(params: MS_ShiftParam){
 }
 
 upDate(params: MS_ShiftParam){
-
-
   return this.http.put<OperationResult>(this.baseUrl + 'C_ShiftDataMaintenance/update', params)
 }
 getItem(manuf: string, shift : string ){

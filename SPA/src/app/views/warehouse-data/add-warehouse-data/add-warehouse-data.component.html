@@ -1,1 +1,27 @@
-<p>add-warehouse-data works!</p>
+
+<div class="card ">
+  <div class="card-header">
+
+    <h5>Warehouse Basic Data Maintenance - add new</h5>
+    <div class="col md-4 text-right">
+      <button class="btn btn-primary" (click)="back()">Back </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <span class="badge badge-warning">Kode Of Warehouse </span>
+        <input type="text" name="location" [(ngModel)]="params.StoreH" class="form-control">
+      </div>
+      <div class="col-md-2">
+        <span class="badge badge-warning">Name Of Warehouse </span>
+        <input type="text" name="locationName" [(ngModel)]="params.locationName" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <div class="col md-4">
+      <button class="btn btn-success" (click)="save()"><i class="{{iconButton.SAVE}}"> Save</i> </button>
+    </div>
+  </div>
+</div>

@@ -15,11 +15,11 @@ export class EditShiftDataComponent extends InjectBase  implements OnInit {
       manuf: '',
       shift: '',
       shiftName: ''
-
   }
   constructor(private service: Shift_dataService) { super() }
 
   ngOnInit(): void {
+    //
     this.service.currentDataSource.subscribe(res => {
       if(res) {
         this.params.shift = res.shift,

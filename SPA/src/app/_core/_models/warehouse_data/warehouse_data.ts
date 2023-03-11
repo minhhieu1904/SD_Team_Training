@@ -1,5 +1,5 @@
 export interface MS_LocationParam {
-  storeH: string;
+  StoreH: string;
   locationName: string;
 }
 

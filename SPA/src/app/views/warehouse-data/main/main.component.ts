@@ -25,7 +25,7 @@ export class MainComponent extends InjectBase implements OnInit {
 
   params: MS_LocationParam = <MS_LocationParam>
   {
-    storeH: '',
+    StoreH: '',
     locationName: ''
 
   }
@@ -41,11 +41,13 @@ export class MainComponent extends InjectBase implements OnInit {
     // theo thứ tự truyền vào
     this.service.getData(this.params, this.pagination).subscribe({
       next: res => {
-        console.log(res)
+        console.log(this.params)
         this.data = res.result;
         this.pagination = res.pagination;
       },
-      error: () => {}
+      error: () => {
+        alert(' Error ')
+    }
     })
   }
 
@@ -61,20 +63,20 @@ export class MainComponent extends InjectBase implements OnInit {
   iconButton: typeof IconButton = IconButton
 
   clear() {
-    this.params.storeH = '';
+    this.params.StoreH = '';
     this.params.locationName = '';
     this.getData();
   }
 
   add() {
-    this.router.navigate(['/ware-house/add']);
+    this.router.navigate(['/warehouse-data/add']);
   }
   edit(model: MS_Location) {
     this.params = {
-      storeH: model.storeH,
+      StoreH: model.storeH,
       locationName: model.locationName
     }
     this.service.dataSources.next(this.params)
-    this.router.navigate(['/ware-house/edit']);
+    this.router.navigate(['/warehouse-data/edit']);
   }
 }

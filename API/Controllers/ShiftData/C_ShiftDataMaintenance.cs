@@ -26,7 +26,7 @@ namespace API.Controllers
         }
 
 
-        [HttpPost("Add")]
+        [HttpPost("add")]
          public async Task<ActionResult> Add([FromBody] MS_Shift shift )
         {
             // Manuf mặc định tự truyền N
