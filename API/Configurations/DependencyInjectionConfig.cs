@@ -21,6 +21,9 @@ namespace API.Configurations
            
             services.AddScoped<I_DepartmentDataMaintenance, S_DepartmentDataMaintenance>();
 
+
+            services.AddScoped<I_WarehouseBasicData, S_WarehouseBasicData>();
+            
         }
     }
 }
