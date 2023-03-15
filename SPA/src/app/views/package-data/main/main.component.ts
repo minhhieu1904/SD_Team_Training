@@ -1,10 +1,8 @@
-import { WarehouseDataService } from './../../../_core/services/warehouse-data.service';
-
-import { MS_Location, MS_LocationParam } from './../../../_core/_models/warehouse_data/warehouse_data';
+import { Package_dataService } from './../../../_core/services/package_data.service';
+import { MS_Package, MS_PackageParam } from './../../../_core/_models/Package-data/Package-data';
 import { Component, OnInit } from '@angular/core';
 import { Pagination } from '@utilities/pagination-utility';
 import { InjectBase } from '@utilities/inject-base-app';
-import { LocaleData } from 'ngx-bootstrap/chronos';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { IconButton } from '@constants/common.constants';
 
@@ -13,24 +11,23 @@ import { IconButton } from '@constants/common.constants';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-
 export class MainComponent extends InjectBase implements OnInit {
 
-  data: MS_Location[] =[];
+  data: MS_Package[] =[];
 
   pagination: Pagination = <Pagination>
   {
     pageNumber: 1, pageSize: 10
   }
 
-  params: MS_LocationParam = <MS_LocationParam>
+  params: MS_PackageParam = <MS_PackageParam>
   {
-    StoreH: '',
-    locationName: ''
+    packageNo : '',
+    packageQty: 0
 
   }
 
-  constructor(private service: WarehouseDataService ) { super()}
+  constructor(private service: Package_dataService ) { super()}
 
   ngOnInit(): void {
     this.search();
@@ -38,7 +35,6 @@ export class MainComponent extends InjectBase implements OnInit {
 
 
   getData(){
-    // theo thứ tự truyền vào
     this.service.getData(this.params, this.pagination).subscribe({
       next: res => {
         console.log(this.params)
@@ -63,20 +59,21 @@ export class MainComponent extends InjectBase implements OnInit {
   iconButton: typeof IconButton = IconButton
 
   clear() {
-    this.params.StoreH = '';
-    this.params.locationName = '';
+    this.params.packageNo = '';
+    this.params.packageQty = 0;
     this.getData();
   }
 
   add() {
-    this.router.navigate(['/warehouse-data/add']);
+    this.router.navigate(['/package-data/add']);
   }
-  edit(model: MS_Location) {
+  edit(model: MS_PackageParam) {
     this.params = {
-      StoreH: model.storeH,
-      locationName: model.locationName
+      packageNo: model.packageNo,
+      packageQty: model.packageQty
     }
     this.service.dataSources.next(this.params)
-    this.router.navigate(['/warehouse-data/edit']);
+    this.router.navigate(['/package-data/edit']);
   }
+
 }

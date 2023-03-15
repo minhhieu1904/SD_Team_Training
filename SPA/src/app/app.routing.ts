@@ -23,6 +23,10 @@ export const routes: Routes = [
       {
         path: 'department-data',
         loadChildren: () => import('./views/department-data/department-data.module').then(m => m.DepartmentDataModule )
+      },
+      {
+        path: 'package-data',
+        loadChildren: () => import('./views/package-data/package-data.module').then(m => m.PackageDataModule )
       }
     ]
   }
