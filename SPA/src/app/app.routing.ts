@@ -10,8 +10,15 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
-  }
+    children: [
+      {
+        path: "maintain",
+        loadChildren: () => import('./views/maintain/maintain.module').then(m => m.MaintainModule)
+      }
+    ]
+  },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: '/dashboard' }
 ];
 
 @NgModule({
