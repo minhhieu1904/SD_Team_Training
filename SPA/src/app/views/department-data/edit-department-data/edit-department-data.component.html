@@ -1,0 +1,28 @@
+
+<div class="card ">
+  <div class="card-header">
+
+    <h5>Department Data Maintenance - edit</h5>
+    <div class="col md-4 text-right">
+      <button class="btn btn-primary" (click)="back()">Back </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <span class="badge badge-warning">Department </span>
+        <input type="text" name="parNo" [(ngModel)]="params.parNo" class="form-control" readonly >
+      </div>
+      <div class="col-md-2">
+        <span class="badge badge-warning">Name Of Department</span>
+        <input type="text" name="parName" [(ngModel)]="params.parName" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <div class="col md-4">
+      <button class="btn btn-success" (click)="save()"><i class="{{iconButton.SAVE}}"> Save</i> </button>
+    </div>
+  </div>
+</div>
+

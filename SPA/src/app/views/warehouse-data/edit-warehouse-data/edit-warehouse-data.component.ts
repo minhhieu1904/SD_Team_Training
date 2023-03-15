@@ -11,12 +11,7 @@ import { IconButton } from '@constants/common.constants';
 })
 export class EditWarehouseDataComponent extends InjectBase  implements OnInit {
 
-  // params: MS_Location = <MS_Location>
-  // {
-  //   manuf: '',
-  //   storeH: '',
-  //   locationName: ''
-  // }
+
 
   params: MS_LocationParam = <MS_LocationParam> {
     StoreH: '',
