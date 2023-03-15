@@ -10,7 +10,13 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
+    children: [
+      { 
+        path: 'warehouse-basic-data',
+        loadChildren: () => import('./views/warehouse-basic-data/warehouse-basic-data.module').then(m => m.WarehouseBasicDataModule)
+
+      }
+    ]
   }
 ];
 
