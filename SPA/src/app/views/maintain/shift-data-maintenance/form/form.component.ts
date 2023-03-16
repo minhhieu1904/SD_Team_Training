@@ -5,15 +5,14 @@ import { OperationResult } from './../../../../_core/utilities/operation-result'
 import { ShiftDataMaintainService } from './../../../../_core/services/shift-data-maintain.service';
 import { MS_Shift } from './../../../../_core/models/mS_Shift_DTO';
 import { Component, OnInit } from '@angular/core';
-import {NgSnotifyService} from '../../../../_core/services/ng-snotify.service';
+import { NgSnotifyService } from '../../../../_core/services/ng-snotify.service';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-
   model: MS_Shift = {} as MS_Shift;
 
   // constructor(
@@ -26,10 +25,9 @@ export class FormComponent implements OnInit {
     private service: ShiftDataMaintainService,
     private route: Router,
     private snotify: NgSnotifyService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // saveChange(){
   //   this.service.addNew(this.model).subscribe({
@@ -45,33 +43,30 @@ export class FormComponent implements OnInit {
   //   })
   // }
 
-  saveChange(){
+  saveChange() {
     //con confirm dung nhu nay ne, minh phai khi bao cai minh config
 
-    this.snotify.confirm("Ban co muon them moi khong ?","Them moi", () => {
+    this.snotify.confirm('Ban co muon them moi khong ?', 'Them moi', () => {
       this.service.addNew(this.model).subscribe({
-        next:(res:OperationResult)=>{
-          if(res.isSuccess){
+        next: (res: OperationResult) => {
+          if (res.isSuccess) {
             this.back();
             //Title la cai nam tren, con body la o duoi
-            this.snotify.success("Add success", "Success");
-          }else{
-            this.snotify.error("Add error","Error");
+            this.snotify.success('Add success', 'Success');
+          } else {
+            this.snotify.error('Add error', 'Error');
           }
         },
-        error:()=>{this.snotify.error("Add error","Error");},
-        complete:()=>{}
-      })
-    })
-
-
-
-
+        error: () => {
+          this.snotify.error('Add error', 'Error');
+        },
+        complete: () => {},
+      });
+    });
   }
 
-  back(){
+  back() {
     // quay lại trang main search
-    this.route.navigate(["maintain/shift-data-maintenance"])
+    this.route.navigate(['maintain/shift-data-maintenance']);
   }
-
 }

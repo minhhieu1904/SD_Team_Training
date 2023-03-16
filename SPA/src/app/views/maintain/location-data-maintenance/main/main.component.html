@@ -1,17 +1,17 @@
 <div class="card">
   <div class="card-header">
-    <h5>1.1 Shift Data Maintenance</h5>
+    <h5>1.2 Warehouse Basic Data Maintenance</h5>
   </div>
   <div class="card-body">
     <div class="card">
       <form class="row g-3">
         <div class="col-md-6">
-          <label class="form-label">Shift</label>
-          <input class="form-control" name="shift" [(ngModel)]="param.shift">
+          <label class="form-label">Kode Of Warehouse</label>
+          <input class="form-control" name="shift" [(ngModel)]="param.storeH">
         </div>
         <div class="col-md-6">
-          <label class="form-label">Shift Name</label>
-          <input class="form-control " name="shiftName" [(ngModel)]="param.shiftName">
+          <label class="form-label">Name Of Warehouse</label>
+          <input class="form-control " name="shiftName" [(ngModel)]="param.locationName">
         </div>
       </form>
       <div class="button">
@@ -31,20 +31,21 @@
         <tr>
           <!-- <th scope="col">Stt</th> -->
           <th scope="col"></th>
-          <th scope="col">Shift</th>
-          <th scope="col">Name Of Shift</th>
+          <th scope="col">Kode Of Warehouse</th>
+          <th scope="col">Name Of Warehouse</th>
         </tr>
       </thead>
       <tbody>
         <!-- Đổ data ra table -->
-        <tr *ngFor="let item of data; let i =index">
+        <tr *ngFor="let item of data; let i = index">
           <!-- <td>{{i+1}}</td> -->
           <td>
-            <button type="button" class="btn btn-primary" (click)="update(item)"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-primary" (click)="update()"><i
+                class="{{iconButton.EDIT}}"></i></button>
             <!-- {{item.manuf}} -->
           </td>
-          <td>{{item.shift}}</td>
-          <td>{{item.shiftName}}</td>
+          <td>{{item.storeH}}</td>
+          <td>{{item.locationName}}</td>
           <!-- Sử dụng các hàm update và xóa -->
         </tr>
       </tbody>

@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    <h5>1.2 Warehouse Basic Data Maintenance - Edit</h5>
+    <div class="back-button">
+      <button class="btn btn-primary" (click)="back()"><i class="fa fa-chevron-left"></i> Back</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Shift</label>
+        <input [(ngModel)]="model.storeH" type="text" id="shift" name="shift" class="form__input form-control"
+          autocomplete="off" placeholder=" " disabled="true">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Shift Name</label>
+        <input [(ngModel)]="model.locationName" type="text" id="shiftName" name="shiftName" class=" form-control"
+          autocomplete="off" placeholder=" ">
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-success me-md-2" (click)="saveChange()" type="button"><i class="fa fa-check"></i>
+      Save</button>
+    <button class="btn btn-primary" type="button"><i class="fa fa-check"></i> Save & Next</button>
+  </div>
+</div>

@@ -18,8 +18,8 @@ namespace API.Controllers
         
         [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] MS_Shift_DTO dto){
-            var result = await _service.Create(dto);
-            return Ok(result);
+            var data = await _service.Create(dto);
+            return Ok(data);
         }
 
         [HttpGet("Search")]

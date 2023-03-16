@@ -1,4 +1,3 @@
-
 using AgileObjects.AgileMapper.Extensions;
 using API._Repositories;
 using API._Services.Interfaces;
@@ -75,9 +74,6 @@ namespace API._Services.Services
 
             return data;
         }
-
-        // Oke Quyền ơi, ok a
-
         // private async bool checkExist(){
 
         //     return await _repository.Save();

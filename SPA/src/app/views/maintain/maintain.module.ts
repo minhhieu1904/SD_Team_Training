@@ -3,13 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MaintainRoutingModule } from './maintain-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    MaintainRoutingModule,
-
-  ]
+  imports: [CommonModule, MaintainRoutingModule],
 })
-export class MaintainModule { }
+export class MaintainModule {}

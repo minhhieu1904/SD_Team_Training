@@ -16,6 +16,9 @@ namespace API.Configurations
 
             // Add Service
             services.AddScoped<I_Shift_Data_Maintain, S_Shift_Data_Maintain>();
+            
+            // khai bao o day
+            services.AddScoped<I_Warehouse_Basic_Data_Maintenance, S_Warehouse_Basic_Data_Maintenance>();
         }
     }
 }
