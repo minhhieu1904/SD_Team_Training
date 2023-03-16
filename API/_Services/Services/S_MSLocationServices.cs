@@ -29,11 +29,11 @@ namespace API._Services.Services
             return new OperationResult(false);
         }
 
-        public async Task<PaginationUtility<MS_Location>> GetDataPaging(PaginationParam param, string manuf, string locationName)
+        public async Task<PaginationUtility<MS_Location>> GetDataPaging(PaginationParam param, string storeH, string locationName)
         {
             var data = await _repositoryAccessor.MSLocation.FindAll().ToListAsync();
-            if(!string.IsNullOrEmpty(manuf))
-             data = data.Where(x => x.Manuf == manuf).ToList();
+            if(!string.IsNullOrEmpty(storeH))
+             data = data.Where(x => x.StoreH == storeH).ToList();
              if(!string.IsNullOrEmpty(locationName))
              data = data.Where(x => x.LocationName.Contains(locationName)).ToList();
              return PaginationUtility<MS_Location>.Create(data, param.PageNumber, param.PageSize);

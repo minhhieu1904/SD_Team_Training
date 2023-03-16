@@ -16,9 +16,7 @@ export const routes: Routes = [
         loadChildren: () => import('./views/maintain/maintain.module').then(m => m.MaintainModule)
       }
     ]
-  },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '/dashboard' }
+  }
 ];
 
 @NgModule({

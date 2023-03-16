@@ -20,8 +20,8 @@ namespace API.Controllers
         }
 
         [HttpGet("GetDataPagination")]
-        public async Task<IActionResult> GetDataPagination([FromQuery] PaginationParam param, string manuf, string locationName) {
-            var result = await _services.GetDataPaging(param, manuf, locationName);
+        public async Task<IActionResult> GetDataPagination([FromQuery] PaginationParam param, string storeH, string locationName) {
+            var result = await _services.GetDataPaging(param, storeH, locationName);
             return Ok(result);
         }
 

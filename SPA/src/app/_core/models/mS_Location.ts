@@ -1,9 +1,9 @@
-export interface MS_Location {
+export interface MSLocation {
     manuf: string;
     storeH: string;
     locationName: string;
 }
 
-export interface MSLocationParam extends MS_Location {
+export interface MSLocationParam extends MSLocation {
 
 }

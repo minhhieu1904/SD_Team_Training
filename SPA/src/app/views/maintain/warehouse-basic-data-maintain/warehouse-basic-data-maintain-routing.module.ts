@@ -14,7 +14,7 @@ const routes: Routes = [
     component: AddComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:manuf/:storeH',
     component: EditComponent,
   } 
 ];

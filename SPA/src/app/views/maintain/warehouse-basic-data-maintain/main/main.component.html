@@ -9,21 +9,21 @@
       <div class="row">
         <div class="col-md-4 ">
           <span class="badge badge-warning">Kode Of Warehouse </span>
-          <input type="text" name="location" class="form-control">
+          <input type="text" name="location" class="form-control" name="storeH" id="storeH" [(ngModel)]="params.storeH" > 
         </div>
         <div class="col-md-4">
           <span class="badge badge-warning">Name Of Warehouse </span>
-          <input type="text" name="locationName"  class="form-control">
+          <input type="text" name="locationName"  class="form-control" [(ngModel)]="params.locationName">
         </div>
   
         <div class="col md-2">
-          <button class=" btn btn-primary " > Search </button>
+          <button class=" btn btn-primary " (click)="search()"> Search </button>
         </div>
         <div class="col md-2">
-          <button class=" btn btn-success" > Add </button>
+          <button class=" btn btn-success" (click)="add()"> Add </button>
         </div>
         <div class="col md-2">
-          <button class=" btn btn-danger" > clear </button>
+          <button class=" btn btn-danger" (click)="clear()"> Clear </button>
         </div>
   
       </div>
@@ -40,22 +40,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="">
-          <th scope="row" class="text-center"> <button class=" btn btn-primary" (click)="edit(item)"><i class="{{iconButton.EDIT}}"></i> </button></th>
+        <tr *ngFor="let item of data">
+          <th scope="row" class="text-center"> <button class=" btn btn-primary" (click)="updateItem(item)">Edit</button></th>
           <td class="text-center">{{item.storeH}}</td>
           <td  class="text-center">{{item.locationName}}</td>
   
         </tr>
       </tbody>
     </table>
-  
-    <div class="d-flex" *ngIf="">
+    <div class="d-flex" *ngIf="data.length > 0">
+      &nbsp;&nbsp;
       <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
         previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
         [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
       </pagination>
-      <span class="cs-page ml-2">
-        Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
-      </span>
     </div>
   </div>

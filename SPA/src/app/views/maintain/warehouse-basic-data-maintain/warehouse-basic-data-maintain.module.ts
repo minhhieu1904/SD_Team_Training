@@ -5,6 +5,8 @@ import { WarehouseBasicDataMaintainRoutingModule } from './warehouse-basic-data-
 import { MainComponent } from './main/main.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import { FormsModule } from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { EditComponent } from './edit/edit.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    PaginationModule.forRoot(),
     WarehouseBasicDataMaintainRoutingModule
   ]
 })
