@@ -10,18 +10,19 @@ namespace API._Repositories
     {
         private DBContext _dbContext;
 
-
         public RepositoryAccessor(DBContext dbContext)
         {
             _dbContext = dbContext;
             // ERP_ISSUE_DTL = new ERP_ISSUE_DTL_Repository(_dbContext);
 
             MS_Shift = new MS_Shift_Repository(_dbContext);
+            MS_Department = new MS_Department_Repository(_dbContext);
             
         }
 
         // public IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;set;}
         public IMS_Shift_Repository MS_Shift { get; private set; }
+        public IMS_Department_Repository MS_Department { get; private set; }
 
         public async Task<bool> Save()
         {

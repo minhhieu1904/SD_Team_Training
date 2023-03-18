@@ -14,7 +14,10 @@ export const routes: Routes = [
       { 
         path: 'shift-data-maintain',
         loadChildren: () => import('./views/shift-data-maintain/shift-data-maintain.module').then(m => m.ShiftDataMaintainModule)
-
+      },
+      {
+        path: 'department-data-maintenance',
+        loadChildren: () => import('./views/department-data-maintenance/department-data-maintenance.module').then(m => m.DepartmentDataMaintenanceModule)
       }
     ]
   }

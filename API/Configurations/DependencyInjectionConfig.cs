@@ -2,6 +2,7 @@
 using API._Repositories;
 using API._Services.Interfaces;
 using API._Services.Services;
+using API._Services.Services.DepartmentDataMaintenance;
 
 namespace API.Configurations
 {
@@ -18,6 +19,8 @@ namespace API.Configurations
             // services.AddScoped<IShiltDataMaintainServices, ShiltDataMaintainServices>();
            services.AddScoped<I_ShiftDataMaintain, S_ShiltDataMaintain>();
            
+            services.AddScoped<I_DepartmentDataMaintenance, S_DepartmentDataMaintenance>();
+
         }
     }
 }

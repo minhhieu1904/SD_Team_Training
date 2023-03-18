@@ -17,6 +17,7 @@ namespace API.Data
         }
 
         public virtual DbSet<MS_Shift> MS_Shift { get; set; }
+        public virtual DbSet<MS_Department> MS_Department { get ; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,10 @@ namespace API.Data
                 entity.HasKey(x => new {x.Manuf, x.Shift});
             });
 
+            modelBuilder.Entity<MS_Department>(entity =>
+            {
+                entity.HasKey(x => new {x.Manuf, x.ParNo});
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }
