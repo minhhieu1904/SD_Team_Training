@@ -10,7 +10,13 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
+    children: [
+      { 
+        path: 'department-data-maintenance',
+        loadChildren: () => import('./views/department-data-maintenance/department-data-maintenance.module').then(m => m.DepartmentDataMaintenanceModule)
+
+      }
+    ]
   }
 ];
 
