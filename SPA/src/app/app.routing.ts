@@ -22,7 +22,10 @@ export const routes: Routes = [
       {
         path: 'warehouse-basic-data',
         loadChildren: () => import('./views/warehouse-basic-data/warehouse-basic-data.module').then(m => m.WarehouseBasicDataModule)
-
+      },
+      {
+        path: 'standard-packing-quantity',
+        loadChildren: () => import('./views/standard-packing-quantity/standard-packing-quantity.module').then(m => m.StandardPackingQuantityModule)
       }
     ]
   }

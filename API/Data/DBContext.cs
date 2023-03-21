@@ -38,6 +38,10 @@ namespace API.Data
             {
                 entity.HasKey(x => new {x.Manuf, x.StoreH});
             });
+             modelBuilder.Entity<MS_Package>(entity =>
+            {
+                entity.HasKey(x => new {x.Manuf, x.PackageNo});
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }

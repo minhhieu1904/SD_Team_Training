@@ -18,6 +18,7 @@ namespace API._Repositories
             MS_Shift = new MS_Shift_Repository(_dbContext);
             MS_Department = new MS_Department_Repository(_dbContext);
             MS_Location = new MS_LocationRepository(_dbContext);
+            MS_Package = new MS_Package_Repository(_dbContext);
 
             
         }
@@ -26,6 +27,7 @@ namespace API._Repositories
         public IMS_Shift_Repository MS_Shift { get; private set; }
         public IMS_Department_Repository MS_Department { get; private set; }
         public IMS_LocationRepository MS_Location { get; set; }
+         public IMS_Package_Repository MS_Package { get; private set; }
 
 
 

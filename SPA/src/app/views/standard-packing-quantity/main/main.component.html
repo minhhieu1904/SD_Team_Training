@@ -1,0 +1,70 @@
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10">
+          <h5>1.4 Standard Packing Quantity</h5>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <span class="badge badge-warning">PackageNo</span>
+          <input type="text"   class="form-control" [(ngModel)]="param.packageNo">
+        </div>
+        <div class="col-md-2">
+          <span class="badge badge-warning">PackageQty</span>
+          <input type="number"   class="form-control" [(ngModel)]="param.packageQty">
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" (click)="search()">
+              <i class="fa fa-search"></i>
+              Search</button>
+          
+
+            <button class="btn button" class="btn btn-danger"  (click)="clear()">
+              <i class="fa fa-refresh"></i>
+              Clear
+            </button>
+
+            <button class="btn btn-success" (click)="add()">
+            
+              <i class="fa fa-plus"></i>
+               Add</button>
+
+          </div>
+          
+        
+      </div>
+    </div>
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col"></th>
+          <th class="text-center" scope="col">PackageNo</th>
+          <th class="text-center" scope="col">PackageQty</th>
+        </tr>
+      </thead>
+  
+      <tbody >
+        <tr *ngFor="let item of data ">
+            <td class="text-center">
+              <button type="button" class="btn btn-primary btn-sm" >
+                <i class="fa fa-edit fa-lg" (click)="edit(item)"></i></button>
+            </td>
+            <td class="text-center"> {{item.packageNo}}</td>
+            <td class="text-center"> {{item.packageQty}}</td>
+        </tr>
+        
+  
+  
+      </tbody>
+    </table>
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
+        (pageChanged)="pageChanged($event)"  >
+        <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+          {{pagination.totalPage}}</span>
+   
+  </pagination>
+  </div>
+  

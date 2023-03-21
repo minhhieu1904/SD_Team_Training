@@ -24,6 +24,7 @@ namespace API.Configurations
 
             services.AddScoped<I_WarehouseBasicData, S_WarehouseBasicData>();
             
+            services.AddScoped<I_StandardPackingQuantity, S_StandardPackingQuantity>();
         }
     }
 }
