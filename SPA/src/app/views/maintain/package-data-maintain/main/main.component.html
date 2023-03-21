@@ -1,0 +1,57 @@
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10">
+          <h5>Standard Packing Quantity Setting</h5>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 ">
+          <span class="badge badge-warning">Packing No</span>
+          <input type="text" name="packageNo "class="form-control" name="storeH" id="packageNo" [(ngModel)]="params.packageNo" > 
+        </div>
+        <div class="col-md-4">
+          <span class="badge badge-warning">Packing Quantity</span>
+          <input type="text" name="packageQty"  class="form-control" id="packageQty" [(ngModel)]="params.packageQty">
+        </div>
+  
+        <div class="col md-2">
+          <button class=" btn btn-primary " (click)="search()"> Search </button>
+        </div>
+        <div class="col md-2">
+          <button class=" btn btn-success" (click)="add()"> Add </button>
+        </div>
+        <div class="col md-2">
+          <button class=" btn btn-danger" (click)="clear()"> Clear </button>
+        </div>  
+      </div>
+      </div>  
+  </div>
+  
+  <div class="card">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"  class="text-center">Packing No</th>
+          <th scope="col" class="text-center">Packing Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <th scope="row" class="text-center"> <button class=" btn btn-primary" (click)="updateItem(item)"><i
+            class="fa fa-edit fa-lg"></i></button></th>
+          <td class="text-center">{{item.packageNo}}</td>
+          <td  class="text-center" >{{item.packageQty}}</td>  
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex" *ngIf="data.length > 0">
+      &nbsp;&nbsp;
+      <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+        [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+      </pagination>
+    </div>
+  </div>
