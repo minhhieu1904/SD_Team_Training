@@ -64,8 +64,8 @@ export class MainComponent implements OnInit {
   }
 
   update(item: MS_Department) {
-    let msDepartmentEdit = { ...item };
-    this.service.msDepartment.next(msDepartmentEdit);
+    // let msDepartmentEdit = { ...item };
+    this.service.msDepartment.next(item);
     this.route.navigate(['maintain/department-data-maintenace/update']);
   }
 }

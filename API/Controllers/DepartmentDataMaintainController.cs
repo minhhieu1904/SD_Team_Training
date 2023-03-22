@@ -28,7 +28,7 @@ namespace API.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(MS_Department_DTO dto){
+        public async Task<IActionResult> Update([FromBody]MS_Department_DTO dto){
             var data = await _service.Update(dto);
             return Ok(data);
         }
@@ -37,8 +37,6 @@ namespace API.Controllers
         public async Task<IActionResult> GetDetail(MS_Department_DTO dto){
             var data = await _service.GetDetail(dto);
             return Ok(data);
-        }
-
-      
+        }      
     }
 }

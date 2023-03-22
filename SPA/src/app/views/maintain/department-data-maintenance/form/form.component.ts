@@ -23,10 +23,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  saveChange() {
+  saveChange(type?: string) {
     this.snotify.confirm('Bạn có muốn thêm mới không?', 'Thêm mới', () => {
-      console.log('model', this.model);
-
       this.service.addNew(this.model).subscribe({
         next: (res: OperationResult) => {
           if (res.isSuccess) {

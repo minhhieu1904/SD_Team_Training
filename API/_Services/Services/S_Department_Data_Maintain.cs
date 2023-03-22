@@ -51,7 +51,7 @@ namespace API._Services.Services
         {
             dto.Manuf = "N";
             var entity = dto.Map().ToANew<MS_Department>(c => c.MapEntityKeys());
-            _repository.MS_Department.Add(entity);
+            _repository.MS_Department.Update(entity);
 
             await _repository.Save();
             return new OperationResult{IsSuccess = true};

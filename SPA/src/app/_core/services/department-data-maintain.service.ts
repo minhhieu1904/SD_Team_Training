@@ -39,10 +39,9 @@ export class DepartmentDataMaintainService {
 
   // service add new
   addNew(model: MS_Department): Observable<OperationResult> {
+    console.log('md', model);
     return this.http.post<OperationResult>(this.baseUrl + 'Create', model);
   }
-
-  // Service Update
   update(model: MS_Department): Observable<OperationResult> {
     return this.http.put<OperationResult>(this.baseUrl + 'Update', model);
   }

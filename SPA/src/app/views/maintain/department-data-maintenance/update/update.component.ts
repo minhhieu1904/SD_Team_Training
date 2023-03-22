@@ -13,7 +13,11 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./update.component.scss'],
 })
 export class UpdateComponent implements OnInit {
-  model: MS_Department = <MS_Department>{};
+  model: MS_Department = <MS_Department>{
+    manuf: '',
+    parName: 'N',
+    parNo: 'no',
+  };
   iconButton = IconButton;
 
   constructor(
@@ -22,7 +26,9 @@ export class UpdateComponent implements OnInit {
     private snotify: NgSnotifyService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadData();
+  }
 
   loadData() {
     this.DepartmentDataMaintainService.msDepartmentCurrent.subscribe({
