@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Pagination } from "./pagination-utility";
-import { NgSnotifyService } from "@services/common/ng-snotify.service";
+// import { NgSnotifyService } from "@services/common/ng-snotify.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { BsLocaleService } from "ngx-bootstrap/datepicker";
 import { defineLocale, enGbLocale, idLocale, viLocale, zhCnLocale } from "ngx-bootstrap/chronos";
@@ -16,7 +16,7 @@ export class FunctionUtility {
 
   constructor(
     private http: HttpClient,
-    private snotify: NgSnotifyService,
+    // private snotify: NgSnotifyService,
     private spinnerService: NgxSpinnerService
   ) { }
 
@@ -171,11 +171,11 @@ export class FunctionUtility {
 
     if (result.size == 0) {
       this.spinnerService.hide();
-      return this.snotify.warning('No Data', "Warning")
+      // return this.snotify.warning('No Data', "Warning")
     }
     if (result.type !== `application/${type}`) {
       this.spinnerService.hide();
-      return this.snotify.error(result.type.toString(), "Error");
+      // return this.snotify.error(result.type.toString(), "Error");
     }
     const blob = new Blob([result]);
     const url = window.URL.createObjectURL(blob);
@@ -189,7 +189,7 @@ export class FunctionUtility {
   print(result: Blob) {
     if (result.size == 0) {
       this.spinnerService.hide();
-      return this.snotify.warning('No Data', "Warning")
+      // return this.snotify.warning('No Data', "Warning")
     }
     const blob = new Blob([result], { type: 'application/pdf' });
     const blobUrl = URL.createObjectURL(blob);

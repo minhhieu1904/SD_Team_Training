@@ -10,7 +10,13 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
+    children: [
+      { 
+        path: 'authorization-setting',
+        loadChildren: () => import('./views/authorization-setting/authorization-setting.module').then(m => m.AuthorizationSettingModule)
+
+      }
+    ]
   }
 ];
 
