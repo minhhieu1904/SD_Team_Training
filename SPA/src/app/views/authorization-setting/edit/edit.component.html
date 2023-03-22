@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-10">
+                <h5>1.5 Authorization Setting</h5>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" (click)="backlist()">
+                    <i class="fa fa-arrow-left"></i> Back</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <span class="badge badge-warning">User Account</span>
+                <input type="text" disabled="disabled"  [(ngModel)]="param.account" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <span class="badge badge-warning">User Name</span>
+                <input type="text" disabled="disabled"  [(ngModel)]="param.name" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <span class="badge badge-warning">password</span>
+                <input type="text"  [(ngModel)]="param.password" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <span class="badge badge-warning">email</span>
+                <input type="text"  [(ngModel)]="param.email" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <span class="badge badge-warning">Is Active</span>
+                <div class="form-group">
+                    <ng-select [(ngModel)]="param.is_active">
+                        <ng-option *ngFor="let item of actives" [value]="item.key">{{item.value}}</ng-option>
+                     </ng-select>
+                </div>
+
+            </div>
+
+            <div class="col pt-4">
+                <button class="btn btn-primary" (click)="saveUpdate()"> Save </button>
+
+                <!-- <button class="btn btn-primary" > Save & Next </button> -->
+            </div>
+
+        </div>
+    </div>
+</div>
