@@ -10,6 +10,7 @@ namespace API.Models
     public partial class MsShift
     {
         [Key]
+        [Required]
         [StringLength(1)]
         public string Manuf { get; set; } = null!;
         [Key]
