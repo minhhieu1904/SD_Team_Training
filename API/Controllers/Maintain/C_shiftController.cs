@@ -1,19 +1,21 @@
-
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using API._Services.Interfaces;
-using API.Data;
-using API.DTOs;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SD3_API.Helpers.Utilities;
 
-namespace API.Controllers
+namespace API.Controllers.Maintain
 {
-    public class C_ShiftDataMaintenance : APIController
+    public class C_shiftController : APIController
     {
-        private readonly IShiftDataMaintenanceService _ShiftData;
+         private readonly IShiftDataMaintenanceService _ShiftData;
 
-        public C_ShiftDataMaintenance(IShiftDataMaintenanceService shiftData)
+        public C_shiftController(IShiftDataMaintenanceService shiftData)
         {
             _ShiftData = shiftData;
         }
@@ -42,7 +44,6 @@ namespace API.Controllers
             var data = await _ShiftData.Update(shift);
             return Ok(data);  
         }
-
-    }   
-    
+     
+    }
 }

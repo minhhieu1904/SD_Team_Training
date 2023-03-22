@@ -7,5 +7,5 @@ export interface MS_PackageParam {
 export interface MS_Package {
   manuf: string;
   packageNo: string;
-  packageQty: number;
+  packageQty: number | null;
 }

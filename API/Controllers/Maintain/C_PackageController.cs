@@ -1,16 +1,19 @@
-
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using API._Services.Interfaces;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using SD3_API.Helpers.Utilities;
-namespace API.Controllers.Packagedata
-{
-    public class C_PackageData : APIController
-    {
-         private readonly IPackageServices _packageData;
-     
 
-        public C_PackageData(IPackageServices packageData)
+namespace API.Controllers.Maintain
+{
+    public class C_PackageController : APIController
+    {
+        private readonly IPackageServices _packageData;     
+        public C_PackageController(IPackageServices packageData)
         {
             _packageData = packageData;
         }
@@ -32,5 +35,6 @@ namespace API.Controllers.Packagedata
             var data = await _packageData.Update(packageNo);
             return Ok(data);
         }
+
     }
 }

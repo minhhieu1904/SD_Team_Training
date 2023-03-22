@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IconButton } from '@constants/common.constants';
-import { MS_Shift, MS_ShiftParam } from '@models/shift_data/shift_Data';
+import { MS_Shift } from '@models/shift';
 import { Shift_dataService } from '@services/shift_data.service';
 import { InjectBase } from '@utilities/inject-base-app';
 

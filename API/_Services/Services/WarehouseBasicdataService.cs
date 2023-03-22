@@ -50,7 +50,6 @@ namespace API._Services.Services
             return PaginationUtility<MS_Location>.Create(data, paginationParams.PageNumber, paginationParams.PageSize, true);
 
         }
-
         public async Task<OperationResult> Update(MS_Location StoreH)
         {
             var item = await _repoAccessor.MS_Location.FirstOrDefaultAsync(x=>x.Manuf.Trim() == "N"  && x.StoreH == StoreH.StoreH);

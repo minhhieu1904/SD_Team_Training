@@ -1,8 +1,7 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from "@angular/core";
-
-import { AddShiftDataComponent } from './add-shift-data/add-shift-data.component';
-import { EditShiftDataComponent } from './edit-shift-data/edit-shift-data.component';
+import { AddUserDataComponent } from './add-user-data/add-user-data.component';
+import { EditUserDataComponent } from './edit-user-data/edit-user-data.component';
 import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
@@ -15,21 +14,22 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: AddShiftDataComponent,
+    component: AddUserDataComponent,
     data: {
       title: 'Add'
     }
   },
   {
     path: 'edit',
-    component: EditShiftDataComponent,
+    component: EditUserDataComponent,
     data: {
       title: 'Edit'
     }
   }
-]
+];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class ShiftDataRoutingModule { }
+export class UsersDataRoutingModule { }

@@ -1,52 +1,55 @@
-import { IconButton } from './../../../_core/constants/common.constants';
-import { Component, OnInit } from '@angular/core';
-import { MS_Shift, MS_ShiftParam } from '@models/shift_data/shift_Data';
-import { Shift_dataService } from '@services/shift_data.service';
+
 import { InjectBase } from '@utilities/inject-base-app';
+
+import { Component, OnInit } from '@angular/core';
+
+import { MS_Shift, MS_ShiftParam } from '@models/shift';
+import { Shift_dataService } from '@services/shift_data.service';
+
 import { Pagination } from '@utilities/pagination-utility';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { IconButton } from '@constants/common.constants';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  data: MS_Shift[] = [];
+  iconButton: typeof IconButton = IconButton;
 
-  data: MS_Shift[] =[];
+  pagination: Pagination = <Pagination>{
+    pageNumber: 1,
+    pageSize: 10,
+  };
 
-  pagination: Pagination = <Pagination>
-  {
-    pageNumber: 1, pageSize: 10
+  params: MS_ShiftParam = <MS_ShiftParam>{
+    shift: '',
+    shiftName: '',
+  };
+
+  constructor(private service: Shift_dataService) {
+    super();
   }
-
-  params: MS_ShiftParam = <MS_ShiftParam>
-  {
-      shift: '',
-      shiftName: ''
-
-  }
-
-  constructor(private service: Shift_dataService) { super()}
 
   ngOnInit(): void {
     this.getData();
   }
 
-
-  getData(){
+  getData() {
     // theo thứ tự truyền vào
     this.service.getData(this.params, this.pagination).subscribe({
-      next: res => {
-        console.log(res)
+      next: (res) => {
+        console.log(res);
         this.data = res.result;
         this.pagination = res.pagination;
       },
-      error: () => {}
-    })
+      error: () => {},
+    });
   }
 
-  search(){
+  search() {
     this.getData();
   }
 
@@ -55,7 +58,7 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getData();
   }
 
-  iconButton: typeof IconButton = IconButton
+
 
   clear() {
     this.params.shift = '';
@@ -69,9 +72,9 @@ export class MainComponent extends InjectBase implements OnInit {
   edit(model: MS_Shift) {
     this.params = {
       shift: model.shift,
-      shiftName: model.shiftName
-    }
-    this.service.dataSource.next(this.params)
+      shiftName: model.shiftName,
+    };
+    this.service.dataSource.next(this.params);
     this.router.navigate(['/shift-data/edit']);
   }
 }

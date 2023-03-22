@@ -1,25 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Mvc;
 using API._Services.Interfaces;
 using API.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using SD3_API.Helpers.Utilities;
 
-namespace API.Controllers.C_WarehouseBasicdata
+namespace API.Controllers.Maintain
 {
 
-    public class C_WarehouseBasicdata : APIController
+    public class C_WareHouseController : APIController
     {
         private readonly IWarehouseBasicdataService _locationData;
 
-        public C_WarehouseBasicdata(IWarehouseBasicdataService locationData)
+        public C_WareHouseController(IWarehouseBasicdataService locationData)
         {
             _locationData = locationData;
         }
+
+       
 
         [HttpGet("getdata")]
         public async Task<ActionResult> GetMs_Location([FromQuery]PaginationParam pagination,string StoreH, string locationName)

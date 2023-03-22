@@ -10,6 +10,10 @@ namespace API._Repositories
         IMS_LocationRepository  MS_Location{get;}
         IMS_DepartmentRepository MS_Department{get;}
         IMS_PackageRepository MS_Package{get;}
+        IUserRepository Users{get;}
+        IRolesRepository Roles{get;}
+        IRoleUserRepository RoleUser{get;}
+
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

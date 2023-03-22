@@ -1,12 +1,12 @@
-import { WarehouseDataService } from './../../../_core/services/warehouse-data.service';
 
-import { MS_Location, MS_LocationParam } from './../../../_core/_models/warehouse_data/warehouse_data';
 import { Component, OnInit } from '@angular/core';
 import { Pagination } from '@utilities/pagination-utility';
 import { InjectBase } from '@utilities/inject-base-app';
 import { LocaleData } from 'ngx-bootstrap/chronos';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { IconButton } from '@constants/common.constants';
+import { MS_Location, MS_LocationParam } from '@models/warehouse';
+import { WarehouseDataService } from '@services/warehouse-data.service';
 
 @Component({
   selector: 'app-main',

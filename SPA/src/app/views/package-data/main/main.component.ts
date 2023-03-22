@@ -1,10 +1,11 @@
-import { Package_dataService } from './../../../_core/services/package_data.service';
-import { MS_Package, MS_PackageParam } from './../../../_core/_models/Package-data/Package-data';
+
 import { Component, OnInit } from '@angular/core';
 import { Pagination } from '@utilities/pagination-utility';
 import { InjectBase } from '@utilities/inject-base-app';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { IconButton } from '@constants/common.constants';
+import { MS_Package, MS_PackageParam } from '@models/package';
+import { Package_dataService } from '@services/package_data.service';
 
 @Component({
   selector: 'app-main',

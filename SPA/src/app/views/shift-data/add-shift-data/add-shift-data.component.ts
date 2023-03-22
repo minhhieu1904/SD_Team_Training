@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IconButton } from '@constants/common.constants';
-import { MS_ShiftParam } from '@models/shift_data/shift_Data';
+import { MS_ShiftParam } from '@models/shift';
 import { Shift_dataService } from '@services/shift_data.service';
 import { InjectBase } from '@utilities/inject-base-app';
 
@@ -14,7 +14,6 @@ export class AddShiftDataComponent extends InjectBase implements OnInit {
   {
       shift: '',
       shiftName: ''
-
   }
 
   constructor(private service: Shift_dataService) { super() }

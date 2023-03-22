@@ -1,4 +1,3 @@
-import { MS_Shift, MS_ShiftParam } from './_core/_models/shift_data/shift_Data';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -27,6 +26,10 @@ export const routes: Routes = [
       {
         path: 'package-data',
         loadChildren: () => import('./views/package-data/package-data.module').then(m => m.PackageDataModule )
+      },
+      {
+        path: 'users-data',
+        loadChildren: () => import('./views/users-data/users-data.module').then(m => m.UsersDataModule )
       }
     ]
   }

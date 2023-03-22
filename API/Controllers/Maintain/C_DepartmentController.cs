@@ -3,15 +3,13 @@ using API._Services.Interfaces;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using SD3_API.Helpers.Utilities;
-
-namespace API.Controllers.DepartmentData
+namespace API.Controllers.Maintain
 {
- 
-    public class C_DepartmentData : APIController
+    public class C_DepartmentController : APIController
     {
-        private readonly IDepartmentDataServices _departmentData;
+         private readonly IDepartmentDataServices _departmentData;
 
-        public C_DepartmentData(IDepartmentDataServices departmentData)
+        public C_DepartmentController(IDepartmentDataServices departmentData)
         {
             _departmentData = departmentData;
         }
@@ -32,7 +30,6 @@ namespace API.Controllers.DepartmentData
          public async Task<ActionResult> Update([FromBody] MS_Department parno ){
             var data = await _departmentData.Update(parno);
             return Ok(data);
-        }
-        
+        }     
     }
 }

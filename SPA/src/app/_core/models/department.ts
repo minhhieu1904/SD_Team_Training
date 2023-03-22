@@ -1,4 +1,3 @@
-
 export interface MS_DepartmentParam {
   parNo: string;
   parName: string;
@@ -9,4 +8,3 @@ export interface MS_Department {
   parNo: string;
   parName: string;
 }
-
