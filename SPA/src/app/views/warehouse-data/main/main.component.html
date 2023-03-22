@@ -15,7 +15,7 @@
         <span class="badge badge-warning">Name Of Warehouse </span>
         <input type="text" name="locationName" [(ngModel)]="params.locationName" class="form-control">
       </div>
-
+      <div class="row mt-4">
       <div class="col md-2">
         <button class=" btn btn-primary " (click)="search()"><i class="{{iconButton.SEARCH}}"></i> Search </button>
       </div>
@@ -25,38 +25,39 @@
       <div class="col md-2">
         <button class=" btn btn-danger" (click)="clear()"><i class="{{iconButton.DELETE}}"></i> clear </button>
       </div>
-
     </div>
     </div>
-
-</div>
-<div class="card">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col"  class="text-center">Kode Of Warehouse</th>
-        <th scope="col" class="text-center">Name Of Warehouse</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of data">
-        <th scope="row" class="text-center"> <button class=" btn btn-primary" (click)="edit(item)"><i class="{{iconButton.EDIT}}"></i> </button></th>
-        <td class="text-center">{{item.storeH}}</td>
-        <td  class="text-center">{{item.locationName}}</td>
-
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="d-flex" *ngIf="data.length > 0">
-    <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
-      previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
-      [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
-    </pagination>
-    <span class="cs-page ml-2">
-      Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
-    </span>
   </div>
+    <div class="card">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"  class="text-center">Kode Of Warehouse</th>
+            <th scope="col" class="text-center">Name Of Warehouse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <th scope="row" class="text-center"> <button class=" btn btn-primary" (click)="edit(item)"><i class="{{iconButton.EDIT}}"></i> </button></th>
+            <td class="text-center">{{item.storeH}}</td>
+            <td  class="text-center">{{item.locationName}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+    <div class="d-flex" *ngIf="data.length > 0">
+      <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+        [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+      </pagination>
+      <span class="cs-page ml-2">
+        Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
+      </span>
+    </div>
 </div>
+
 
