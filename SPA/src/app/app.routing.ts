@@ -8,14 +8,22 @@ export const routes: Routes = [
     path: '',
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: 'Home',
     },
-    children: []
-  }
+    children: [
+      {
+        path: 'maintain',
+        loadChildren: () =>
+          import('./views/maintain/maintain-routing.module').then(
+            (m) => m.MaintainRoutingModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

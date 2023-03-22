@@ -32,6 +32,11 @@ namespace SD3_API.Helpers.Utilities
             return new PaginationUtility<T>(items, count, pageNumber, pageSize, skip);
         }
 
+        internal static Task<OperationResult> CreateAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public class PaginationResult
         {
             public int TotalCount { get; set; }
