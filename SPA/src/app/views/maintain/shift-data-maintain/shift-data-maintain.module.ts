@@ -5,6 +5,8 @@ import { ShiftDataMaintainRoutingModule } from './shift-data-maintain-routing.mo
 import { MainComponent } from './main/main.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import { FormsModule } from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { EditComponent } from './edit/edit.component';
   ],
   imports: [
     CommonModule,
-    ShiftDataMaintainRoutingModule
+    FormsModule,
+    ShiftDataMaintainRoutingModule,
+    PaginationModule.forRoot()
   ]
 })
 export class ShiftDataMaintainModule { }

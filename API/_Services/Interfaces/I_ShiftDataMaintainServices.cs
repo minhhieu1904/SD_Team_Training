@@ -16,7 +16,7 @@ namespace API._Services.Interfaces
 
         Task<OperationResult> Update(MsShift model);
 
-        Task<OperationResult> Delete(MsShift model);
+        Task<OperationResult> Delete(string shift);
 
         Task<MsShift> GetDataOnly (string manuf, string shift);
     }

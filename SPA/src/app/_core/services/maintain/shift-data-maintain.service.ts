@@ -4,9 +4,10 @@ import {
   PaginationParam,
   PaginationResult,
 } from '../../utilities/pagination-utility';
+import { OperationResult } from '../../utilities/operation-result';
 
 import { MsShift, ShiftDataMaintainParam } from '../../models/maintain/msShift';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -25,10 +26,9 @@ export class ShiftDataMaintainService {
     // .set('pageSize', pagination.pageSize)
     let params = new HttpParams().appendAll({ ...pagination, ...param });
 
-    return this.http.get<PaginationResult<MsShift>>(
-      `${this.baseUrl}/get-data`,
-      { params }
-    );
+    return this.http.get<PaginationResult<MsShift>>(`${this.baseUrl}/GetData`, {
+      params,
+    });
   }
 
   getDataOnly(manuf: string, shift: string): Observable<MsShift> {
@@ -41,9 +41,17 @@ export class ShiftDataMaintainService {
     // });
   }
 
-  add() {}
+  add(model: MsShift): Observable<OperationResult> {
+    return this.http.post<OperationResult>(`${this.baseUrl}/Add`, model);
+  }
 
-  update() {}
+  update(model: MsShift): Observable<OperationResult> {
+    return this.http.post<OperationResult>(`${this.baseUrl}/Update`, model);
+  }
 
-  delete() {}
+  delete(shift: string): Observable<OperationResult> {
+    return this.http.delete<OperationResult>(`${this.baseUrl}/Delete`, {
+      params: { shift },
+    });
+  }
 }

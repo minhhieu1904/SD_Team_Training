@@ -16,7 +16,7 @@ namespace API.Controllers.Maintain
             _services = services;
         }
 
-        [HttpGet("get-data")]
+        [HttpGet("GetData")]
         public async Task<IActionResult> GetData([FromQuery] PaginationParam pagination, [FromQuery] ShiftDataMaintainParam param)
         {
             var result = await _services.GetData(pagination, param);
@@ -30,24 +30,24 @@ namespace API.Controllers.Maintain
             return Ok(result);
         }
 
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody] MsShift model)
         {
             var result = await _services.Addnew(model);
             return Ok(result);
         }
 
-        [HttpPost("update")]
+        [HttpPost("Update")]
         public async Task<IActionResult> Update([FromBody] MsShift model)
         {
             var result = await _services.Update(model);
             return Ok(result);
         }
 
-        [HttpDelete("delete")]
-        public async Task<IActionResult> Delete([FromBody] MsShift model)
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(string shift)
         {
-            var result = await _services.Delete(model);
+            var result = await _services.Delete(shift);
             return Ok(result);
         }
 

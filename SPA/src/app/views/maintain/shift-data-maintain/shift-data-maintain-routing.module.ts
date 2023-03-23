@@ -15,6 +15,9 @@ const routes: Routes = [
   }, {
     path: 'edit',
     component: EditComponent
+  },  {
+    path: 'edit/:manuf/:shift',
+    component: EditComponent
   }
 
 ];

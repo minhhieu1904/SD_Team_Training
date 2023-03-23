@@ -1,1 +1,29 @@
-<p>edit works!</p>
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10">
+          <h5>1.1 Shift Data Maintain</h5>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary" (click)="backlist()">
+            <i class="fa fa-arrow-left"></i> Back</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <span class="badge badge-warning">Shift</span>
+          <input type="text" disabled="disabled" name="shift" [(ngModel)]="msShift.shift"  class="form-control" >
+        </div>
+        <div class="col-md-2">
+          <span class="badge badge-warning">Shift Name</span>
+          <input type="text" name="shift-name" [(ngModel)]="msShift.shiftName" class="form-control" >
+        </div>
+        <div class="col pt-4">
+          <button class="btn btn-primary" (click)="update()" > Save </button>
+    
+          <!-- <button class="btn btn-primary" > Save & Next </button> -->
+        </div>
+        
+      </div>
+    </div>
+    </div>

@@ -51,16 +51,12 @@ namespace API._Services.Services.Maintain
 
         }
 
-        public async Task<OperationResult> Delete(MsShift model)
+        public async Task<OperationResult> Delete(string shift)
         {
-            var originalItem = await _reposioryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim());
+            var originalItem = await _reposioryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == shift.Trim());
 
             if(originalItem == null)
                 return new OperationResult(false);
-            
-            originalItem.Manuf = model.Manuf;
-            originalItem.Shift = model.Shift;
-            originalItem.ShiftName = model.ShiftName;
 
             _reposioryAccessor.MS_Shift.Remove(originalItem);
             if(await _reposioryAccessor.Save())
