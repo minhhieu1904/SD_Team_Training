@@ -10,7 +10,12 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
+    children: [
+      {
+        path: 'maintain',
+        loadChildren: () => import('./views/maintain/maintain-routing.module').then(m => m.MaintainRoutingModule)
+      }
+    ]
   }
 ];
 

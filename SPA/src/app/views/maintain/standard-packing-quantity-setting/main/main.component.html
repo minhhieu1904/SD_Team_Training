@@ -1,0 +1,60 @@
+<div class="card">
+  <div class="card-header">
+    <h5>1.4 Standard Packing Quantity Setting</h5>
+  </div>
+  <div class="card-body">
+    <div class="card">
+      <form class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Packing No.</label>
+          <input class="form-control" name="packageNo" [(ngModel)]="param.packageNo">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Packing Quantity</label>
+          <input class="form-control " name="packageQty" [(ngModel)]="param.packageQty">
+        </div>
+      </form>
+      <div class="button">
+        <div class="d-md-flex justify-content-md-end">
+          <!-- khi click vào button thì sinh ra sự kiện search -->
+          <button class="btn btn-primary me-md-2" type="button" (click)="search()"><i class="{{iconButton.SEARCH}}"></i>
+            Search</button>
+          <button class="btn btn-danger" type="button" (click)="clear()"><i class="{{iconButton.CLEAR}}"></i>
+            Clear</button>
+          <button class="btn btn-success" type="button" (click)="addNew()"><i class="{{iconButton.ADD}}"></i> Add
+            New</button>
+        </div>
+      </div>
+    </div>
+    <table class="table table-bordered border-primary">
+      <thead>
+        <tr>
+          <!-- <th scope="col">Stt</th> -->
+          <th scope="col"></th>
+          <th scope="col">Packing No.</th>
+          <th scope="col">Packing Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Đổ data ra table -->
+        <tr *ngFor="let item of data; let i =index">
+          <!-- <td>{{i+1}}</td> -->
+          <td>
+            <button type="button" class="btn btn-primary" (click)="update()"><i
+                class="{{iconButton.EDIT}}"></i></button>
+            <!-- {{item.manuf}} -->
+          </td>
+          <td>{{item.packageNo}}</td>
+          <td>{{item.packageQty}}</td>
+          <!-- Sử dụng các hàm update và xóa -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize"
+      previousText="&lsaquo;" (pageChanged)="pageChanged($event)" nextText="&rsaquo;" firstText="&laquo;"
+      lastText="&raquo;" [maxSize]="5">
+    </pagination>
+  </div>
+</div>

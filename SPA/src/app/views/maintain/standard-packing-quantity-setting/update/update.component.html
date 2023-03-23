@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    <h5>1.4 Standard Packing Quantity Setting - Edit</h5>
+    <div class="back-button">
+      <button class="btn btn-primary" (click)="back()"><i class="{{iconButton.BACK}}"></i> Back</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Packing No.</label>
+        <input [(ngModel)]="model.packageNo" type="text" id="packageNo" name="packageNo"
+          class="form__input form-control" autocomplete="off" placeholder=" " disabled="true">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Packing Quantity</label>
+        <input [(ngModel)]="model.packageQty" type="text" id="packageQty" name="packageQty" class=" form-control"
+          autocomplete="off" placeholder=" ">
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-success me-md-2" type="button" (click)="saveChange()"><i class="{{iconButton.SAVE}}"></i>
+      Save</button>
+  </div>
+</div>
