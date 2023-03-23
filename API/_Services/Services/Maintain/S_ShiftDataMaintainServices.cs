@@ -5,15 +5,16 @@ using API._Repositories;
 using API._Services.Interfaces;
 using API.DTOs.ShiftDataMaintain;
 using LinqKit;
+using Microsoft.EntityFrameworkCore;
 
 namespace API._Services.Services.Maintain
 {
-    public class S_ShiftDataMaintain : I_ShiftDataMaintain
+    public class S_ShiftDataMaintainServices : I_ShiftDataMaintainServices
     {
 
         private readonly IRepositoryAccessor _reposioryAccessor;
 
-        public S_ShiftDataMaintain (IRepositoryAccessor reposioryAccessor){
+        public S_ShiftDataMaintainServices (IRepositoryAccessor reposioryAccessor){
             _reposioryAccessor = reposioryAccessor;
         }
 

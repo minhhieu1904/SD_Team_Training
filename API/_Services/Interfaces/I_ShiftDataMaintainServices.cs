@@ -8,7 +8,7 @@ using API.DTOs.ShiftDataMaintain;
 
 namespace API._Services.Interfaces
 {
-    public interface I_ShiftDataMaintain
+    public interface I_ShiftDataMaintainServices
     {
         Task<PaginationUtility<MsShift>> GetData (PaginationParam pagination, ShiftDataMaintainParam param);
 
