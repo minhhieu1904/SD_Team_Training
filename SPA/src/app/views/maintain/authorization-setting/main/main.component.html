@@ -1,0 +1,64 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-10">
+                <h5>Authorization Setting</h5>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <span class="badge badge-warning">User Account</span>
+                <input type="text" name="account" class="form-control" [(ngModel)]="params.account">
+            </div>
+            <div class="col-md-2">
+                <span class="badge badge-warning">User Name</span>
+                <input type="text" name="name" class="form-control" [(ngModel)]="params.name">
+            </div>
+            <div class="col pt-4">
+                <button class="btn btn-primary" (click)="search()">
+                    <i class="fa fa-search"></i>
+                    Search</button>
+                &nbsp; &nbsp; &nbsp;
+                <button class="btn button" class="btn btn-danger" (click)="clear()">
+                    <i class="fa fa-refresh"></i>
+                    Clear
+                </button>
+                &nbsp; &nbsp; &nbsp;
+                <button class="btn btn-success" (click)="add()">
+                    <i class="fa fa-plus"></i>
+                    Add</button>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">User Account</th>
+                    <th scope="col" class="text-center">User Name</th>
+                    <th scope="col" class="text-center">E-mail Address</th>
+                    <th scope="col" class="text-center">Authorize</th>
+                    <th scope="col" class="text-center">Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data">
+                    <td class="text-center">{{item.account}}</td>
+                    <td class="text-center">{{item.name}}</td>
+                    <td class="text-center">{{item.email}}</td>
+                    <th scope="row" class="text-center"> <button class="btn btn-warning" (click)="updateItem(item)"><i
+                                class="fa fa-key" aria-hidden="true"></i></button></th>
+                    <th scope="row" class="text-center"> <button class="btn btn-primary" (click)="updateItem(item)"><i
+                                class="fa fa-edit fa-lg"></i></button></th>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex" *ngIf="data.length > 0">
+            &nbsp;&nbsp;
+            <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+            </pagination>
+        </div>
+    </div>
