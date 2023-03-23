@@ -47,6 +47,9 @@ import { FooterContainerComponent } from './containers/footer-container/footer-c
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPrintModule} from 'ngx-print';
+import { MainComponent } from './views/warehouse-basic-data/main/main.component';
+import { AddComponent } from './views/warehouse-basic-data/add/add.component';
+import { EditComponent } from './views/warehouse-basic-data/edit/edit.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
