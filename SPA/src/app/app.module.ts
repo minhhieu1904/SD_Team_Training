@@ -85,7 +85,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ...APP_CONTAINERS,
     HeaderContainerComponent,
-    FooterContainerComponent
+    FooterContainerComponent,
   ],
   providers: [
     {

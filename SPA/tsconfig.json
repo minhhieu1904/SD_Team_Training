@@ -8,7 +8,7 @@
         "src/app/_core/services/*"
       ],
       "@models/*": [
-        "src/app/_core/models/*"
+        "src/app/_core/_models/*"
       ],
       "@constants/*": [
         "src/app/_core/constants/*"

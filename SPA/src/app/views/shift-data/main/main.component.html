@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-10">
+        <h5>Shift Data Maintain</h5>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 ">
+        <span class="badge badge-warning">Shift </span>
+        <input type="text" name="shift" [(ngModel)]="params.shift" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <span class="badge badge-warning">Name Of Shift </span>
+        <input type="text" name="shiftName" [(ngModel)]="params.shiftName" class="form-control">
+      </div>
+
+      <div class="col md-2">
+        <button class=" btn btn-primary " (click)="search()"><i class="{{iconButton.SEARCH}}"></i> Search </button>
+      </div>
+      <div class="col md-2">
+        <button class=" btn btn-success" (click)="add()"><i class="{{iconButton.ADD}}"></i> Add </button>
+      </div>
+      <div class="col md-2">
+        <button class=" btn btn-danger" (click)="clear()"><i class="{{iconButton.DELETE}}"></i> clear </button>
+      </div>
+
+    </div>
+    </div>
+
+</div>
+<div class="card">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"  class="text-center">Shift</th>
+        <th scope="col" class="text-center">Name Of Shift</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <th scope="row" class="text-center"> <button class=" btn btn-primary" (click)="edit(item)"><i class="{{iconButton.EDIT}}"></i> </button></th>
+        <td class="text-center">{{item.shift}}</td>
+        <td  class="text-center">{{item.shiftName}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex" *ngIf="data.length > 0">
+    <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+      previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+      [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+    </pagination>
+    <span class="cs-page ml-2">
+      Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
+    </span>
+  </div>
+</div>
