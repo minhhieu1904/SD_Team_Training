@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using API.DTOs;
 using API.Models;
 using SD3_API.Helpers.Utilities;
 
@@ -13,5 +10,9 @@ namespace API._Services.Interfaces
         Task<OperationResult> AddNew(Users model);
         Task<OperationResult> Update(Users model);
         Task<Users> GetItem(string account, string name);
+
+        //Dach sách quyền theo Account của User
+        Task<UserRoleDTO> GetAllRoleByAccount(string account);
+        Task<OperationResult> UpdateAuthorization(UserRoleDTO authors);
     }
 }

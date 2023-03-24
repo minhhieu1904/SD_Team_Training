@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Pagination, PaginationResult } from '@utilities/pagination-utility';
-import { Users } from '@models/users';
+import { UserRole, Users } from '@models/users';
 import { OperationResult } from '@utilities/operation-result';
 
 @Injectable({
@@ -30,6 +30,17 @@ export class UsersService {
   getItem(account: string, name: string) {
     let params = new HttpParams().set('account', account).set('name', name);
     return this._http.get<Users>(this.baseUrl + 'GetItem', { params });
+  }
+
+  getAuthorizeByUser(account: string) {
+    
+    return this._http.get<UserRole>(this.baseUrl + 'GetAuthorizeByUser', { params: { account: account } });
+  }
+
+  updateAuthorizeByUser(params: UserRole) {
+    console.log(params);
+    
+    return this._http.put<OperationResult>(this.baseUrl + 'UpdateAuthorizeByUser', params);
   }
 }
 

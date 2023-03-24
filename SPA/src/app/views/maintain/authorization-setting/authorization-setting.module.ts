@@ -8,7 +8,7 @@ import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     NgSelectModule,
     PaginationModule.forRoot(),
+    ModalModule.forRoot(),
     AuthorizationSettingRoutingModule
   ]
 })

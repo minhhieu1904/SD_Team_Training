@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API._Services.Interfaces;
+using API.DTOs;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using SD3_API.Helpers.Utilities;
@@ -44,6 +45,19 @@ namespace API.Controllers
         public async Task<IActionResult> GetItem(string account, string name)
         {
             var result = await _services.GetItem(account, name);
+            return Ok(result);
+        }
+
+        [HttpGet("GetAuthorizeByUser")]
+        public async Task<IActionResult> GetAuthorizeByUser(string account)
+        {
+            var result = await _services.GetAllRoleByAccount(account);
+            return Ok(result);
+        }
+        [HttpPut("UpdateAuthorizeByUser")]
+        public async Task<IActionResult> UpdateAuthorizeByUser([FromBody] UserRoleDTO authors)
+        {
+            var result = await _services.UpdateAuthorization(authors);
             return Ok(result);
         }
     }

@@ -17,24 +17,26 @@ namespace API.Data
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
         }
 
-        public virtual DbSet<Users> User {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Users>().
-            HasKey( m => new { m.Account });
+            HasKey(m => new { m.Account });
             modelBuilder.Entity<RoleUser>()
-            .HasKey( m =>  new { m.UserAccount, m.RoleUnique});
+            .HasKey(m => new { m.UserAccount, m.RoleUnique });
             modelBuilder.Entity<Roles>().
-            HasKey( m => new { m.RoleUnique });
+            HasKey(m => new { m.RoleUnique });
         }
 
         //entities
-        public DbSet<Users> Users {get; set;}
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<RoleUser> RoleUser { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+
     }
 }
