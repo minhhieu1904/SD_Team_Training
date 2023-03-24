@@ -2,7 +2,7 @@
 using API._Repositories;
 using API._Services.Interfaces;
 using API._Services.Services.Maintain;
-
+using API._Services.Services.S_WarehouseBasicDataMaintenance;
 namespace API.Configurations
 {
     public static class DependencyInjectionConfig
@@ -16,6 +16,7 @@ namespace API.Configurations
 
             // Add Service
             services.AddScoped<I_ShiftDataMaintainServices, S_ShiftDataMaintainServices>();
+            services.AddScoped<I_WarehouseBasicData, S_WarehouseBasicData>();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace API._Repositories
 
         public I_MS_Shift_Repository MS_Shift {get;}
         
+        public I_MS_Location_Repository MS_Location { get; }
+
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

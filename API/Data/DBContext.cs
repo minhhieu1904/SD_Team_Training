@@ -3,45 +3,43 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class DBContext : DbContext
+    public partial class DBContext : DbContext
     {
-        public DBContext() {}
+        public DBContext()
+        {
+        }
 
-        public DBContext(DbContextOptions<BottomQRCode_TContext> options)
+        public DBContext(DbContextOptions<DBContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; } = null!;
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; } = null!;
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
-        public virtual DbSet<MigrationHistory> MigrationHistories { get; set; } = null!;
-        public virtual DbSet<MsDepartment> MsDepartments { get; set; } = null!;
-        public virtual DbSet<MsLocation> MsLocations { get; set; } = null!;
-        public virtual DbSet<MsPackage> MsPackages { get; set; } = null!;
-        public virtual DbSet<MsQrCycle> MsQrCycles { get; set; } = null!;
-        public virtual DbSet<MsQrLabel> MsQrLabels { get; set; } = null!;
-        public virtual DbSet<MsQrOrder> MsQrOrders { get; set; } = null!;
-        public virtual DbSet<MsQrOrderLogOnlyForSt> MsQrOrderLogOnlyForSts { get; set; } = null!;
-        public virtual DbSet<MsQrPickingDetail> MsQrPickingDetails { get; set; } = null!;
-        public virtual DbSet<MsQrPickingMain> MsQrPickingMains { get; set; } = null!;
-        public virtual DbSet<MsQrSort> MsQrSorts { get; set; } = null!;
-        public virtual DbSet<MsQrStorage> MsQrStorages { get; set; } = null!;
-        public virtual DbSet<MsQrStorageOut> MsQrStorageOuts { get; set; } = null!;
-        public virtual DbSet<MsShift> MsShifts { get; set; } = null!;
-        public virtual DbSet<MsWarehouse> MsWarehouses { get; set; } = null!;
-        public virtual DbSet<Role> Roles { get; set; } = null!;
-        public virtual DbSet<RoleUser> RoleUsers { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<MigrationHistory> MigrationHistories { get; set; }
+        public virtual DbSet<MsDepartment> MsDepartments { get; set; }
+        public virtual DbSet<MsLocation> MsLocations { get; set; }
+        public virtual DbSet<MsPackage> MsPackages { get; set; }
+        public virtual DbSet<MsQrCycle> MsQrCycles { get; set; }
+        public virtual DbSet<MsQrLabel> MsQrLabels { get; set; }
+        public virtual DbSet<MsQrOrder> MsQrOrders { get; set; }
+        public virtual DbSet<MsQrOrderLogOnlyForSt> MsQrOrderLogOnlyForSts { get; set; }
+        public virtual DbSet<MsQrPickingDetail> MsQrPickingDetails { get; set; }
+        public virtual DbSet<MsQrPickingMain> MsQrPickingMains { get; set; }
+        public virtual DbSet<MsQrSort> MsQrSorts { get; set; }
+        public virtual DbSet<MsQrStorage> MsQrStorages { get; set; }
+        public virtual DbSet<MsQrStorageOut> MsQrStorageOuts { get; set; }
+        public virtual DbSet<MsShift> MsShifts { get; set; }
+        public virtual DbSet<MsWarehouse> MsWarehouses { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<RoleUser> RoleUsers { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=10.4.4.229;Database=BottomQRCode_T;MultipleActiveResultSets=true;User Id=sd_local;Password=shc@ssb1234;TrustServerCertificate=True");
-            }
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -403,9 +401,9 @@ namespace API.Data
                     .HasName("PK_RoleUser_1");
             });
 
-            //OnModelCreatingPartial(modelBuilder);
+            OnModelCreatingPartial(modelBuilder);
         }
 
-        // partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

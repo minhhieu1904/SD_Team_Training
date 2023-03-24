@@ -11,11 +11,11 @@ namespace API.Models
     {
         [Key]
         [StringLength(1)]
-        public string Manuf { get; set; } = null!;
+        public string Manuf { get; set; }
         [Key]
         [StringLength(2)]
-        public string StoreH { get; set; } = null!;
+        public string StoreH { get; set; }
         [StringLength(50)]
-        public string LocationName { get; set; } = null!;
+        public string LocationName { get; set; }
     }
 }
