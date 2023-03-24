@@ -8,18 +8,13 @@ import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
-
 @NgModule({
-  declarations: [
-    MainComponent,
-    AddComponent,
-    EditComponent
-  ],
+  declarations: [MainComponent, AddComponent, EditComponent],
   imports: [
     CommonModule,
     FormsModule,
     ShiftDataMaintainRoutingModule,
-    PaginationModule.forRoot()
-  ]
+    PaginationModule.forRoot(),
+  ],
 })
-export class ShiftDataMaintainModule { }
+export class ShiftDataMaintainModule {}

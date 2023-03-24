@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-10">
+        <h5>1.3 Department Data Maintain</h5>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary" (click)="back()"> 
+          <i class="fa fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <span class="badge badge-warning">Department</span>
+        <input type="text" name="shift"  class="form-control" [(ngModel)]="msDepartment.parNo">
+      </div>
+      <div class="col-md-2">
+        <span class="badge badge-warning">Name Of Department</span>
+        <input type="text" name="shift-name"  class="form-control" [(ngModel)]="msDepartment.parName">
+      </div>
+      <div class="col pt-4">
+        <button class="btn btn-primary" (click)="add()" > Add New </button>
+  
+        <!-- <button class="btn btn-primary" > Save & Next </button> -->
+      </div>
+      
+    </div>
+  </div>
+  </div>

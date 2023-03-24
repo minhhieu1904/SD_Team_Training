@@ -16,7 +16,8 @@ namespace API.Configurations
 
             // Add Service
             services.AddScoped<I_ShiftDataMaintainServices, S_ShiftDataMaintainServices>();
-            services.AddScoped<I_WarehouseBasicData, S_WarehouseBasicData>();
+            services.AddScoped<I_WarehouseBasicDataServices, S_WarehouseBasicDataServices>();
+            services.AddScoped<I_DepartmentDataServices, S_DepartmentDataServices>();
         }
     }
 }

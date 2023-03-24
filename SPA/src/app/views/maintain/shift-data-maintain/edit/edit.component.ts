@@ -27,7 +27,7 @@ export class EditComponent extends InjectBase implements OnInit {
     this.route.params.subscribe(params => {
       manuf = params['manuf'];
       shift = params['shift'];
-      this.getMsShift(manuf,shift)
+      this.getMsShift(manuf,shift);
     });
   }
 

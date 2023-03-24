@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using API._Services.Interfaces;
+using API.DTOs.DepartmentDataMaintain;
+using API.Models;
+using Microsoft.AspNetCore.Mvc;
+using SD3_API.Helpers.Utilities;
+
+namespace API.Controllers.Maintain
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class C_DepartmentDataController : ControllerBase
+    {
+        private readonly I_DepartmentDataServices _services;
+
+        public C_DepartmentDataController(I_DepartmentDataServices services)
+        {
+            _services = services;
+        }
+
+        [HttpGet("GetData")]
+        public async Task<ActionResult> GetData([FromQuery] PaginationParam pagination,[FromQuery] DepartmentDataParam param){
+            var result = await _services.GetData(pagination, param);
+            return Ok(result);
+        }
+
+        [HttpGet("GetDataOnly")]
+        public async Task<ActionResult> GetDataOnly(string manuf, string parNo){
+            var result = await _services.GetDataOnly(manuf, parNo);
+            return Ok(result);
+        }
+
+        [HttpPost("Add")]
+        public async Task<ActionResult> Add([FromBody] MsDepartment model){
+            var result = await _services.Add(model);
+            return Ok(result);
+        }
+
+        [HttpPost("Update")]
+        public async Task<ActionResult> Update([FromBody] MsDepartment model){
+            var result = await _services.Update(model);
+            return Ok(result);
+        }
+
+        [HttpDelete("Delete")]
+        public async Task<ActionResult> Delete(string parNo){
+            var result = await _services.Delete(parNo);
+            return Ok(result);
+        }
+
+    }
+}

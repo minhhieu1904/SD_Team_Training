@@ -10,9 +10,9 @@ namespace API.Controllers.Maintain
     [Route("api/[controller]")]
     public class C_WarehouseBasicDataController : ControllerBase
     {
-        private readonly I_WarehouseBasicData _services;
+        private readonly I_WarehouseBasicDataServices _services;
 
-        public C_WarehouseBasicDataController(I_WarehouseBasicData services)
+        public C_WarehouseBasicDataController(I_WarehouseBasicDataServices services)
         {
             _services = services;
         }

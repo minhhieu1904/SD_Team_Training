@@ -8,11 +8,11 @@ using SD3_API.Helpers.Utilities;
 
 namespace API._Services.Interfaces
 {
-    public interface I_WarehouseBasicData
+    public interface I_WarehouseBasicDataServices
     {
-        Task<PaginationUtility<MsLocation>> GetData(PaginationParam pagination ,WarehouseBasicDataParam param);
+        Task<PaginationUtility<MsLocation>> GetData(PaginationParam pagination, WarehouseBasicDataParam param);
 
-        Task<MsLocation> GetDataOnly (string manuf, string StoreH);
+        Task<MsLocation> GetDataOnly(string manuf, string StoreH);
 
         Task<OperationResult> Add(MsLocation model);
 

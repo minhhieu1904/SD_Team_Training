@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MainComponent} from "../warehouse-basic-data/main/main.component";
-import { AddComponent} from "../warehouse-basic-data/add/add.component";
-import { EditComponent} from "../warehouse-basic-data/edit/edit.component";
+import { MainComponent} from "./main/main.component";
+import { AddComponent} from "./add/add.component";
+import { EditComponent} from "./edit/edit.component";
 
 const routes: Routes = [{
   path: '',

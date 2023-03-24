@@ -22,8 +22,15 @@ export const routes: Routes = [
         path: 'warehouse-basic-data',
         loadChildren: () =>
           import(
-            './views/warehouse-basic-data/warehouse-basic-data.module'
+            './views/maintain/warehouse-basic-data-maintain/warehouse-basic-data.module'
           ).then((m) => m.WarehouseBasicDataModule),
+      },
+      {
+        path: 'department-data-maintain',
+        loadChildren: () =>
+          import(
+            './views/maintain/department-data-maintain/department-data-maintain.module'
+          ).then((m) => m.DepartmentDataMaintainModule),
       },
     ],
   },

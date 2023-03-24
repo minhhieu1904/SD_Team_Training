@@ -33,7 +33,7 @@ namespace API.Controllers.Maintain
         [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody] MsShift model)
         {
-            var result = await _services.Addnew(model);
+            var result = await _services.Add(model);
             return Ok(result);
         }
 

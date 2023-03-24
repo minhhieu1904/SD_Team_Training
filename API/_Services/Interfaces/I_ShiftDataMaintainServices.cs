@@ -10,14 +10,14 @@ namespace API._Services.Interfaces
 {
     public interface I_ShiftDataMaintainServices
     {
-        Task<PaginationUtility<MsShift>> GetData (PaginationParam pagination, ShiftDataMaintainParam param);
+        Task<PaginationUtility<MsShift>> GetData(PaginationParam pagination, ShiftDataMaintainParam param);
 
-        Task<OperationResult> Addnew(MsShift model);
+        Task<OperationResult> Add(MsShift model);
 
         Task<OperationResult> Update(MsShift model);
 
         Task<OperationResult> Delete(string shift);
 
-        Task<MsShift> GetDataOnly (string manuf, string shift);
+        Task<MsShift> GetDataOnly(string manuf, string shift);
     }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MsLocation } from "../../../_core/models/msLocation";
-import { WarehouseBasicDataParam } from "../../../_core/models/warehouseBasicDataParam";
+import { MsLocation } from "../../../../_core/models/msLocation";
+import { WarehouseBasicDataParam } from "../../../../_core/models/warehouseBasicDataParam";
 import { InjectBase } from '@utilities/inject-base-app';
 import { PaginationParam, Pagination } from '@utilities/pagination-utility';
-import { WarehouseBasicDataService } from "../../../_core/services/maintain/warehouse-basic-data.service";
+import { WarehouseBasicDataService } from "../../../../_core/services/maintain/warehouse-basic-data.service";
 
 @Component({
   selector: 'app-main',

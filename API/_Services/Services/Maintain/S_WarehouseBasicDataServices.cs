@@ -12,11 +12,11 @@ using SD3_API.Helpers.Utilities;
 
 namespace API._Services.Services.S_WarehouseBasicDataMaintenance
 {
-    public class S_WarehouseBasicData : I_WarehouseBasicData
+    public class S_WarehouseBasicDataServices : I_WarehouseBasicDataServices
     {
         private readonly IRepositoryAccessor _repositoryAccessor;
 
-        public S_WarehouseBasicData(IRepositoryAccessor repositoryAccessor)
+        public S_WarehouseBasicDataServices(IRepositoryAccessor repositoryAccessor)
         {
             _repositoryAccessor = repositoryAccessor;
         }
@@ -28,21 +28,21 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
             && x.StoreH == model.StoreH.Trim()).FirstOrDefaultAsync();
             
             if (originalItem != null)
-            {
                 return new OperationResult(false);
-            } else {
+            
                 // Sau khi xác định dữ liệu chưa tồn tại thì thêm vào DB
-                model.Manuf = "N";
-                _repositoryAccessor.MS_Location.Add(model);
-                if(await _repositoryAccessor.Save())
-                    return new OperationResult(true);
-                return new OperationResult(false);
-            }
+            model.Manuf = "N";
+            _repositoryAccessor.MS_Location.Add(model);
+            if(await _repositoryAccessor.Save())
+                return new OperationResult(true);
+            return new OperationResult(false);
+            
         }
 
         public async Task<OperationResult> Update(MsLocation model)
         {
-            var originalItem = await _repositoryAccessor.MS_Location.FirstOrDefaultAsync(x => x.Manuf == model.Manuf && x.StoreH == model.StoreH.Trim());
+            var originalItem = await _repositoryAccessor.MS_Location.FirstOrDefaultAsync(x => x.Manuf == model.Manuf.Trim()
+             && x.StoreH == model.StoreH.Trim());
             if (originalItem == null)
                 return new OperationResult(false);
 
