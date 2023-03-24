@@ -7,23 +7,20 @@ import { MainComponent } from './main/main.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
   },
   {
     path: 'add',
-    component: AddComponent
-  }, {
-    path: 'edit',
-    component: EditComponent
-  },  {
+    component: AddComponent,
+  },
+  {
     path: 'edit/:manuf/:shift',
-    component: EditComponent
-  }
-
+    component: EditComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ShiftDataMaintainRoutingModule { }
+export class ShiftDataMaintainRoutingModule {}

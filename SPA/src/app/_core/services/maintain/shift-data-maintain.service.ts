@@ -35,10 +35,6 @@ export class ShiftDataMaintainService {
     let params = new HttpParams().set('manuf', manuf).set('shift', shift);
 
     return this.http.get<MsShift>(`${this.baseUrl}/GetDataOnly`, { params });
-
-    // return this.http.get<MsShift>(`${this.baseUrl}/GetDataOnly`, {
-    //   params: { manuf, shift },
-    // });
   }
 
   add(model: MsShift): Observable<OperationResult> {
@@ -46,7 +42,7 @@ export class ShiftDataMaintainService {
   }
 
   update(model: MsShift): Observable<OperationResult> {
-    return this.http.post<OperationResult>(`${this.baseUrl}/Update`, model);
+    return this.http.put<OperationResult>(`${this.baseUrl}/Update`, model);
   }
 
   delete(shift: string): Observable<OperationResult> {

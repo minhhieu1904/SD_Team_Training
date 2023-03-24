@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-10">
+        <h5>1.4 Standard Packing Quantity Setting</h5>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary" (click)="back()">
+          <i class="fa fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <span class="badge badge-warning">Packing No.</span>
+        <input type="text" name="packageNo" class="form-control" [(ngModel)]="msPackage.packageNo">
+      </div>
+      <div class="col-md-2">
+        <span class="badge badge-warning">Packing Quantity</span>
+        <input type="text" name="packageQty" class="form-control" [(ngModel)]="msPackage.packageQty">
+      </div>
+      <div class="col pt-4">
+        <button class="btn btn-primary" (click)="add()"> Add New </button>
+
+      </div>
+    </div>
+  </div>
+</div>

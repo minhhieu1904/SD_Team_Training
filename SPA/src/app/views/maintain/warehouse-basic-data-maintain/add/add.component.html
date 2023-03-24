@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-10">
+        <h5>1.2 Warehouse Basic Data Maintenance</h5>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary" (click)="back()">
+          <i class="fa fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <span class="badge badge-warning">Kode Of Warehouse</span>
+        <input type="text" name="storeH" class="form-control" [(ngModel)]="msLocation.storeH">
+      </div>
+      <div class="col-md-2">
+        <span class="badge badge-warning">Name Of Warehouse</span>
+        <input type="text" name="locationName" class="form-control" [(ngModel)]="msLocation.locationName">
+      </div>
+      <div class="col pt-4">
+        <button class="btn btn-primary" (click)="add()"> Save </button>
+      </div>
+
+    </div>
+  </div>
+</div>

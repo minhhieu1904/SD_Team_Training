@@ -11,11 +11,11 @@ namespace API.Models
     {
         [Key]
         [StringLength(1)]
-        public string Manuf { get; set; } = null!;
+        public string Manuf { get; set; }
         [Key]
         [StringLength(3)]
-        public string ParNo { get; set; } = null!;
+        public string ParNo { get; set; }
         [StringLength(50)]
-        public string ParName { get; set; } = null!;
+        public string ParName { get; set; }
     }
 }
