@@ -13,10 +13,5 @@ namespace API._Repositories.Repositories
         public Roles_Repository(DBContext context) : base(context)
         {
         }
-
-        public static implicit operator Roles_Repository(RoleUser_Repository v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

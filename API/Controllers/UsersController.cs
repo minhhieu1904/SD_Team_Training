@@ -27,7 +27,7 @@ namespace API.Controllers
 
         [HttpPost("AddNew")]
         public async Task<IActionResult> AddNew([FromBody] Users model)
-        {   
+        {
             model.UpdateBy = "admin";
             model.UpdateTime = DateTime.Now;
             var result = await _services.AddNew(model);

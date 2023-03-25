@@ -16,6 +16,7 @@ namespace API.Configurations
 
             // Add Service
             services.AddScoped<IUsersServices, SUsersServices>();
+            services.AddScoped<IAuthorServices, SAuthorServices>();
         }
     }
 }

@@ -81,7 +81,6 @@ namespace API._Services.Services
                     authorsNew.Add(roleUserItem);
                 }
             }
-
             _repositoryAccessor.RoleUser.AddMultiple(authorsNew);
             await _repositoryAccessor.Save();
             return new OperationResult(true, "Update successfully");
