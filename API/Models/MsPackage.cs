@@ -11,10 +11,10 @@ namespace API.Models
     {
         [Key]
         [StringLength(1)]
-        public string Manuf { get; set; } = null!;
+        public string Manuf { get; set; }
         [Key]
         [StringLength(4)]
-        public string PackageNo { get; set; } = null!;
+        public string PackageNo { get; set; }
         [Column(TypeName = "decimal(7, 1)")]
         public decimal PackageQty { get; set; }
     }

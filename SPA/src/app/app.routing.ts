@@ -32,6 +32,13 @@ export const routes: Routes = [
             './views/maintain/department-data-maintain/department-data-maintain.module'
           ).then((m) => m.DepartmentDataMaintainModule),
       },
+      {
+        path: 'standard-packing-quantity',
+        loadChildren: () =>
+          import(
+            './views/maintain/standard-packing-quantity/standard-packing-quantity.module'
+          ).then((m) => m.StandardPackingQuantityModule),
+      }
     ],
   },
 ];

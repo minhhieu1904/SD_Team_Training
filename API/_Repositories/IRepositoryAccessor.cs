@@ -13,6 +13,8 @@ namespace API._Repositories
 
         public I_MS_Department_Repository MS_Department { get; }
 
+        public I_MS_Package_Repository MS_Package { get; }
+
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }
