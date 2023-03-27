@@ -21,6 +21,9 @@ namespace API.Configurations
 
             // Add Service
              services.AddScoped<IMSLocationServices, SMSLocationServices>();
+
+            // Add Service
+            services.AddScoped<IMSDepartmentServices, SMSDepartmentServices>();
         }
     }
 }

@@ -2,6 +2,10 @@
 using API._Repositories.Interfaces;
 using API._Repositories.Repositories;
 using API.Data;
+<<<<<<< HEAD
+=======
+using API.Models;
+>>>>>>> feature-hai-1.3_department_data_maintain
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace API._Repositories
@@ -12,6 +16,7 @@ namespace API._Repositories
 
         public IMSShift_Repository MSShift {get;set;}
         public IMSLocation_Repository MSLocation {get; set;}
+        public IMSDepartment_Repository MSDepartmet {get; set;}
 
         public RepositoryAccessor(DBContext dbContext)
         {
@@ -19,6 +24,7 @@ namespace API._Repositories
             // ERP_ISSUE_DTL = new ERP_ISSUE_DTL_Repository(_dbContext);
             MSShift = new MSShift_Repository(_dbContext);
             MSLocation = new MSLocation_Repository(_dbContext);
+            MSDepartmet = new MSDepartment_Repository(_dbContext);
         }
 
         // public IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;set;}
