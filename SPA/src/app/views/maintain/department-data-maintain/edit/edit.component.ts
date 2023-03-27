@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { MSDepartment } from '@models/mS_Department';
-import { MSDepartmentService } from '@services/ms-department.service';
+import { MS_Department } from '@models/common/mS_Department';
+import { MSDepartmentService } from '@services/main/ms-department.service';
 
 @Component({
   selector: 'app-edit',
@@ -9,7 +9,7 @@ import { MSDepartmentService } from '@services/ms-department.service';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  msDepartment: MSDepartment = <MSDepartment>{
+  msDepartment: MS_Department = <MS_Department>{
     manuf: '',
     parNo: '',
     parName: ''
@@ -36,13 +36,14 @@ export class EditComponent implements OnInit {
   backList() {
     this.router.navigate(['maintain/department-data-maintain'])
   }
- 
+
   getItem(manuf: string, parNo: string) {
     this.service.getItem(manuf, parNo).subscribe({
       next: res => {
         this.msDepartment = res;
-      }, error: (err) => {console.log(err)},
-      complete: () => {console.log('complete');
+      }, error: (err) => { console.log(err) },
+      complete: () => {
+        console.log('complete');
       }
     })
   }
@@ -50,8 +51,8 @@ export class EditComponent implements OnInit {
   updateDepartment() {
     this.service.updateItem(this.msDepartment).subscribe({
       next: res => {
-        if(res.isSuccess)
-        alert('Update thanh cong')
+        if (res.isSuccess)
+          alert('Update thanh cong')
       },
       error: () => {
         alert('Update khong thanh cong')
@@ -62,8 +63,8 @@ export class EditComponent implements OnInit {
   updateDepartmentAndNext() {
     this.service.updateItem(this.msDepartment).subscribe({
       next: res => {
-        if(res.isSuccess)
-        alert('Update thanh cong')
+        if (res.isSuccess)
+          alert('Update thanh cong')
       },
       error: () => {
         alert('Update khong thanh cong')

@@ -1,18 +1,18 @@
-using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public class MS_Shift
+    public partial class MS_Shift
     {
         [Key]
-        public string Manuf {get; set;}
+        [StringLength(1)]
+        public string Manuf { get; set; }
         [Key]
-        public string Shift {get; set;}
-        public string ShiftName {get; set;}
-        
+        [StringLength(1)]
+        public string Shift { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string ShiftName { get; set; }
     }
 }

@@ -6,10 +6,12 @@
                     <div class="card-header">
                         <div class="row border-title">
                             <div class="col-md-12">
-                                <strong class="title-card-cs">1.1 Shift Data Maintenance - Add New
-                              </strong>
-                              <button type="button" class="btn btn-sm btn-primary float-right" (click)="backList()"><i class="fa fa-chevron-left"></i>
-                                  Back</button>
+                                <strong class="title-card-cs">
+                                    {{'Roles.Menu_Child.BQRC.ShiftDataMaintenance' | translate}}
+                                </strong>
+                                <button type="button" class="btn btn-sm btn-primary float-right" (click)="backList()"><i
+                                        class="fa fa-chevron-left"></i>
+                                    {{'System.Action.Back' | translate}}</button>
                             </div>
                         </div>
                     </div>
@@ -17,22 +19,24 @@
                 <div class="card-body">
                     <div class="row form-group border-shadow">
                         <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                            <label class="badge badge-warning">Shift</label>
+                            <label class="badge badge-warning">{{'Maintain.ShiftDataMaintenance.Shift' | translate}}</label>
                             <input type="text" [(ngModel)]="msshift.shift" class="form-control" name="shift">
                         </div>
                         <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                            <label class="badge badge-warning">Name of Shift</label>
-                            <input type="text" [(ngModel)]="msshift.shiftName" class="form-control" name="shiftName"  >
-                        </div>                                     
+                            <label class="badge badge-warning">{{'Maintain.ShiftDataMaintenance.ShiftName' | translate}}</label>
+                            <input type="text" [(ngModel)]="msshift.shiftName" class="form-control" name="shiftName">
+                        </div>
                     </div>
                     <div class="form-group">
-                      <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                          <button type="button" class="btn btn-success" (click)="save()"><i class="fa fa-check" ></i>Save</button>
-                          <button type="button" class="btn btn-primary" (click)="saveAndNext()"><i class="fa fa-check"></i>Save & Next</button>
-                      </div>                                                           
+                        <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+                            <button type="button" class="btn btn-success" (click)="save()"><i
+                                    class="fa fa-check"></i>{{'System.Action.Save' | translate}} </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-primary" (click)="saveAndNext()"><i
+                                    class="fa fa-check"></i>Save & Next</button>
+                        </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

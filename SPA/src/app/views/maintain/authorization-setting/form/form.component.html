@@ -1,0 +1,139 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-12">
+              <strong class="title-card-cs">
+                1.5 {{'Maintain.AuthorizationSetting.Title' | translate}} -
+                <ng-container *ngIf="user.type === 'add';else editText">
+                  <span>
+                    {{'System.Action.AddNew' | translate }}
+                  </span>
+                </ng-container>
+                <ng-template #editText>
+                  <span>
+                    {{'System.Action.Edit' | translate }}
+                  </span>
+                </ng-template>
+
+              </strong>
+              <button type="button" class="btn btn-sm btn-primary float-right"
+                (click)="back()"><i class="{{iconButton.BACK}}"></i>
+                {{'System.Action.Back' | translate }}</button>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-style">
+          <form class="form-horizontal" #form="ngForm">
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+
+                  <div class="form-group row p-2">
+
+                    <label for="Account"
+                      class="col-sm-2 col-form-label lb form-group required control-label">{{'Maintain.AuthorizationSetting.Account'
+                      | translate}}
+                      <i class="i-required">*</i></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control"
+                        placeholder="{{'Maintain.AuthorizationSetting.Account' | translate}}"
+                        id="account" name="account" [(ngModel)]="user.account"
+                        autocomplete="off" [disabled]="this.user.type == 'edit'"
+                        required>
+                    </div>
+                    <div class="col-sm-2">&nbsp;</div>
+
+                    <label for="name"
+                      class="col-sm-2  col-form-label lb  text_version form-group required control-label"><span
+                        [class]="user.type === 'add'? 'note-label' : ''">{{'Maintain.AuthorizationSetting.UserName'
+                        | translate}}
+                        <i class="i-required">*</i></span></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control"
+                        [(ngModel)]="user.name" id="name" name="name"
+                        autocomplete="off"
+                        placeholder="{{'Maintain.AuthorizationSetting.UserName' | translate}}"
+                        required maxlength="50">
+                    </div>
+
+                    <label for="password"
+                      class="col-sm-2 col-form-label lb form-group required control-label">{{'Maintain.AuthorizationSetting.Password'
+                      | translate}}
+                      <i class="i-required">*</i></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="password" class="form-control"
+                        autocomplete="off"
+                        placeholder="{{'Maintain.AuthorizationSetting.Password' | translate}}"
+                        [(ngModel)]="user.password" id="password"
+                        name="password" required>
+                    </div>
+                    <div class="col-sm-2">&nbsp;</div>
+
+                    <label for="email"
+                      class="col-sm-2  col-form-label lb  text_version form-group required control-label">
+                      <span
+                        [class]="user.type === 'add'? 'note-label' : ''">{{'Maintain.AuthorizationSetting.Email'|
+                        translate}}
+                        <i class="i-required">*</i></span></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control"
+                        [(ngModel)]="user.email" id="email" name="email"
+                        autocomplete="off"
+                        placeholder="{{'Maintain.AuthorizationSetting.Email' | translate}}"
+                        required maxlength="50">
+                    </div>
+
+                    <label
+                      class="col-sm-2  col-form-label lb  text_version form-group required control-label"
+                      for="is_active">
+                      {{'Maintain.AuthorizationSetting.Active'| translate}}
+                    </label>
+                    <div class="col-md-8 pt-1">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input"
+                          id="is_active" autocomplete="off" name="is_active"
+                          [(ngModel)]="user.is_active">
+                        <label class="custom-control-label"
+                          for="is_active"></label>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">&nbsp;</div>
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <ng-container *ngIf="user.type === 'add'; else elseTemplate">
+                    <button type="button" class="btn btn-success mr-2"
+                      (click)="save()" [disabled]="!form.valid"> <i
+                        class="{{iconButton.SAVE}}"></i>
+                      Save</button>
+                    <button type="button" class="btn btn-primary"
+                      (click)="save('next')" [disabled]="!form.valid"><i
+                        class="{{iconButton.SAVE}}"></i> Save & Next
+                    </button>
+                  </ng-container>
+                  <ng-template #elseTemplate>
+                    <button type="button" class="btn btn-success mr-2"
+                      (click)="save()" [disabled]="!form.valid"> <i
+                        class="{{iconButton.SAVE}}"></i>
+                      {{'System.Action.Save' | translate }}</button>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 export const LocalStorageConstants = {
-    TOKEN: 'PLM_Token',
-    USER: 'PLM_User',
-    ROLES: "PLM_Roles",
-    REFRESH_TOKEN: 'PLM_RefreshToken',
-    LANG: 'PLM_Language',
+    TOKEN: 'SD_training_Token',
+    USER: 'SD_training_User',
+    ROLES: "SD_training_Roles",
+    REFRESH_TOKEN: 'SD_training_RefreshToken',
+    LANG: 'SD_training_Language',
 } as const;

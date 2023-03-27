@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MSDepartment } from '@models/mS_Department';
-import { MSDepartmentService } from '@services/ms-department.service';
+import { MS_Department } from '@models/common/mS_Department';
+import { MSDepartmentService } from '@services/main/ms-department.service';
+
 
 @Component({
   selector: 'app-add',
@@ -9,7 +10,7 @@ import { MSDepartmentService } from '@services/ms-department.service';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-  msDepartment: MSDepartment = <MSDepartment>{
+  msDepartment: MS_Department = <MS_Department>{
     manuf: "",
     parNo: "",
     parName: ""
@@ -17,7 +18,7 @@ export class AddComponent implements OnInit {
   constructor(
     private router: Router,
     private service: MSDepartmentService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
   }
@@ -30,20 +31,20 @@ export class AddComponent implements OnInit {
   save() {
     this.service.addNew(this.msDepartment).subscribe({
       next: res => {
-        if(res.isSuccess) {
+        if (res.isSuccess) {
           alert('Them thanh cong')
         }
       },
       error: () => {
         alert('Them that bai')
-      }      
+      }
     })
   }
 
   saveAndNext() {
     this.service.addNew(this.msDepartment).subscribe({
       next: res => {
-        if(res.isSuccess) {
+        if (res.isSuccess) {
           alert('Them thanh cong')
         }
       },

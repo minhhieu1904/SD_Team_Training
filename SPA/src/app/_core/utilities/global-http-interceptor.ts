@@ -20,6 +20,8 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
         } else {
           // Get service-side error
           if (error.status === HttpStatusCode.Unauthorized) {
+            console.log(error);
+            
             localStorage.clear();
             this.router.navigate(['/login']);
           }

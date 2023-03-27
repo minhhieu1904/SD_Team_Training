@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MSPackage } from '@models/mS_Package';
-import { MSPackageService } from '@services/ms-package.service';
+import { MSPackage } from '@models/common/mS_Package';
+import { MSPackageService } from '@services/main/ms-package.service';
 
 @Component({
   selector: 'app-add',
@@ -16,8 +16,8 @@ export class AddComponent implements OnInit {
   };
 
   constructor(private service: MSPackageService,
-    private router: Router 
-    ) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -29,8 +29,8 @@ export class AddComponent implements OnInit {
   save() {
     this.service.addNew(this.msPackage).subscribe({
       next: res => {
-        if(res.isSuccess)
-        alert('Them thanh cong')
+        if (res.isSuccess)
+          alert('Them thanh cong')
       }, error: (err) => alert('Them that bai')
     })
   }
@@ -38,8 +38,8 @@ export class AddComponent implements OnInit {
   saveAndNext() {
     this.service.addNew(this.msPackage).subscribe({
       next: res => {
-        if(res.isSuccess)
-        alert('Them thanh cong')
+        if (res.isSuccess)
+          alert('Them thanh cong')
       }, error: (err) => alert('Them that bai'),
       complete: () => {
         this.backList();

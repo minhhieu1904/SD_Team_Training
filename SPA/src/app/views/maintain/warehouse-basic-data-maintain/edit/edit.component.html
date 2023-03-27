@@ -6,10 +6,11 @@
                     <div class="card-header">
                         <div class="row border-title">
                             <div class="col-md-12">
-                                <strong class="title-card-cs">1.2 Warehouse Basic Data Maintenance - Edit
+                                <strong class="title-card-cs">
+                                    {{'Roles.Menu_Child.BQRC.WarehouseBasicDataMaintenance' | translate}}
                               </strong>
                               <button type="button" class="btn btn-sm btn-primary float-right" (click)="backList()"><i class="fa fa-chevron-left"></i>
-                                  Back</button>
+                                  {{'System.Action.Back' | translate}}</button>
                             </div>
                         </div>
                     </div>
@@ -17,17 +18,17 @@
                 <div class="card-body">
                     <div class="row form-group border-shadow">
                         <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                            <label class="badge badge-warning">Kode Of Warehouse</label>
+                            <label class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' | translate}}</label>
                             <input type="text" disabled [(ngModel)]="msLocationUpdate.storeH" name="storeH" class="form-control" >
                         </div>
                         <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                            <label class="badge badge-warning">Name Of Warehouse</label>
+                            <label class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' | translate}}</label>
                             <input type="text" [(ngModel)]="msLocationUpdate.locationName" class="form-control" name="locationName"  >
                         </div>                                     
                     </div>
                     <div class="form-group">
                       <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                          <button type="button" class="btn btn-success" (click)="updateMsLocation()"><i class="fa fa-check" ></i>Save</button>
+                          <button type="button" class="btn btn-success" (click)="updateMsLocation()"><i class="fa fa-check" ></i>{{'System.Action.Save' | translate}}</button>
                           &nbsp;
                           <button type="button" class="btn btn-primary"  ><i class="fa fa-check"></i>Save & Next</button>
                       </div>                                                           

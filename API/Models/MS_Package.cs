@@ -1,17 +1,15 @@
-using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace API.Models
 {
-    public class MS_Package
+    public partial class MS_Package
     {
         [Key]
+        [StringLength(1)]
         public string Manuf { get; set; }
         [Key]
+        [StringLength(4)]
         public string PackageNo { get; set; }
         [Column(TypeName = "decimal(7, 1)")]
         public decimal PackageQty { get; set; }

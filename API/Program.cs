@@ -1,5 +1,5 @@
 using API.Configurations;
-using API.Helpers.Utilities;
+using SDCores;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddAuthenticationConfigufation(builder.Configuration);
 
 // RepositoryAccessor and Service
-builder.Services.AddDependencyInjectionConfiguration();
+builder.Services.AddDependencyInjectionConfiguration(typeof(Program));
 
 // Swagger Config
 builder.Services.AddSwaggerGenConfiguration();
@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseMiddleware<ExceptionHandlingMiddleware>();

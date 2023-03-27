@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "angularx-qrcode": "^15.0.1",
+    "chart.js": "^4.4.0",
+    "ng2-charts": "^5.0.3"
+  }
+}

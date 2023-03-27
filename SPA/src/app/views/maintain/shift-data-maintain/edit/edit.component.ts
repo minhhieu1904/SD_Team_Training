@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MSShift } from '@models/ms-shift';
-import { MsShiftService } from '@services/ms-shift.service';
+import { MSShift } from '@models/common/ms-shift';
+import { MsShiftService } from '@services/main/ms-shift.service';
 
 @Component({
   selector: 'app-edit',
@@ -37,14 +37,14 @@ export class EditComponent implements OnInit {
     this.updateShift();
   }
 
-  // Anh sẽ viết 1 hàm để lấy dữ liệu theo 2 khóa chính  về : Trả về 1 item có mã khóa chính đã lấy 
+  // Anh sẽ viết 1 hàm để lấy dữ liệu theo 2 khóa chính  về : Trả về 1 item có mã khóa chính đã lấy
 
   /// Truyền vào khóa chính Manuf và khóa chính Shift ,
   getMsShift(manuf: string, shift: string) {
     // gọi lên server để lấy dữ liệu, chưa có hàm get item
     this.service.getItem(manuf, shift).subscribe({
       next: msShift => {
-        // gán msShiftUpdate = data từ API trả về 
+        // gán msShiftUpdate = data từ API trả về
         this.msShiftUpdate = msShift;
         console.log('data cần cập nhật:', this.msShiftUpdate);
 
@@ -55,10 +55,10 @@ export class EditComponent implements OnInit {
   }
 
   updateShift() {
-    this.service.updateShift(this.msShiftUpdate).subscribe ({
+    this.service.updateShift(this.msShiftUpdate).subscribe({
       next: result => {
-        if(result.isSuccess)
-        alert('Update thanh cong')   
+        if (result.isSuccess)
+          alert('Update thanh cong')
       }, error: error => {
         alert('Khong them duoc')
       }, complete: () => {

@@ -1,0 +1,37 @@
+<div class="modal-header bg-primary">
+  <h4 class="modal-title pull-left">Scan From Sticker</h4>
+  <button type="button" class="btn-close close pull-right" aria-label="Close"
+    (click)="bsModalRef.hide()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body ">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text font-weight-bold"
+        id="scan-code">{{'Transaction.WarehouseScan.ScanCode' | translate
+        }}</span>
+    </div>
+    <input #inputScanCode type="text" class="form-control"
+      (keyup.enter)="checkScanList($event.target.value)"
+      placeholder="{{'Transaction.WarehouseScan.PleaseScanTheQRCode' | translate }}"
+      aria-describedby="scan-code">
+  </div>
+  <div *ngIf="listScanCode.length > 0" class="scroll">
+    <div *ngFor="let code of listScanCode; let i = index">
+      <div class="alert alert-secondary p-2 mb-2">
+        <button type="button" (click)="onClosed(i)" class="close"><i
+            class="{{iconButton.DELETE}}  text-danger"></i></button>
+        {{code}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="bsModalRef.hide()"><i
+      class="{{iconButton.CLOSE}}"></i>
+    {{'System.Action.Cancel' | translate }}</button>
+  <button class="btn btn-primary text-white" (click)="save()" form="addParaForm"
+    [disabled]="listScanCode.length == 0">
+    <i class="{{iconButton.QRCODE}}"></i> Scan</button>
+</div>

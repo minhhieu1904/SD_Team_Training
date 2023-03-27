@@ -1,0 +1,146 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-12">
+              <strong
+                class="title-card-cs">{{'Roles.Menu_Child.BQRC.WarehouseOutScan'
+                | translate
+                }}</strong> - <strong
+                class="title-card-cs">{{'Transaction.WarehouseOutScan.PickingList'
+                |
+                translate}}</strong>
+              <button type="button" class="btn btn-sm btn-primary float-right"
+                (click)="back()"><i class="{{iconButton.BACK}}"></i>
+                {{'System.Action.Back' | translate }}</button>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <form class="row border-shadow" autocomplete="off">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.WarehouseOutScan.Iono'|translate}}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="iono" disabled=""
+                  [(ngModel)]="param.iono">
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.WarehouseOutScan.Manno'|translate}}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="manno" disabled=""
+                  [(ngModel)]="param.manno">
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.WarehouseOutScan.Purno'|translate}}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="purno" disabled=""
+                  [(ngModel)]="param.purno">
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Report.SortSumReport.Size'|translate}}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="size" disabled=""
+                  [(ngModel)]="param.size">
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.PickingScan.ReleaseDate'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <div class="container_date">
+                  <div class="input-group mr-1">
+                    <input type="text" class="form-control" name="ReleaseDate"
+                      disabled [bsConfig]="bsConfig" bsDatepicker
+                      [(ngModel)]="param.releaseDate">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i
+                          class="{{iconButton.CALENDAR}}"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.WarehouseOutScan.StorageOutDate'|translate}}</label>
+              <div class="full-width">
+                <div class="container_date">
+                  <div class="input-group mr-1">
+                    <input type="text" class="form-control"
+                      name="StorageOutDate" disabled [bsConfig]="bsConfig"
+                      bsDatepicker [(ngModel)]="param.storageOutDate">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i
+                          class="{{iconButton.CALENDAR}}"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="row justify-content-md-center">
+            <div class="col-12">
+              <div class="table-responsive mb-3">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>{{'Transaction.PickingScan.Sdat'|translate}}</th>
+                      <th>{{'Transaction.PickingScan.DeclarationNo'|translate}}
+                      </th>
+                      <th>{{'Transaction.PickingScan.StorageTrNo'|translate}}
+                      </th>
+                      <th>{{'Transaction.PickingScan.Grade'|translate}}</th>
+                      <th>{{'Transaction.PickingScan.QRCodeID'|translate}}</th>
+                      <th>{{'Transaction.PickingScan.Manno'|translate}}</th>
+                      <th>{{'Transaction.PickingScan.Purno'|translate}}</th>
+                      <th>{{'Transaction.PickingScan.Size'|translate}}</th>
+                      <th>{{'Transaction.PickingScan.Qty'|translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of dataMainPicking">
+                      <td>{{item.sdat | date: 'yyyy-MM-dd'}}</td>
+                      <td>{{item.declaration_no}}</td>
+                      <td>{{item.storageTrNo}}</td>
+                      <td>{{item.grade}}</td>
+                      <td>{{item.qrCodeID}}</td>
+                      <td>{{item.manno}}</td>
+                      <td>{{item.purno}}</td>
+                      <td>{{item.size}}</td>
+                      <td>{{item.qty}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="d-flex justify-content-start"
+                *ngIf="dataMainPicking.length > 0">
+                <pagination [boundaryLinks]="true"
+                  [totalItems]="pagination.totalCount"
+                  [itemsPerPage]="pagination.pageSize" previousText="&lsaquo;"
+                  [(ngModel)]="pagination.pageNumber"
+                  (pageChanged)="pageChanged($event)" nextText="&rsaquo;"
+                  firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+                </pagination>
+                <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+                  {{pagination.totalPage}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

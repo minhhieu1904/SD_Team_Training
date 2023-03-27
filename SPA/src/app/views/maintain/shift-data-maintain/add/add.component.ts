@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { MSShift } from '@models/ms-shift';
-import { MsShiftService } from '@services/ms-shift.service';
+import { MSShift } from '@models/common/ms-shift';
+import { MsShiftService } from '@services/main/ms-shift.service';
+import { NgSnotifyService } from '@services/common/ng-snotify.service'
+import { CaptionConstants, MessageConstants } from '@constants/message.enum'
 
 @Component({
   selector: 'app-add',
@@ -23,11 +25,12 @@ export class AddComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private msShiftService: MsShiftService
+    private msShiftService: MsShiftService,
+    private snotifyService: NgSnotifyService
   ) { }
 
   ngOnInit() {
-    
+
   }
 
   backList() {
@@ -39,17 +42,17 @@ export class AddComponent implements OnInit {
     this.msShiftService.addShift(this.msshift).subscribe({
       // sau khi khi thành công thì làm gì tiếp theo
       next: result => {
-        if(result.isSuccess)
-        alert('Them thanh cong');
+        if (result.isSuccess)
+          this.snotifyService.success(MessageConstants.CREATED_OK_MSG, CaptionConstants.SUCCESS);
       },
       // Nếu bị lỗi , thì làm gì ở đây
-      error: error => {
-        alert('Khong them duoc');
+      error: () => {
+        this.snotifyService.success(MessageConstants.CREATED_ERROR_MSG, CaptionConstants.ERROR);
       },
-      // sau khi hoàn tất thì làm gì 
+      // sau khi hoàn tất thì làm gì
       complete: () => {
-         this.msshift.shift = "";
-         this.msshift.shiftName = "";
+        this.msshift.shift = "";
+        this.msshift.shiftName = "";
       }
     });
   }
@@ -57,13 +60,13 @@ export class AddComponent implements OnInit {
   saveAndNext() {
     this.msShiftService.addShift(this.msshift).subscribe({
       next: result => {
-        if(result.isSuccess)
-        this.backList();
+        if (result.isSuccess)
+          this.backList();
       },
       error: () => {
         alert('Khong them duoc');
-           },
-      complete: () => {        
+      },
+      complete: () => {
       }
     })
   }

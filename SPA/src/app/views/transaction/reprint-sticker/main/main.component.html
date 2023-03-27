@@ -1,0 +1,257 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-12">
+              <strong
+                class="title-card-cs">{{'Roles.Menu_Child.BQRC.ReprintSticker' |
+                translate
+                }}</strong>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form class="row border-shadow" autocomplete="off">
+            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintSticker.StartMdat'
+                | translate
+                }}</label>
+              <div class="input-group">
+                <input type="text" placeholder="mdat start" autocomplete="off"
+                  id="fromDate" class="form-control" bsDatepicker
+                  [(ngModel)]="time_start" name="time_start"
+                  [bsConfig]="bsConfig">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i
+                      class="{{iconButton.CALENDAR}}"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintSticker.EndMdat'
+                | translate
+                }}</label>
+              <div class="input-group">
+                <input type="text" placeholder="mdat end" autocomplete="off"
+                  id="fromDate" class="form-control" bsDatepicker
+                  [(ngModel)]="time_end" name="time_end" [bsConfig]="bsConfig">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i
+                      class="{{iconButton.CALENDAR}}"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintSticker.prtno'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="prnto"
+                  [(ngModel)]="param.prtno" placeholder="Enter prtno...">
+              </div>
+            </div>
+            <!-- planning no -->
+            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintSticker.PlanningNo'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="planningNo"
+                  maxlength="15" [(ngModel)]="param.manNo"
+                  placeholder="Enter Planning No...">
+              </div>
+            </div>
+            <!-- purchase no -->
+            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintSticker.PurchaseNo'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="purchaseNo"
+                  maxlength="10" [(ngModel)]="param.purNo"
+                  placeholder="Enter Purchase No...">
+              </div>
+            </div>
+            <!-- Size -->
+            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintSticker.Size'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="size"
+                  maxlength="4" [(ngModel)]="param.size"
+                  placeholder="Enter Size...">
+              </div>
+            </div>
+
+            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintSticker.serial'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <input type="number" class="form-control" min="0"
+                  (keyup)="changeSerial($event)" name="serial"
+                  [(ngModel)]="param.serial" placeholder="Enter serial...">
+              </div>
+            </div>
+            <div class="col">
+              <label class="d-block">&nbsp;</label>
+              <button type="submit" class="btn btn-success" (click)="search()">
+                <i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' |
+                translate}}
+              </button>
+              <button type="submit" class="btn btn-warning ml-2"
+                (click)="scan()">
+                <i class="{{iconButton.QRCODE}}"></i> {{'System.Action.Scan' |
+                translate }}
+              </button>
+              <button type="button" class="btn btn-danger ml-2"
+                (click)="clear()">
+                <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' |
+                translate}}
+              </button>
+              <button type="button" [disabled]="dataCheck.length === 0"
+                class="btn btn-primary ml-2" (click)="rePrint()">
+                <i class="{{iconButton.PRINT}}"></i> {{'System.Action.Reprint' |
+                translate
+                }}
+              </button>
+            </div>
+          </form>
+
+          <!-- show data table -->
+          <div class="row justify-content-md-center">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="table-responsive mb-3">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="custom-control custom-checkbox checkAll">
+                          <input type="checkbox" class="custom-control-input"
+                            id="checkAll" [(ngModel)]="checkAll"
+                            (change)="changeCheckAll()">
+                          <label class="custom-control-label"
+                            for="checkAll"></label>
+                        </div>
+                      </th>
+                      <th class="width-input-custom">
+                        {{'Transaction.ReprintSticker.mdat' | translate}}</th>
+                      <th>{{'Transaction.ReprintSticker.prtno' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.ManNo' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.PurNo' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.Grade' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.Brand' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.MaterialCodeShoes' |
+                        translate}}</th>
+                      <th>{{'Transaction.ReprintSticker.Article' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.serial' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.Size' | translate}}</th>
+                      <th>{{'Transaction.ReprintSticker.Qty' | translate}}</th>
+                      <th>{{'Transaction.ReprintSticker.wkshno' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.Prt_Cnt' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.QRCodeValue' |
+                        translate}}</th>
+                      <th>{{'Transaction.ReprintSticker.CodeOfCustomer' |
+                        translate}}</th>
+                      <th>{{'Transaction.ReprintSticker.NameOfCustomer' |
+                        translate}}</th>
+                      <th>{{'Transaction.ReprintSticker.MaterialCodeBottom' |
+                        translate}}</th>
+                      <th>{{'Transaction.ReprintSticker.MoldNumber' |
+                        translate}}</th>
+                      <th>{{'Transaction.ReprintSticker.empno' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintSticker.CrUsr' | translate}}
+                      </th>
+                      <th class="width-input-custom">
+                        {{'Transaction.ReprintSticker.PrintDay' | translate}}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="listData.length > 0; else noData">
+                    <tr *ngFor="let item of listData; let i = index"
+                      (click)="changeCheckRecord(item)"
+                      [ngClass]="{'table-warning': item.check}">
+                      <td>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input"
+                            id="{{i}}" [(ngModel)]="item.check"
+                            (click)="changeCheckRecord(item)">
+                          <label class="custom-control-label"
+                            for="{{i}}"></label>
+                        </div>
+                      </td>
+                      <td class="width-input-custom">{{item.mdat | date:
+                        'yyyy-MM-dd'}}</td>
+                      <td>{{item.prtno}}</td>
+                      <td>{{item.manNo}}</td>
+                      <td>{{item.purNo}}</td>
+                      <td>{{item.grade}}</td>
+                      <td>{{item.brandname}}</td>
+                      <td>{{item.ritnbr}}</td>
+                      <td>{{item.article}}</td>
+                      <td>{{item.serial}}</td>
+                      <td>{{item.size}}</td>
+                      <td>{{item.qty}}</td>
+                      <td>{{item.wkshno}}</td>
+                      <td>{{item.prt_Cnt}}</td>
+                      <td>{{item.qrCodeValue}}</td>
+                      <td>{{item.cusid}}</td>
+                      <td>{{item.cusna}}</td>
+                      <td>{{item.bitnbr}}</td>
+                      <td>{{item.rmodel}}</td>
+                      <td>{{item.empno}}</td>
+                      <td>{{item.crUsr}}</td>
+                      <td class="width-input-custom">{{item.prtDay | date:
+                        'yyyy-MM-dd'}}</td>
+                    </tr>
+                  </tbody>
+                  <ng-template #noData>
+                    <tbody>
+                      <td colspan="100%"
+                        class="table-warning text-center font-weight-bold">
+                        {{'System.Message.Nodata' | translate }}
+                      </td>
+                    </tbody>
+                  </ng-template>
+                </table>
+                <div class="d-flex" *ngIf="listData.length > 0">
+                  <pagination *ngIf="listData.length > 0" [boundaryLinks]="true"
+                    [totalItems]="pagination.totalCount"
+                    [itemsPerPage]="pagination.pageSize"
+                    (pageChanged)="pageChanged($event)"
+                    [(ngModel)]="pagination.pageNumber" previousText="&lsaquo;"
+                    nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                    [maxSize]="5">
+                  </pagination>
+                  <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+                    {{pagination.totalPage}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-qrcode-printer #qrcodeprinter></app-qrcode-printer>

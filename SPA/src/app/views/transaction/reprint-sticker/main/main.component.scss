@@ -1,0 +1,11 @@
+.width-input-custom {
+  min-width: 100px !important;
+}
+
+table thead tr th {
+  white-space: nowrap;
+}
+
+.checkAll .custom-control-input:checked~.custom-control-label::before {
+  border-color: #fff;
+}
