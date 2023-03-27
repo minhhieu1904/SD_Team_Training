@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10">
+            <h4>1.4 Standard Packing Quantity</h4>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary" (click)="back()">
+            <i class="fa fa-arrow-left"></i> Back</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <span class="badge badge-warning">Department</span>
+          <input type="text" disabled="disabled" name="shift" [(ngModel)]="msPackage.packageNo"  class="form-control" >
+        </div>
+        <div class="col-md-2">
+          <span class="badge badge-warning">Name Of Department</span>
+          <input type="text" name="shift-name" [(ngModel)]="msPackage.packageQty" class="form-control" >
+        </div>
+        <div class="col pt-4">
+          <button class="btn btn-primary" (click)="update()" > Save </button>
+        </div>
+        
+      </div>
+    </div>
+    </div>
