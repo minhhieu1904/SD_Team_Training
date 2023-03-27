@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: 'department-data-maintain',
         loadChildren: () => import('./department-data-maintain/department-data-maintain.module').then(m => m.DepartmentDataMaintainModule)
+      },
+      {
+        path: "package-data-maintain",
+        loadChildren: () => import('./package-data-maintain/package-data-maintain.module').then(m => m.PackageDataMaintainModule)
       }
     ]
   }

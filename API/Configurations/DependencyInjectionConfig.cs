@@ -24,6 +24,9 @@ namespace API.Configurations
 
             // Add Service
             services.AddScoped<IMSDepartmentServices, SMSDepartmentServices>();
+
+            // Add Service
+            services.AddScoped<IMSPackageServices, SMSPackageServices>();
         }
     }
 }
