@@ -16,6 +16,8 @@ namespace API.Configurations
 
             // Add Service
             services.AddScoped<I_AuthorizationSetting, S_AuthorizationSetting>();
+            services.AddScoped<IAuthorService, S_AuthorService>();
+
         }
     }
 }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
+import { LoginComponent } from './views/login/login/login.component';
 export const routes: Routes = [
   {
     path: '',
@@ -17,7 +18,14 @@ export const routes: Routes = [
 
       }
     ]
-  }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Login Page'
+    }
+  },
 ];
 
 @NgModule({
