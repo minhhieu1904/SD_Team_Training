@@ -47,6 +47,7 @@ import { FooterContainerComponent } from './containers/footer-container/footer-c
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPrintModule} from 'ngx-print';
+import { LoginComponent } from './views/login/login/login.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -85,7 +86,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ...APP_CONTAINERS,
     HeaderContainerComponent,
-    FooterContainerComponent
+    FooterContainerComponent,
+    LoginComponent
   ],
   providers: [
     {
