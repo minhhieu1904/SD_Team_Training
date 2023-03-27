@@ -38,8 +38,7 @@ export class UsersService {
   }
 
   updateAuthorizeByUser(params: UserRole) {
-    console.log(params);
-    
+    console.log(params);    
     return this._http.put<OperationResult>(this.baseUrl + 'UpdateAuthorizeByUser', params);
   }
 }
