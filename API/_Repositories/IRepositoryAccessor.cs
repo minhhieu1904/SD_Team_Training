@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 using API._Repositories.Interfaces;
+=======
+using API._Repositories.Repositories;
+>>>>>>> feature-hai-1.5-authorization_setting
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace API._Repositories
@@ -11,6 +15,9 @@ namespace API._Repositories
         IMSLocation_Repository MSLocation {get;}
         IMSDepartment_Repository MSDepartmet {get;}
         IMSPackage_Repository MSPackage { get; }
+        IUsersRepository Users {get;}
+        IRolesRepository Roles {get;}
+        IRoleUser_Repository RoleUser {get;}
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
 

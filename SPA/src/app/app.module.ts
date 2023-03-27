@@ -46,7 +46,11 @@ import { HeaderContainerComponent } from './containers/header-container/header-c
 import { FooterContainerComponent } from './containers/footer-container/footer-container.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NgxPrintModule} from 'ngx-print';
+import { NgxPrintModule } from 'ngx-print';
+import { LoginComponent } from './views/login/login.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { AuthGuard } from '@guards/auth.guard';
+import { ModalModule } from 'ngx-bootstrap/modal';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -73,6 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxSpinnerModule,
     NgxPrintModule,
     NgxBreadcrumbModule.forRoot(),
+    ModalModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -85,9 +90,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ...APP_CONTAINERS,
     HeaderContainerComponent,
-    FooterContainerComponent
+    FooterContainerComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   providers: [
+    AuthGuard,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
@@ -97,7 +105,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SnotifyService,
     IconSetService,
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 
