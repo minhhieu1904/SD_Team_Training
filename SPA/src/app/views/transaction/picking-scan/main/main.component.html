@@ -1,0 +1,199 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong class="title-card-cs">{{'Roles.Menu_Child.BQRC.PickingScan' | translate}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="row border-shadow" autocomplete="off">
+                        <!-- Declaration No -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">
+                                {{'Transaction.PickingScan.DeclarationNo' | translate }}
+                            </label>
+
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="declarationNo" [(ngModel)]="filterParam.declarationNo" placeholder="{{'Transaction.PickingScan.DeclarationNo' | translate}}...">
+                            </div>
+                        </div>
+
+                        <!-- Invno  -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">
+                                {{'Transaction.PickingScan.Invno' | translate }}
+                            </label>
+
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="invno" [(ngModel)]="filterParam.invno" placeholder="{{'Transaction.PickingScan.Invno' | translate}}...">
+                            </div>
+                        </div>
+
+                        <!-- Iono-->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">
+                                {{'Transaction.PickingScan.Iono' | translate }}
+                            </label>
+
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="iono" [(ngModel)]="filterParam.iono" placeholder="{{'Transaction.PickingScan.Iono' | translate}}...">
+                            </div>
+                        </div>
+
+                        <!-- ReleaseDate -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">{{'Transaction.PickingScan.ReleaseDate' | translate}}</label>
+                            <div class="full-width">
+                                <div class="container_date">
+                                    <div class="input-group mr-1">
+                                        <input type="text" placeholder="Select From..." name="startDate" [maxDate]="endDate" [bsConfig]="bsConfig" class="form-control" bsDatepicker [(ngModel)]="startDate">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="input-group ml-1">
+                                        <input type="text" placeholder="Select To..." name="endDate" [minDate]="startDate" [bsConfig]="bsConfig" class="form-control" bsDatepicker [(ngModel)]="endDate">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Manno -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">{{'Transaction.PickingScan.Manno' | translate }}</label>
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="manNo" [(ngModel)]="filterParam.manNo" placeholder="{{'Transaction.PickingScan.Manno' | translate}}...">
+                            </div>
+                        </div>
+                        <!-- Purno -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">{{'Transaction.PickingScan.Purno' | translate }}</label>
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="purNo" [(ngModel)]="filterParam.purNo" placeholder="{{'Transaction.PickingScan.Purno' | translate}}...">
+                            </div>
+                        </div>
+                        <!-- Size -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">{{'Transaction.PickingScan.Size' | translate }}</label>
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="size" [(ngModel)]="filterParam.size" placeholder="{{'Transaction.PickingScan.Size' | translate}}...">
+                            </div>
+                        </div>
+                        <!-- button -->
+                        <div class="col col-sm-12  mt-4 pt-1">
+                            <div class="form-group">
+                                <!-- Search -->
+                                <button type="submit" class="btn btn-success" (click)="search()">
+                                    <i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' | translate}}
+                                </button>
+                                <!-- Clear -->
+                                <button type="button" class="btn btn-danger ml-2" (click)="clear()">
+                                    <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' | translate}}
+                                </button>
+
+                                <!-- Upload -->
+                                <button type="button" class="btn btn-warning ml-2" (click)="release()" [disabled]="!isButtonRelease">
+                                    <i class="{{iconButton.UPLOAD}}"></i> {{'System.Action.Release' | translate}}
+                                </button>
+                                <!-- Export Excel -->
+                                <button type="button" class="btn btn-primary ml-2" (click)="export()" [disabled]="!isButtonExport">
+                                    <i class="{{iconButton.EXCEL}}"></i> {{'System.Action.Export' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row justify-content-md-center">
+                        <div class="col-12">
+                            <div class="table-responsive mb-3">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="custom-control custom-checkbox checkAll">
+                                                    <input type="checkbox" class="custom-control-input" id="isCheckAll" [(ngModel)]="isCheckAll" (change)="checkAll()">
+                                                    <label class="custom-control-label" for="isCheckAll"></label>
+                                                </div>
+                                            </th>
+                                            <th>{{'Transaction.PickingScan.Status' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.ReleaseDate' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.DeclarationNo' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.Invno' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.Iono' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.Manno' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.Purno' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.Size' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.ExpectedQTY' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.ActualQTY' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.UpdateBy' | translate }}</th>
+                                            <th>{{'Transaction.PickingScan.UpdateTime' | translate }}</th>
+                                            <th>{{'System.Action.Text' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngIf="listData.length > 0; else elseBlock">
+                                            <tr *ngFor="let item of listData; let i = index" (click)="checkRecord(item)" [ngClass]="{'table-warning': item.checkRelease}">
+                                                <td style="width: 80px;">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="{{i}}" [(ngModel)]="item.checkRelease" (click)="checkRecord(item)">
+                                                        <label class="custom-control-label" for="{{i}}"></label>
+                                                    </div>
+                                                </td>
+                                                <td>{{item.status}}</td>
+                                                <td>{{item.releaseDate | date: 'yyyy-MM-dd'}}</td>
+                                                <td>{{item.declaration_no}}</td>
+                                                <td>{{item.invno}}</td>
+                                                <td>{{item.iono}}</td>
+                                                <td>{{item.manno}}</td>
+                                                <td>{{item.purno}}</td>
+                                                <td>{{item.size}}</td>
+                                                <td>{{item.expectQTY}}</td>
+                                                <td>{{item.actualQTY}}</td>
+                                                <td>{{item.updated_by}}</td>
+                                                <td>{{item.update_time | date: 'yyyy-MM-dd'}}</td>
+
+                                                <td style="width: 100px;">
+                                                    <!-- Edit : Trạng thái Status = 'Picking' -->
+                                                    <button *ngIf="item.status === 'Picking'" type="button" class="btn btn-warning btn-sm" (click)="onEdit(item)">
+                                                        <i class="{{iconButton.EDIT}}"></i>
+                                                        {{'System.Action.Edit'|translate}}
+                                                    </button>
+                                                    <!-- View : Trạng thái Status = 'Release' || 'StorageOut' -->
+                                                    <button *ngIf="item.status === 'Release' || item.status === 'StorageOut'" type="button" class="btn btn-warning btn-sm" (click)="onDetail(item)">
+                                                        <i class="{{iconButton.VIEW}}"></i>
+                                                        {{'System.Action.View' | translate}}
+                                                    </button>
+                                                    <!-- Picking : Trạng thái Status = 'N'-->
+                                                    <button *ngIf="item.status === 'N'" type="button" class="btn btn-primary btn-sm" (click)="onPicking(item)">
+                                                        <i class="{{iconButton.QRCODE}}"></i>
+                                                        {{'System.Action.Picking' | translate}}
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </ng-container>
+                                        <ng-template #elseBlock>
+                                            <tr>
+                                                <td class="table-warning text-center font-weight-bold" colspan="100%">
+                                                    {{'System.Message.Nodata' | translate }}</td>
+                                            </tr>
+                                        </ng-template>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-flex justify-content-start" *ngIf="listData.length > 0">
+                                <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" previousText="&lsaquo;" [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+                                </pagination>
+                                <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} / {{pagination.totalPage}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

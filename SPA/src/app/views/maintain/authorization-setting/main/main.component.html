@@ -1,105 +1,87 @@
-<div class="card">
-    <div class="card-header">
-        <div class="row">
-            <div class="col-md-10">
-                <h5>Authorization Setting</h5>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <span class="badge badge-warning">User Account</span>
-                <input type="text" name="account" class="form-control" [(ngModel)]="params.account">
-            </div>
-            <div class="col-md-2">
-                <span class="badge badge-warning">User Name</span>
-                <input type="text" name="name" class="form-control" [(ngModel)]="params.name">
-            </div>
-            <div class="col pt-4">
-                <button class="btn btn-primary" (click)="search()">
-                    <i class="fa fa-search"></i>
-                    Search</button>
-                &nbsp; &nbsp; &nbsp;
-                <button class="btn button" class="btn btn-danger" (click)="clear()">
-                    <i class="fa fa-refresh"></i>
-                    Clear
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <form class="form-horizontal" autocomplete="off">
+          <div class="card-header">
+            <div class="row border-title">
+              <div class="col-md-12">
+                <strong class="title-card-cs">1.5 {{'AuthorizationSetting.Title'
+                  | translate }}</strong>
+
+                <button type="button" (click)="passDataAdd()"
+                  class="btn btn-primary ml-2 pull-right">
+                  <i class="{{IconButton.ADD}}"></i> {{'System.Action.AddNew' |
+                  translate }}
                 </button>
-                &nbsp; &nbsp; &nbsp;
-                <button class="btn btn-success" (click)="add()">
-                    <i class="fa fa-plus"></i>
-                    Add</button>
+              </div>
             </div>
-        </div>
-    </div>
-    <div class="card">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col" class="text-center">User Account</th>
-                    <th scope="col" class="text-center">User Name</th>
-                    <th scope="col" class="text-center">E-mail Address</th>
-                    <th scope="col" class="text-center">Authorize</th>
-                    <th scope="col" class="text-center">Modify</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of data">
-                    <td class="text-center">{{item.account}}</td>
-                    <td class="text-center">{{item.name}}</td>
-                    <td class="text-center">{{item.email}}</td>
-                    <th scope="row" class="text-center"> <button class="btn btn-warning"
-                            (click)="openModal(item,template)"><i class="fa fa-key" aria-hidden="true"></i></button></th>
-                    <th scope="row" class="text-center"> <button class="btn btn-primary" (click)="updateItem(item)"><i
-                                class="fa fa-edit fa-lg"></i></button></th>
-                </tr>
-            </tbody>
-        </table>
-        <div class="d-flex" *ngIf="data.length > 0">
-            &nbsp;&nbsp;
-            <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
-                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
-                [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
-            </pagination>
-        </div>
-    </div>
-   
-</div>
-<ng-template #template>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Authorization</h4>
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-            <span aria-hidden="true" class="visually-hidden">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <div class="row">
-            <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                <label class="badge badge-warning">User Account</label>
-                <input type="text" disabled [(ngModel)]="userAuthorize.account" name="account" class="form-control">
-            </div>
-            <div class="col-xxl-5 col-xl-7 col-lg-7 col-md-7">
-                <label class="badge badge-warning">User name</label>
-                <input type="text" disabled [(ngModel)]="userAuthorize.name" class="form-control" name="name">
-            </div>
-        </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="row">
-            <div class="col-12 pl-15" *ngFor="let roles of userRole.listRoles; let i = index">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" [id]="roles.role_name"
-                        [name]="roles.role_name" [(ngModel)]="roles.isCheck">
-                    <label class="custom-control-label" [for]="roles.role_name">{{roles.role_name}}</label>
+          </div>
+        </form>
+        <div class="card-body">
+          <div class="row justify-content-md-center">
+            <div class="col-md-12 col-sm-12">
+              <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                  <thead>
+                    <tr>
+                      <th>{{'AuthorizationSetting.UserAccount' | translate }}
+                      </th>
+                      <th>{{'AuthorizationSetting.UserName' | translate }}</th>
+                      <th>{{'AuthorizationSetting.Email' | translate }}</th>
+                      <th>{{'AuthorizationSetting.Authorize' | translate }}</th>
+                      <th>{{'AuthorizationSetting.Modify' | translate }}</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="users.length > 0;else dataNotFound">
+                    <tr *ngFor="let user of users">
+                      <td>{{user.account}}</td>
+                      <td>{{user.name}}</td>
+                      <td>{{user.email}}</td>
+                      <td>
+                        <button (click)="openModal('setting-role', user)"
+                          class="btn btn-warning btn-sm">
+                          <i class="{{IconButton.AUTHOR}}"
+                            aria-hidden="true"></i>
+                        </button>
+                      </td>
+                      <td>
+                        <button (click)="passDataEdit(user)"
+                          class="btn btn-primary btn-sm">
+                          <i class="{{IconButton.EDIT}}" aria-hidden="true"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <ng-template #dataNotFound>
+                    <tbody>
+                      <tr>
+                        <td colspan="100%"
+                          class="table-warning text-center font-weight-bold">
+                          {{'System.Message.Nodata' | translate }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </ng-template>
+                </table>
+                <div class="d-flex" *ngIf="users.length > 0">
+                  <pagination *ngIf="users.length > 0" [boundaryLinks]="true"
+                    [totalItems]="pagination.totalCount"
+                    [itemsPerPage]="pagination.pageSize"
+                    (pageChanged)="pageChanged($event)"
+                    [(ngModel)]="pagination.pageNumber" previousText="&lsaquo;"
+                    nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+                  </pagination>
+                  <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+                    {{pagination.totalPage}}</span>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div>
-            <div>
-                <button type="button" class="btn btn-danger" (click)="modalRef?.hide()"><i
-                        class="fa fa-close"></i>Cancel</button>
-                &nbsp;&nbsp;
-                <button type="button" class="btn btn-success" (click)="save()"><i class="fa fa-check"></i>Save</button>
-            </div>
-        </div>
+      </div>
     </div>
-</ng-template>
+  </div>
+</div>
+
+<app-setting-role id="setting-role"></app-setting-role>

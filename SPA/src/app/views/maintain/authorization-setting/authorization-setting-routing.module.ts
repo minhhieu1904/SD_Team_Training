@@ -1,22 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from './add/add.component';
-import { EditComponent } from './edit/edit.component';
 import { MainComponent } from './main/main.component';
+import { FormComponent } from './form/form.component';
+import { SettingRoleComponent } from './setting-role/setting-role.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
+    data: {
+      title: '1.5 Authorization Setting'
+    }
   },
   {
     path: 'add',
-    component: AddComponent
+    component: FormComponent,
+    data: {
+      title: '1.5 Add User'
+    }
   },
   {
-    path: 'edit/:account/:name',
-    component: EditComponent
-  }
+    path: 'edit',
+    component: FormComponent,
+    data: {
+      title: '1.5 Edit User'
+    }
+  },
 ];
 
 @NgModule({

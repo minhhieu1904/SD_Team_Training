@@ -12,6 +12,7 @@ declare global {
     toLastDateOfYear(): Date;
     toBeginDate(): Date;
     toEndDate(): Date;
+    toSeq(): string;
   }
 
   interface String {
@@ -25,7 +26,7 @@ declare global {
 }
 
 Date.prototype.toDate = function (): Date {
-  const _this = this as string;
+  const _this = this as unknown as string;
   return new Date(_this);
 }
 
@@ -105,6 +106,18 @@ Date.prototype.toEndDate = function (): Date {
   const _this = this as Date;
   _this.setHours(23, 59, 59);
   return _this;
+}
+
+Date.prototype.toSeq = function (): string {
+  const _this = this as Date;
+  const year = _this.getFullYear();
+  const month = (_this.getMonth() + 1).toStringLeadingZeros(2);
+  const date = _this.getDate().toStringLeadingZeros(2);
+  const hours = _this.getHours().toStringLeadingZeros(2);
+  const minutes = _this.getMinutes().toStringLeadingZeros(2);
+  const seconds = _this.getSeconds().toStringLeadingZeros(2);
+  const milliseconds = _this.getMilliseconds().toStringLeadingZeros(3);
+  return `${year}${month}${date}${hours}${minutes}${seconds}${milliseconds}`;
 }
 
 String.prototype.toDate = function (): Date {

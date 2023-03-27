@@ -1,0 +1,199 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong class="title-card-cs" *ngIf="isEdit">
+                                {{'Roles.Menu_Child.BQRC.PickingScan'|translate }} - {{'System.Action.Edit' |translate}}
+                            </strong>
+                            <strong class="title-card-cs" *ngIf="!isEdit">
+                                {{'Roles.Menu_Child.BQRC.PickingScan'|translate }} - {{'System.Action.View' |translate}}
+                            </strong>
+                            <button type="button" class="btn btn-sm btn-primary float-right" (click)="back()">
+                                <i class="{{iconButton.BACK}}"></i>
+                                {{'System.Action.Back' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="row border-shadow" autocomplete="off">
+                        <!-- Iono -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">
+                                {{'Transaction.PickingScan.Iono' | translate}}
+                            </label>
+
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="iono" [(ngModel)]="param.iono" disabled placeholder="{{'Transaction.PickingScan.Iono' | translate}}">
+                            </div>
+                        </div>
+                        <!-- Manno -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">
+                                {{'Transaction.PickingScan.Manno' | translate}}
+                            </label>
+
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="manNo" [(ngModel)]="param.manNo" disabled placeholder="{{'Transaction.PickingScan.Manno' | translate}}">
+                            </div>
+                        </div>
+                        <!-- Purno -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">
+                                {{'Transaction.PickingScan.Purno' | translate}}
+                            </label>
+
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="purNo" [(ngModel)]="param.purNo" disabled placeholder="{{'Transaction.PickingScan.Purno' | translate}}">
+                            </div>
+                        </div>
+                        <!-- Size -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">
+                                {{'Transaction.PickingScan.Size' | translate}}
+                            </label>
+
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="size" [(ngModel)]="param.size" disabled placeholder="{{'Transaction.PickingScan.Size' | translate}}">
+                            </div>
+                        </div>
+                        <!-- Release Date -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mt-2">
+                            <label class="badge badge-warning">
+                                {{'Transaction.PickingScan.ReleaseDate' | translate}}
+                            </label>
+
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="startDate" [(ngModel)]="startDate" [bsConfig]="bsConfig"  bsDatepicker disabled placeholder="{{'Transaction.PickingScan.ReleaseDate' | translate}}  ">
+                            </div>
+                        </div>
+                        <!-- button -->
+                        <div class="col col-sm-12 form-group mt-4 pt-1">
+                            <div>
+                                <button type="button" class="btn btn-success" (click)="scan()" [disabled]="!isEdit">
+                                    <i class="{{iconButton.QRCODE}}"></i>
+                                    {{'System.Action.Scan' | translate }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row justify-content-md-center">
+                        <div class="col-12">
+                            <div class="table-responsive mb-3">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>{{'Transaction.PickingScan.Sdat'|translate}}
+                                            </th>
+                                            <th>{{'Transaction.PickingScan.DeclarationNo'|translate}}
+                                            </th>
+                                            <th>{{'Transaction.PickingScan.StorageTrNo'|translate}}
+                                            </th>
+                                            <th>{{'Transaction.PickingScan.Grade'|translate}}
+                                            </th>
+                                            <th>{{'Transaction.PickingScan.QRCodeID'|translate}}
+                                            </th>
+                                            <th>{{'Transaction.PickingScan.Manno'|translate}}
+                                            </th>
+                                            <th>{{'Transaction.PickingScan.Purno'|translate}}
+                                            </th>
+                                            <th>{{'Transaction.PickingScan.Size'|translate}}
+                                            </th>
+                                            <th>{{'Transaction.PickingScan.Qty'|translate}}
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngIf="listData.listPickingDetail?.length > 0; else elseBlock">
+                                            <tr *ngFor="let item of listData.listPickingDetail">
+                                                <ng-container *ngIf="!item.isDelete">
+                                                    <td class="mw-100"> {{item.sdat | date: 'yyyy-MM-dd'}} </td>
+                                                    <td>{{item.declaration_no}}</td>
+                                                    <td>{{item.storageTrNo}}</td>
+                                                    <td>{{item.grade}}</td>
+                                                    <td>{{item.qrCodeID}}</td>
+                                                    <td>{{item.manno}}</td>
+                                                    <td>{{item.purno}}</td>
+                                                    <td>{{item.size}}</td>
+                                                    <td>{{item.qty}}</td>
+                                                    <td style="width: 100px;">
+                                                        <button type="button" [disabled]="!isEdit" class="btn btn-danger btn-sm" (click)="deleteItem(item)">
+                                                            <i class="{{iconButton.DELETE}}"></i>
+                                                        </button>
+                                                    </td>
+                                                </ng-container>
+                                            </tr>
+                                        </ng-container>
+                                        <ng-template #elseBlock>
+                                            <tr>
+                                                <td class="table-warning text-center font-weight-bold" colspan="100%">
+                                                    {{'System.Message.Nodata' |translate }}
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer" *ngIf="listData.listPickingDetail?.length > 0 && isEdit">
+                    <div class="col col-sm-12" >
+                        <div>
+                            <button type="button" [disabled]="isDisableSaveAll" class="btn btn-success btn-sm" (click)="updateAll()">
+                                <i class="{{iconButton.SAVE}}"></i>
+                                {{'System.Action.Save'| translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title">
+                    {{'Transaction.PickingScan.ScanFromWarehouse' | translate}}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text font-weight-bold" id="scan-code">
+                            {{'Transaction.PickingScan.ScanCode'| translate}}
+                        </span>
+                    </div>
+                    <input type="text" [(ngModel)]="scanText" #autofocus (keydown.enter)="checkScanText()" autocomplete="off" class="form-control" placeholder="{{'Transaction.PickingScan.PleaseScanQRCode'|translate}}">
+                </div>
+                <div *ngIf="listScanCode.length > 0" class="scroll">
+                    <div *ngFor="let item of listScanCode">
+                        <div class="alert alert-secondary p-2 mb-2">
+                            <button class="close" type="button" (click)="delete(item)"><i class="{{iconButton.DELETE}} text-danger"></i></button>
+                            {{item}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-1" data-dismiss="modal" (click)="closeModal()">
+                    <i class="{{iconButton.CLOSE}}"></i>
+                    {{'System.Action.Cancel' | translate}}</button>
+                <button type="button" class="btn btn-primary" [disabled]="listScanCode.length === 0" (click)="getDataScan()">
+                    <i class="{{iconButton.SAVE}}"></i>
+                    {{'System.Action.Save'| translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

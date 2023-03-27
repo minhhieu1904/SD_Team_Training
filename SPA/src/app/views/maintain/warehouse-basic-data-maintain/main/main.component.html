@@ -1,50 +1,56 @@
 <div class="card">
-    <div class="card-header">
-      <div class="row">
-        <div class="col-md-10">
-          <h5>Warehouse Basic Data Maintenance</h5>
-        </div>
-        <div class="col-md-2"></div>
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-10">
+        <h5>{{'Roles.Menu_Child.BQRC.WarehouseBasicDataMaintenance' | translate }}</h5>
       </div>
-      <div class="row">
-        <div class="col-md-4 ">
-          <span class="badge badge-warning">Kode Of Warehouse </span>
-          <input type="text" name="location" class="form-control" name="storeH" id="storeH" [(ngModel)]="params.storeH" > 
-        </div>
-        <div class="col-md-4">
-          <span class="badge badge-warning">Name Of Warehouse </span>
-          <input type="text" name="locationName"  class="form-control" [(ngModel)]="params.locationName">
-        </div>
-  
-        <div class="col md-2">
-          <button class=" btn btn-primary " (click)="search()"> Search </button>
-        </div>
-        <div class="col md-2">
-          <button class=" btn btn-success" (click)="add()"> Add </button>
-        </div>
-        <div class="col md-2">
-          <button class=" btn btn-danger" (click)="clear()"> Clear </button>
-        </div>
-  
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-xxl-2 col-xl-6 col-lg-6 col-md-6">
+        <label class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' |
+          translate}}</label>
+        <input type="text" [(ngModel)]="params.storeH" class="form-control" name="storeH" id="storeH">
       </div>
+      <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+        <label class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' |
+          translate}}</label>
+        <input type="text" [(ngModel)]="params.locationName" class="form-control" name="locationName" id="locationName">
       </div>
-  
+      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12">
+        <label class="d-block">&nbsp;</label>
+        <button type="button" class="btn btn-success" (click)="search()">
+          <i class="">{{'System.Action.Search' | translate}}</i>
+        </button>
+        <button type="button" class="btn btn-danger ml-2" (click)="clear()">
+          <i class="">{{'System.Action.Clear' | translate}}</i>
+        </button>
+        <button type="button" class="btn btn-primary ml-2" (click)="add()">
+          <i class="">{{'System.Action.AddNew' | translate}}</i>
+        </button>
+      </div>
+    </div>
+
+
   </div>
   <div class="card">
     <table class="table table-bordered">
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col"  class="text-center">Kode Of Warehouse</th>
-          <th scope="col" class="text-center">Name Of Warehouse</th>
+          <th scope="col" class="text-center">{{'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' | translate}}
+          </th>
+          <th scope="col" class="text-center">{{'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' | translate}}
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of data">
-          <th scope="row" class="text-center"> <button class=" btn btn-primary" (click)="updateItem(item)">Edit</button></th>
+          <th scope="row" class="text-center"> <button class=" btn btn-primary" (click)="updateItem(item)">Edit</button>
+          </th>
           <td class="text-center">{{item.storeH}}</td>
-          <td  class="text-center">{{item.locationName}}</td>
-  
+          <td class="text-center">{{item.locationName}}</td>
+
         </tr>
       </tbody>
     </table>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MSPackage } from '@models/mS_Package';
-import { MSPackageService } from '@services/ms-package.service';
+import { MSPackage } from '@models/common/mS_Package';
+import { MSPackageService } from '@services/main/ms-package.service';
 
 @Component({
   selector: 'app-edit',
@@ -28,7 +28,7 @@ export class EditComponent implements OnInit {
       packageNo = params['packageNo'];
       this.getItem(manuf, packageNo);
     });
-      this.updateItem();
+    this.updateItem();
   }
 
   backList() {
@@ -41,9 +41,9 @@ export class EditComponent implements OnInit {
         this.msPackage = res;
       }, error(err) {
         console.log(err);
-                
-      },complete: () => {
-        console.log('complete');        
+
+      }, complete: () => {
+        console.log('complete');
       }
     })
   }
@@ -51,13 +51,12 @@ export class EditComponent implements OnInit {
   updateItem() {
     this.service.updateItem(this.msPackage).subscribe({
       next: res => {
-        if(res.isSuccess)
+        if (res.isSuccess)
           alert('Update thanh cong');
-      }, error: (err) => 
-      {
+      }, error: (err) => {
         alert('Update that bai')
-      },complete: () => {
-        console.log('complete');        
+      }, complete: () => {
+        console.log('complete');
       }
     })
   }
@@ -65,13 +64,12 @@ export class EditComponent implements OnInit {
   updateItemAndNext() {
     this.service.updateItem(this.msPackage).subscribe({
       next: res => {
-        if(res.isSuccess)
+        if (res.isSuccess)
           alert('Update thanh cong');
-      }, error: (err) => 
-      {
+      }, error: (err) => {
         alert('Update that bai')
-      },complete: () => {
-        this.backList();   
+      }, complete: () => {
+        this.backList();
       }
     })
   }

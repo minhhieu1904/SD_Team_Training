@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pagination } from '@utilities/pagination-utility';
-import {MSLocation} from '../../../../_core/models/mS_Location';
-import { MsLocationService } from '../../../../_core/services/ms-location.service'
+import { MSLocation } from '@models/common/mS_Location';
+import { MsLocationService } from '@services/main/ms-location.service'
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  data : MSLocation[] = [];
-  
-  pagination: Pagination = <Pagination> {
+  data: MSLocation[] = [];
+
+  pagination: Pagination = <Pagination>{
     pageNumber: 1,
     pageSize: 3
   };
 
-  params: MSLocation = <MSLocation> {
+  params: MSLocation = <MSLocation>{
     storeH: '',
     locationName: ''
   };
@@ -28,10 +28,15 @@ export class MainComponent implements OnInit {
   }
 
   getData() {
+    // theo thứ tự truyền vào
     this.service.getData(this.pagination, this.params).subscribe({
       next: res => {
+        console.log(this.params)
         this.data = res.result;
         this.pagination = res.pagination;
+      },
+      error: () => {
+        alert(' Error ')
       }
     })
   }
@@ -55,12 +60,12 @@ export class MainComponent implements OnInit {
   add() {
     this.router.navigate(['maintain/warehouse-basic-data-maintain/add']);
   }
-  
+
   updateItem(msLocation: MSLocation) {
     console.log(msLocation);
-    // đây đúng không 
-    // 1. gửi khoá chính qua route để nhận đúng chưa 
-    // Gửi trang trang Edit 
-    this.router.navigate([`maintain/warehouse-basic-data-maintain/edit/${msLocation.manuf}/${msLocation.storeH}`]); 
+    // đây đúng không
+    // 1. gửi khoá chính qua route để nhận đúng chưa
+    // Gửi trang trang Edit
+    this.router.navigate([`maintain/warehouse-basic-data-maintain/edit/${msLocation.manuf}/${msLocation.storeH}`]);
   }
 }

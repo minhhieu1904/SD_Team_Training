@@ -1,0 +1,219 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-12">
+              <strong
+                class="title-card-cs">{{'Roles.Menu_Child.BQRC.ReprintPackingScan'
+                | translate
+                }}</strong>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form class="row border-shadow" autocomplete="off">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintPackingScan.Date'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <div class="container_date">
+                  <div class="input-group mr-1">
+                    <input type="text" placeholder="Select From..."
+                      name="date_start" [maxDate]="endDate"
+                      [bsConfig]="bsConfig" class="form-control" bsDatepicker
+                      [(ngModel)]="startDate">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i
+                          class="{{iconButton.CALENDAR}}"></i></span>
+                    </div>
+                  </div>
+                  <div class="input-group ml-1">
+                    <input type="text" placeholder="Select To..."
+                      name="date_end" [minDate]="startDate"
+                      [bsConfig]="bsConfig" class="form-control" bsDatepicker
+                      [(ngModel)]="endDate">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i
+                          class="{{iconButton.CALENDAR}}"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintPackingScan.TrNo'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="trno"
+                  [(ngModel)]="filterParam.trno"
+                  placeholder="{{'Transaction.ReprintPackingScan.EnterTrNo' | translate}}">
+              </div>
+            </div>
+            <!-- Planning no -->
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintPackingScan.PlanningNo'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="planningNo"
+                  [(ngModel)]="filterParam.manNo" maxlength="15"
+                  placeholder="{{'Transaction.ReprintPackingScan.PlanningNo' | translate}}">
+              </div>
+            </div>
+            <!-- Purchase No -->
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintPackingScan.PurchaseNo'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="purchaseNo"
+                  [(ngModel)]="filterParam.purNo" maxlength="10"
+                  placeholder="{{'Transaction.ReprintPackingScan.PurchaseNo' | translate}}">
+              </div>
+            </div>
+            <!-- Size -->
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintPackingScan.Size'
+                | translate
+                }}</label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="size"
+                  [(ngModel)]="filterParam.size" maxlength="4"
+                  placeholder="{{'Transaction.ReprintPackingScan.Size' | translate}}">
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label class="badge badge-warning">
+                {{'Transaction.ReprintPackingScan.Shift' | translate}}
+              </label>
+              <div class="full-width">
+                <ng-select [(ngModel)]="filterParam.shift"
+                  placeholder="{{'Transaction.ReprintPackingScan.PleaseChooseShift' | translate}}..."
+                  name="Shift" [clearable]="true">
+                  <ng-option *ngFor="let shift of listShift"
+                    [value]="shift.key">{{shift.value}}
+                  </ng-option>
+                </ng-select>
+              </div>
+            </div>
+            <!-- button -->
+            <div class="col form-group mt-4 pt-1">
+              <div>
+                <button type="submit" class="btn btn-success"
+                  (click)="search()">
+                  <i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search'
+                  | translate}}
+                </button>
+                <button type="button" class="btn btn-danger ml-2"
+                  (click)="clearSearch()">
+                  <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' |
+                  translate}}
+                </button>
+                <button type="button" class="btn btn-primary ml-2"
+                  (click)="export()" [disabled]="dataCheck.length === 0">
+                  <i class="{{iconButton.PRINT}}"></i> {{'System.Action.Reprint'
+                  | translate}}
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="row justify-content-md-center">
+            <div class="col-12">
+              <div class="table-responsive mb-3">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="custom-control custom-checkbox checkAll">
+                          <input type="checkbox" class="custom-control-input"
+                            id="isCheckAll" [(ngModel)]="isCheckAll"
+                            (change)="checkAll()">
+                          <label class="custom-control-label"
+                            for="isCheckAll"></label>
+                        </div>
+                      </th>
+                      <th>{{'Transaction.ReprintPackingScan.sdat' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintPackingScan.TrNo' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintPackingScan.SortQty' |
+                        translate}}</th>
+                      <th>{{'Transaction.ReprintPackingScan.Shift' | translate}}
+                      </th>
+                      <th>{{'Transaction.ReprintPackingScan.PlanningNo' |
+                        translate}}</th>
+                      <th>{{'Transaction.ReprintPackingScan.PurchaseNo' |
+                        translate}}</th>
+                      <th>{{'Transaction.ReprintPackingScan.Size' | translate}}
+                      </th>
+                      <th>MoldNo</th>
+                      <th>ItemCode</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngIf="listData.length > 0; else elseBlock">
+                      <tr *ngFor="let item of listData; let i = index"
+                        (click)="checkRecord(item)"
+                        [ngClass]="{'table-warning': item.check}">
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                              id="{{i}}" [(ngModel)]="item.check"
+                              (click)="checkRecord(item)">
+                            <label class="custom-control-label"
+                              for="{{i}}"></label>
+                          </div>
+                        </td>
+                        <td class="mw-100">{{item.sDat | date: 'yyyy-MM-dd'}}
+                        </td>
+                        <td>{{item.trNo}}</td>
+                        <td>{{item.sortQty}}</td>
+                        <td>{{item.shiftName}}</td>
+                        <td>{{item.manno}}</td>
+                        <td>{{item.purno}}</td>
+                        <td>{{item.size}}</td>
+                        <td>{{item.rmodel}}</td>
+                        <td>{{item.bitnbr}}</td>
+                      </tr>
+                    </ng-container>
+                    <ng-template #elseBlock>
+                      <tr>
+                        <td class="table-warning text-center font-weight-bold"
+                          colspan="100%">
+                          {{'System.Message.Nodata' | translate }}</td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </table>
+              </div>
+              <div class="d-flex justify-content-start"
+                *ngIf="listData.length > 0">
+                <pagination [boundaryLinks]="true"
+                  [totalItems]="pagination.totalCount"
+                  [itemsPerPage]="pagination.pageSize" previousText="&lsaquo;"
+                  [(ngModel)]="pagination.pageNumber"
+                  (pageChanged)="pageChanged($event)" nextText="&rsaquo;"
+                  firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+                </pagination>
+                <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+                  {{pagination.totalPage}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ------------------------------------- print template -------------------------------------- -->
+<app-packing-scan-export #printTemplate></app-packing-scan-export>

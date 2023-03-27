@@ -1,0 +1,208 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <form class="form-horizontal" autocomplete="off">
+          <div class="card-header">
+            <div class="row border-title">
+              <div class="col-md-12">
+                <strong
+                  class="title-card-cs">{{'Roles.Menu_Child.BQRC.ReprintWarehouseScan'
+                  | translate }}</strong>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="card-body">
+          <div class="row border-shadow">
+            <div class="col-xxl-3 col-xl-4 col-md-6">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintWarehouseScan.Date'
+                | translate }}</label>
+              <div class="full-width d-flex">
+                <div class="input-group mr-2">
+                  <input type="text" class="form-control"
+                    placeholder="Select From..." bsDatepicker
+                    [bsConfig]="bsConfig" [(ngModel)]="dateFrom"
+                    [maxDate]="dateTo" onkeypress="return false;"
+                    onpaste="return false;" autocomplete=off />
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i
+                        class="{{iconButton.CALENDAR}}"></i></span>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <input type="text" class="form-control"
+                    placeholder="Select To..." bsDatepicker
+                    [bsConfig]="bsConfig" [(ngModel)]="dateTo"
+                    [minDate]="dateFrom" onkeypress="return false;"
+                    onpaste="return false;" autocomplete=off />
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i
+                        class="{{iconButton.CALENDAR}}"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xxl-3 col-xl-4 col-md-6">
+              <label class="badge badge-warning">TrNo</label>
+              <input type="text" name="" class="form-control"
+                [(ngModel)]="param.trNo" placeholder="Enter trno.." />
+            </div>
+            <!-- Planning no -->
+            <div class="col-xxl-3 col-xl-4 col-md-6">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintWarehouseScan.ManNo'
+                | translate }}</label>
+              <input type="text" name="planningNo" class="form-control"
+                [(ngModel)]="param.manno" placeholder="Enter Planning No.." />
+            </div>
+            <!-- Purchase No -->
+            <div class="col-xxl-3 col-xl-4 col-md-6">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintWarehouseScan.PurNo'
+                | translate }}</label>
+              <input type="text" name="purchaseNo" class="form-control"
+                [(ngModel)]="param.purno" placeholder="Enter Purchase No.." />
+            </div>
+            <!-- size -->
+            <div class="col-xxl-3 col-xl-4 col-md-6">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintWarehouseScan.Size'
+                | translate }}</label>
+              <input type="text" name="size" class="form-control"
+                [(ngModel)]="param.size" placeholder="Enter Size.." />
+            </div>
+
+            <div class="col-xxl-3 col-xl-4 col-md-6">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintWarehouseScan.Location'
+                | translate }}</label>
+              <ng-select [(ngModel)]="param.location" name="location"
+                (clear)="param.location = ''"
+                [clearable]="param.location != ''">
+                <ng-option [value]="''">{{'System.SelectAll' | translate
+                  }}</ng-option>
+                <ng-option *ngFor="let item of locations"
+                  [value]="item.key">{{item.value}}</ng-option>
+              </ng-select>
+            </div>
+            <div class="col-xxl-3 col-xl-4 col-md-6">
+              <label
+                class="badge badge-warning">{{'Transaction.ReprintWarehouseScan.Department'
+                | translate }}</label>
+              <ng-select [(ngModel)]="param.department" name="department"
+                (clear)="param.department = ''"
+                [clearable]="param.department != ''">
+                <ng-option [value]="''">{{'System.SelectAll' | translate
+                  }}</ng-option>
+                <ng-option *ngFor="let item of departments"
+                  [value]="item.key">{{item.value}}</ng-option>
+              </ng-select>
+            </div>
+            <div class="col-md-6">
+              <label class="d-block">&nbsp;</label>
+              <button type="submit" class="btn btn-success" (click)="search()">
+                <i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' |
+                translate }}
+              </button>
+              <button type="button" class="btn btn-danger ml-2"
+                (click)="clear()">
+                <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' |
+                translate }}
+              </button>
+              <button type="button" class="btn btn-primary ml-2"
+                (click)="print()" [disabled]="dataCheck.length === 0">
+                <i class="{{iconButton.PRINT}}"></i> {{'System.Action.Reprint' |
+                translate }}
+              </button>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-12">
+              <div class="table-responsive mb-3">
+                <table class="table table-bordered mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-center">
+                        <div class="custom-control custom-checkbox checkAll">
+                          <input type="checkbox" class="custom-control-input"
+                            id="checkAll" [(ngModel)]="isCheckAll"
+                            (change)="checkAll()">
+                          <label class="custom-control-label"
+                            for="checkAll"></label>
+                        </div>
+                      </th>
+                      <th>{{'Transaction.ReprintWarehouseScan.SDat' | translate
+                        }}</th>
+                      <th>{{'Transaction.ReprintWarehouseScan.TrNo' | translate
+                        }}</th>
+                      <th>{{'Transaction.ReprintWarehouseScan.StorageQty' |
+                        translate }}</th>
+                      <th>{{'Transaction.ReprintWarehouseScan.Location' |
+                        translate }}</th>
+                      <th>{{'Transaction.ReprintWarehouseScan.Department' |
+                        translate }}</th>
+                      <th>{{'Transaction.ReprintWarehouseScan.ManNo' | translate
+                        }}</th>
+                      <th>{{'Transaction.ReprintWarehouseScan.PurNo' | translate
+                        }}</th>
+                      <th>{{'Transaction.ReprintWarehouseScan.Size' | translate
+                        }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container
+                      *ngIf="dataMain?.length > 0; else templateNoData">
+                      <tr *ngFor="let item of dataMain; let i = index"
+                        (click)="checkRecord(item)"
+                        [ngClass]="{'table-warning': item.check}">
+                        <td class="text-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                              id="{{i}}" [(ngModel)]="item.check"
+                              (click)="checkRecord(item)">
+                            <label class="custom-control-label"
+                              for="{{i}}"></label>
+                          </div>
+                        </td>
+                        <td>{{item.sDat | date: 'YYYY/MM/dd'}}</td>
+                        <td>{{item.trNo}}</td>
+                        <td>{{item.storageQty}}</td>
+                        <td>{{item.location}}</td>
+                        <td>{{item.department}}</td>
+                        <td>{{item.manNo}}</td>
+                        <td>{{item.purNo}}</td>
+                        <td>{{item.size}}</td>
+                      </tr>
+                    </ng-container>
+                    <ng-template #templateNoData>
+                      <tr>
+                        <td colspan="100%"
+                          class="table-warning text-center font-weight-bold">
+                          {{'System.Message.Nodata' | translate }}
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-start"
+            *ngIf="dataMain?.length > 0">
+            <pagination [boundaryLinks]="true"
+              [totalItems]="pagination.totalCount"
+              [itemsPerPage]="pagination.pageSize" previousText="&lsaquo;"
+              [(ngModel)]="pagination.pageNumber"
+              (pageChanged)="pageChanged($event)" nextText="&rsaquo;"
+              firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+            </pagination>
+            <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+              {{pagination.totalPage}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

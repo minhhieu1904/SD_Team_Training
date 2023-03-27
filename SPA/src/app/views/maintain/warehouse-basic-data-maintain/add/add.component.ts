@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { MSLocation } from '@models/mS_Location';
-import { MsLocationService } from '@services/ms-location.service';
+import { LocationParam } from '@models/maintain/warehouse-basic-data-maintenance'
+
+import { MsLocationService } from '@services/main/ms-location.service';
 
 @Component({
   selector: 'app-add',
@@ -9,7 +10,7 @@ import { MsLocationService } from '@services/ms-location.service';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-  msLocation: MSLocation = <MSLocation>{
+  msLocation: LocationParam = <LocationParam>{
     storeH: '',
     locationName: ''
   }
@@ -28,11 +29,11 @@ export class AddComponent implements OnInit {
   save() {
     this.service.addNew(this.msLocation).subscribe({
       next: result => {
-        if(result.isSuccess)
-        alert ('Them thanh cong')
+        if (result.isSuccess)
+          alert('Them thanh cong')
       },
       error: error => {
-        alert ('Them that bai')
+        alert('Them that bai')
       },
       complete: () => {
         this.msLocation.storeH = "";
@@ -44,11 +45,11 @@ export class AddComponent implements OnInit {
   saveAndNext() {
     this.service.addNew(this.msLocation).subscribe({
       next: result => {
-        if(result.isSuccess)
-        alert ('Them thanh cong')
+        if (result.isSuccess)
+          alert('Them thanh cong')
       },
       error: () => {
-        alert ('Them that bai')
+        alert('Them that bai')
       },
       complete: () => {
         this.backList();

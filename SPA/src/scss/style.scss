@@ -3,7 +3,9 @@
 
 // Import styles
 @import "@coreui/coreui/scss/coreui";
-@import '~ngx-print-element/styles.css';
+
+// Import print
+@import 'node_modules/ngx-print-element/styles.css';
 
 // If you want to add something do it here
 @import "custom";

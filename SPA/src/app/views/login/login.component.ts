@@ -1,46 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LocalStorageConstants } from '@constants/local-storage.constants';
-import { User } from '@models/auth/application-user';
-import { AuthorService } from '@services/auth/auth.service'
+import { Component, OnInit } from "@angular/core";
+import { UserLoginParam } from '@models/auth/application-user'
+import { AuthorService } from "../../_core/services/auth/auth.service";
+import { InjectBase } from "@utilities/inject-base-app";
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-dashboard",
+  templateUrl: "login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
-export class LoginComponent implements OnInit {
-  user: any = {};
-  appUser: User = <User>{};
-  isDisable: boolean = false;
+export class LoginComponent extends InjectBase implements OnInit {
+  user: UserLoginParam = <UserLoginParam>{};
+
   constructor(
-    private services: AuthorService,
-    private router: Router,
-  ) { }
+    private authService: AuthorService
+  ) {
+    super();
+  }
 
-
-  ngOnInit(): void {
-    if (this.services.loggedIn) this.router.navigate(["/dashboard"]);
+  ngOnInit() {
+    // if (this.authService.loggedIn) this.router.navigate(["/dashboard"]);
   }
 
   login() {
-    console.log(this.user);
-    this.isDisable = true;
-    this.services.login(this.user).subscribe({
-      next: result => {
-        debugger
-        console.log("Res: ", result);
-        if (result != null) {
-          localStorage.setItem(LocalStorageConstants.USER, JSON.stringify(result.user.account));
-          localStorage.setItem(LocalStorageConstants.ROLES, JSON.stringify(result.user.roles));
-          this.router.navigate(['/']);
-        } else {
-          console.log('login');
-        }
+    this.spinnerService.show();
+    this.authService.login(this.user).subscribe({
+      next: () => {
+        this.snotifyService.success(
+          this.translateService.instant('System.Message.LogIn'),
+          this.translateService.instant('System.Caption.Success'));
+        this.spinnerService.hide();
       },
-      error: err => {
-        console.log(err);
+      error: () => {
+        this.snotifyService.error(
+          this.translateService.instant('System.Message.LogInFailed'),
+          this.translateService.instant('System.Caption.Error'));
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.router.navigate(["/dashboard"]);
+        this.spinnerService.hide();
       }
-    });
+    })
   }
-
 }

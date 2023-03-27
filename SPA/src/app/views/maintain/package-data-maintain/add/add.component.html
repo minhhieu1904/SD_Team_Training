@@ -6,10 +6,11 @@
                     <div class="card-header">
                         <div class="row border-title">
                             <div class="col-md-12">
-                                <strong class="title-card-cs">1.4 Standard Packing Quantity Setting - Add New
+                                <strong class="title-card-cs">
+                                    {{'Roles.Menu_Child.BQRC.StandardPackingQuantitySetting' | translate}}
                               </strong>
                               <button type="button" class="btn btn-sm btn-primary float-right" (click)="backList()"><i class="fa fa-chevron-left"></i>
-                                  Back</button>
+                                  {{'System.Action.Back' | translate}}</button>
                             </div>
                         </div>
                     </div>
@@ -17,17 +18,17 @@
                 <div class="card-body">
                     <div class="row form-group border-shadow">
                         <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                            <label class="badge badge-warning">Packing No</label>
+                            <label class="badge badge-warning"> {{'Maintain.StandardPackingQuantitySetting.PackingNo' | translate}}</label>
                             <input type="text" [(ngModel)]="msPackage.packageNo" class="form-control" name="packageNo">
                         </div>
                         <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                            <label class="badge badge-warning">Packing Quantity</label>
+                            <label class="badge badge-warning"> {{'Maintain.StandardPackingQuantitySetting.PackingQuantity' | translate}}</label>
                             <input type="text" [(ngModel)]="msPackage.packageQty" class="form-control" name="packageQty"  >
                         </div>                                     
                     </div>
                     <div class="form-group">
                       <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
-                          <button type="button" class="btn btn-success" (click)="save()"><i class="fa fa-check" ></i>Save</button>
+                          <button type="button" class="btn btn-success" (click)="save()"><i class="fa fa-check" ></i>{{'System.Action.Save' | translate}}</button>
                           &nbsp;&nbsp;
                           <button type="button" class="btn btn-primary" (click)="saveAndNext()"  ><i class="fa fa-check"></i>Save & Next</button>
                       </div>                                                           

@@ -1,0 +1,150 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <form class="form-horizontal" autocomplete="off">
+                    <div class="card-header">
+                        <div class="row border-title">
+                            <div class="col-md-12">
+                                <strong class="title-card-cs">
+                                    {{'Roles.Menu_Child.BQRC.CancelSticker' | translate}}
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="card-body">
+                    <form class="row border-shadow" autocomplete="off">
+                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
+                            <label class="badge badge-warning">
+                                {{'Transaction.CancelSticker.PlanningNo' | translate}}
+                            </label>
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="manNo" [(ngModel)]="param.manNo"
+                                    placeholder="{{'Transaction.CancelSticker.EnterPlanningNo' | translate}}">
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
+                            <label class="badge badge-warning">
+                                {{'Transaction.CancelSticker.PurchaseNo' | translate}}
+                            </label>
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="purNo" [(ngModel)]="param.purNo"
+                                    placeholder="{{'Transaction.CancelSticker.EnterPurchaseNo' | translate}}">
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
+                            <label class="badge badge-warning">
+                                {{'Transaction.CancelSticker.Size' | translate}}
+                            </label>
+                            <div class="full-width">
+                                <input type="text" class="form-control" name="size" [(ngModel)]="param.size"
+                                    placeholder="{{'Transaction.CancelSticker.EnterSize' | translate}}">
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
+                            <label class="badge badge-warning">
+                                {{'Transaction.CancelSticker.Serial' | translate}}
+                            </label>
+                            <div class="full-width">
+                                <input type="number" class="form-control" name="serial" [(ngModel)]="param.serial"
+                                    placeholder="{{'Transaction.CancelSticker.EnterSerial' | translate}}" 
+                                    onkeypress="return /[0-9]/i.test(event.key)" onpaste="return false;">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label class="d-block">&nbsp;</label>
+                            <button type="button" class="btn btn-success" (click)="search()">
+                                <i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' | translate}}
+                            </button>
+                            <button type="button" class="btn btn-danger ml-2" (click)="clearSearch()">
+                                <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' | translate}}
+                            </button>
+                            <button type="button" class="btn btn-success ml-2" (click)="scan()">
+                                <i class="{{iconButton.QRCODE}}"></i> {{'System.Action.Scan' | translate }}
+                            </button>
+                            <button type="button" class="btn btn-primary ml-2" (click)="cancelStickerAction()" [disabled]="isCancel">
+                                <i class="{{iconButton.REMOVE}}"></i> {{'Transaction.CancelSticker.Cancel' | translate }}
+                            </button>
+                        </div>
+                    </form>
+                    <div class="row justify-content-md-center">
+                        <div class="col-12">
+                            <div class="table-responsive mb-3">
+                                <table id="table-main" class="table table-bordered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <!-- Checkbox All - chcked all row items in current page -->
+                                            <th>
+                                                <div class="custom-control custom-checkbox checkAll">
+                                                    <input type="checkbox" class="custom-control-input" id="checkAll"
+                                                        [(ngModel)]="checkAll" (change)="changCheckAll()" [disabled]="data.length == 0">
+                                                    <label class="custom-control-label" for="checkAll"></label>
+                                                </div>
+                                            </th>
+                                            <th>{{'Transaction.CancelSticker.IsSortScan' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.Grade' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.wkshno' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.PlanningNo' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.PurchaseNo' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.Size' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.Serial' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.Qty' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.Prt_Cnt' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.QRCodeID' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.QRCodeValue' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.empno' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.CrUsr' | translate}}</th>
+                                            <th>{{'Transaction.CancelSticker.PrintDay' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of data" (click)="changeChecked(item)"
+                                            [ngClass]="{'table-warning': item.isChecked}">
+                                            <!-- Click checkbox function - checked item -->
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="{{item.qRCodeID}}" [(ngModel)]="item.isChecked"
+                                                        (click)="changeChecked(item)" name="cancel_sticker_{{item.qRCodeID}}">
+                                                    <label class="custom-control-label" for="{{item.qRCodeID}}"></label>
+                                                </div>
+                                            </td>
+                                            <td>{{item.isSortScan}}</td>
+                                            <td>{{item.grade}}</td>
+                                            <td>{{item.wkshno}}</td>
+                                            <td>{{item.manNo}}</td>
+                                            <td>{{item.purNo}}</td>
+                                            <td>{{item.size}}</td>
+                                            <td>{{item.serial}}</td>
+                                            <td>{{item.qty}}</td>
+                                            <td>{{item.prt_Cnt}}</td>
+                                            <td>{{item.qrCodeID}}</td>
+                                            <td>{{item.qrCodeValue}}</td>
+                                            <td>{{item.empno}}</td>
+                                            <td>{{item.crUsr}}</td>
+                                            <td>{{item.prtDay | date: 'yyyy/MM/dd'}}</td>
+                                        </tr>
+                                        <tr *ngIf="data.length == 0">
+                                            <td colspan="100%" class="table-warning text-center font-weight-bold">
+                                                {{'System.Message.Nodata' | translate }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start" *ngIf="data?.length > 0">
+                        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount"
+                            [itemsPerPage]="pagination.pageSize" previousText="&lsaquo;"
+                            [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" nextText="&rsaquo;"
+                            firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+                        </pagination>
+                        <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} / {{pagination.totalPage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,19 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthorizationSettingRoutingModule } from './authorization-setting-routing.module';
-import { MainComponent } from './main/main.component';
-import { AddComponent } from './add/add.component';
-import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TranslateModule } from '@ngx-translate/core';
+import { MainComponent } from './main/main.component';
+import { FormComponent } from './form/form.component';
+import { SettingRoleComponent } from './setting-role/setting-role.component';
 
 @NgModule({
   declarations: [
     MainComponent,
-    AddComponent,
-    EditComponent
+    FormComponent,
+    SettingRoleComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +23,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     NgSelectModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
-    AuthorizationSettingRoutingModule
+    AuthorizationSettingRoutingModule,
+    TranslateModule
   ]
 })
 export class AuthorizationSettingModule { }

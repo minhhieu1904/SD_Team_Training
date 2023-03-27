@@ -9,8 +9,10 @@ export class AuthGuard {
   constructor(private authService: AuthorService, private router: Router) { }
   canActivate(): boolean {
     if (this.authService.loggedIn()) {
+    
       return true;
     }
+   
     this.router.navigate(["/login"]);
     return false;
   }

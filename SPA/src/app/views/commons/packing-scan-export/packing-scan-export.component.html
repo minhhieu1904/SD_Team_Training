@@ -1,0 +1,52 @@
+<div id="printTemplate">
+  <div class="wrap" *ngFor="let page of data; let i = index">
+    <table class="table">
+      <tr>
+        <td colspan="100%" class="text-center border-0 font-weight-bold">SHYANG
+          TA<br>Packing Scan
+          Collection List</td>
+      </tr>
+      <tr>
+        <td [attr.colspan]="isCheck === false ? '1' : '2'" class="border-0">
+        </td>
+        <td colspan="2" class="border-0 text-left">Scan Date:
+          {{page.listItemPerPage[0]?.sDat}}</td>
+        <td colspan="2" class="border-0 text-right">Page: {{i+1}} /
+          {{data.length}}</td>
+      </tr>
+      <tr>
+        <td [attr.colspan]="isCheck === false ? '1' : '2'" class="border-0">
+          Transac_No: {{page.listItemPerPage[0]?.trNo}}</td>
+        <td colspan="2" class="border-0 text-left">Print Time:
+          {{page.listItemPerPage[0]?.printTime}}</td>
+        <td colspan="2" class="border-0 text-right">Shift:
+          {{page.listItemPerPage[0]?.shift}}</td>
+      </tr>
+      <tr>
+        <td class="text-center td-border">PPL No.</td>
+        <td class="text-center td-border">PurOrder</td>
+        <td class="text-center td-border">Mold No</td>
+        <td class="text-center td-border">ItemCode</td>
+        <td class="text-center td-border">Size</td>
+        <td class="text-center td-border">Pairs</td>
+      </tr>
+      <tr *ngFor="let item of page.listItemPerPage">
+        <td class="text-center td-border">{{item?.manNo}}</td>
+        <td class="text-center td-border">{{item?.purNo}}</td>
+        <td class="text-center td-border">{{item?.rModel}}</td>
+        <td class="text-center td-border">{{item?.bitnbr}}</td>
+        <td class="text-center td-border">{{item?.size}}</td>
+        <td class="text-center td-border">{{item?.qty}}</td>
+      </tr>
+      <tr>
+        <td colspan="100%" class="border-0"></td>
+      </tr>
+      <tr>
+        <td class="border-0" colspan="2">Warehouse:</td>
+        <td class="border-0" colspan="2">Print User:
+          {{page.listItemPerPage[0]?.crUsr}}</td>
+        <td class="border-0 text-right" colspan="3">Total: {{page.qty}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pagination } from 'src/app/_core/utilities/pagination-utility'
-import { MSShift, MSShiftParam } from 'src/app/_core/models/ms-shift';
-import { MsShiftService } from 'src/app/_core/services/ms-shift.service';
+import { ShiftParam } from '@models/maintain/shift-data-maintenance';
+import { MsShiftService } from '@services/main/ms-shift.service';
+import { MSShift } from '@models/common/ms-shift';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,7 @@ import { MsShiftService } from 'src/app/_core/services/ms-shift.service';
 })
 export class MainComponent implements OnInit {
   msshifts: MSShift[] = [];
-  
+
   pagination: Pagination = <Pagination>{
     pageNumber: 1,
     pageSize: 3
@@ -28,15 +29,16 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
   }
-  
+
   //Lay du lieu
   getData() {
+    // debugger
     this.service.getData(this.pagination, this.param).subscribe({
       next: res => {
         this.msshifts = res.result;
         this.pagination = res.pagination;
       }
-    }) 
+    })
   }
 
   //Chuyen trang
@@ -46,20 +48,20 @@ export class MainComponent implements OnInit {
   //Truyền vào item cần cập nhật, hàm này nhận vào 1 cái msShift nè em , nên là ở ngoài mình cũng phải truyền vào item : MsShift
   updateShift(msShift: MSShift) {
     console.log('đây là đối tượng cần cập nhật:', msShift);
-    // thiệt lập đường dẫn với data truyền vào 
+    // thiệt lập đường dẫn với data truyền vào
     // ở đây có 2 khóa chính nên ta truyền vào 2 khóa chính : manuf và shift
     this.router.navigate([`maintain/shift-data-maintain/edit/${msShift.manuf}/${msShift.shift}`])
   }
 
   //Tim kiem
-  search(){
+  search() {
     this.pagination.pageNumber = 1;
     this.getData();
   }
 
 
-  pageChanged(e:any){
-    this.pagination.pageNumber=e.page;
+  pageChanged(e: any) {
+    this.pagination.pageNumber = e.page;
     this.getData();
   }
 

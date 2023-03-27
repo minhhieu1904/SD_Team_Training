@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MSLocation } from '@models/mS_Location';
-import { MsLocationService } from '@services/ms-location.service';
+import { MSLocation } from '@models/common/mS_Location';
+import { MsLocationService } from '@services/main/ms-location.service';
 
 @Component({
   selector: 'app-edit',
@@ -29,7 +29,7 @@ export class EditComponent implements OnInit {
     let manuf = this.route.snapshot.paramMap.get('manuf');
     let storeH = this.route.snapshot.paramMap.get('storeH');
     console.log(manuf, storeH);
-    
+
     this.getMsLocation(manuf, storeH);
   }
 
@@ -40,9 +40,9 @@ export class EditComponent implements OnInit {
   getMsLocation(manuf: string, storeH: string) {
     this.service.getItem(manuf, storeH).subscribe({
       next: result => {
-        
+
         console.log(result);
-        
+
         this.msLocationUpdate = result;
       },
       error: err => console.log(err),
@@ -54,8 +54,8 @@ export class EditComponent implements OnInit {
   updateMsLocation() {
     this.service.updateWarehouse(this.msLocationUpdate).subscribe({
       next: res => {
-        if(res.isSuccess)
-        alert('Update thanh cong')
+        if (res.isSuccess)
+          alert('Update thanh cong')
       },
       error: () => {
         alert('Update khong thanh cong')

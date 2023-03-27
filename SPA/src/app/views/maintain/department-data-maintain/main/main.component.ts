@@ -1,30 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pagination } from '@utilities/pagination-utility';
-import { MSDepartment } from '../../../../_core/models/mS_Department'
-import { MSDepartmentService } from '../../../../_core/services/ms-department.service'
+import { MS_Department } from '../../../../_core/models/common/mS_Department'
+import { MSDepartmentService } from '../../../../_core/services/main/ms-department.service'
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  data: MSDepartment[] = [];
-  
-  pagination: Pagination = <Pagination> {
+  data: MS_Department[] = [];
+
+  pagination: Pagination = <Pagination>{
     pageNumber: 1,
     pageSize: 3
   }
 
-  params: MSDepartment = <MSDepartment> {
+  params: MS_Department = <MS_Department>{
     parNo: '',
     parName: ''
-  }  
-  
+  }
+
   constructor(
     private service: MSDepartmentService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getData();
@@ -40,7 +40,7 @@ export class MainComponent implements OnInit {
     })
   }
 
-  updateItemDPM(msDepartment: MSDepartment) {    
+  updateItemDPM(msDepartment: MS_Department) {
     this.router.navigate([`maintain/department-data-maintain/edit/${msDepartment.manuf}/${msDepartment.parNo}`]);
   }
 

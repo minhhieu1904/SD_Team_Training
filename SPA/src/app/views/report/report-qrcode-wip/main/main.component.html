@@ -1,0 +1,126 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-10">
+                <h5>{{'Roles.Menu_Child.BQRC.QRCodeWIPReport' | translate}}</h5>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+
+        <div class="border-shadow">
+            <!--  dòng 1 -->
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Report.QRCodeWIPReport.MoldNumber' | translate}}</span>
+                    <input placeholder="Mold Number..." type="text" name="Code" class="form-control"
+                        [(ngModel)]="param.rmodel">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Report.QRCodeWIPReport.Tolcls' | translate}}</span>
+                    <input placeholder="Tolcls..." type="text" name="Code" class="form-control"
+                        [(ngModel)]="param.tolcls">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                    <span class="badge badge-warning">{{'Report.QRCodeWIPReport.ProductionDate' | translate}}</span>
+                    <div class="input-group">
+                        <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig"
+                            class="form-control" [maxDate]="mdat_end" [(ngModel)]="mdat_end" bsDatepicker>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                        </div>
+                        <label> &nbsp;</label>
+                        <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig"
+                            class="form-control" [minDate]="mdat_start" [(ngModel)]="mdat_start" bsDatepicker>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            &nbsp; &nbsp; &nbsp;
+            <!--  dòng 4 -->
+            <div class="row">
+                <div class="col-md-10">
+                    <button class="btn btn-success mr-2 " (click)="search()">
+                        <i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' | translate}} </button>
+                    <button class="btn btn-danger mr-2 " (click)="clear()">
+                        <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' | translate}} </button>
+                    <button class="btn btn-primary " (click)="exportExcel()">
+                        <i class="{{iconButton.EXCEL}}"></i> {{'System.Action.ExportExcel' | translate}} </button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="card-body">
+        <!--  -->
+        <div style="overflow-x: auto">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">yymmdd</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Manuf' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Type' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.PlanNo' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.PONO' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.prtno' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.wkshno' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.QRCodeID' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.MoldNO' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.ToolNO' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Bitnbr' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.ETA' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.empno' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Serial' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Size' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.QTY' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.CreateEmpno' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.CreateDatetime' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.SortPairs' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.StoagePairs' | translate }}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let item of data">
+                            <td class="text-center" scope="col">{{item.yymmdd}}</td>
+                            <td class="text-center" scope="col">{{item.manuf}}</td>
+                            <td class="text-center" scope="col">{{item.type}}</td>
+                            <td class="text-center" scope="col">{{item.manNo}}</td>
+                            <td class="text-center" scope="col">{{item.purNo}}</td>
+                            <td class="text-center" scope="col">{{item.prtNo}}</td>
+                            <td class="text-center" scope="col">{{item.wkshNo}}</td>
+                            <td class="text-center" scope="col">{{item.qrCodeID}}</td>
+                            <td class="text-center" scope="col">{{item.rmodel}}</td>
+                            <td class="text-center" scope="col">{{item.tolcls}}</td>
+                            <td class="text-center" scope="col">{{item.bitnbr}}</td>
+                            <td class="text-center" scope="col">{{item.eta | date: "yyyy/MM/dd"}}</td>
+                            <td class="text-center" scope="col">{{item.empNo}}</td>
+                            <td class="text-center" scope="col">{{item.serial}}</td>
+                            <td class="text-center" scope="col">{{item.size}}</td>
+                            <td class="text-center" scope="col">{{item.qty}}</td>
+                            <td class="text-center" scope="col">{{item.crUsr}}</td>
+                            <td class="text-center" scope="col">{{item.crdaY | date: "yyyy/MM/dd"}}</td>
+                            <td class="text-center" scope="col">{{item.sortFlag}}</td>
+                            <td class="text-center" scope="col">{{item.storageFlag}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="d-flex" *ngIf="data.length > 0">
+            <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+            </pagination>
+            <span class="cs-page ml-2">
+                Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
+            </span>
+        </div>
+    </div>
+</div>

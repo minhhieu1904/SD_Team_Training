@@ -1,19 +1,62 @@
-<app-header-container></app-header-container>
+<app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/logo/LogoSYF.png', width: 60, height: 40, alt: 'Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/logo/LogoSYF.png', width: 40, height: 30, alt: 'Logo'}"
+  [sidebarToggler]="'lg'" [mobileAsideMenuToggler]="false"
+  [asideMenuToggler]="false">
+
+  <h4 class="app-title">Bottom FG In Inventory QRCode System</h4>
+
+  <ul class="nav navbar-nav ml-auto">
+    <li class="btn-group">
+      <button type="button button-translate" class="btn px-0 zoom"
+        (click)="switchLang(langConstants.ZH)">
+        <img class="img-translate" src="assets/img/icons/zh.png" alt="TW">
+      </button>
+      <button type="button button-translate" class="btn px-0 zoom"
+        (click)="switchLang(langConstants.EN)">
+        <img class="img-translate" src="assets/img/icons/en.png" alt="EN">
+      </button>
+      <button type="button button-translate" class="btn px-0 zoom"
+        (click)="switchLang(langConstants.ID)">
+        <img class="img-translate" src="assets/img/icons/id.png" alt="ID">
+      </button>
+      <button type="button button-translate" class="btn px-0 mr-2 zoom"
+        (click)="switchLang(langConstants.VI)">
+        <img class="img-translate" src="assets/img/icons/vn.png" alt="VN">
+      </button>
+    </li>
+    <li class="nav-item dropdown mr-3" dropdown placement="bottom right">
+      <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)"
+        role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
+        <h6 class="username">{{user.name}}</h6>
+        <img src="assets/img/avatars/user.png" class="img-avatar"
+          alt="avatar" />
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu
+        aria-labelledby="simple-dropdown">
+        <a class="dropdown-item" style="cursor: pointer;" (click)="logout()">
+          <i class="fa fa-lock"></i> {{'Login.Logout' | translate}}
+        </a>
+      </div>
+    </li>
+  </ul>
+</app-header>
 <div class="app-body">
-  
-  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized"
-    (minimizedChange)="toggleMinimize($event)">
-    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
+  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'"
+    [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar]
+      [disabled]="appSidebar.minimized"></app-sidebar-nav>
     <app-sidebar-minimizer></app-sidebar-minimizer>
   </app-sidebar>
   <!-- Main content -->
   <main class="main">
-    <!-- Breadcrumb -->
-    <!-- breaking change 'cui-breadcrumb' -->
-    <!-- <cui-breadcrumb></cui-breadcrumb> -->
     <div class="container-fluid pt-30">
       <router-outlet></router-outlet>
-    </div><!-- /.container-fluid -->
+    </div>
   </main>
 </div>
-<app-footer-container></app-footer-container>
+<app-footer>
+  <span>Copyright &copy; 2022 <a href="javascript:;">SHYANG SHIN BAO INDUSTRIAL
+      CO., LTD.</a> All rights reserved</span>
+  <span class="ml-auto">Powered by <a href="javascript:;">SD Team</a></span>
+</app-footer>

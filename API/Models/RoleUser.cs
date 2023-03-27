@@ -1,27 +1,21 @@
-using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public class RoleUser
+    public partial class RoleUser
     {
         [Key]
-        [Column("user_account")]
         [StringLength(50)]
-        public string UserAccount { get; set; }
+        public string user_account { get; set; }
         [Key]
-        [Column("role_unique")]
         [StringLength(50)]
-        public string RoleUnique { get; set; }
+        public string role_unique { get; set; }
         [Required]
-        [Column("create_by")]
         [StringLength(50)]
-        public string CreateBy { get; set; }
-        [Column("create_time", TypeName = "datetime")]
-        public DateTime CreateTime { get; set; }
+        public string create_by { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime create_time { get; set; }
     }
 }

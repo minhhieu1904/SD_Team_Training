@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MSPackage } from '../../../../_core/models/mS_Package';
-import { MSPackageService } from '../../../../_core/services/ms-package.service';
+import { MSPackage } from '@models/common/mS_Package';
+import { MSPackageService } from '@services/main/ms-package.service';
 import { Pagination } from '@utilities/pagination-utility';
 import { Router } from '@angular/router';
 @Component({
