@@ -13,8 +13,7 @@ namespace API._Services.Services
     public class SMSLocationServices : IMSLocationServices
     {   
         private readonly IRepositoryAccessor _repositoryAccessor;
-        public SMSLocationServices(IRepositoryAccessor repositoryAccessor)
-        {
+        public SMSLocationServices(IRepositoryAccessor repositoryAccessor) {
             _repositoryAccessor = repositoryAccessor;
         }
 

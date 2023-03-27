@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MaintainRoutingModule } from './maintain-routing.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -10,6 +11,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   imports: [
     CommonModule,
     MaintainRoutingModule,
+    FormsModule,
     PaginationModule.forRoot()
   ]
 })

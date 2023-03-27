@@ -8,6 +8,10 @@ const routes: Routes = [
       {
         path: 'shift-data-maintain',
         loadChildren: () => import('./shift-data-maintain/shift-data-maintain.module').then(m => m.ShiftDataMaintainModule)
+      },
+      {
+        path: 'warehouse-basic-data-maintain',
+        loadChildren: () => import('./warehouse-basic-data-maintain/warehouse-basic-data-maintain.module').then(m => m.WarehouseBasicDataMaintainModule)
       }
     ]
   }
