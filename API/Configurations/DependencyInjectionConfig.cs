@@ -20,6 +20,7 @@ namespace API.Configurations
             services.AddScoped<IDepartmentDataServices, DepartmentDataServices>();
             services.AddScoped<IPackageServices, PackageServices>();
             services.AddScoped<IUserRoleServices, UserRoleServices>();
+            services.AddScoped<IAuthorService, AuthorService>();
         }
     }
 }

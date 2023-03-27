@@ -1,4 +1,5 @@
 export interface Role {
+  role: any;
   role_unique: string;
   role_name: string;
   role_type: string;

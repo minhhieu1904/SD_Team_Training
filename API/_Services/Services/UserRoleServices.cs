@@ -38,6 +38,38 @@ namespace API._Services.Services
         // cách sử dụng GroupJoin đó
         public async Task<UserRoleDTO> GetAllRoleByAccount(string account)
         {
+
+               var user = await _repoAccessor.Users.FirstOrDefaultAsync(x => x.account == account.Trim());
+            // // Nếu user không tồn tại trả về lỗi
+             if (user == null)
+                return new UserRoleDTO();
+
+            // lấy tất cả các quyền trong role
+            var allRole = await _repoAccessor.Roles.FindAll().Select(x => new RoleDto()
+            {
+                role_unique = x.role_unique,
+                role_sequence = x.role_sequence,
+                role_name = x.role_name,
+                IsCheck = false
+            })
+            //sắp xếp theo role_sequence
+            .OrderBy(x => x.role_sequence)
+            .ToListAsync();
+
+            // lấy tất cả các quyền của user
+            var roleOfUser = _repoAccessor.RoleUser.FindAll(x => x.user_account == account).ToList();
+
+            // join lại lấy các quyeenf có trong user và ko có trong role 
+            foreach (var role in roleOfUser)
+            {
+                var check = allRole.Where(x => x.role_unique == role.role_unique).FirstOrDefault();
+                // Nếu roleOfUser có thằng role thì , user đó có quyền 
+                if (check != null)
+                    check.IsCheck = true;
+            }
+            return new UserRoleDTO() { Account = user.account, ListRoles = allRole };
+
+            
             // // 1. Lấy điều kiện search theo table 
             // // lấy điều kiện tìm kiếm của bảng RoleUser theo account
             // var predicateUserRole = PredicateBuilder.New<RoleUser>(true).And(x => x.user_account == account.Trim());
@@ -75,39 +107,8 @@ namespace API._Services.Services
             //                     })
             //                     .ToListAsync();
 
-             var user = await _repoAccessor.Users.FirstOrDefaultAsync(x => x.account == account.Trim());
-            // // Nếu user không tồn tại trả về lỗi
-             if (user == null)
-                return new UserRoleDTO();
-
-            // lấy tất cả các quyền trong role
-            var allRole = await _repoAccessor.Roles.FindAll().Select(x => new RoleDto()
-            {
-                role_unique = x.role_unique,
-                role_sequence = x.role_sequence,
-                role_name = x.role_name,
-                IsCheck = false
-            })
-            //sắp xếp theo role_sequence
-            .OrderBy(x => x.role_sequence)
-            .ToListAsync();
-
-            // lấy tất cả các quyền của user
-            var roleOfUser = _repoAccessor.RoleUser.FindAll(x => x.user_account == account).ToList();
-
-            // join lại lấy các quyeenf có trong user và ko có trong role 
-            foreach (var role in roleOfUser)
-            {
-                var check = allRole.Where(x => x.role_unique == role.role_unique).FirstOrDefault();
-                // Nếu roleOfUser có thằng role thì , user đó có quyền 
-                if (check != null)
-                    check.IsCheck = true;
-            }
-            return new UserRoleDTO() { Account = user.account, ListRoles = allRole };
+          
         }
-
-
-
         public async Task<PaginationUtility<Users>> LoadData(PaginationParam paginationParams, string account, string name)
         {
             var pred = PredicateBuilder.New<Users>(true);
@@ -154,7 +155,7 @@ namespace API._Services.Services
 
             foreach (var item in authors.ListRoles)
             {
-                if (item.IsCheck == true)
+                if(item.IsCheck == true)
                 {
                     var roleUserItem = new RoleUserDTO();
                     //tìm account của thằng RoleUserDTO = giá trị của thằng UserRoleDTO

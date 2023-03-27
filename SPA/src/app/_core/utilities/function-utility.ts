@@ -5,6 +5,8 @@ import { NgSnotifyService } from "@services/common/ng-snotify.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { BsLocaleService } from "ngx-bootstrap/datepicker";
 import { defineLocale, enGbLocale, idLocale, viLocale, zhCnLocale } from "ngx-bootstrap/chronos";
+import { LocalStorageConstants } from "@constants/local-storage.constants";
+import { RoleInformation } from "@models/auth/application-user";
 
 @Injectable({
   providedIn: "root",
@@ -210,6 +212,10 @@ export class FunctionUtility {
     defineLocale('lang', dateLangs[country]);
     localeService.use('lang');
   }
-}
 
+}
+export function getInfoMenu(str: string): RoleInformation {
+  const roles: RoleInformation[] = JSON.parse(localStorage.getItem(LocalStorageConstants.ROLE_ALL));
+  return roles?.find(x => x.name.includes(str))
+}
 

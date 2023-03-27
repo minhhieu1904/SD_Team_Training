@@ -1,42 +1,48 @@
+import { AuthGuard } from './_core/guards/auth/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { LoginComponent } from './views/login/login.component';
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+   {
+
+    path: '',
+    canActivate: [AuthGuard],
     component: DefaultLayoutComponent,
     data: {
       title: 'Home'
     },
+
     children: [
       {
-        path: 'shift-data',
-        loadChildren: () => import('./views/shift-data/shift-data.module').then(m => m.ShiftDataModule )
+        path: 'dashboard',
+        component: DashboardComponent,
       },
       {
-        path: 'warehouse-data',
-        loadChildren: () => import('./views/warehouse-data/warehouse-data.module').then(m => m.WarehouseDataModule )
+        path: 'maintain',
+        loadChildren: () => import('./views/maintain/maintain.module')
+          .then(m => m.MaintainModule),
       },
-      {
-        path: 'department-data',
-        loadChildren: () => import('./views/department-data/department-data.module').then(m => m.DepartmentDataModule )
-      },
-      {
-        path: 'package-data',
-        loadChildren: () => import('./views/package-data/package-data.module').then(m => m.PackageDataModule )
-      },
-      {
-        path: 'users-data',
-        loadChildren: () => import('./views/users-data/users-data.module').then(m => m.UsersDataModule )
-      }
     ]
-  }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Login Page'
+    }
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

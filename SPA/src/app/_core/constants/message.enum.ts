@@ -58,17 +58,16 @@ export enum MessageConstants {
 
   CLEAR = 'Clear successfully',
 }
-
-export enum CaptionConstants {
-  LOGIN_FAILED = 'Login Failed!',
-  SUCCESS = 'Success!',
-  ERROR = 'Error!',
-  WARNING = 'Warning!',
-  UNAUTHORIZED = 'Unauthorized!',
-  INVALID = 'Invalid!',
-  CHANGE_STATE = 'Change State',
-  CHANGE_YEAR = 'Change Year',
-}
+export const CaptionConstants = {
+  LOGIN_FAILED : 'Login Failed!',
+  SUCCESS : 'Success!',
+  ERROR : 'Error!',
+  WARNING : 'Warning!',
+  UNAUTHORIZED : 'Unauthorized!',
+  INVALID : 'Invalid!',
+  CHANGE_STATE : 'Change State',
+  CHANGE_YEAR : 'Change Year',
+} as const;
 
 export enum ActionConstants {
   CREATE = 'CREATE',

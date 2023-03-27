@@ -10,6 +10,9 @@
       "@models/*": [
         "src/app/_core/models/*"
       ],
+      "@directive/*": [
+        "src/app/_core/_directive/*"
+      ],
       "@constants/*": [
         "src/app/_core/constants/*"
       ],
@@ -18,6 +21,9 @@
       ],
       "@guards/*": [
         "src/app/_core/guards/*"
+      ],
+      "@params/*": [
+        "src/app/_core/_helpers/params/*"
       ],
       "@resolvers/*": [
         "src/app/_core/resolvers/*"
@@ -28,6 +34,7 @@
       "@env/*": [
         "src/environments/*"
       ],
+
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
