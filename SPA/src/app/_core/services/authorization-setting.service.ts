@@ -25,7 +25,7 @@ export class AuthorizationSettingService {
     return this.http.get<Users>(this.apiUrl + "C_AuthorizationSetting/getDataOnly" , { params });
   }
   update(users: authorizationSetting){
-    return this.http.post<OperationResult>(this.apiUrl + "C_AuthorizationSetting/update", users);
+    return this.http.put<OperationResult>(this.apiUrl + "C_AuthorizationSetting/update", users);
   }
   //test
   getAuthorizeByUser(account: string) {
@@ -40,4 +40,5 @@ export class AuthorizationSettingService {
       params
     );
   }
+  
 }

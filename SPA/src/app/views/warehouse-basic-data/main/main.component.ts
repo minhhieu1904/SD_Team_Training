@@ -42,7 +42,7 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   add(){
-    this.router.navigate(["warehouse-basic-data/add"])
+    this.router.navigate(["maintain/warehouse-basic-data/add"])
   }
 
   pageChanged(e: any) { 
@@ -54,7 +54,7 @@ export class MainComponent extends InjectBase implements OnInit {
   edit(ms_Location: MS_Location){
     // console.log('duwx lieu can ' , ms_Shift);
     // truyền đi cùng dữ liệu
-    this.router.navigate([`warehouse-basic-data/edit/${ms_Location.manuf}/${ms_Location.storeH}`])
+    this.router.navigate([`maintain/warehouse-basic-data/edit/${ms_Location.manuf}/${ms_Location.storeH}`])
   }
   clear(){
     this.param.StoreH='';

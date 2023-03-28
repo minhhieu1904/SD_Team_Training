@@ -1,11 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using API._Services.Interfaces;
 using API.DTOs;
+using API.DTOs.userLogin;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SD3_API.Helpers.Utilities;
 
 namespace API.Controllers.AnthorizationSetting
@@ -13,9 +18,11 @@ namespace API.Controllers.AnthorizationSetting
     public class C_AuthorizationSetting : APIController
     {
         private readonly I_AuthorizationSetting _services;
+        
         public C_AuthorizationSetting(I_AuthorizationSetting services)
         {
             _services = services;
+            
         }
         [HttpGet("getData")]
         public async Task<IActionResult> GetData([FromQuery]PaginationParam pagination ,string account, string name)
@@ -40,7 +47,7 @@ namespace API.Controllers.AnthorizationSetting
             return Ok(result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<IActionResult> Update([FromBody]Users model)
         {
             var result = await _services.Update(model);
@@ -59,5 +66,7 @@ namespace API.Controllers.AnthorizationSetting
             var result = await _services.UpdateAuthorization(authors);
             return Ok(result);
         }
+        
+        
     }
 }

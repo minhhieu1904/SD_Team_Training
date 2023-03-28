@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../_core/services/auth.service'
+import { UserLoginService } from '../../../_core/services/Login/UserLogin.service'
+import { LocalStorageConstant } from '../../../_core/constants/localStorge.constants'
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { AuthService } from '../../../_core/services/auth.service'
 })
 export class LoginComponent implements OnInit {
   user: any = {};
-  constructor(private service: AuthService, private router: Router) { }
+  constructor(private service: UserLoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -19,9 +20,10 @@ export class LoginComponent implements OnInit {
     this.service.login(this.user).subscribe({
       next: res => { 
         console.log(res);
-        localStorage.setItem('BottomQRCode_Token', res.token);
-        localStorage.setItem('BottomQRCode_User', JSON.stringify(res.user));
-        this.router.navigate(['/authorization-setting'])
+        localStorage.setItem(LocalStorageConstant.Token, res.token);
+        localStorage.setItem(LocalStorageConstant.User, JSON.stringify(res.user));
+        localStorage.setItem(LocalStorageConstant.Role, JSON.stringify(res.user.roles));
+        this.router.navigate(['maintain/authorization-setting'])
       },
       error: () => { 
       } 

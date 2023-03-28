@@ -26,6 +26,6 @@ export class StandardPackingQuantityService {
     return this.http.get<MS_Package>(this.apiUrl + "C_StandardPackingQuantity/getDataOnly" , { params });
   }
   update(ms_Package: MS_Package){
-    return this.http.post<OperationResult>(this.apiUrl + "C_StandardPackingQuantity/update", ms_Package);
+    return this.http.put<OperationResult>(this.apiUrl + "C_StandardPackingQuantity/update", ms_Package);
   }
 }

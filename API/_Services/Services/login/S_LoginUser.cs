@@ -7,16 +7,15 @@ using API._Services.Interfaces;
 using API.DTOs.userLogin;
 using Microsoft.EntityFrameworkCore;
 
-namespace API._Services.Services
+namespace API._Services.Services.login
 {
-    public class S_AuthorService : IAuthorService
+    public class S_LoginUser : ILoginUser
     {
         public readonly IRepositoryAccessor _reposioryAccessor;
-        public S_AuthorService(IRepositoryAccessor reposioryAccessor)
+        public S_LoginUser(IRepositoryAccessor reposioryAccessor)
         {
             this._reposioryAccessor = reposioryAccessor;
         }
-
         public async Task<userLoginDTO> Login(userLogin userLogin)
         {
             var user = await _reposioryAccessor.Users.FindSingle(x => x.account.Trim() == userLogin.account.Trim() && x.is_active == true);
@@ -38,5 +37,6 @@ namespace API._Services.Services
 
             return result;
         }
+
     }
 }

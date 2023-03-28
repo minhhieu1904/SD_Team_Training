@@ -13,23 +13,23 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'shift-data-maintain',
+        path: 'maintain/shift-data-maintain',
         loadChildren: () => import('./views/shift-data-maintain/shift-data-maintain.module').then(m => m.ShiftDataMaintainModule)
       },
       {
-        path: 'department-data-maintenance',
+        path: 'maintain/department-data-maintenance',
         loadChildren: () => import('./views/department-data-maintenance/department-data-maintenance.module').then(m => m.DepartmentDataMaintenanceModule)
       },
       {
-        path: 'warehouse-basic-data',
+        path: 'maintain/warehouse-basic-data',
         loadChildren: () => import('./views/warehouse-basic-data/warehouse-basic-data.module').then(m => m.WarehouseBasicDataModule)
       },
       {
-        path: 'standard-packing-quantity',
+        path: 'maintain/standard-packing-quantity',
         loadChildren: () => import('./views/standard-packing-quantity/standard-packing-quantity.module').then(m => m.StandardPackingQuantityModule)
       },
       {
-        path: 'authorization-setting',
+        path: 'maintain/authorization-setting',
         loadChildren: () => import('./views/authorization-setting/authorization-setting.module').then(m => m.AuthorizationSettingModule)
       }
     ]

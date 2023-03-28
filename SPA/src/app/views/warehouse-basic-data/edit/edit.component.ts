@@ -16,7 +16,7 @@ export class EditComponent extends InjectBase implements OnInit {
   };
   constructor(private service: S_warehouse_basic_dataService) {super() }
   backlist(){
-    this.router.navigate(["warehouse-basic-data"])
+    this.router.navigate(["maintain/warehouse-basic-data"])
   }
   ngOnInit(): void {
     let manuf = '';

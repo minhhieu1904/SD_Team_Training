@@ -37,7 +37,7 @@ namespace API.Controllers.maintain
             return Ok(result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<IActionResult> Update([FromBody]MS_Location model)
         {
             var result = await _services.Update(model);

@@ -3,6 +3,7 @@ using AgileObjects.AgileMapper;
 using API._Repositories;
 using API._Services.Interfaces;
 using API.DTOs;
+using API.DTOs.userLogin;
 using API.Models;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -143,6 +144,27 @@ namespace API._Services.Services
             return new OperationResult(true, "Update successfully");
 
 
+        }
+        public async Task<userLoginDTO> Login(userLogin userLogin)
+        {
+            var user = await _reposioryAccessor.Users.FindSingle(x => x.account.Trim() == userLogin.account.Trim() && x.is_active == true);
+            if (user == null) return null;
+            if (user.password != userLogin.password) return null;
+            var role = _reposioryAccessor.Roles.FindAll();
+            var roleUser = _reposioryAccessor.RoleUser.FindAll(x => x.user_account == user.account);
+            var data = await roleUser.Join(role,
+            x => x.role_unique,
+            y => y.role_unique,
+            (x, y) => new roleInfomation { name = y.role_name, unique = y.role_unique, position = y.role_sequence }).ToListAsync();
+            var result = new userLoginDTO{
+                account = user.account,
+                email = user.email,
+                user = user.account,
+                name = user.name,
+                roles = data.OrderBy(x => x.position).ToList()
+            };
+
+            return result;
         }
     }
 

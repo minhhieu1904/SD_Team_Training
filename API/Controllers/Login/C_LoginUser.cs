@@ -1,28 +1,33 @@
-
-using System.Text;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 using API._Services.Interfaces;
 using API.DTOs.userLogin;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 
-namespace API.Controllers.AuthorizationSetting
+namespace API.Controllers.Login
 {
-    public class C_AuthorController : APIController
+    public class C_LoginUser : APIController
     {
+        private readonly ILoginUser _services;
         private readonly IConfiguration _config;
-        private readonly IAuthorService _authorService; 
-
-        public C_AuthorController(IConfiguration config,IAuthorService  authorService){
+        public C_LoginUser(ILoginUser services,IConfiguration config)
+        {
+            _services = services;
             _config = config;
-            _authorService = authorService;
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login(userLogin userLogin){
             //Lấy thông tin người dùng bao gồm tài khoản và mật khẩu
             // Nếu như tài khoản và mật khẩu không trùng khớp thì trả về null
-            var userform = await _authorService.Login(userLogin);
+            var userform = await _services.Login(userLogin);
             // Khi đó sẽ trả về không có quyền đăng nhập (status: 401) không cho phép đăng nhập
 
             if(userform==null) return Unauthorized();

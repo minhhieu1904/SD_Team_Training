@@ -39,7 +39,7 @@ export class MainComponent extends InjectBase  implements OnInit {
   }
 
   add(){
-    this.router.navigate(["department-data-maintenance/add"])
+    this.router.navigate(["maintain/department-data-maintenance/add"])
   }
 
   pageChanged(e: any) { 
@@ -51,7 +51,7 @@ export class MainComponent extends InjectBase  implements OnInit {
   edit(msdepartment: MS_Department){
     // console.log('duwx lieu can ' , ms_Shift);
     // truyền đi cùng dữ liệu
-    this.router.navigate([`department-data-maintenance/edit/${msdepartment.manuf}/${msdepartment.parNo}`])
+    this.router.navigate([`maintain/department-data-maintenance/edit/${msdepartment.manuf}/${msdepartment.parNo}`])
   }
   clear(){
     this.param.parNo='';

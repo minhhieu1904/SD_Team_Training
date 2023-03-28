@@ -58,7 +58,7 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   add(){
-    this.router.navigate(["authorization-setting/add"])
+    this.router.navigate(["maintain/authorization-setting/add"])
   }
 
   pageChanged(e: any) { 
@@ -69,7 +69,7 @@ export class MainComponent extends InjectBase implements OnInit {
 
   edit(users: Users){
     // truyền đi cùng dữ liệu
-    this.router.navigate([`authorization-setting/edit/${users.account}`])
+    this.router.navigate([`maintain/authorization-setting/edit/${users.account}`])
   }
   clear(){
     this.param.account='';

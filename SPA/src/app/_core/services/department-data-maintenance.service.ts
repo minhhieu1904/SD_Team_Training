@@ -24,6 +24,6 @@ export class DepartmentDataMaintenanceService {
     return this.http.get<MS_Department>(this.apiUrl + "C_DepartmentDataMaintenance/getDataOnly" , { params });
   }
   updateShift(msdepartment: MS_Department){
-    return this.http.post<OperationResult>(this.apiUrl + "C_DepartmentDataMaintenance/update", msdepartment);
+    return this.http.put<OperationResult>(this.apiUrl + "C_DepartmentDataMaintenance/update", msdepartment);
   }
 }

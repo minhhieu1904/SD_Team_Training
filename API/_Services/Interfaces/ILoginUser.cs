@@ -6,9 +6,10 @@ using API.DTOs.userLogin;
 
 namespace API._Services.Interfaces
 {
-    public interface IAuthorService
+    public interface ILoginUser
     {
-        Task<userLoginDTO> Login(userLogin userLogin);
+         Task<userLoginDTO> Login(userLogin userLogin);
+
 
     }
 }

@@ -37,7 +37,7 @@ export class EditComponent extends InjectBase implements OnInit {
   }
 
   backlist() {
-    this.router.navigate(["authorization-setting"])
+    this.router.navigate(["maintain/authorization-setting"])
   }
 
   getUsers(account: string) {

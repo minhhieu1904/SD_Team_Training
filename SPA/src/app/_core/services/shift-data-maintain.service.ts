@@ -27,7 +27,7 @@ export class ShiftDataMaintainService {
     return this.http.get<MS_Shift>(this.apiUrl + "C_ShiftDataMaintain/getDataOnly" , { params });
   }
   updateShift(msshift: MS_Shift){
-    return this.http.post<OperationResult>(this.apiUrl + "C_ShiftDataMaintain/update", msshift);
+    return this.http.put<OperationResult>(this.apiUrl + "C_ShiftDataMaintain/update", msshift);
   }
 
 

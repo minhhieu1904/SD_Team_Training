@@ -21,7 +21,7 @@ export class AddComponent extends InjectBase implements OnInit {
   ngOnInit(): void {
   }
   backlist() {
-    this.router.navigate(["standard-packing-quantity"])
+    this.router.navigate(["maintain/standard-packing-quantity"])
   }
 
   save(){

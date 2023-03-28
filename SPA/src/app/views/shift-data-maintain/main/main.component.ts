@@ -44,7 +44,7 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   add(){
-    this.router.navigate(["shift-data-maintain/add"])
+    this.router.navigate(["maintain/shift-data-maintain/add"])
   }
 
   pageChanged(e: any) { 
@@ -56,7 +56,7 @@ export class MainComponent extends InjectBase implements OnInit {
   edit(ms_Shift: MS_Shift){
     // console.log('duwx lieu can ' , ms_Shift);
     // truyền đi cùng dữ liệu
-    this.router.navigate([`shift-data-maintain/edit/${ms_Shift.manuf}/${ms_Shift.shift}`])
+    this.router.navigate([`maintain/shift-data-maintain/edit/${ms_Shift.manuf}/${ms_Shift.shift}`])
   }
   clear(){
     this.param.shift='';

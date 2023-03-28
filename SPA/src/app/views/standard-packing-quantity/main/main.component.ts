@@ -42,7 +42,7 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   add(){
-    this.router.navigate(["standard-packing-quantity/add"])
+    this.router.navigate(["maintain/standard-packing-quantity/add"])
   }
 
   pageChanged(e: any) { 
@@ -54,7 +54,7 @@ export class MainComponent extends InjectBase implements OnInit {
   edit(ms_Package: MS_Package){
     // console.log('duwx lieu can ' , ms_Shift);
     // truyền đi cùng dữ liệu
-    this.router.navigate([`standard-packing-quantity/edit/${ms_Package.manuf}/${ms_Package.packageNo}`])
+    this.router.navigate([`maintain/standard-packing-quantity/edit/${ms_Package.manuf}/${ms_Package.packageNo}`])
   }
   clear(){
     this.param.packageNo='';

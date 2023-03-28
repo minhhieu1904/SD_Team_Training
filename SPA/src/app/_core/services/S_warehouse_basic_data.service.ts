@@ -25,6 +25,6 @@ export class S_warehouse_basic_dataService {
     return this.http.get<MS_Location>(this.apiUrl + "C_WarehouseBasicData/getDataOnly", { params });
   }
   update(mslocation: MS_Location) {
-    return this.http.post<OperationResult>(this.apiUrl + "C_WarehouseBasicData/update", mslocation);
+    return this.http.put<OperationResult>(this.apiUrl + "C_WarehouseBasicData/update", mslocation);
   }
 }

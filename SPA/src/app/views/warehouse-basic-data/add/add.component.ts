@@ -20,7 +20,7 @@ export class AddComponent extends InjectBase implements OnInit {
 
   }
   backlist() {
-    this.router.navigate(["warehouse-basic-data"])
+    this.router.navigate(["maintain/warehouse-basic-data"])
   }
   save(){
     this.service.addNew(this.paramAdd).subscribe({

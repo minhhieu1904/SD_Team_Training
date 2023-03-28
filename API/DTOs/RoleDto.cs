@@ -22,11 +22,11 @@ namespace API.DTOs
         public List<RoleDto> ListRoles { get; set; }
     }
 
-    public partial class RoleUserDTO
-    {
-        public string user_account { get; set; }
-        public string role_unique { get; set; }
-        public string create_by { get; set; }
-        public DateTime create_time { get; set; }
-    }
+    // public partial class RoleUserDTO
+    // {
+    //     public string user_account { get; set; }
+    //     public string role_unique { get; set; }
+    //     public string create_by { get; set; }
+    //     public DateTime create_time { get; set; }
+    // }
 }

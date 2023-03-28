@@ -18,7 +18,7 @@ export class EditComponent extends InjectBase implements OnInit {
     super();
   }
   backlist(){
-    this.router.navigate(["standard-packing-quantity"])
+    this.router.navigate(["maintain/standard-packing-quantity"])
   }
   ngOnInit() {
     let manuf = '';
