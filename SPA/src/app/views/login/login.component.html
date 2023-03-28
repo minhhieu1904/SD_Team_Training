@@ -1,0 +1,32 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <div class="container">
+      <img src="../../../../assets/img/logo/logo.png" width="65"/>
+      <span class="abc">PLM Maintenance System</span>
+    </div>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Login" [(ngModel)]="user.account" name="account" required>
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password" [(ngModel)]="user.password" name="password" required>
+      <input type="submit" class="fadeIn fourth" value="Sign In" (click)="login()" >
+    </form>
+
+    <!-- Remind Passowrd -->
+    <!-- <div id="formFooter">
+      <div class="row">
+      <div class="col-md-6">
+        <a class="underlineHover abc" >Sign In</a>
+      </div>
+      <div class="col-md-6">
+        <a class="underlineHover" >Forgot Password?</a>
+      </div>
+      </div>          
+    </div> -->
+
+  </div>
+</div>

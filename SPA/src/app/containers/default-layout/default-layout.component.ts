@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { INavData } from '@coreui/angular';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Nav } from '../../_nav';
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './default-layout.component.html'
+  templateUrl: './default-layout.component.html',
 })
 export class DefaultLayoutComponent implements OnInit {
-
-  constructor() {
+  BsModalRef?: BsModalRef;
+  public sidebarMinimized = false;
+  public navItems: INavData[];
+  constructor(private navItem: Nav) {}
+  async ngOnInit() {
+    this.navItems = await this.navItem.getNav();
   }
-  ngOnInit() {
-  }
-
-  logout() {
+  toggleMinimize(e) {
+    this.sidebarMinimized = e;
   }
 }
