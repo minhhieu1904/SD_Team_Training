@@ -1,6 +1,7 @@
 
 using API._Repositories;
 using API._Services.Interfaces;
+using API._Services.Services;
 using API._Services.Services.Maintain;
 
 namespace API.Configurations
@@ -19,6 +20,7 @@ namespace API.Configurations
             services.AddScoped<I_WareHouseBasicDataServices, S_WareHouseBasicDataServices>();
             services.AddScoped<I_DepartmentDataMaintainServices, S_DepartmentDataMaintainServices>();
             services.AddScoped<I_StandardPackingQuantityServices, S_StandardPackingQuantityServices>();
+            services.AddScoped<I_AuthorizationServices, S_AuthorizationServices>();
 
         }
     }

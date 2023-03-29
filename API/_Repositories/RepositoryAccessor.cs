@@ -19,7 +19,9 @@ namespace API._Repositories
             Ms_Location = new MS_Location_Repository(_dbContext);
             MS_Department = new MS_Department_Repository(_dbContext);
             Ms_Package = new MS_Package_Repository(_dbContext);
-
+            Role = new Role_Repository(dbContext);
+            RoleUser = new RoleUser_Repository(dbContext);
+            User = new User_Repository(dbContext);
         }
 
         // public IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;set;}
@@ -28,7 +30,9 @@ namespace API._Repositories
         public I_MS_Location_Repository Ms_Location {get; set;}
         public I_MS_Department_Repository MS_Department {get; set;}
         public I_MS_Package_Repository Ms_Package{get;set;}
-
+        public I_Role_Repository Role {get; set;}
+        public I_RoleUser_Repository RoleUser {get; set;}
+        public I_User_Repository User {get; set;}
 
         public async Task<bool> Save()
         {

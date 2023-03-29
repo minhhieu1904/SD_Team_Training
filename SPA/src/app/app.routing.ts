@@ -35,6 +35,13 @@ export const routes: Routes = [
         path: 'standard-packing-quantity',
         loadChildren: () => import('./views/maintain/standard-packing-quantity/standard-packing-quantity.module')
         .then(m => m.StandardPackingQuantityModule)
+      },
+      {
+        path: 'authorization-setting',
+        loadChildren: () =>
+          import(
+            './views/maintain/authorization-setting/authorization-setting.module'
+          ).then((m) => m.AuthorizationSettingModule)
       }
     ],
   },
