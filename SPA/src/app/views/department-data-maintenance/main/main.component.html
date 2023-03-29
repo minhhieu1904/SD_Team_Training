@@ -7,59 +7,59 @@
         <div class="col-md-2"></div>
       </div>
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
           <span class="badge badge-warning">ParNo</span>
           <input type="text" name="shift"  class="form-control" [(ngModel)]="param.parNo">
         </div>
-        <div class="col-md-2">
-          <span class="badge badge-warning">Par Name</span>
+        <div class="col-md-3">
+          <span class="badge badge-warning ">Par Name</span>
           <input type="text" name="shift-name"  class="form-control" [(ngModel)]="param.parName">
         </div>
-        <div class="col pt-4">
-          <button class="btn btn-primary" (click)="search()">
+        <div class="col-md-6 wrapperButton">
+          <button type="button" class="btn btn-primary mr-2" (click)="search()">
             <i class="fa fa-search"></i>
             Search</button>
-          <button class="btn button" class="btn btn-danger"  (click)="clear()">
-            <i class="fa fa-refresh"></i>
+          <button class="btn btn-danger mr-2" (click)="clear()" type="button">
+            <i class="fa fa-ban"></i>
             Clear
           </button>
-          <button class="btn btn-success" (click)="add()">
-            
+          <button type="button" class="btn btn-success" (click)="add()">
             <i class="fa fa-plus"></i>
-             Add</button>
+            Add</button>
         </div>
         
       </div>
     </div>
-  
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th class="text-center" scope="col"></th>
-          <th class="text-center" scope="col">Department</th>
-          <th class="text-center" scope="col">Name of Department</th>
-        </tr>
-      </thead>
-  
-      <tbody >
-        <tr *ngFor="let msdepartment of data ">
-            <td class="text-center">
-              <button type="button" class="btn btn-primary btn-sm" >
-                <i class="fa fa-edit fa-lg" (click)="edit(msdepartment)"></i></button>
-            </td>
-            <td class="text-center"> {{msdepartment.parNo}}</td>
-            <td class="text-center"> {{msdepartment.parName}}</td>
-        </tr>
-        
-  
-  
-      </tbody>
-    </table>
-    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
-        (pageChanged)="pageChanged($event)"  >
-        <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
-          {{pagination.totalPage}}</span>
-   
-  </pagination>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center" scope="col">Department</th>
+            <th class="text-center" scope="col">Name of Department</th>
+            <th class="text-center" scope="col"></th>
+          </tr>
+        </thead>
+    
+        <tbody >
+          <tr *ngFor="let msdepartment of data ">
+              <td class="text-center"> {{msdepartment.parNo}}</td>
+              <td class="text-center"> {{msdepartment.parName}}</td>
+              <td class="text-center">
+                <button type="button" class="btn btn-primary btn-sm" >
+                  <i class="fa fa-edit fa-lg" (click)="edit(msdepartment)"></i></button>
+              </td>
+          </tr>
+          
+    
+    
+        </tbody>
+      </table>
+      <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
+          (pageChanged)="pageChanged($event)"  >
+          <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+            {{pagination.totalPage}}</span>
+    </pagination>
+    </div>
+    
   </div>
   

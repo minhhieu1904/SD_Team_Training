@@ -7,58 +7,60 @@
       <div class="col-md-2"></div>
     </div>
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
         <span class="badge badge-warning">Shift</span>
-        <input type="text" name="shift"  class="form-control" [(ngModel)]="param.shift">
+        <input type="text" name="shift" class="form-control" [(ngModel)]="param.shift">
       </div>
-      <div class="col-md-2">
+      <div class="col-md-3">
         <span class="badge badge-warning">Shift Name</span>
-        <input type="text" name="shift-name"  class="form-control" [(ngModel)]="param.shift_Name">
+        <input type="text" name="shift-name" class="form-control" [(ngModel)]="param.shift_Name">
       </div>
-      <div class="col pt-4">
-        <button class="btn btn-primary" (click)="search()">
+      <div class="col-md-6 wrapperButton">
+        <button type="button" class="btn btn-primary mr-2" (click)="search()">
           <i class="fa fa-search"></i>
           Search</button>
-        <button class="btn button" class="btn btn-danger"  (click)="clear()">
-          <i class="fa fa-refresh"></i>
+        <button class="btn btn-danger mr-2" (click)="clear()" type="button">
+          <i class="fa fa-ban"></i>
           Clear
         </button>
-        <button class="btn btn-success" (click)="add()">
-          
+        <button type="button" class="btn btn-success" (click)="add()">
           <i class="fa fa-plus"></i>
-           Add</button>
+          Add</button>
       </div>
-      
+
     </div>
   </div>
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col">Shift</th>
+          <th class="text-center" scope="col">Name of Shift</th>
+          <th class="text-center" scope="col"></th>
+        </tr>
+      </thead>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th class="text-center" scope="col"></th>
-        <th class="text-center" scope="col">Shift</th>
-        <th class="text-center" scope="col">Name of Shift</th>
-      </tr>
-    </thead>
-
-    <tbody >
-      <tr *ngFor="let msshift of data ">
-          <td class="text-center">
-            <button type="button" class="btn btn-primary btn-sm" >
-              <i class="fa fa-edit fa-lg" (click)="edit(msshift)"></i></button>
-          </td>
+      <tbody>
+        <tr *ngFor="let msshift of data ">
           <td class="text-center"> {{msshift.shift}}</td>
           <td class="text-center"> {{msshift.shiftName}}</td>
-      </tr>
-      
+          <td class="text-center">
+            <button type="button" class="btn btn-primary btn-sm">
+              <i class="fa fa-edit fa-lg" (click)="edit(msshift)"></i></button>
+          </td>
+        </tr>
 
 
-    </tbody>
-  </table>
-  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
-      (pageChanged)="pageChanged($event)"  >
+
+      </tbody>
+    </table>
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
+      (pageChanged)="pageChanged($event)">
       <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
         {{pagination.totalPage}}</span>
- 
-</pagination>
+
+    </pagination>
+  </div>
+
+
 </div>

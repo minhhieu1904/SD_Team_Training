@@ -40,6 +40,12 @@ export const routes: Routes = [
     data: {
       title: 'Login Page'
     }
+  },{
+    path: 'default',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Default Page'
+    }
   },
 ];
 

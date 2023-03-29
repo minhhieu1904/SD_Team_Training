@@ -11,4 +11,9 @@ export class UserLoginService {
   login(userLogin: userLogin) {
     return this.http.post<any>(this.apiUrl + "C_LoginUser/login", userLogin);
   }
+  logout() {
+    localStorage.clear();
+    window.location.href = '/#/login';
+    window.location.reload();
+  }
 }

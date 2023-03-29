@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Pagination } from '@utilities/pagination-utility';
 import { MS_Shift, ShiftDataMaintainParam } from '../../../_core/models/shift-data-maintain';
 import { ShiftDataMaintainService } from '../../../_core/services/shift-data-maintain.service';

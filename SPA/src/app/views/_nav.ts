@@ -13,7 +13,7 @@ export class Nav {
 
     getNav(){
         let roles = this.userRoles.map(x => x.unique.trim()).filter(x => RolesConstants.map(r => r.children.filter(c => c.role == x)));
-        let rolesConstants = RolesConstants;
+        let rolesConstants = RolesConstants;    
         this.navItems = [];
         rolesConstants.forEach(nav => {
             let navItem: INavData = { ...nav, children: [] };

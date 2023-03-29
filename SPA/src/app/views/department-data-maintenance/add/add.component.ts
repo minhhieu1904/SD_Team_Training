@@ -19,7 +19,7 @@ export class AddComponent extends InjectBase implements OnInit {
   ngOnInit(): void {
   }
   backlist() {
-    this.router.navigate(["department-data-maintenance"])
+    this.router.navigate(["maintain/department-data-maintenance"])
   }
 
   save(){
