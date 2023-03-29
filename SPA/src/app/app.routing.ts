@@ -8,23 +8,29 @@ export const routes: Routes = [
     path: '',
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: 'Home',
     },
     children: [
       {
         path: 'shift-data-maintain',
-        loadChildren: () => import('./views/maintain/shift-data-maintain/shift-data-maintain.module').then(m => m.ShiftDataMaintainModule)
+        loadChildren: () =>
+          import(
+            './views/maintain/shift-data-maintain/shift-data-maintain.module'
+          ).then((m) => m.ShiftDataMaintainModule),
       },
-      // {
-      //   path: 'items',
-      //   loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
-      // }
-    ]
-  }
+      {
+        path: 'warehouse-basic-data',
+        loadChildren: () =>
+          import(
+            './views/maintain/warehouse-data-basic/warehouse-data-basic.module'
+          ).then((m) => m.WareHouseDataBasicModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
