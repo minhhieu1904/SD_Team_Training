@@ -9,39 +9,39 @@ namespace API.Data
 {
     public partial class DBContext : DbContext
     {
-         public DBContext()
+        public DBContext()
         {
         }
 
-        public DBContext(DbContextOptions<DBContext> options) : base(options)
+        public DBContext(DbContextOptions<DBContext> options)
+            : base(options)
         {
-
         }
 
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; } 
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; } 
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } 
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } 
-        public virtual DbSet<MigrationHistory> MigrationHistories { get; set; } 
-        public virtual DbSet<MsDepartment> MsDepartments { get; set; } 
-        public virtual DbSet<MsLocation> MsLocations { get; set; } 
-        public virtual DbSet<MsPackage> MsPackages { get; set; } 
-        public virtual DbSet<MsQrCycle> MsQrCycles { get; set; } 
-        public virtual DbSet<MsQrLabel> MsQrLabels { get; set; } 
-        public virtual DbSet<MsQrOrder> MsQrOrders { get; set; } 
-        public virtual DbSet<MsQrOrderLogOnlyForSt> MsQrOrderLogOnlyForSts { get; set; } 
-        public virtual DbSet<MsQrPickingDetail> MsQrPickingDetails { get; set; } 
-        public virtual DbSet<MsQrPickingMain> MsQrPickingMains { get; set; } 
-        public virtual DbSet<MsQrSort> MsQrSorts { get; set; } 
-        public virtual DbSet<MsQrStorage> MsQrStorages { get; set; } 
-        public virtual DbSet<MsQrStorageOut> MsQrStorageOuts { get; set; } 
-        public virtual DbSet<MsShift> MsShifts { get; set; } 
-        public virtual DbSet<MsWarehouse> MsWarehouses { get; set; } 
-        public virtual DbSet<Role> Roles { get; set; } 
-        public virtual DbSet<RoleUser> RoleUsers { get; set; } 
-        public virtual DbSet<User> Users { get; set; } 
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<MigrationHistory> MigrationHistories { get; set; }
+        public virtual DbSet<MsDepartment> MsDepartments { get; set; }
+        public virtual DbSet<MsLocation> MsLocations { get; set; }
+        public virtual DbSet<MsPackage> MsPackages { get; set; }
+        public virtual DbSet<MsQrCycle> MsQrCycles { get; set; }
+        public virtual DbSet<MsQrLabel> MsQrLabels { get; set; }
+        public virtual DbSet<MsQrOrder> MsQrOrders { get; set; }
+        public virtual DbSet<MsQrOrderLogOnlyForSt> MsQrOrderLogOnlyForSts { get; set; }
+        public virtual DbSet<MsQrPickingDetail> MsQrPickingDetails { get; set; }
+        public virtual DbSet<MsQrPickingMain> MsQrPickingMains { get; set; }
+        public virtual DbSet<MsQrSort> MsQrSorts { get; set; }
+        public virtual DbSet<MsQrStorage> MsQrStorages { get; set; }
+        public virtual DbSet<MsQrStorageOut> MsQrStorageOuts { get; set; }
+        public virtual DbSet<MsShift> MsShifts { get; set; }
+        public virtual DbSet<MsWarehouse> MsWarehouses { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<RoleUser> RoleUsers { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
-         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             
         }
@@ -409,6 +409,5 @@ namespace API.Data
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
     }
 }
