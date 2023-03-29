@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> feature-don-1.3-department-data-maintenance
 using API._Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore.Storage;
 
