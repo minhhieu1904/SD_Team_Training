@@ -18,7 +18,7 @@ namespace API._Repositories
             MS_Shift = new  MS_Shift_Repository(_dbContext);
             Ms_Location = new MS_Location_Repository(_dbContext);
             MS_Department = new MS_Department_Repository(_dbContext);
-
+            Ms_Package = new MS_Package_Repository(_dbContext);
 
         }
 
@@ -27,6 +27,7 @@ namespace API._Repositories
         public I_MS_Shift_Repository MS_Shift {get; private set;}
         public I_MS_Location_Repository Ms_Location {get; set;}
         public I_MS_Department_Repository MS_Department {get; set;}
+        public I_MS_Package_Repository Ms_Package{get;set;}
 
 
         public async Task<bool> Save()
