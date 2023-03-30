@@ -16,6 +16,11 @@ export const routes: Routes = [
         path: 'maintain',
         loadChildren: () => import('./views/maintain/maintain.module').then(m => m.MaintainModule)
 
+      },
+      {
+        path: 'report',
+        loadChildren: () => import('./views/report/report.module').then(m => m.ReportModule)
+
       }
     ]
   },

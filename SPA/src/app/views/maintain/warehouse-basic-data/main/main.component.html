@@ -34,8 +34,8 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th class="text-center" scope="col">Shift</th>
-            <th class="text-center" scope="col">Name of Shift</th>
+            <th class="text-center" scope="col">StoreH</th>
+            <th class="text-center" scope="col">LocationName</th>
             <th class="text-center" scope="col"></th>
           </tr>
         </thead>
@@ -54,12 +54,15 @@
     
         </tbody>
       </table>
-      <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
-          (pageChanged)="pageChanged($event)"  >
-          <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
-            {{pagination.totalPage}}</span>
-     
-    </pagination>
+      <div class="d-flex" *ngIf="data.length > 0">
+        <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+          previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+          [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+        </pagination>
+        <span class="cs-page ml-2">
+          Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
+        </span>
+      </div>
     </div>
     
   </div>

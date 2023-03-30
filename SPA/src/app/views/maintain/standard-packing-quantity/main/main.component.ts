@@ -27,10 +27,12 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getData();
   }
   getData() { 
+    this.spinnerService.show();
     this.service.getData(this.pagination,this.param).subscribe({
       next: res => { 
         this.data = res.result;
         this.pagination = res.pagination;
+        this.spinnerService.hide();
       },
       error: () => { 
       }

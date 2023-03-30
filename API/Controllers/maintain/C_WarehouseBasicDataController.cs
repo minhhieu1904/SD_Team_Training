@@ -7,8 +7,6 @@ using SD3_API.Helpers.Utilities;
 
 namespace API.Controllers.maintain
 {
-    [ApiController]
-    [Route("api/[controller]")]
     public class C_WarehouseBasicDataController : APIController
     {
         private I_WarehouseBasicData _services;

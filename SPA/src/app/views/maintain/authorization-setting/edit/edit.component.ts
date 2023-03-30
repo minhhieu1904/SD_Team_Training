@@ -41,11 +41,12 @@ export class EditComponent extends InjectBase implements OnInit {
   }
 
   getUsers(account: string) {
+    this.spinnerService.show();
     this.service.getItem(account).subscribe({
       next: res => {
         this.param = res;
-        console.log('data cần cập nhật', res);
-
+        // console.log('data cần cập nhật', res);
+        this.spinnerService.hide();
       },
       error: (err) => console.log(err),
       complete: () => console.log('complete')

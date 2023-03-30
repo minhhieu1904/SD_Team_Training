@@ -44,13 +44,15 @@ export class AddComponent extends InjectBase implements OnInit {
       })
   }
   saveNext(){
-    this.service.updateShift(this.paramAdd).subscribe({
+    this.spinnerService.show();
+    this.service.addNew(this.paramAdd).subscribe({
       next: res => { 
         if(res.isSuccess)
         {
           this.paramAdd.parNo="";
           this.paramAdd.parName=""
         }
+        this.spinnerService.hide();
         
       },
       error: () => { 
