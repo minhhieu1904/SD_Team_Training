@@ -30,5 +30,32 @@ export const RolesConstants = [
                 url: '/maintain/authorization-setting'
             }
         ]
-    }
+    },
+    {
+        name: '4. Report', 
+        url: '/report',
+        icon: 'fa fa-newspaper-o', 
+        children: [
+            {
+                name: '4.1 wksh Sum Report',
+                role: 'BQRC.wkshSumReport',
+                url: '/maintain/shift-data-maintain'
+            },
+            {
+                name: '4.2 Sort Sum Report',
+                role: 'BQRC.SortSumReport',
+                url: '/maintain/warehouse-basic-data'
+            },
+            {
+                name: '4.3 Storage Sum Report',
+                role: 'BQRC.StorageSumReport',
+                url: '/maintain/department-data-maintenance'
+            },
+            {
+                name: '4.4 QRCode WIP Report',
+                role: 'BQRC.QRCodeWIPReport',
+                url: '/maintain/standard-packing-quantity'
+            } 
+        ]
+    },
 ]

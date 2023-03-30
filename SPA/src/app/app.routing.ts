@@ -13,24 +13,9 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'maintain/shift-data-maintain',
-        loadChildren: () => import('./views/shift-data-maintain/shift-data-maintain.module').then(m => m.ShiftDataMaintainModule)
-      },
-      {
-        path: 'maintain/department-data-maintenance',
-        loadChildren: () => import('./views/department-data-maintenance/department-data-maintenance.module').then(m => m.DepartmentDataMaintenanceModule)
-      },
-      {
-        path: 'maintain/warehouse-basic-data',
-        loadChildren: () => import('./views/warehouse-basic-data/warehouse-basic-data.module').then(m => m.WarehouseBasicDataModule)
-      },
-      {
-        path: 'maintain/standard-packing-quantity',
-        loadChildren: () => import('./views/standard-packing-quantity/standard-packing-quantity.module').then(m => m.StandardPackingQuantityModule)
-      },
-      {
-        path: 'maintain/authorization-setting',
-        loadChildren: () => import('./views/authorization-setting/authorization-setting.module').then(m => m.AuthorizationSettingModule)
+        path: 'maintain',
+        loadChildren: () => import('./views/maintain/maintain.module').then(m => m.MaintainModule)
+
       }
     ]
   },

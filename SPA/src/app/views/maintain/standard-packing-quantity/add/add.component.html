@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-10">
+        <h5>1.4 Standard Packing Quantity - AddNew</h5>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary float-right" (click)="backlist()">
+          <i class="fa fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row align-items-center">
+          <div class="col-md-auto">
+            <span style="font-size: 20px;">PackageNo <span style="color: red;" class="i_required">*</span></span>
+          </div>
+          <div class="col">
+            <input type="text" [(ngModel)]="paramAdd.packageNo" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row align-items-center">
+          <div class="col-md-auto">
+            <span style="font-size: 20px;">PackageQty <span style="color: red;" class="i_required">*</span></span>
+          </div>
+          <div class="col">
+            <input type="text" [(ngModel)]="paramAdd.packageQty" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-primary mr-2" (click)="save()"> Save </button>
+    <button class="btn btn-success " (click)="saveNext()"> Save & Next </button>
+
+  </div>
+</div>
