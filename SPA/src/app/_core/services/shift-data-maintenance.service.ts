@@ -26,11 +26,6 @@ export class ShiftDataMaintenanceService {
     return this.http.post<OperationResult>(this.apiUrl + "ShiftDataMaintain/Create", model);
   }
 
-  getIem(manuf: string, shift : string ): Observable <MS_Shift>{
-    let params = new HttpParams().set('manuf', manuf).set('shift', shift)
-    return this.http.get<MS_Shift>(this.apiUrl + "ShiftDataMaintain/GetItem", { params });
-  }
-
   update(model: MS_Shift): Observable<OperationResult>{
     return this.http.put<OperationResult>(this.apiUrl + "ShiftDataMaintain/Update", model);
   }

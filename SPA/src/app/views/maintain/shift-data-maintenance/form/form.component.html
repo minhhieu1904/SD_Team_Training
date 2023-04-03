@@ -1,37 +1,57 @@
 <div class="animated fadeIn">
-  <div class="card">
-    <div class="card-header">
-      <div class="row">
-        <div class="col-md-10">
-          <h5>1.1 Shift Data Maintenance - {{title}}</h5>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-12">
+              <strong class="title-card-cs">
+                1.1 - Shift Data Maintenance - <span>{{title}}</span>
+              </strong>
+              <button type="button" class="btn btn-sm btn-primary float-right" (click)="back()"><i
+                  class="{{icon.BACK}}"></i>
+                Back</button>
+            </div>
+          </div>
         </div>
-        <div class="col-md-2">
-          <button class="btn btn-primary" (click)="backHome()">
-            <i class="{{ icon.BACK }}" style="padding-right: 10px"></i>Back
-          </button>
+        <div class="form-style">
+          <form class="form-horizontal" #form="ngForm">
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                  <div class="form-group row p-2">
+                    <label for="shift" class="col-sm-2 col-form-label lb form-group required control-label" style="font-weight: 700; font-size: 20px;">Shift
+                      <i class="i-required" style="color: red;">*</i></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control" placeholder="Shift" [(ngModel)]="paramData.shift"
+                        id="shift" name="shift" [disabled]="title == 'Edit'" required maxlength="1">
+                    </div>
+                    <div class="col-sm-2">&nbsp;</div>
+                    <label for="shiftName"
+                      class="col-sm-2  col-form-label lb  text_version form-group required control-label" style="font-weight: 700; font-size: 20px;"><span>ShiftName
+                        <i class="i-required" style="color: red;">*</i></span></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control" [(ngModel)]="paramData.shiftName" id="shiftName"
+                        name="shiftName" placeholder="ShiftName" required maxlength="50">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <ng-container>
+                    <button type="button" class="btn btn-success mr-2" (click)="save()" [disabled]="!form.valid"> <i
+                        class="{{icon.SAVE}}"></i>
+                      Save</button>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
-          <label class="badge badge-warning">Shift</label>
-          <input type="text" id="shift" class="form-control" placeholder="type shift..." [(ngModel)]="paramData.shift" />
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
-          <label class="badge badge-warning">Name Of Shift</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="type name of shift..."
-            [(ngModel)]="paramData.shiftName"
-          />
-        </div>
-      </div>
-      <div class="save" style="margin-top: 30px;">
-        <button class="btn btn-primary" (click)="redirectAdd()">
-          <i class="{{icon.ADD}}" style="padding-right: 10px;"></i>SAVE
-        </button>
-      </div>
-      <div>
     </div>
   </div>
 </div>

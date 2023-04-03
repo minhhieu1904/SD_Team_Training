@@ -4,13 +4,15 @@ import { MS_Shift, ShiftDataMaintainParam } from '@models/maintain/msshift';
 import { Pagination } from '@utilities/pagination-utility';
 import { IconButton } from '../../../../_core/constants/common.constants';
 import { ShiftDataMaintenanceService } from '../../../../_core/services/shift-data-maintenance.service';
+import { InjectBase } from '../../../../_core/utilities/inject-base-app';
+import { CaptionConstants, MessageConstants } from '../../../../_core/constants/message.enum'
 // import { MS_Shift } from '@models/maintain/shift-data-maintenance';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent extends InjectBase implements OnInit {
   param: ShiftDataMaintainParam = <ShiftDataMaintainParam>{
     shift: '',
     shiftName: '',
@@ -26,20 +28,24 @@ export class MainComponent implements OnInit {
 
   constructor(
     private service: ShiftDataMaintenanceService,
-    private router: Router
-  ) {}
+  ) {super()}
 
   ngOnInit() {
     this.getData();
   }
 
   getData() {
+    this.spinnerService.show();
     this.service.getAll(this.pagination, this.param).subscribe({
       next: (res) => {
         this.data = res.result;
         this.pagination = res.pagination;
+        this.spinnerService.hide();
       },
-      error: () => {},
+      error: () => {
+        this.snotifyService.error(MessageConstants.UN_KNOWN_ERROR, CaptionConstants.ERROR);
+        this.spinnerService.hide();
+      },
     });
   }
 
@@ -63,7 +69,7 @@ export class MainComponent implements OnInit {
   }
 
   search() {
-    this.getData();
+    this.pagination.pageNumber === 1 ? this.getData() : this.pagination.pageNumber = 1;
   }
 
   pageChanged(e) {

@@ -1,9 +1,9 @@
 import { inject } from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import { DestroyService } from "@services/common/destroy.service";
-import { NgSnotifyService } from '@services/common/ng-snotify.service';
-import { FunctionUtility } from "@utilities/function-utility";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NgSnotifyService } from '../services/common/ng-snotify.service'
+import { DestroyService } from '../services/common/destroy.service';
+import { FunctionUtility } from "./function-utility";
 export abstract class InjectBase {
     protected router = inject(Router);
     protected route = inject(ActivatedRoute);

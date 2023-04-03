@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Route, Router } from '@angular/router';
 import { IconButton } from '@constants/common.constants';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 import { MS_Shift } from '@models/maintain/msshift';
 import { ShiftDataMaintenanceService } from '@services/shift-data-maintenance.service';
+import { InjectBase } from '@utilities/inject-base-app';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent extends InjectBase implements OnInit {
   icon = IconButton;
   title: string;
 
@@ -22,53 +24,65 @@ export class FormComponent implements OnInit {
 
   constructor(
     private service: ShiftDataMaintenanceService,
-    private router: Router
-  ) {}
+  ) {super()}
 
   ngOnInit() {
     if (this.router.url === '/maintain/shift-data-maintenance/edit') {
       this.title = 'Edit';
-
-      var inputShift = document.querySelector('#shift');
-      inputShift.setAttribute('disabled', 'disabled');
-
       this.service.currentDataSource.subscribe((res) => {
         if (res) {
           (this.paramData.shift = res.shift),
             (this.paramData.shiftName = res.shiftName);
         }
       });
-      var a = this.paramData;
     } else {
       this.title = 'AddNew';
     }
   }
 
-  redirectAdd() {
+  save() {
     if (this.router.url === '/maintain/shift-data-maintenance/edit') {
-      console.log(this.paramData);
+      this.spinnerService.show();
 
       this.service.update(this.paramData).subscribe({
         next: (res) => {
-          console.log(res);
-          this.router.navigate(['maintain/shift-data-maintenance']);
+          this.spinnerService.hide();
+          if(res.isSuccess) {
+            this.snotifyService.success(MessageConstants.UPDATED_OK_MSG, CaptionConstants.SUCCESS);
+            this.router.navigate(['maintain/shift-data-maintenance']);
+          }else {
+            this.snotifyService.error(MessageConstants.UPDATED_ERROR_MSG, CaptionConstants.ERROR);
+          }
         },
-        error: (err) => {},
+        error: (err) => {
+          this.snotifyService.error(MessageConstants.UN_KNOWN_ERROR, CaptionConstants.ERROR);
+          this.spinnerService.hide();
+        },
       });
     }
 
     if (this.router.url === '/maintain/shift-data-maintenance/add') {
+      this.spinnerService.show();
+
       this.service.create(this.paramData).subscribe({
         next: (res) => {
-          console.log(res);
-          this.router.navigate(['maintain/shift-data-maintenance']);
+          this.spinnerService.hide();
+          if(res.isSuccess) {
+            this.snotifyService.success(MessageConstants.CREATED_OK_MSG, CaptionConstants.SUCCESS);
+            this.router.navigate(['maintain/shift-data-maintenance']);
+          }else {
+            this.snotifyService.error(MessageConstants.CREATED_ERROR_MSG, CaptionConstants.ERROR);
+          }
         },
-        error: (err) => {},
+        error: (err) => {
+          this.snotifyService.error(MessageConstants.UN_KNOWN_ERROR, CaptionConstants.ERROR);
+          this.spinnerService.hide();
+        },
       });
     }
   }
 
-  backHome() {
+  back() {
     this.router.navigate(['maintain/shift-data-maintenance']);
   }
 }
