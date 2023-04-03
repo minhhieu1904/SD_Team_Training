@@ -1,3 +1,4 @@
+import { LoginComponent } from './views/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,7 +11,19 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
+    children: [
+      {
+        path: 'maintain',
+        loadChildren: () => import('./views/maintain/maintain-routing.module').then(m => m.MaintainRoutingModule)
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: {
+          title: 'Login'
+        }
+      }
+    ]
   }
 ];
 

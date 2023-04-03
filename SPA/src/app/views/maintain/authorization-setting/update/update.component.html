@@ -1,0 +1,44 @@
+<div class="card ">
+  <div class="card-header">
+
+    <h5> Authorization Setting - add new</h5>
+    <div class="col md-4 text-right">
+      <button class="btn btn-primary" (click)="back()">Back</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row form-group border-shadow">
+      <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+        <label class="badge badge-warning">User Account</label>
+        <input type="text" disabled [(ngModel)]="params.account" name="account" class="form-control">
+      </div>
+      <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+        <label class="badge badge-warning">User name</label>
+        <input type="text" disabled [(ngModel)]="params.name" class="form-control" name="name">
+      </div>
+      <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+        <label class="badge badge-warning">password</label>
+        <input type="text" [(ngModel)]="params.password" class="form-control" name="name">
+      </div>
+      <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+        <label class="badge badge-warning">E-mail</label>
+        <input type="text" [(ngModel)]="params.email" class="form-control" name="name">
+      </div>
+      <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+        <label class="badge badge-warning">IsActive</label>
+        <ng-select [(ngModel)]="params.is_active">
+          <ng-option [value]="true">Y</ng-option>
+          <ng-option [value]="false">N</ng-option>
+        </ng-select>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <div class="col md-4">
+      <button class="btn btn-success" (click)="saveChanged()"><i class="{{iconButton.SAVE}}"> Save</i></button>
+      &nbsp;
+      <button type="button" class="btn btn-primary"><i class="{{iconButton.SAVE}}"></i>Save &
+        Next</button>
+    </div>
+  </div>
+</div>
