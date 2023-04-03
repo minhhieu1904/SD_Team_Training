@@ -47,6 +47,7 @@ import { FooterContainerComponent } from './containers/footer-container/footer-c
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPrintModule} from 'ngx-print';
+import { RouterModule } from '@angular/router';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -72,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SnotifyModule,
     NgxSpinnerModule,
     NgxPrintModule,
+    RouterModule,
     NgxBreadcrumbModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

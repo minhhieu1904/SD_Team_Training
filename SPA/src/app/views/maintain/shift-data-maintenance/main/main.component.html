@@ -1,0 +1,82 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <!-- row = 12 col -->
+      <div class="row">
+        <div class="col-md-10">
+          <h5>1.1 Shift Data Maintenance</h5>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
+          <label class="badge badge-warning">Shift</label>
+          <input type="text" class="form-control" placeholder="type shift..." [(ngModel)]="param.shift" />
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
+          <label class="badge badge-warning">Name Of Shift</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="type name of shift..."
+            [(ngModel)]="param.shiftName"
+          />
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 wrapper_button">
+          <button type="button" class="btn btn-primary mr-2" (click)="search()">
+            <i class="{{ icon.SEARCH }}"></i> Search
+          </button>
+          <button type="button" class="btn btn-danger mr-2" (click)="clear()">
+            <i class="{{ icon.CLEAR }}"></i> Clear
+          </button>
+          <button type="button" class="btn btn-success" (click)="addNew()">
+            <i class="{{ icon.ADD }}"></i> Add New
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="text-center">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Shift</th>
+              <th scope="col">Name Of Shift</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let item of data">
+              <th>
+                <button class="btn btn-primary" (click)="edit(item)">
+                  <i class="{{ icon.EDIT }}"></i>
+                </button>
+              </th>
+              <td>{{ item.shift }}</td>
+              <td>{{ item.shiftName }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex" *ngIf="data.length > 0">
+          <pagination
+            [totalItems]="pagination.totalCount"
+            [itemsPerPage]="pagination.pageSize"
+            [maxSize]="5"
+            previousText="&lsaquo;"
+            nextText="&rsaquo;"
+            firstText="&laquo;"
+            lastText="&raquo;"
+            [(ngModel)]="pagination.pageNumber"
+            (pageChanged)="pageChanged($event)"
+            [boundaryLinks]="true"
+          >
+          </pagination>
+          <span class="cs-page ml-2">
+            Page - {{ pagination.pageNumber }} /
+            {{ pagination.totalPage }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

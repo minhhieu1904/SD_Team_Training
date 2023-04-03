@@ -10,7 +10,15 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
+    children: [
+      // Maintain
+      {
+        path: 'maintain',
+        loadChildren: () => import('./views/maintain/maintain.module').then(m => m.MaintainModule)
+      },
+      // Transaction....
+
+    ]
   }
 ];
 

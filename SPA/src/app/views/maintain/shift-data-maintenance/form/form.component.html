@@ -1,0 +1,37 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10">
+          <h5>1.1 Shift Data Maintenance - {{title}}</h5>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary" (click)="backHome()">
+            <i class="{{ icon.BACK }}" style="padding-right: 10px"></i>Back
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
+          <label class="badge badge-warning">Shift</label>
+          <input type="text" id="shift" class="form-control" placeholder="type shift..." [(ngModel)]="paramData.shift" />
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
+          <label class="badge badge-warning">Name Of Shift</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="type name of shift..."
+            [(ngModel)]="paramData.shiftName"
+          />
+        </div>
+      </div>
+      <div class="save" style="margin-top: 30px;">
+        <button class="btn btn-primary" (click)="redirectAdd()">
+          <i class="{{icon.ADD}}" style="padding-right: 10px;"></i>SAVE
+        </button>
+      </div>
+      <div>
+    </div>
+  </div>
+</div>
