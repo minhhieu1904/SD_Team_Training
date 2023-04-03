@@ -53,6 +53,7 @@ import { LoginComponent } from './views/login/login.component';
 import { AuthGuard } from '@guards/auth/auth.guard';
 import { ChangePasswordComponent } from './containers/change-password/change-password/change-password.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { UpdateInfoComponent } from './containers/update-info/update-info.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -96,7 +97,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ...APP_CONTAINERS,
     HeaderContainerComponent,
     FooterContainerComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    UpdateInfoComponent
 
   ],
   providers: [

@@ -13,6 +13,8 @@ namespace API._Repositories
         IUserRepository Users{get;}
         IRolesRepository Roles{get;}
         IRoleUserRepository RoleUser{get;}
+        IMS_QR_OrderRepository MS_QR_Order{get;}
+        IMS_QR_StorageRepository MS_QR_Storage{get;}
 
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();

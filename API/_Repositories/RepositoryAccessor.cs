@@ -20,7 +20,11 @@ namespace API._Repositories
             Users = new UserRepository(_dbContext);
             Roles = new RolesRepository(_dbContext);
             RoleUser = new RoleUserRepository(_dbContext);
+            MS_QR_Order = new MS_QR_OrderRepository(_dbContext);
+            MS_QR_Storage = new MS_QR_StorageRepository(_dbContext);
         }
+        public IMS_QR_OrderRepository MS_QR_Order{get;set;}
+        public IMS_QR_StorageRepository MS_QR_Storage{get;set;}
         public IRoleUserRepository RoleUser {get;set;}
         public IRolesRepository Roles {get;set;}
         public IUserRepository Users {get;set;}

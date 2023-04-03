@@ -8,5 +8,6 @@ namespace API._Services.Interfaces
     {
         Task<UserLoginDto> Login(UserLogin userLogin);
         Task<OperationResult> changePassword(UserPassword user);
+        Task<OperationResult> UpdateUser(UserDTO user);
     }
 }

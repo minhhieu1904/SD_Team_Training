@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using AgileObjects.AgileMapper;
+using API.DTOs;
 
 namespace API.Controllers.Author
 {
@@ -69,6 +70,14 @@ namespace API.Controllers.Author
             return Ok(data);
         }
 
+       [HttpPut("updateuser")]
+        public async Task<ActionResult> UpdateUser([FromBody] UserDTO user)
+        {
+            user.update_time = DateTime.Now;
+            user.update_by = user.name;
+            var data = await _authorService.UpdateUser(user);
+            return Ok(data);
+        }
 
     }
 }

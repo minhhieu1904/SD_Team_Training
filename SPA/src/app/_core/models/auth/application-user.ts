@@ -25,3 +25,10 @@ export interface Userparam {
 export interface Role {
   role: string;
 }
+
+
+export interface updateUsers {
+  account: string;
+  name: string;
+  email: string;
+}

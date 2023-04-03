@@ -9,6 +9,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgSnotifyService } from '@services/common/ng-snotify.service';
 import { Role } from '@models/roleUsers';
 import { CaptionConstants } from '@constants/message.enum';
+import { UpdateInfoComponent } from '../update-info/update-info.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -47,6 +48,9 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
   }
   onChangePassword(template: TemplateRef<any>) {
     this.bsModalRef = this.modalService.show(ChangePasswordComponent);
+  }
+  onChangeUser(template: TemplateRef<any>) {
+    this.bsModalRef = this.modalService.show(UpdateInfoComponent);
   }
   ngOnDestroy(): void {}
 }

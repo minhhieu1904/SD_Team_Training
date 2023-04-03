@@ -6,7 +6,4 @@ export interface ChangePassword {
 }
 
 
-export interface ResultOfSave {
-  results: string;
-  message: string;
-}
+

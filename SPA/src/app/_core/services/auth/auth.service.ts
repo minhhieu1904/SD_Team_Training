@@ -1,12 +1,12 @@
 import { OperationResult } from './../../utilities/operation-result';
-import { ChangePassword, ResultOfSave } from './../../models/auth/change-password';
+import { ChangePassword } from './../../models/auth/change-password';
 
 import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  UserLoginParam, Userparam } from '../../models/auth/application-user';
+import {  updateUsers, UserLoginParam, Userparam } from '../../models/auth/application-user';
 import { LocalStorageConstants } from '@constants/local-storage.constants';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -15,6 +15,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   baseUrl = environment.apiUrl + 'C_Auth/';
+  dataSources = new BehaviorSubject<updateUsers>(null);
+  currentDataSource = this.dataSources.asObservable();
 
   jwtHelper = new JwtHelperService();
   constructor(private http: HttpClient
@@ -50,5 +52,12 @@ export class AuthService {
     localStorage.clear();
     window.location.href = '/#/login';
     window.location.reload();
+  }
+
+  upDate(params: updateUsers) {
+    return this.http.put<OperationResult>(
+      this.baseUrl + 'updateuser',
+      params
+    );
   }
 }

@@ -52,15 +52,9 @@ namespace API.Models
         public string biz_flag { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? biz_time { get; set; }
-        /// <summary>
-        /// &#27966;&#24037;&#21934;&#34399;
-        /// </summary>
         [Required]
         [StringLength(10)]
         public string wkshno { get; set; }
-        /// <summary>
-        /// &#21015;&#21360;&#21934;&#34399;
-        /// </summary>
         [Required]
         [StringLength(10)]
         public string prtno { get; set; }
@@ -74,15 +68,9 @@ namespace API.Models
         [Required]
         [StringLength(5)]
         public string empno { get; set; }
-        /// <summary>
-        /// &#21697;&#34399;
-        /// </summary>
         [Required]
         [StringLength(16)]
         public string bitnbr { get; set; }
-        /// <summary>
-        /// &#38795;&#24288;&#26009;&#34399;
-        /// </summary>
         [Required]
         [StringLength(10)]
         public string ritnbr { get; set; }
