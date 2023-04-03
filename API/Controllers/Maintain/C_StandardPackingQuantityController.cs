@@ -21,31 +21,36 @@ namespace API.Controllers.Maintain
         }
 
         [HttpGet("GetData")]
-        public async Task<ActionResult> GetData([FromQuery] PaginationParam pagination,[FromQuery] StandardPackingQuantityParam param){
+        public async Task<ActionResult> GetData([FromQuery] PaginationParam pagination, [FromQuery] StandardPackingQuantityParam param)
+        {
             var result = await _services.GetData(pagination, param);
             return Ok(result);
         }
 
         [HttpGet("GetDataOnly")]
-        public async Task<ActionResult> GetDataOnly(string manuf, string packageNo){
+        public async Task<ActionResult> GetDataOnly(string manuf, string packageNo)
+        {
             var result = await _services.GetDataOnly(manuf, packageNo);
             return Ok(result);
         }
 
         [HttpPost("Add")]
-        public async Task<ActionResult> Add([FromBody] StandardPackingQuantityParam model){
+        public async Task<ActionResult> Add([FromBody] StandardPackingQuantityParam model)
+        {
             var result = await _services.Add(model);
             return Ok(result);
         }
 
-        [HttpPost("Update")]
-        public async Task<ActionResult> Update([FromBody] StandardPackingQuantityParam model){
+        [HttpPut("Update")]
+        public async Task<ActionResult> Update([FromBody] StandardPackingQuantityParam model)
+        {
             var result = await _services.Update(model);
             return Ok(result);
         }
 
         [HttpDelete("Delete")]
-        public async Task<ActionResult> Delete(string packageNo){
+        public async Task<ActionResult> Delete(string packageNo)
+        {
             var result = await _services.Delete(packageNo);
             return Ok(result);
         }

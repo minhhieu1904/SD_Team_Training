@@ -21,7 +21,7 @@ export class AddComponent extends InjectBase implements OnInit {
   ngOnInit() {}
 
   back() {
-    this.router.navigate(['department-data-maintain']);
+    this.router.navigate(['maintain/department-data-maintain']);
   }
 
   add() {

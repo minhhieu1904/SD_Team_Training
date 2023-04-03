@@ -7,22 +7,22 @@ import { InjectBase } from '@utilities/inject-base-app';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  styleUrls: ['./add.component.scss'],
 })
 export class AddComponent extends InjectBase implements OnInit {
-
-  msPackage : MsPackage = <MsPackage>{
+  msPackage: MsPackage = <MsPackage>{
     manuf: 'N',
     packageNo: '',
-    packageQty: 0
+    packageQty: 0,
+  };
+
+  constructor(private service: StandardPackingQuantityService) {
+    super();
   }
 
-  constructor(private service: StandardPackingQuantityService) { super() }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  add(){
+  add() {
     this.service.add(this.msPackage).subscribe({
       next: (result) => {
         if (result.isSuccess) this.back();
@@ -31,12 +31,10 @@ export class AddComponent extends InjectBase implements OnInit {
       error: () => {
         alert('Lỗi hệ thống');
       },
-    })
+    });
   }
 
-  back(){
-    this.router.navigate(["standard-packing-quantity"])
+  back() {
+    this.router.navigate(['maintain/standard-packing-quantity']);
   }
-
-
 }

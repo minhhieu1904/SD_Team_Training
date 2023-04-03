@@ -16,6 +16,12 @@ namespace API.Controllers.Maintain
             _services = services;
         }
 
+        // Có 4 loại thường Http trong CRUD
+        // C - Create : Dùng HttpPost
+        // R - Read : Dùng HttpGet
+        // U - Update : Dùng HttpPut
+        // D - Delete : Dùng HttpDelete
+
         [HttpGet("GetData")]
         public async Task<IActionResult> GetData([FromQuery] PaginationParam pagination, [FromQuery] ShiftDataMaintainParam param)
         {
@@ -37,7 +43,7 @@ namespace API.Controllers.Maintain
             return Ok(result);
         }
 
-        [HttpPost("Update")]
+        [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] MsShift model)
         {
             var result = await _services.Update(model);

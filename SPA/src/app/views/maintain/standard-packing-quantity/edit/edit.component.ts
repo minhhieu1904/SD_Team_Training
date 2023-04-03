@@ -47,6 +47,6 @@ export class EditComponent extends InjectBase implements OnInit {
     });
   }
   back() {
-    this.router.navigate(['standard-packing-quantity']);
+    this.router.navigate(['maintain/standard-packing-quantity']);
   }
 }

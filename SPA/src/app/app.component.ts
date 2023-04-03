@@ -9,7 +9,7 @@ import { freeSet } from '@coreui/icons';
   selector: 'body',
   template: `
     <router-outlet></router-outlet>
-    <!-- <ng-snotify></ng-snotify> -->
+    <ng-snotify></ng-snotify>
     <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple"></ngx-spinner>
   `,
   providers: [IconSetService],

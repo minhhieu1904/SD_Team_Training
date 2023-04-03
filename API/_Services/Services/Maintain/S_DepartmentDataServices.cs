@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces;
 using API.DTOs.DepartmentDataMaintain;
@@ -32,9 +28,15 @@ namespace API._Services.Services.Maintain
             model.Manuf = "N";
             _repositoryAccessor.MS_Department.Add(model);
 
-            if (await _repositoryAccessor.Save())
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<OperationResult> Update(MsDepartment model)
@@ -48,9 +50,15 @@ namespace API._Services.Services.Maintain
             originalItem.ParName = model.ParName.Trim();
             _repositoryAccessor.MS_Department.Update(originalItem);
 
-            if (await _repositoryAccessor.Save())
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<OperationResult> Delete(string parNo)
@@ -63,9 +71,15 @@ namespace API._Services.Services.Maintain
 
             _repositoryAccessor.MS_Department.Remove(originalItem);
 
-            if (await _repositoryAccessor.Save())
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<PaginationUtility<MsDepartment>> GetData(PaginationParam pagination, DepartmentDataParam param)

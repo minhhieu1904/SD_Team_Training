@@ -8,59 +8,61 @@ import { Pagination } from '@utilities/pagination-utility';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  msDepartment: MsDepartment[] = [];
 
-  msDepartment : MsDepartment[] = [];
-
-  pagination : Pagination =<Pagination>{
+  pagination: Pagination = <Pagination>{
     pageNumber: 1,
-    pageSize: 10
-  }
+    pageSize: 10,
+  };
 
   param: DepartmentDataParam = <DepartmentDataParam>{
     parNo: '',
-    parName: ''
+    parName: '',
+  };
+  constructor(private service: DepartmentDataMaintainService) {
+    super();
   }
-  constructor(private service: DepartmentDataMaintainService) {super() }
 
   ngOnInit() {
     this.getDataPagination();
   }
 
-  add(){
-    this.router.navigate(["department-data-maintain/add"]);
+  add() {
+    this.router.navigate(['maintain/department-data-maintain/add']);
   }
 
-  edit(msDepartment: MsDepartment){
-    this.router.navigate([`department-data-maintain/edit/${msDepartment.manuf}/${msDepartment.parNo}`]);
+  edit(msDepartment: MsDepartment) {
+    this.router.navigate([
+      `maintain/department-data-maintain/edit/${msDepartment.manuf}/${msDepartment.parNo}`,
+    ]);
   }
 
-  clear(){
+  clear() {
     this.param.parNo = '';
     this.param.parName = '';
     this.getDataPagination();
   }
 
-  search(){
+  search() {
     this.pagination.pageNumber = 1;
     this.getDataPagination();
   }
 
-  getDataPagination(){
+  getDataPagination() {
     this.service.getData(this.pagination, this.param).subscribe({
-      next: result => {
+      next: (result) => {
         this.pagination = result.pagination;
         this.msDepartment = result.result;
         console.log(this.msDepartment);
-      }
-    })
+      },
+    });
   }
 
-  pageChanged(e: any){
+  pageChanged(e: any) {
     this.pagination.pageNumber = e.page;
     this.getDataPagination();
   }
-
 }

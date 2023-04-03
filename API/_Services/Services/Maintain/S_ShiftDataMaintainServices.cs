@@ -11,58 +11,76 @@ namespace API._Services.Services.Maintain
 {
     public class S_ShiftDataMaintainServices : I_ShiftDataMaintainServices
     {
-
-        private readonly IRepositoryAccessor _reposioryAccessor;
+        // Kế thừa interface I_ShiftDataMaintainServices và Overriding các function trong I_ShiftDataMaintainServices
+        private readonly IRepositoryAccessor _repositoryAccessor;
 
         public S_ShiftDataMaintainServices(IRepositoryAccessor reposioryAccessor)
         {
-            _reposioryAccessor = reposioryAccessor;
+            _repositoryAccessor = reposioryAccessor;
         }
 
         public async Task<OperationResult> Add(MsShift model)
         {
-            var originalItem = await _reposioryAccessor.MS_Shift.FindAll(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim()).FirstOrDefaultAsync();
+            // Tìm xem giá trị đã tồn tại trong dữ liệu chưa
+            var originalItem = await _repositoryAccessor.MS_Shift.FindAll(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim()).FirstOrDefaultAsync();
             if (originalItem != null)
                 return new OperationResult(false);
 
+            // Nếu giá trị chưa tồn tại thì thêm vào dữ liệu
             model.Manuf = "N";
-            _reposioryAccessor.MS_Shift.Add(model);
+            _repositoryAccessor.MS_Shift.Add(model);
 
-            if (await _reposioryAccessor.Save())
+            // Kiểm tra xem đã lưu giá trị thành công chưa
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<OperationResult> Update(MsShift model)
         {
-            var originalItem = await _reposioryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim());
+            var originalItem = await _repositoryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim());
 
             if (originalItem == null)
                 return new OperationResult(false);
 
             originalItem.ShiftName = model.ShiftName.Trim();
-            _reposioryAccessor.MS_Shift.Update(originalItem);
+            _repositoryAccessor.MS_Shift.Update(originalItem);
 
-            if (await _reposioryAccessor.Save())
+            try
             {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
             }
-
-            return new OperationResult(false);
+            catch
+            {
+                return new OperationResult(false);
+            }
 
         }
 
         public async Task<OperationResult> Delete(string shift)
         {
-            var originalItem = await _reposioryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == shift.Trim());
+            var originalItem = await _repositoryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == shift.Trim());
 
             if (originalItem == null)
                 return new OperationResult(false);
 
-            _reposioryAccessor.MS_Shift.Remove(originalItem);
-            if (await _reposioryAccessor.Save())
+            _repositoryAccessor.MS_Shift.Remove(originalItem);
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<PaginationUtility<MsShift>> GetData(PaginationParam pagination, ShiftDataMaintainParam param)
@@ -73,15 +91,13 @@ namespace API._Services.Services.Maintain
             if (!string.IsNullOrEmpty(param.Shift_Name))
                 pred_MS_Shift.And(x => x.ShiftName == param.Shift_Name);
 
-            var data = _reposioryAccessor.MS_Shift.FindAll(pred_MS_Shift);
+            var data = _repositoryAccessor.MS_Shift.FindAll(pred_MS_Shift);
             return await PaginationUtility<MsShift>.CreateAsync(data, pagination.PageNumber, pagination.PageSize);
         }
 
         public async Task<MsShift> GetDataOnly(string manuf, string shift)
         {
-            return await _reposioryAccessor.MS_Shift.FirstOrDefaultAsync(item => item.Manuf.ToUpper() == manuf.ToUpper() && item.Shift == shift);
+            return await _repositoryAccessor.MS_Shift.FirstOrDefaultAsync(item => item.Manuf.ToUpper() == manuf.ToUpper() && item.Shift == shift);
         }
-
-
     }
 }

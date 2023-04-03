@@ -22,31 +22,36 @@ namespace API.Controllers.Maintain
         }
 
         [HttpGet("GetData")]
-        public async Task<ActionResult> GetData([FromQuery] PaginationParam pagination,[FromQuery] DepartmentDataParam param){
+        public async Task<ActionResult> GetData([FromQuery] PaginationParam pagination, [FromQuery] DepartmentDataParam param)
+        {
             var result = await _services.GetData(pagination, param);
             return Ok(result);
         }
 
         [HttpGet("GetDataOnly")]
-        public async Task<ActionResult> GetDataOnly(string manuf, string parNo){
+        public async Task<ActionResult> GetDataOnly(string manuf, string parNo)
+        {
             var result = await _services.GetDataOnly(manuf, parNo);
             return Ok(result);
         }
 
         [HttpPost("Add")]
-        public async Task<ActionResult> Add([FromBody] MsDepartment model){
+        public async Task<ActionResult> Add([FromBody] MsDepartment model)
+        {
             var result = await _services.Add(model);
             return Ok(result);
         }
 
-        [HttpPost("Update")]
-        public async Task<ActionResult> Update([FromBody] MsDepartment model){
+        [HttpPut("Update")]
+        public async Task<ActionResult> Update([FromBody] MsDepartment model)
+        {
             var result = await _services.Update(model);
             return Ok(result);
         }
 
         [HttpDelete("Delete")]
-        public async Task<ActionResult> Delete(string parNo){
+        public async Task<ActionResult> Delete(string parNo)
+        {
             var result = await _services.Delete(parNo);
             return Ok(result);
         }

@@ -12,18 +12,16 @@
     <div class="row">
       <div class="col-md-2">
         <span class="badge badge-warning">Department</span>
-        <input type="text" disabled="disabled" name="shift" [(ngModel)]="msDepartment.parNo"  class="form-control" >
+        <input type="text" disabled="disabled" name="parNo" [(ngModel)]="msDepartment.parNo" class="form-control">
       </div>
       <div class="col-md-2">
         <span class="badge badge-warning">Name Of Department</span>
-        <input type="text" name="shift-name" [(ngModel)]="msDepartment.parName" class="form-control" >
+        <input type="text" name="parName" [(ngModel)]="msDepartment.parName" class="form-control">
       </div>
       <div class="col pt-4">
-        <button class="btn btn-primary" (click)="update()" > Save </button>
-  
-        <!-- <button class="btn btn-primary" > Save & Next </button> -->
+        <button class="btn btn-primary" (click)="update()"> Save </button>
       </div>
-      
+
     </div>
   </div>
-  </div>
+</div>

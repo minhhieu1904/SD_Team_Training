@@ -47,7 +47,7 @@ export class StandardPackingQuantityService {
   }
 
   update(model: StandardPackingQuantityParam): Observable<OperationResult> {
-    return this.http.post<OperationResult>(`${this.baseUrl}/Update`, model);
+    return this.http.put<OperationResult>(`${this.baseUrl}/Update`, model);
   }
 
   delete(packageNo: string): Observable<OperationResult> {

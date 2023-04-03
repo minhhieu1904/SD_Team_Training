@@ -19,6 +19,8 @@ namespace API.Configurations
             services.AddScoped<I_WarehouseBasicDataServices, S_WarehouseBasicDataServices>();
             services.AddScoped<I_DepartmentDataServices, S_DepartmentDataServices>();
             services.AddScoped<I_StandardPackingQuantityServices, S_StandardPackingQuantityServices>();
+            services.AddScoped<I_AuthorizationServices,S_AuthorizationServices>();
+            services.AddScoped<I_LoginServices,S_LoginServices>();
         }
     }
 }

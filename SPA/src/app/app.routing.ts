@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { LoginComponent } from './views/login/login/login.component';
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
 export const routes: Routes = [
@@ -12,34 +12,27 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'shift-data-maintain',
+        path: 'maintain',
         loadChildren: () =>
-          import(
-            './views/maintain/shift-data-maintain/shift-data-maintain.module'
-          ).then((m) => m.ShiftDataMaintainModule),
+          import('./views/maintain/maintain.module').then(
+            (m) => m.MaintainModule
+          ),
       },
-      {
-        path: 'warehouse-basic-data',
-        loadChildren: () =>
-          import(
-            './views/maintain/warehouse-basic-data-maintain/warehouse-basic-data.module'
-          ).then((m) => m.WarehouseBasicDataModule),
-      },
-      {
-        path: 'department-data-maintain',
-        loadChildren: () =>
-          import(
-            './views/maintain/department-data-maintain/department-data-maintain.module'
-          ).then((m) => m.DepartmentDataMaintainModule),
-      },
-      {
-        path: 'standard-packing-quantity',
-        loadChildren: () =>
-          import(
-            './views/maintain/standard-packing-quantity/standard-packing-quantity.module'
-          ).then((m) => m.StandardPackingQuantityModule),
-      }
     ],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Login Page',
+    },
+  },
+  {
+    path: 'default',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Trang Chủ',
+    },
   },
 ];
 

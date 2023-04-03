@@ -47,7 +47,7 @@ export class WarehouseBasicDataService {
   };
 
   update(model: MsLocation): Observable<OperationResult> {
-    return this.http.post<OperationResult>(`${this.baseUrl}/Update`, model);
+    return this.http.put<OperationResult>(`${this.baseUrl}/Update`, model);
   };
 
   delete(StoreH: string): Observable<OperationResult> {

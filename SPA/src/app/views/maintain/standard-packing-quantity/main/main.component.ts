@@ -8,22 +8,21 @@ import { StandardPackingQuantityParam } from '@models/maintain/standardPackingQu
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
-
   msPackage: MsPackage[] = [];
 
   pagination: Pagination = <Pagination>{
     pageNumber: 1,
-    pageSize: 10
-  }
+    pageSize: 10,
+  };
 
-  param: StandardPackingQuantityParam=<StandardPackingQuantityParam>{
-    manuf : 'N',
+  param: StandardPackingQuantityParam = <StandardPackingQuantityParam>{
+    manuf: 'N',
     packageNo: '',
-    packageQty: 0
-  }
+    packageQty: 0,
+  };
 
   constructor(private service: StandardPackingQuantityService) {
     super();
@@ -33,36 +32,38 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getDataPagination();
   }
 
-  add(){
-    this.router.navigate(["standard-packing-quantity/add"])
+  add() {
+    this.router.navigate(['maintain/standard-packing-quantity/add']);
   }
 
-  edit(msPackage: MsPackage){
-    this.router.navigate([`standard-packing-quantity/edit/${msPackage.manuf}/${msPackage.packageNo}`])
+  edit(msPackage: MsPackage) {
+    this.router.navigate([
+      `maintain/standard-packing-quantity/edit/${msPackage.manuf}/${msPackage.packageNo}`,
+    ]);
   }
 
-  clear(){
+  clear() {
     this.param.packageNo = '';
     this.param.packageQty = 0;
-    this.getDataPagination(); 
+    this.getDataPagination();
   }
 
-  search(){
+  search() {
     this.pagination.pageNumber = 1;
     this.getDataPagination();
   }
 
-  getDataPagination(){
+  getDataPagination() {
     this.service.getData(this.pagination, this.param).subscribe({
-      next: result => {
+      next: (result) => {
         this.pagination = result.pagination;
         this.msPackage = result.result;
         console.log(this.msPackage);
-      }
-    })
+      },
+    });
   }
 
-  pageChanged(e: any){
+  pageChanged(e: any) {
     this.pagination.pageNumber = e.page;
     this.getDataPagination();
   }
