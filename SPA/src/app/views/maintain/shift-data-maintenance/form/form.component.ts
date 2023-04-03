@@ -43,7 +43,6 @@ export class FormComponent extends InjectBase implements OnInit {
   save() {
     if (this.router.url === '/maintain/shift-data-maintenance/edit') {
       this.spinnerService.show();
-
       this.service.update(this.paramData).subscribe({
         next: (res) => {
           this.spinnerService.hide();
@@ -63,7 +62,6 @@ export class FormComponent extends InjectBase implements OnInit {
 
     if (this.router.url === '/maintain/shift-data-maintenance/add') {
       this.spinnerService.show();
-
       this.service.create(this.paramData).subscribe({
         next: (res) => {
           this.spinnerService.hide();
