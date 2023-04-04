@@ -24,8 +24,6 @@ namespace API._Services.Services
         {
             var item = await _repoAcceesor.MS_Shift.FindAll(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == msshifts.Shift.Trim()).FirstOrDefaultAsync();
 
-
-
             if (item != null)
             {
                 return new OperationResult(false, "Đã có dữ liệu");
@@ -56,6 +54,7 @@ namespace API._Services.Services
 
             if (!string.IsNullOrEmpty(param.Shift))
                 pred.And(x => x.Shift.Trim() == param.Shift.Trim());
+                
             if (!string.IsNullOrEmpty(param.ShiftName))
                 pred.And(x => x.ShiftName.Trim() == param.ShiftName.Trim());
 
