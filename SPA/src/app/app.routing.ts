@@ -10,7 +10,12 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    children: []
+    children: [
+      {
+        path: 'report',
+        loadChildren: () => import('./views/report/report.module').then(m => m.ReportModule)
+      }
+    ]
   }
 ];
 
