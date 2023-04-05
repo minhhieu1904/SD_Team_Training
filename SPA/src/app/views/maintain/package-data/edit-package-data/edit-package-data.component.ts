@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InjectBase } from '@utilities/inject-base-app';
 import { IconButton } from '@constants/common.constants';
 import { MS_PackageParam } from '@models/package';
-import { Package_dataService } from '@services/package_data.service';
+import { Package_dataService } from '@services/maintain/package_data.service';
 @Component({
   selector: 'app-edit-package-data',
   templateUrl: './edit-package-data.component.html',

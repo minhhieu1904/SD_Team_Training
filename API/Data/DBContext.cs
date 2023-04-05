@@ -29,7 +29,9 @@ namespace API.Data
         public virtual DbSet<RoleUser> RoleUser { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Report_wksh_SumParam> Report_Wksh_SumResult {get; set;}
         public virtual DbSet<__MigrationHistory> __MigrationHistory { get; set; }
+
 
         public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
@@ -127,7 +129,10 @@ namespace API.Data
             {
                 entity.HasKey(e => new { e.MigrationId, e.ContextKey });
             });
-
+            modelBuilder.Entity<Report_wksh_SumParam>(entity =>
+            {
+                entity.HasKey(e => new { e.purno, e.manno, e.size });
+            });
             OnModelCreatingPartial(modelBuilder);
         }
 

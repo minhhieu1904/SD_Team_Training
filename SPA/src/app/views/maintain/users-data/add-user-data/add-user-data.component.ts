@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IconButton } from '@constants/common.constants';
 import { Users } from '@models/roleUsers';
-import { UsersService } from '@services/users.service';
+import { UsersService } from '@services/Maintain/users.service';
 import { InjectBase } from '@utilities/inject-base-app';
 
 

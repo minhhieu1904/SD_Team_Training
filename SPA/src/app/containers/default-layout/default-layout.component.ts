@@ -34,8 +34,6 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.navItems = await this.navItem.getNav();
-    console.log(this.user)
-
   }
 
   toggleMinimize(e) {

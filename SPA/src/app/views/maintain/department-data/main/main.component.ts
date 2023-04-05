@@ -5,7 +5,7 @@ import { InjectBase } from '@utilities/inject-base-app';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { IconButton } from '@constants/common.constants';
 import { MS_Department, MS_DepartmentParam } from '@models/department';
-import { DepartmentdataService } from '@services/department_data.service';
+import { DepartmentdataService } from '@services/Maintain/department_data.service';
 
 
 @Component({

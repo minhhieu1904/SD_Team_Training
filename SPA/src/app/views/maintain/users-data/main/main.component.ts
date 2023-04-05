@@ -7,7 +7,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UserRole, Users } from '@models/roleUsers';
 import { Pagination } from '@utilities/pagination-utility';
-import { UsersService } from '@services/users.service';
+import { UsersService } from '@services/Maintain/users.service';
 
 @Component({
   selector: 'app-main',

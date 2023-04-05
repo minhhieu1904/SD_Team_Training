@@ -1,7 +1,9 @@
 
 using API._Repositories;
 using API._Services.Interfaces;
+using API._Services.Interfaces.Report;
 using API._Services.Services;
+using API._Services.Services.Report;
 
 namespace API.Configurations
 {
@@ -12,7 +14,7 @@ namespace API.Configurations
             if (services == null) throw new ArgumentNullException(nameof(services));
 
             // Add RepositoryAccessor
-             services.AddScoped<IRepositoryAccessor, RepositoryAccessor>();
+            services.AddScoped<IRepositoryAccessor, RepositoryAccessor>();
 
             // Add Service
             services.AddScoped<IWarehouseBasicdataService, WarehouseBasicdataService>();
@@ -21,6 +23,8 @@ namespace API.Configurations
             services.AddScoped<IPackageServices, PackageServices>();
             services.AddScoped<IUserRoleServices, UserRoleServices>();
             services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IReport_wksh_SumService, Report_wksh_SumService>();
+
         }
     }
 }

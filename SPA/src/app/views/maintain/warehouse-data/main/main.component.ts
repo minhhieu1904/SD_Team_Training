@@ -2,11 +2,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Pagination } from '@utilities/pagination-utility';
 import { InjectBase } from '@utilities/inject-base-app';
-import { LocaleData } from 'ngx-bootstrap/chronos';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { IconButton } from '@constants/common.constants';
 import { MS_Location, MS_LocationParam } from '@models/warehouse';
-import { WarehouseDataService } from '@services/warehouse-data.service';
+import { WarehouseDataService } from '@services/Maintain/warehouse-data.service';
 
 @Component({
   selector: 'app-main',

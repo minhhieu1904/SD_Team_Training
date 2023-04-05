@@ -1,9 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { InjectBase } from '@utilities/inject-base-app';
-import { DepartmentdataService } from '@services/department_data.service';
 import { IconButton } from '@constants/common.constants';
-import { MS_Department, MS_DepartmentParam } from '@models/department';
+import { MS_DepartmentParam } from '@models/department';
+import { DepartmentdataService } from '@services/Maintain/department_data.service';
 
 @Component({
   selector: 'app-edit-department-data',
