@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { url } from '@constants/url.constants';
 import { MsDepartment } from '@models/maintain/msDepartment';
 import { DepartmentDataMaintainService } from '@services/maintain/department-data-maintain.service';
 import { InjectBase } from '@utilities/inject-base-app';
@@ -25,7 +27,6 @@ export class EditComponent extends InjectBase implements OnInit {
     this.route.params.subscribe((params) => {
       manuf = params['manuf'];
       parNo = params['parNo'];
-      console.log(parNo);
       this.getMsDepartment(manuf, parNo);
     });
   }
@@ -33,21 +34,44 @@ export class EditComponent extends InjectBase implements OnInit {
     this.service.getDataOnly(manuf, parNo).subscribe({
       next: (result) => {
         this.msDepartment = result;
-        console.log(this.msDepartment);
       },
-      error: (err) => console.log(err),
+      error: () => {
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
+      },
     });
   }
 
   back() {
-    this.router.navigate(['maintain/department-data-maintain']);
+    this.router.navigate([url.maintain.department_data_maintain]);
   }
 
   update() {
+    this.spinnerService.show();
     this.service.update(this.msDepartment).subscribe({
       next: (result) => {
-        if (result.isSuccess) this.back();
-        else alert('Cập nhật thất bại');
+        this.spinnerService.hide();
+        if (result.isSuccess) {
+          this.snotifyService.success(
+            MessageConstants.UPDATED_OK_MSG,
+            CaptionConstants.SUCCESS
+          );
+          this.back();
+        } else {
+          this.snotifyService.error(
+            MessageConstants.UPDATED_ERROR_MSG,
+            CaptionConstants.ERROR
+          );
+        }
+      },
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }

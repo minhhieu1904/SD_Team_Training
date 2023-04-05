@@ -7,7 +7,9 @@ import { AuthorizationSettingService } from '../../../../_core/services/maintain
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UserParam } from '@models/maintain/userParam';
 import { IconButton } from '@constants/common.constants';
-import { subscribeOn } from 'rxjs';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { url } from '@constants/url.constants';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -52,6 +54,13 @@ export class MainComponent extends InjectBase implements OnInit {
         this.data = result.result;
         this.spinnerService.hide();
       },
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
+      },
     });
   }
 
@@ -66,12 +75,12 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   add() {
-    this.router.navigate(['maintain/authorization-setting/add']);
+    this.router.navigate([`${url.maintain.authorization_setting}/add`]);
   }
 
   update(user: User) {
     this.router.navigate([
-      `maintain/authorization-setting/edit/${user.account}`,
+      `${url.maintain.authorization_setting}/edit/${user.account}`,
     ]);
   }
 
@@ -105,8 +114,7 @@ export class MainComponent extends InjectBase implements OnInit {
 
   updateAuthorizeByUser() {
     this.service.updateAuthorizeByUser(this.list_RoleUserParam).subscribe({
-      next: (result) => {
-        console.log(result);
+      next: () => {
         this.closeModal();
       },
     });

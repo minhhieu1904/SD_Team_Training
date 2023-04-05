@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MsLocation } from '../../../../_core/models/msLocation';
-import { WarehouseBasicDataParam } from '../../../../_core/models/warehouseBasicDataParam';
+import { MsLocation } from '@models/msLocation';
+import { WarehouseBasicDataParam } from '@models/warehouseBasicDataParam';
 import { InjectBase } from '@utilities/inject-base-app';
-import { PaginationParam, Pagination } from '@utilities/pagination-utility';
-import { WarehouseBasicDataService } from '../../../../_core/services/maintain/warehouse-basic-data.service';
-
+import { Pagination } from '@utilities/pagination-utility';
+import { WarehouseBasicDataService } from '@services/maintain/warehouse-basic-data.service';
+import { url } from '@constants/url.constants';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -31,12 +32,12 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   add() {
-    this.router.navigate(['maintain/warehouse-basic-data-maintain/add']);
+    this.router.navigate([`${url.maintain.warehouse_basic_data_maintain}/add`]);
   }
 
   edit(msLocation: MsLocation) {
     this.router.navigate([
-      `maintain/warehouse-basic-data-maintain/edit/${msLocation.manuf}/${msLocation.storeH}`,
+      `${url.maintain.warehouse_basic_data_maintain}/edit/${msLocation.manuf}/${msLocation.storeH}`,
     ]);
   }
 
@@ -52,10 +53,19 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   getDataPagination() {
+    this.spinnerService.show();
     this.service.getData(this.pagination, this.param).subscribe({
       next: (result) => {
+        this.spinnerService.hide();
         this.pagination = result.pagination;
         this.msLocation = result.result;
+      },
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }

@@ -3,42 +3,54 @@ import { MsLocation } from '@models/msLocation';
 import { WarehouseBasicDataService } from '@services/maintain/warehouse-basic-data.service';
 import { InjectBase } from '@utilities/inject-base-app';
 
-
+import { url } from '@constants/url.constants';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  styleUrls: ['./add.component.scss'],
 })
 export class AddComponent extends InjectBase implements OnInit {
-
-  msLocation : MsLocation = <MsLocation>{
+  msLocation: MsLocation = <MsLocation>{
     manuf: 'N',
     storeH: '',
-    locationName: ''
-  }
+    locationName: '',
+  };
   constructor(private service: WarehouseBasicDataService) {
     super();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  back() {
+    this.router.navigate([url.maintain.warehouse_basic_data_maintain]);
   }
 
-  back(){
-    this.router.navigate(["warehouse-basic-data"])
-  }
-
-  add(){
+  add() {
+    this.spinnerService.show();
     this.service.add(this.msLocation).subscribe({
-      next: result => {
-        if(result.isSuccess){
-          this.back()
+      next: (result) => {
+        this.spinnerService.hide();
+        if (result.isSuccess) {
+          this.snotifyService.success(
+            MessageConstants.CREATED_OK_MSG,
+            CaptionConstants.SUCCESS
+          );
+          this.back();
         } else {
-          alert("Vui lòng thử lại")
+          this.snotifyService.error(
+            MessageConstants.CREATED_ERROR_MSG,
+            CaptionConstants.ERROR
+          );
         }
-      }, error: () => { 
-        // Thông báo lỗi
-        alert('Lỗi hệ thống');
-      }
-    })
+      },
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
+      },
+    });
   }
 }

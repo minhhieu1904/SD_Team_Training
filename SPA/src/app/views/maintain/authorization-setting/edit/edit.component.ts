@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { url } from '@constants/url.constants';
 import { User } from '@models/maintain/user';
 import { AuthorizationSettingService } from '@services/maintain/authorization-setting.service';
 import { InjectBase } from '@utilities/inject-base-app';
@@ -34,28 +36,49 @@ export class EditComponent extends InjectBase implements OnInit {
   }
 
   back() {
-    this.router.navigate(['maintain/authorization-setting']);
+    this.router.navigate([url.maintain.authorization_setting]);
   }
 
   getUser(account: string) {
+    this.spinnerService.show();
     this.service.getDataOnly(account).subscribe({
       next: (result) => {
+        this.spinnerService.hide();
         this.user = result;
       },
-      error: (err) => {
-        alert('Lỗi hệ thống');
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }
 
   update() {
+    this.spinnerService.show();
     this.service.update(this.user).subscribe({
       next: (result) => {
-        if (result.isSuccess) this.back();
-        else alert('Vui lòng thử lại');
+        this.spinnerService.hide();
+        if (result.isSuccess) {
+          this.snotifyService.success(
+            MessageConstants.UPDATED_OK_MSG,
+            CaptionConstants.SUCCESS
+          );
+          this.back();
+        } else {
+          this.snotifyService.error(
+            MessageConstants.UPDATED_ERROR_MSG,
+            CaptionConstants.ERROR
+          );
+        }
       },
-      error: (err) => {
-        alert('Lỗi hệ thống');
+      error: () => {
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }

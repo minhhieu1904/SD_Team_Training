@@ -1,0 +1,33 @@
+export interface MsQrOrder {
+  manuf: string;
+  brandname: string;
+  cusid: string;
+  cusna: string;
+  kind: string;
+  purno: string;
+  manno: string;
+  eta: string | null;
+  bitnbr: string;
+  ritnbr: string;
+  rmodel: string;
+  tolcls: string | null;
+  article: string;
+  style: string | null;
+  size: string;
+  tsize: string;
+  qty: number;
+  pqty: number;
+  cqty: number;
+  addqty: number;
+  lessqty: number;
+  endcod: string;
+  cycleFlag: string;
+  updateTime: string;
+  updatedBy: string | null;
+  bizKey: string;
+  wkshno: string;
+  prtno: string;
+  wkshqty: number;
+  mdat: string;
+  uscod: string | null;
+}

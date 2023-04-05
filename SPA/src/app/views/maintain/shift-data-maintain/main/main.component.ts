@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MsShift, ShiftDataMaintainParam } from '@models/maintain/msShift';
-import { PaginationParam, Pagination } from '@utilities/pagination-utility';
-import { ShiftDataMaintainService } from '../../../../_core/services/maintain/shift-data-maintain.service';
+import { Pagination } from '@utilities/pagination-utility';
+import { ShiftDataMaintainService } from '@services/maintain/shift-data-maintain.service';
 import { InjectBase } from '@utilities/inject-base-app';
+import { url } from '@constants/url.constants';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 
 @Component({
   selector: 'app-main',
@@ -30,12 +32,12 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   add() {
-    this.router.navigate(['maintain/shift-data-maintain/add']);
+    this.router.navigate([`${url.maintain.shift_data_maitain}/add`]);
   }
 
   edit(msShift: MsShift) {
     this.router.navigate([
-      `maintain/shift-data-maintain/edit/${msShift.manuf}/${msShift.shift}`,
+      `${url.maintain.shift_data_maitain}/edit/${msShift.manuf}/${msShift.shift}`,
     ]);
   }
 
@@ -51,10 +53,19 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   getDataPagination() {
+    this.spinnerService.show();
     this.service.getData(this.pagination, this.param).subscribe({
       next: (result) => {
+        this.spinnerService.hide();
         this.pagination = result.pagination;
         this.msShift = result.result;
+      },
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from '../../../views/maintain/department-data-maintain/add/add.component';
-import { EditComponent } from '../../../views/maintain/department-data-maintain/edit/edit.component';
-import { MainComponent } from '../../../views/maintain/department-data-maintain/main/main.component';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
+import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   {

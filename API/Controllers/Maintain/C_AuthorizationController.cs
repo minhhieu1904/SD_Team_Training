@@ -1,8 +1,8 @@
 using API._Services.Interfaces;
-using API.DTOs.AuthorizationSetting;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using SD3_API.Helpers.Utilities;
+using API.DTOs.AuthorizationSetting;
 
 namespace API.Controllers.Maintain
 {

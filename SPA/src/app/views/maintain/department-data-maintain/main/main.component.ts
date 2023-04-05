@@ -1,4 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { url } from '@constants/url.constants';
 import { DepartmentDataParam } from '@models/maintain/departmentDataParam';
 import { MsDepartment } from '@models/maintain/msDepartment';
 import { DepartmentDataMaintainService } from '@services/maintain/department-data-maintain.service';
@@ -31,12 +33,12 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   add() {
-    this.router.navigate(['maintain/department-data-maintain/add']);
+    this.router.navigate([`${url.maintain.department_data_maintain}/add`]);
   }
 
   edit(msDepartment: MsDepartment) {
     this.router.navigate([
-      `maintain/department-data-maintain/edit/${msDepartment.manuf}/${msDepartment.parNo}`,
+      `${url.maintain.department_data_maintain}/edit/${msDepartment.manuf}/${msDepartment.parNo}`,
     ]);
   }
 
@@ -52,11 +54,19 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   getDataPagination() {
+    this.spinnerService.show();
     this.service.getData(this.pagination, this.param).subscribe({
       next: (result) => {
+        this.spinnerService.hide();
         this.pagination = result.pagination;
         this.msDepartment = result.result;
-        console.log(this.msDepartment);
+      },
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }

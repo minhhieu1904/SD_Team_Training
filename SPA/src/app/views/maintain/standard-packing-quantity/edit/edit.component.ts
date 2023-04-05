@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { url } from '@constants/url.constants';
 import { MsPackage } from '@models/maintain/msPackage';
 import { StandardPackingQuantityService } from '@services/maintain/standard-packing-quantity.service';
 import { InjectBase } from '@utilities/inject-base-app';
@@ -28,25 +30,49 @@ export class EditComponent extends InjectBase implements OnInit {
       this.getMsPackage(manuf, packageNo);
     });
   }
+
   getMsPackage(manuf: string, packageNo: string) {
     this.service.getDataOnly(manuf, packageNo).subscribe({
       next: (result) => {
         this.msPackage = result;
-        console.log(this.msPackage);
       },
-      error: (err) => console.log(err),
+      error: () => {
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
+      },
     });
   }
 
   update() {
+    this.spinnerService.show();
     this.service.update(this.msPackage).subscribe({
       next: (result) => {
-        if (result.isSuccess) this.back();
-        else alert('Cập nhật thất bại');
+        this.spinnerService.hide();
+        if (result.isSuccess) {
+          this.snotifyService.error(
+            MessageConstants.UPDATED_OK_MSG,
+            CaptionConstants.SUCCESS
+          );
+          this.back();
+        } else {
+          this.snotifyService.error(
+            MessageConstants.UPDATED_ERROR_MSG,
+            CaptionConstants.ERROR
+          );
+        }
+      },
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }
   back() {
-    this.router.navigate(['maintain/standard-packing-quantity']);
+    this.router.navigate([url.maintain.department_data_maintain]);
   }
 }

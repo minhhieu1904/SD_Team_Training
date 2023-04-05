@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CaptionConstants } from '@constants/message.enum';
+import { MessageConstants } from '@constants/message.enum';
+import { url } from '@constants/url.constants';
 import { MsShift } from '@models/maintain/msShift';
 import { ShiftDataMaintainService } from '@services/maintain/shift-data-maintain.service';
 import { InjectBase } from '@utilities/inject-base-app';
@@ -35,22 +38,43 @@ export class EditComponent extends InjectBase implements OnInit {
       next: (result) => {
         this.msShift = result;
       },
-      error: (err) => console.log(err),
+      error: () => {
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
+      },
     });
   }
 
   back() {
-    this.router.navigate(['maintain/shift-data-maintain']);
+    this.router.navigate([url.maintain.shift_data_maitain]);
   }
 
   update() {
+    this.spinnerService.show();
     this.service.update(this.msShift).subscribe({
       next: (res) => {
+        this.spinnerService.hide();
         if (res.isSuccess) {
+          this.snotifyService.success(
+            MessageConstants.UPDATED_OK_MSG,
+            CaptionConstants.SUCCESS
+          );
           this.back();
         } else {
-          alert('Cập nhật thất bại');
+          this.snotifyService.error(
+            MessageConstants.UPDATED_ERROR_MSG,
+            CaptionConstants.ERROR
+          );
         }
+      },
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }

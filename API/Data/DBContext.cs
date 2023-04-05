@@ -1,5 +1,6 @@
 using API.Models;
 using Microsoft.EntityFrameworkCore;
+using API.DTOs;
 
 namespace API.Data
 {
@@ -36,6 +37,8 @@ namespace API.Data
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleUser> RoleUsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
+
+        public virtual DbSet<SearchForPackingScanDTO> SearchForPackingScans {get; set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -399,6 +402,11 @@ namespace API.Data
             {
                 entity.HasKey(e => new { e.UserAccount, e.RoleUnique })
                     .HasName("PK_RoleUser_1");
+            });
+
+             modelBuilder.Entity<SearchForPackingScanDTO>(entity =>
+            {
+                entity.HasKey(e => new { e.purno, e.manno, e.size });
             });
 
             OnModelCreatingPartial(modelBuilder);

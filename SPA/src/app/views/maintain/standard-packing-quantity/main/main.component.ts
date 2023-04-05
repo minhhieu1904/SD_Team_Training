@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InjectBase } from '@utilities/inject-base-app';
 import { StandardPackingQuantityService } from '@services/maintain/standard-packing-quantity.service';
 import { MsPackage } from '@models/maintain/msPackage';
 import { Pagination } from '@utilities/pagination-utility';
 import { StandardPackingQuantityParam } from '@models/maintain/standardPackingQuantityParam';
-
+import { url } from '@constants/url.constants';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -33,12 +34,12 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   add() {
-    this.router.navigate(['maintain/standard-packing-quantity/add']);
+    this.router.navigate([`${url.maintain.standard_packing_quantity}/add`]);
   }
 
   edit(msPackage: MsPackage) {
     this.router.navigate([
-      `maintain/standard-packing-quantity/edit/${msPackage.manuf}/${msPackage.packageNo}`,
+      `${url.maintain.standard_packing_quantity}/edit/${msPackage.manuf}/${msPackage.packageNo}`,
     ]);
   }
 
@@ -54,11 +55,19 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   getDataPagination() {
+    this.spinnerService.show();
     this.service.getData(this.pagination, this.param).subscribe({
       next: (result) => {
+        this.spinnerService.hide();
         this.pagination = result.pagination;
         this.msPackage = result.result;
-        console.log(this.msPackage);
+      },
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }

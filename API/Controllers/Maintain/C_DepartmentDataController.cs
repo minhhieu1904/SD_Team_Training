@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API._Services.Interfaces;
 using API.DTOs.DepartmentDataMaintain;
 using API.Models;

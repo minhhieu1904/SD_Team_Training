@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { url } from '@constants/url.constants';
 import { MsShift } from '@models/maintain/msShift';
 import { ShiftDataMaintainService } from '@services/maintain/shift-data-maintain.service';
 import { InjectBase } from '@utilities/inject-base-app';
@@ -22,17 +24,33 @@ export class AddComponent extends InjectBase implements OnInit {
   ngOnInit(): void {}
 
   back() {
-    this.router.navigate(['maintain/shift-data-maintain']);
+    this.router.navigate([url.maintain.shift_data_maitain]);
   }
 
   add() {
+    this.spinnerService.show();
     this.service.add(this.msShift).subscribe({
       next: (result) => {
-        if (result.isSuccess) this.back();
-        else alert('Vui lòng thử lại');
+        this.spinnerService.hide();
+        if (result.isSuccess) {
+          this.snotifyService.success(
+            MessageConstants.CREATED_OK_MSG,
+            CaptionConstants.SUCCESS
+          );
+          this.back();
+        } else {
+          this.snotifyService.error(
+            MessageConstants.CREATED_ERROR_MSG,
+            CaptionConstants.ERROR
+          );
+        }
       },
       error: () => {
-        alert('Lỗi hệ thống');
+        this.spinnerService.hide();
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }

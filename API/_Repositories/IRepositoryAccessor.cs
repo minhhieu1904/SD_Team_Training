@@ -14,12 +14,14 @@ namespace API._Repositories
         public I_MS_Department_Repository MS_Department { get; }
 
         public I_MS_Package_Repository MS_Package { get; }
+
         public I_User_Repository User { get; }
 
         public I_Role_Repository Role { get; }
 
         public I_RoleUser_Repository RoleUser { get; }
 
+        public I_MS_QrOrder_Repository MS_QrOrder { get; }
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }
