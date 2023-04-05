@@ -72,8 +72,8 @@
                     <i class=""></i> Search </button>
                   <button class="btn btn-danger mr-3"> 
                     <i class=""></i> Clear </button>
-                  <button class="btn btn-primary ">
-                    <i class=""></i> Export Excel </button>
+                  <button class="btn btn-primary" (click)="exportExcel()">
+                    <i class="{{iconButton.EXCEL}}"></i> Export Excel </button>
                 </div>
               </div>
         </div>
@@ -135,9 +135,6 @@
                       <th class="text-center" scope="col">{{items.diff_qty}}</th>
                       <th class="text-center" scope="col">{{items.cqty}}</th>
                     </tr>
-
-
-
                   </tbody>
                 </table>
               </div>

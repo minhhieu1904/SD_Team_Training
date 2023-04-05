@@ -6,6 +6,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { IconButton } from '@constants/sd-team.utility';
 import { WkshSumReportService } from "../../../../_core/services/report/wksh-sum-report.service";
 import { InjectBase } from '@utilities/inject-base-app';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 
 @Component({
   selector: 'app-main',
@@ -49,14 +50,17 @@ export class MainComponent extends InjectBase implements OnInit {
   
 
   ngOnInit(): void {
-    this.search();
+    this.getData();
   }
   pageChanged(e: any) { 
     this.pagination.pageNumber = e.page;
-    this.search()
-
+    this.getData()
   }
-  search(){
+  search() {
+    this.pagination.pageNumber = 1;
+    this.getData()
+  }
+  getData(){
     this.param.mdat_start = !this.functionUtility.checkEmpty(this.dateFrom_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_mdat)) : "";
     this.param.mdat_end = !this.functionUtility.checkEmpty(this.dateTo_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateTo_mdat)) : "";
     this.param.eta_start = !this.functionUtility.checkEmpty(this.dateFrom_eta) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_eta)) : "";
@@ -72,6 +76,28 @@ export class MainComponent extends InjectBase implements OnInit {
         this.spinnerService.hide();
       },
       error: () => { 
+      }
+    })
+  }
+  exportExcel() {
+    this.param.mdat_start = !this.functionUtility.checkEmpty(this.dateFrom_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_mdat)) : "";
+    this.param.mdat_end = !this.functionUtility.checkEmpty(this.dateTo_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateTo_mdat)) : "";
+    this.param.eta_start = !this.functionUtility.checkEmpty(this.dateFrom_eta) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_eta)) : "";
+    this.param.eta_end = !this.functionUtility.checkEmpty(this.dateTo_eta) ? this.functionUtility.getDateFormat(new Date(this.dateTo_eta)) : "";
+
+    this.spinnerService.show();
+    this.service.exportExcel(this.pagination, this.param).subscribe({
+      next: (res: Blob) => {
+        if (res) {
+          this.functionUtility.exportExcel(res, 'DevelopmentOrder')
+          this.spinnerService.hide();
+        }
+      },
+      error: () => {
+        this.snotifyService.error(
+          MessageConstants.UN_KNOWN_ERROR,
+          CaptionConstants.ERROR
+        );
       }
     })
   }
