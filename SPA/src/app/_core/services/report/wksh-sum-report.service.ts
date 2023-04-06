@@ -5,6 +5,7 @@ import { Pagination, PaginationResult } from '../../utilities/pagination-utility
 import { WkshSumReport, MsQrOrder } from "../../models/msQrOrder";
 import { ExportData } from "../../models/exportData";
 import { __param } from 'tslib';
+import { BrandDTO } from '@models/brandDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +18,13 @@ getData(pagination: Pagination, param: WkshSumReport){
   return this.http.get<PaginationResult<MsQrOrder>>(this.baseUrl + "/getData", {params})
 }
 
-// exportExcel(exportData : ExportData){
-//   let params = new HttpParams().appendAll({...exportData});
-//   return this.http.get(`${this.baseUrl}/exportExcel`, {params})
-// }
-
   exportExcel(pagination: Pagination, param: WkshSumReport) {
     let params = new HttpParams().appendAll({ ...pagination, ...param });
     return this.http.get(this.baseUrl + "/ExportExcel", { params , responseType:'blob' });
+  }
+
+  getBrand(){
+    return this.http.get<BrandDTO[]>(this.baseUrl+'/GetBrand')
   }
 
 }

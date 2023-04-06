@@ -8,69 +8,91 @@
                 <!-- 1 -->
                 <div class="col-md-3">
                     <span class="badge badge-warning">Production_Date</span>
-                    <div class="row">
-                        <div class="col-md-6"><input type="text" name="date-start" class="form-control"></div>
-                        <div class="col-md-6"><input type="text" name="date-end" class="form-control"></div>
+                    <div class="input-group">
+                          <input type="text" placeholder="Select From..." name="date-start" [bsConfig]="bsConfig" class="form-control"
+                          [maxDate]="dateTo_mdat" [(ngModel)]="dateFrom_mdat" bsDatepicker>
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                        </div>
+                        <label> &nbsp;</label>
+                          <input type="text" placeholder="Select To..." name="date-end" [bsConfig]="bsConfig" class="form-control"
+                          [minDate]="dateFrom_mdat" [(ngModel)]="dateTo_mdat" bsDatepicker>
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <span class="badge badge-warning">Close Stauts</span>
-                            <ng-select [(ngModel)]="param.close_status">
-                                <ng-option *ngFor="let item of actives" [value]="item.key">{{item.value}}</ng-option>
-                              </ng-select>
+                      <ng-select [(ngModel)]="param.close_status">
+                        <ng-option *ngFor="let item of actives" [value]="item.value">{{item.value}}</ng-option>
+                      </ng-select>
                 </div>
                 <div class="col-md-3">
                     <span class="badge badge-warning">Brand</span>
-                    <input type="text" name="Brand" class="form-control">
+                    <div class="form-group">
+                      <ng-select name="brandname" id="Brand" [(ngModel)]="param.brandname">
+                        <ng-option *ngFor="let item of brand" [value]="item.id">{{item.brandname}}</ng-option>
+                      </ng-select>
+                    </div>
                   </div>
                   <div class="col-md-3">
                     <span class="badge badge-warning">Code of Customer</span>
-                    <input type="text" name="Code" class="form-control">
+                    <input placeholder="Code of Customer..." type="text" name="Code" class="form-control" [(ngModel)]="param.cusna">
                   </div>
                  <!-- 2 -->
                 <div class="col-md-3">
                     <span class="badge badge-warning">Planning No</span>
-                    <input type="text" name="Planning" class="form-control">
+                    <input placeholder="Planning No..." type="text" name="Planning" class="form-control" [(ngModel)]="param.manno">
                 </div>
-                <div class="col-md-3">
-                    <span class="badge badge-warning">Purchase No</span>
-                    <input type="text" name="Purchase" class="form-control">
-                  </div>
                   <div class="col-md-3">
                     <span class="badge badge-warning">Mold Number</span>
-                    <input type="text" name="Mold" class="form-control">
+                    <input placeholder="Mold Number..." type="text" name="Mold" class="form-control" [(ngModel)]="param.rmodel">
                   </div>
                   <div class="col-md-3">
                     <span class="badge badge-warning">tolcls</span>
-                    <input type="text" name="tolcls" class="form-control">
+                    <input placeholder="tolcls" type="text" name="tolcls" class="form-control" [(ngModel)]="param.tolcls">
+                  </div>
+                  <div class="col-md-3">
+                    <span class="badge badge-warning">Purchase No</span>
+                    <input placeholder="Purchase No..." type="text" name="Purchase" class="form-control" [(ngModel)]="param.purno">
                   </div>
                 <!-- 3 -->
                 <div class="col-md-3">
-                    <span class="badge badge-warning">Material Code Bottom</span>
-                    <input type="text" name="Material" class="form-control">
+                    <span class="badge badge-warning">Material Code</span>
+                    <input placeholder="Material Code..." type="text" name="Material" class="form-control" [(ngModel)]="param.bitnbr">
                   </div>
                   <div class="col-md-3">
                     <span class="badge badge-warning">Kind</span>
-                    <input type="text" name="Kind" class="form-control">
+                    <input placeholder="Kind..." type="text" name="Kind" class="form-control" [(ngModel)]="param.kind">
                   </div>
                   <div class="col-md-3">
                     <span class="badge badge-warning">Confirmed Delivery Date</span>
-                    <div class="row">
-                        <div class="col-md-6"><input type="text" name="date-start" class="form-control"></div>
-                        <div class="col-md-6"><input type="text" name="date-end" class="form-control"></div>
+                    <div class="input-group ml-1">
+                      <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
+                        [maxDate]="dateTo_eta" [(ngModel)]="dateFrom_eta" bsDatepicker>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                      </div>
+                      <label> &nbsp;</label>
+                      <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig" class="form-control"
+                        [minDate]="dateFrom_eta" [(ngModel)]="dateTo_eta" bsDatepicker>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                      </div>
                     </div>
-                </div>
+                  </div>
                 <div class="col-md-3">
                     <span class="badge badge-warning">Size</span>
-                    <input type="text" name="Size" class="form-control">
+                    <input placeholder="Size..." type="text" name="Size" class="form-control" [(ngModel)]="param.size">
                 </div>
                 
             </div>
             <div class="row">
                 <div class="col-md-10 pt-3">
-                  <button class="btn btn-success mr-3"> 
+                  <button class="btn btn-success mr-3"(click)="search()"> 
                     <i class=""></i> Search </button>
-                  <button class="btn btn-danger mr-3"> 
+                  <button class="btn btn-danger mr-3" (click)="clear()"> 
                     <i class=""></i> Clear </button>
                   <button class="btn btn-primary" (click)="exportExcel()">
                     <i class="{{iconButton.EXCEL}}"></i> Export Excel </button>

@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces.report;
 using API.Data;
+using API.DTOs;
 using API.DTOs.report;
 using API.Models;
+using Aspose.Cells;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SD3_API.Helpers.Utilities;
@@ -16,15 +18,49 @@ namespace API._Services.Services.report
     public class S_WkshSumReport_Services : I_WkshSumReport_Services
     {
         public readonly IRepositoryAccessor _repositoryAccessor;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         public DBContext _dbContext;
-        public S_WkshSumReport_Services(IRepositoryAccessor repositoryAccessor, DBContext dbContext){
+        public S_WkshSumReport_Services(IRepositoryAccessor repositoryAccessor, IWebHostEnvironment webHostEnvironment, DBContext dbContext){
             _repositoryAccessor = repositoryAccessor;
             _dbContext = dbContext;
+            _webHostEnvironment = webHostEnvironment;
         }
 
-        public Task<List<getBrand>> GetBrand()
+        public async Task<byte[]> ExportExcel(PaginationParam pagination, WkshSumReport param)
         {
-            throw new NotImplementedException();
+            var data = await GetData(pagination, param, false);
+            MemoryStream stream = new MemoryStream();
+            // using(var package = new ExcelPackage(stream)){
+            //     var sheet = package.Workbook.Worksheets.Add("manuf");
+            //     sheet.Cells.LoadFromCollection(data.Result, true);
+            //     package.Save();
+            // }
+            //stream.Position = 0;
+            //byte[] result = stream.ToArray();
+            if (data.Result.Count > 0)
+            {
+                var path = Path.Combine(_webHostEnvironment.ContentRootPath, "Resources\\Template\\Development_Orders.xlsx");
+                WorkbookDesigner designer = new WorkbookDesigner();
+                designer.Workbook = new Workbook(path);
+                Worksheet ws = designer.Workbook.Worksheets[0];
+
+
+                designer.SetDataSource("result", data.Result);
+                designer.Process();
+
+                ws.AutoFitColumns();
+                ws.PageSetup.CenterHorizontally = true;
+                ws.PageSetup.FitToPagesWide = 1;
+                ws.PageSetup.FitToPagesTall = 0;
+
+                designer.Workbook.Save(stream, SaveFormat.Xlsx);
+            }
+            return stream.ToArray();
+        }
+
+        public async Task<List<BrandDTO>> GetBrand()
+        {
+            return await _repositoryAccessor.MsQrOrder.FindAll().Select(x => new BrandDTO{ brandname = x.Brandname, id = x.Brandname}).Distinct().ToListAsync();
         }
 
         public async Task<PaginationUtility<Report_wksh_SumResult>> GetData(PaginationParam pagination, WkshSumReport param, bool isPaging = true)

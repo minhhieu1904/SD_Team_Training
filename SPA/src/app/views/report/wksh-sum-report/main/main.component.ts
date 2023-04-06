@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { KeyValuePair } from '@utilities/key-value-pair';
 import {MsQrOrder, WkshSumReport } from '../../../../_core/models/msQrOrder'; 
+import { BrandDTO } from '../../../../_core/models/brandDTO'; 
 import { Pagination } from '@utilities/pagination-utility';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { IconButton } from '@constants/sd-team.utility';
@@ -20,6 +21,7 @@ export class MainComponent extends InjectBase implements OnInit {
   ]
   maxSize = 5;
   data: MsQrOrder[] = [];
+  brand: BrandDTO[] = [];
   pagination: Pagination = <Pagination>{
     pageNumber: 1, 
     pageSize: 10
@@ -46,11 +48,21 @@ export class MainComponent extends InjectBase implements OnInit {
   dateFrom_eta = "";
   dateTo_eta = "";
   iconButton = IconButton;
+
+  createParam() {
+    this.param;
+    this.dateFrom_mdat = '';
+    this.dateTo_mdat = '';
+    this.dateFrom_eta = '';
+    this.dateTo_eta = '';
+  }
   constructor(private service: WkshSumReportService) { super()}
   
 
   ngOnInit(): void {
     this.getData();
+    this.getBrand();
+    this.createParam();
   }
   pageChanged(e: any) { 
     this.pagination.pageNumber = e.page;
@@ -59,18 +71,25 @@ export class MainComponent extends InjectBase implements OnInit {
   search() {
     this.pagination.pageNumber = 1;
     this.getData()
+  }  
+  clear() {
+    this.createParam()
+    this.getData()
+    
   }
-  getData(){
-    this.param.mdat_start = !this.functionUtility.checkEmpty(this.dateFrom_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_mdat)) : "";
-    this.param.mdat_end = !this.functionUtility.checkEmpty(this.dateTo_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateTo_mdat)) : "";
-    this.param.eta_start = !this.functionUtility.checkEmpty(this.dateFrom_eta) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_eta)) : "";
-    this.param.eta_end = !this.functionUtility.checkEmpty(this.dateTo_eta) ? this.functionUtility.getDateFormat(new Date(this.dateTo_eta)) : "";
+  checkDate(){
+    this.param.mdat_start = !this.functionUtility.checkEmpty(this.dateFrom_mdat) ? this.functionUtility.getDateTimeFormat(new Date(this.dateFrom_mdat)):'';
+    this.param.mdat_end = !this.functionUtility.checkEmpty(this.dateTo_mdat) ? this.functionUtility.getDateTimeFormat(new Date(this.dateTo_mdat)):'';
+    this.param.eta_start = !this.functionUtility.checkEmpty(this.dateFrom_eta) ? this.functionUtility.getDateTimeFormat(new Date(this.dateFrom_eta)):'';
+    this.param.eta_end = !this.functionUtility.checkEmpty(this.dateTo_eta) ? this.functionUtility.getDateTimeFormat(new Date(this.dateTo_eta)):'';
+  }
 
+  getData(){
+    this.checkDate()
     this.spinnerService.show();
     this.service.getData(this.pagination,this.param).subscribe({
       next: res => { 
-        console.log(res.result)
-        res.result.map(ngay => console.log(this.functionUtility.getDateFormat(new Date(ngay.mdat)))) 
+        res.result.map(ngay => this.functionUtility.getDateFormat(new Date(ngay.mdat)))
         this.data = res.result;
         this.pagination = res.pagination;
         this.spinnerService.hide();
@@ -80,11 +99,7 @@ export class MainComponent extends InjectBase implements OnInit {
     })
   }
   exportExcel() {
-    this.param.mdat_start = !this.functionUtility.checkEmpty(this.dateFrom_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_mdat)) : "";
-    this.param.mdat_end = !this.functionUtility.checkEmpty(this.dateTo_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateTo_mdat)) : "";
-    this.param.eta_start = !this.functionUtility.checkEmpty(this.dateFrom_eta) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_eta)) : "";
-    this.param.eta_end = !this.functionUtility.checkEmpty(this.dateTo_eta) ? this.functionUtility.getDateFormat(new Date(this.dateTo_eta)) : "";
-
+    this.checkDate()
     this.spinnerService.show();
     this.service.exportExcel(this.pagination, this.param).subscribe({
       next: (res: Blob) => {
@@ -100,6 +115,19 @@ export class MainComponent extends InjectBase implements OnInit {
         );
       }
     })
+  }
+  getBrand() {
+    this.service.getBrand().subscribe({
+      next: (result) => {
+        this.brand = result;
+      },
+      error: () => {
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
+      },
+    });
   }
 
 }
