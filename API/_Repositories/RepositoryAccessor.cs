@@ -15,10 +15,13 @@ namespace API._Repositories
             _dbContext = dbContext;
             MS_Shift = new MS_ShiftRepository(_dbContext);
             MS_Warehouse = new MS_WarehouseRepository(_dbContext);
+            MS_Department = new MS_DepartmentRepository(_dbContext);
         }
         public IMS_ShiftRepository MS_Shift { get; private set; }
 
         public IMS_WarehouseRepository MS_Warehouse { get; private set; }
+
+        public IMS_DepartmentRepository MS_Department { get; private set; }
 
         public async Task<bool> Save()
         {

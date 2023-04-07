@@ -8,7 +8,6 @@ using AgileObjects.AgileMapper.Configuration;
 using API._Repositories;
 using API._Services.Interfaces;
 using API.DTOs;
-using API.DTOs.WarehouseBasicDataMaintenance;
 using API.Helper.Params.ShiftDataMaintain;
 using API.Models;
 using LinqKit;
@@ -91,6 +90,7 @@ namespace API._Services.Services
                 Warehouse = "W",
                 WarehouseID = x.WarehouseID.Trim(),
                 WarehouseName = x.WarehouseName.Trim()
+                
             }).AsNoTracking();
 
             return await PaginationUtility<MS_Warehouse>.CreateAsync(data, param.PageNumber, param.PageSize);
