@@ -26,13 +26,7 @@ namespace API.Controllers
             var result = await _service.GetAll(pagination,param);
             return Ok(result);
         }
-
-        [HttpGet("GetItem")]
-        public async Task<IActionResult> GetItem(string manuf, string shift) 
-        { 
-            var result = await _service.GetItem(manuf,shift);
-            return Ok(result);
-        }
+      
         [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] MS_Shift msshifts) 
         { 
