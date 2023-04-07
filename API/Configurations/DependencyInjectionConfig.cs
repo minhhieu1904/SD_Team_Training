@@ -20,6 +20,7 @@ namespace API.Configurations
             services.AddScoped<IShiftDataMaintainService,ShiftDataMaintainService>();
             services.AddScoped<IWarehouseBasicDataMaintenanceService, WarehouseBasicDataMaintenanceService>();
             services.AddScoped<IDepartmentDataMaintenanceService, DepartmentDataMaintenanceService>();
+            services.AddScoped<IStandardPackingQuantitySettingService, StandardPackingQuantitySettingService>();
         }
     }
 }

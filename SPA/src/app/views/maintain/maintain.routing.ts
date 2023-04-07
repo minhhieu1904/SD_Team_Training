@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'department-data-maintenance',
     loadChildren: () => import('./department-data-maintenance/department-data-maintenance.module').then(m => m.DepartmentDataMaintenanceModule)
+  },
+  {
+    path: 'standard-packing-quantity-setting',
+    loadChildren: () => import('./standard-packing-quantity-setting/standard-packing-quantity-setting.module').then(m => m.StandardPackingQuantitySettingModule)
   }
 ];
 @NgModule({

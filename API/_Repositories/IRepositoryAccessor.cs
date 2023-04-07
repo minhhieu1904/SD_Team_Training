@@ -10,6 +10,7 @@ namespace API._Repositories
         IMS_ShiftRepository MS_Shift { get; }
         IMS_WarehouseRepository MS_Warehouse { get; }
         IMS_DepartmentRepository MS_Department { get; }
+        IMS_PackageRepository MS_Package { get; }
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

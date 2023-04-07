@@ -21,7 +21,7 @@ namespace API._Services.Services
         }
         public async Task<OperationResult> Create(MS_Shift msshifts)
         {
-            var item = await _repoAcceesor.MS_Shift.FindAll(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == msshifts.Shift.Trim()).FirstOrDefaultAsync();
+            var item = await _repoAcceesor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == msshifts.Shift.Trim());
 
             if (item != null)
             {
@@ -58,14 +58,8 @@ namespace API._Services.Services
                 pred.And(x => x.ShiftName.Trim() == param.ShiftName.Trim());
 
             var data = _repoAcceesor.MS_Shift.FindAll(pred).AsNoTracking();
+            
             return await PaginationUtility<MS_Shift>.CreateAsync(data, pagination.PageNumber, pagination.PageSize);
-        }
-
-        public async Task<MS_Shift> GetItem(string manuf, string shift)
-        {
-            var item = await _repoAcceesor.MS_Shift.FindAll(x => x.Manuf.Trim() == "N" && x.Shift == shift.Trim()).FirstOrDefaultAsync();
-
-            return item;
         }
 
         public async Task<OperationResult> Update(MS_Shift msshift)
@@ -74,7 +68,7 @@ namespace API._Services.Services
 
             if (item == null)
             {
-                return new OperationResult(false, "Chưa có dữ liệu thành công");
+                return new OperationResult(false, "Chưa có dữ liệu");
             }
             else
             {
