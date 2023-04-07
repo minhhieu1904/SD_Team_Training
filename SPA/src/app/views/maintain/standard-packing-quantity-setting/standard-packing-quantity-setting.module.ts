@@ -4,7 +4,7 @@ import { StandardPackingQuantitySettingRoutingModule } from './standard-packing-
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PackageMainComponent } from './package-main/package-main.component';
-
+import { PackageFormComponent } from './package-form/package-form.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -13,7 +13,8 @@ import { PackageMainComponent } from './package-main/package-main.component';
     PaginationModule.forRoot()
   ],
   declarations: [
-    PackageMainComponent
+    PackageMainComponent,
+    PackageFormComponent
   ]
 })
 export class StandardPackingQuantitySettingModule { }

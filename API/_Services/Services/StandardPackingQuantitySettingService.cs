@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace API._Services.Services
 
         public async Task<OperationResult> Create(MS_Package model)
         {
-            var item = await _repositoryAccessor.MS_Package.FirstOrDefaultAsync(x => x.Manuf == "N" && x.PackageNo.Trim() == model.PackageNo.Trim());
+            var item = await _repositoryAccessor.MS_Package.FirstOrDefaultAsync(x => x.Manuf == "N" && x.PackageNo == model.PackageNo);
             if(item != null)
             {
                 return new OperationResult(false, "Đã có dữ liệu");
@@ -45,7 +46,7 @@ namespace API._Services.Services
            var pre = PredicateBuilder.New<MS_Package>(true);
            if(!string.IsNullOrEmpty(param.PackageNo))
            {
-            pre.And(x => x.PackageNo.Trim() == param.PackageNo);
+            pre.And(x => x.PackageNo == param.PackageNo);
            }
            if(param.PackageQty > 0)
            {
@@ -56,23 +57,23 @@ namespace API._Services.Services
            return await PaginationUtility<MS_Package>.CreateAsync(data, pagination.PageNumber, pagination.PageSize);
         }
 
-        public Task<PaginationUtility<MS_Package>> Search(PaginationParam pagination, string text)
+        public async Task<PaginationUtility<MS_Package>> Search(PaginationParam pagination, string text)
         {
-            // var pre = PredicateBuilder.New<MS_Package>();
-            // if(!string.IsNullOrEmpty(text))
-            // {
-            //     text = text.ToLower();
-            //     pre = pre.And(x => x.PackageNo == text);
-            // }
+            var pre = PredicateBuilder.New<MS_Package>(true);
+            if(!string.IsNullOrEmpty(text)) 
+            {
+                text = text.ToLower();
+                pre = pre.And(x => x.PackageNo.Contains(text));
+            }
 
-            // var data = _repositoryAccessor.MS_Department.FindAll(pre).AsNoTracking();
+            var data = _repositoryAccessor.MS_Package.FindAll(pre).AsNoTracking();
 
-            throw new NotImplementedException();
+            return await PaginationUtility<MS_Package>.CreateAsync(data, pagination.PageNumber, pagination.PageSize);
         }
 
         public async Task<OperationResult> Update(MS_Package model)
         {
-           var item = await _repositoryAccessor.MS_Package.FirstOrDefaultAsync(x => x.Manuf == "N" && x.PackageNo.Trim() == model.PackageNo);
+           var item = await _repositoryAccessor.MS_Package.FirstOrDefaultAsync(x => x.Manuf == "N" && x.PackageNo == model.PackageNo);
 
            if(item == null)
            {

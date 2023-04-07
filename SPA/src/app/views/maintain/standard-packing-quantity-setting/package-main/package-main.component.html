@@ -45,8 +45,8 @@
                   <thead>
                     <tr>
                       <th class="text-center"></th>
-                      <th class="text-center">Kode Of WareHouse</th>
-                      <th class="text-center">Name Of Warehouse</th>
+                      <th class="text-center">Packing No.</th>
+                      <th class="text-center">Packing Quantity</th>
                     </tr>
                   </thead>
                   <tbody *ngIf="data?.length > 0; else elseTemplate">
@@ -57,10 +57,10 @@
                         </button>
                       </td>
                       <td class="text-center">
-                        {{ item.warehouseID }}
+                        {{ item.packageNo }}
                       </td>
                       <td class="text-center">
-                        {{ item.warehouseName }}
+                        {{ item.packageQty }}
                       </td>
                     </tr>
                   </tbody>

@@ -33,6 +33,13 @@ namespace API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("Search")]
+        public async Task<IActionResult> Search ([FromQuery] PaginationParam pagination, string text)
+        {
+            var result = await _service.Search(pagination, text);
+            return Ok(result);
+        }
+
         [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] MS_Package model)
         {

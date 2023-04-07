@@ -46,8 +46,8 @@ export class DepartmentMainComponent extends InjectBase implements OnInit {
       : (this.pagination.pageNumber = 1);
     }
 
-    this.param.parNo = ''
-    this.param.parName = ''
+    this.param.parNo = '';
+    this.param.parName = '';
   }
 
   addNew() {
@@ -55,9 +55,9 @@ export class DepartmentMainComponent extends InjectBase implements OnInit {
   }
 
   clear() {
-    this.param.parNo = ''
-    this.param.parName = ''
-    this.getAll()
+    this.param.parNo = '';
+    this.param.parName = '';
+    this.getAll();
   }
 
   edit(model: MS_Department) {
