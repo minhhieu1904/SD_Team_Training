@@ -36,7 +36,7 @@ namespace API.Controllers.report
             if(data.Result.Count > 0){
                 // Lấy đường dẫn file excel
                 var path = Path.Combine(_webHostEnvironment.ContentRootPath,
-                "Resources\\Template\\Development_Orders.xlsx");
+                "Resources\\Template\\WkshSumReport.xlsx");
                 // Khỏi tạo biến kiểu dữ liệu WorkbookDesigner dùng xử lý Excel
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
@@ -58,7 +58,6 @@ namespace API.Controllers.report
                 ws.PageSetup.FitToPagesWide = 1;
                 ws.PageSetup.FitToPagesTall = 0;
             }
-            // Hiểu nôm na là cho dễ chuyển đi , kiểu nguyên file excel thì nó k đem lên trên đc 
             byte[] result = stream.ToArray();
             return File(result," application/xlsx", $"Excel_{DateTime.Now.ToString("dd_MM_yyyy-HH_mm_SS")}.xlsx");
         }

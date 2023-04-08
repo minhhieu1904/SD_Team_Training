@@ -20,7 +20,6 @@ export class WkshSumReportService {
   }
   exportExcel(pagination: Pagination, param: WkshSumReport) {
     // Cái này giống như hình ảnh,excel chuyển qua cái này thì mới có thể di chuyển
-    // tại sao phải truyền cái đó 'blob'
     let params = new HttpParams().appendAll({ ...pagination, ...param });
     return this.http.get(this.apiUrl + "C_WkshSumReport/ExportExcel", { params : params , responseType:'blob' });
   }

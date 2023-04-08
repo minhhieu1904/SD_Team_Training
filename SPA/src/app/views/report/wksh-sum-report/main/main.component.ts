@@ -16,7 +16,7 @@ import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 })
 export class MainComponent extends InjectBase implements OnInit {
   actives: KeyValuePair[] = [
-    { key: true, value: 'Y' },
+    { key: true , value: 'Y' },
     { key: false, value: 'N' },
   ]
   brand: Brand[] = []
@@ -71,10 +71,10 @@ export class MainComponent extends InjectBase implements OnInit {
     this.param.mdat_end = !this.functionUtility.checkEmpty(this.dateTo_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateTo_mdat)) : "";
     this.param.eta_start = !this.functionUtility.checkEmpty(this.dateFrom_eta) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_eta)) : "";
     this.param.eta_end = !this.functionUtility.checkEmpty(this.dateTo_eta) ? this.functionUtility.getDateFormat(new Date(this.dateTo_eta)) : "";
-
     this.spinnerService.show();
     this.service.getData(this.pagination, this.param).subscribe({
       next: res => {
+        console.log(res.result)
         this.data = res.result;
         this.pagination = res.pagination;
         this.spinnerService.hide();
@@ -83,7 +83,7 @@ export class MainComponent extends InjectBase implements OnInit {
       }
     })
   }
-  eportExcel() {
+  exportExcel() {
     this.param.mdat_start = !this.functionUtility.checkEmpty(this.dateFrom_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_mdat)) : "";
     this.param.mdat_end = !this.functionUtility.checkEmpty(this.dateTo_mdat) ? this.functionUtility.getDateFormat(new Date(this.dateTo_mdat)) : "";
     this.param.eta_start = !this.functionUtility.checkEmpty(this.dateFrom_eta) ? this.functionUtility.getDateFormat(new Date(this.dateFrom_eta)) : "";
@@ -94,7 +94,7 @@ export class MainComponent extends InjectBase implements OnInit {
       next: (res: Blob) => {
         if (res) {
           // console.log(res);
-          this.functionUtility.exportExcel(res, 'DevelopmentOrder')
+          this.functionUtility.exportExcel(res, 'WkshSumReport')
           this.spinnerService.hide();
         }
       },
@@ -135,7 +135,6 @@ export class MainComponent extends InjectBase implements OnInit {
     this.dateTo_mdat = "";
     this.dateFrom_eta = "";
     this.dateTo_eta = "";
-    this.getData();
+    this.search();
   }
-
 }

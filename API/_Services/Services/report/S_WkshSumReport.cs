@@ -18,9 +18,6 @@ namespace API._Services.Services.report
            _reposioryAccessor = reposioryAccessor;
             _dbContext = dbContext;
         }
-
-        
-
         public async Task<List<getBrand>> GetBrand()
         {
 

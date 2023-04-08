@@ -44,7 +44,7 @@ export const RolesConstants = [
             {
                 name: '4.2 Sort Sum Report',
                 role: 'BQRC.SortSumReport',
-                url: ''
+                url: '/report/sort-sum-report'
             },
             {
                 name: '4.3 Storage Sum Report',

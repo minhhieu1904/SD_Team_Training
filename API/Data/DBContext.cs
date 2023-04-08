@@ -1,4 +1,5 @@
 using API.Models;
+using API.Models.report;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -25,7 +26,11 @@ namespace API.Data
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<MS_QR_Order> MS_QR_Order { get; set; }
 
-        public virtual DbSet<Report_wksh_SumResult> Report_wksh_SumResult {get; set;}
+        public virtual DbSet<Report_wksh_SumResult> Report_wksh_SumResult { get; set; }
+        public virtual DbSet<Report_Sort_SumResult> Report_Sort_SumResult { get; set; }
+        public virtual DbSet<MS_QR_Sort> MS_QR_Sort { get; set; }
+        public virtual DbSet<MS_QR_Label> MS_QR_Label { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -68,7 +73,18 @@ namespace API.Data
             {
                 entity.HasKey(e => new { e.purno, e.manno, e.size });
             });
+            modelBuilder.Entity<Report_Sort_SumResult>().HasNoKey().ToView(null);
+            modelBuilder.Entity<MS_QR_Label>(entity =>
+            {
+                entity.HasKey(e => new { e.Manuf, e.QRCodeID });
             
+            });
+
+            modelBuilder.Entity<MS_QR_Sort>(entity =>
+            {
+                entity.HasKey(e => new { e.Manuf, e.TrNo, e.QRCodeID });
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 
