@@ -44,10 +44,11 @@ namespace API.Controllers.Report
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
+                ws.Cells[1, 1].Value = DateTime.Now.ToString("yyyyMMddHHmmsstt");
                 designer.SetDataSource("result", data.Result);
                 designer.Process();
                 designer.Workbook.Save(stream, SaveFormat.Xlsx);
-                
+               
             }
             byte[] result = stream.ToArray();
             return File(result, "application/xlsx", $"Excel_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.xlsx");

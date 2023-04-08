@@ -27,8 +27,4 @@ export interface Role {
 }
 
 
-export interface updateUsers {
-  account: string;
-  name: string;
-  email: string;
-}
+

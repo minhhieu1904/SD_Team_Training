@@ -22,6 +22,7 @@ export class MainComponent extends InjectBase implements OnInit {
     { key: false, value: 'N' },
     { key: true, value: 'Y' },
   ];
+
   brand: Brand[] = []
   data: MS_QR_Order[] = [];
   pagination: Pagination = <Pagination>{
@@ -59,6 +60,7 @@ export class MainComponent extends InjectBase implements OnInit {
   ngOnInit(): void {
     this.search();
     this.getBrand();
+    this.getData();
   }
   pageChanged(e: any) {
     this.pagination.pageNumber = e.page;

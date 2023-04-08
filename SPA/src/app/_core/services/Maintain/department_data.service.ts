@@ -2,7 +2,7 @@ import { environment } from '@env/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { MS_Department, MS_DepartmentParam } from '@models/department';
+import { MS_Department, MS_DepartmentParam } from '@models/maintain/department';
 import { Pagination, PaginationResult } from '@utilities/pagination-utility';
 import { OperationResult } from '@utilities/operation-result';
 

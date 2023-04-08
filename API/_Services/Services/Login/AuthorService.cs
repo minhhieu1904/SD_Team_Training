@@ -18,13 +18,6 @@ namespace API._Services.Services
         }
 
 
-        public async Task<OperationResult> changePassword(UserPassword user)
-        {
-            var item = await _repoAccessor.Users.FindSingle(x => x.account == user.account);
-            if (item == null)
-                return new OperationResult(false, "Người dùng không tồn tại");
-            return new OperationResult(true, "Cập nhật tài khoản thành công !");
-        }
 
 
 
@@ -50,23 +43,6 @@ namespace API._Services.Services
             return result;
         }
 
-        public async Task<OperationResult> UpdateUser(UserDTO user)
-        {                
-            var item = await _repoAccessor.Users.FirstOrDefaultAsync(x => x.account == user.account && x.name == user.name);
-            if (item == null)
-            {
-                return new OperationResult(false);
-            }
-            else
-            {
-                item.account = user.account.Trim();
-                item.name = user.name.Trim();
-                item.email = user.email.Trim();
-                _repoAccessor.Users.Update(item);
-                await _repoAccessor.Save();
-            }
-            return new OperationResult(true, "Update successfully");
-        
-        }
+       
     }
 }

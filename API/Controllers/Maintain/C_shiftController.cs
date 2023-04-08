@@ -31,7 +31,7 @@ namespace API.Controllers.Maintain
         [HttpPost("add")]
          public async Task<ActionResult> Add([FromBody] MS_Shift shift )
         {
-            // Manuf mặc định tự truyền N
+            
             shift.Manuf = "N";
             var data = await _ShiftData.Add(shift);
             return Ok(data);  

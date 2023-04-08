@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { InjectBase } from '@utilities/inject-base-app';
 import { IconButton } from '@constants/common.constants';
 
-import { MS_PackageParam } from '@models/package';
+import { MS_PackageParam } from '@models/maintain/package';
 
 @Component({
   selector: 'app-add-package-data',

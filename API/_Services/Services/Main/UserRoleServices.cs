@@ -70,43 +70,7 @@ namespace API._Services.Services
             return new UserRoleDTO() { Account = user.account, ListRoles = allRole };
 
             
-            // // 1. Lấy điều kiện search theo table 
-            // // lấy điều kiện tìm kiếm của bảng RoleUser theo account
-            // var predicateUserRole = PredicateBuilder.New<RoleUser>(true).And(x => x.user_account == account.Trim());
-
-            // // Lấy điều kiện tìm kiếm của bnagr User theo account
-            // var predicateUser = PredicateBuilder.New<Users>(true).And(x => x.account == account.Trim());
-            // // Lấy user 
-           
-            // // lấy danh sách role theo account user
-            // var rolesByUser = await _repoAccessor.Roles.FirstOrDefaultAsync(x => x.role_unique == account.Trim());
-
-            // Đây là cách lấy dữ liệu theo câu query 
-            // Lấy dữ liệu chính ở bảng RoleUser
-            // var roleByUser = await _repoAccessor.RoleUser.FindAll(predicateUserRole)
-
-            //                     // Join với bảng Role
-            //                     .GroupJoin(_repoAccessor.Roles.FindAll(),
-            //                         // với điều kiện là khoá chính của role
-            //                         roleUser => new { roleUser.role_unique },
-            //                         role => new { role.role_unique },
-            //                         (roleUser, role) => new { roleUser = roleUser, role = role })
-            //                     .SelectMany(x => x.role.DefaultIfEmpty(), (t, role) => new { roleUser = t.roleUser, role = role })
-            //                      // Join với bảng User
-            //                      .GroupJoin(_repoAccessor.Users.FindAll(predicateUser),
-            //                         // với điều kiện là khoá chính của User
-            //                         t => new { account = t.roleUser.user_account },
-            //                         user => new { user.account },
-            //                         (t, user) => new { roleUser = t.roleUser, role = t.role, user = user })
-            //                     .SelectMany(x => x.user.DefaultIfEmpty(), (t, user) => new { roleUser = t.roleUser, role = t.role, user = user })
-            //                     // Trả theo dữ liệu cần lấy 
-            //                     .Select(x => new RoleDto()
-            //                     {
-            //                         role_name = x.role.role_name,
-            //                         role_unique = x.roleUser.role_unique,
-            //                     })
-            //                     .ToListAsync();
-
+            
           
         }
         public async Task<PaginationUtility<Users>> LoadData(PaginationParam paginationParams, string account, string name)
@@ -161,9 +125,8 @@ namespace API._Services.Services
                     //tìm account của thằng RoleUserDTO = giá trị của thằng UserRoleDTO
                     roleUserItem.user_account = authors.Account;
                     //tìm role_unique của thằng RoleUserDTO = giá trị  ListRoles
-                    roleUserItem.role_unique = item.role_unique;
-                    //gán giá trị mặc định chi create_by là admin
-                    roleUserItem.create_by = "Admin";
+                    roleUserItem.role_unique = item.role_name;
+                    roleUserItem.create_by = item.user_account;
                     //gán giá trị mặc định chi create_time là ngày hiện tại chỉnh sửa
                     roleUserItem.create_time = DateTime.Now;
                     //thêm roleUserItem vào biến authorsNew

@@ -1,15 +1,13 @@
-import { ChangePasswordComponent } from './../change-password/change-password/change-password.component';
 import { Nav } from './../../_nav';
-import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { INavData } from '@coreui/angular';
 import { AuthService } from '@services/auth/auth.service';
 import { UserLoginParam } from '@models/auth/application-user';
 import { LocalStorageConstants } from '@constants/local-storage.constants';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { NgSnotifyService } from '@services/common/ng-snotify.service';
-import { Role } from '@models/roleUsers';
+import { Role } from '@models/maintain/roleUsers';
 import { CaptionConstants } from '@constants/message.enum';
-import { UpdateInfoComponent } from '../update-info/update-info.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,7 +26,6 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
   constructor(
     private snotifyService: NgSnotifyService,
     private authService: AuthService,
-    private modalService: BsModalService,
     private navItem: Nav
   ) {}
 
@@ -44,11 +41,6 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.snotifyService.success(CaptionConstants.SUCCESS, CaptionConstants.SUCCESS);
   }
-  onChangePassword(template: TemplateRef<any>) {
-    this.bsModalRef = this.modalService.show(ChangePasswordComponent);
-  }
-  onChangeUser(template: TemplateRef<any>) {
-    this.bsModalRef = this.modalService.show(UpdateInfoComponent);
-  }
+
   ngOnDestroy(): void {}
 }

@@ -62,22 +62,5 @@ namespace API.Controllers.Author
                user = userForm 
             });
         }
-         [HttpPut("changespassword")]
-
-        public async Task<ActionResult> Update([FromBody] UserPassword user)
-        {
-            var data = await _authorService.changePassword(user);
-            return Ok(data);
-        }
-
-       [HttpPut("updateuser")]
-        public async Task<ActionResult> UpdateUser([FromBody] UserDTO user)
-        {
-            user.update_time = DateTime.Now;
-            user.update_by = user.name;
-            var data = await _authorService.UpdateUser(user);
-            return Ok(data);
-        }
-
     }
 }

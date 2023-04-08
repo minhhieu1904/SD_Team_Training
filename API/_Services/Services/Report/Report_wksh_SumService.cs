@@ -42,72 +42,15 @@ namespace API._Services.Services.Report
              ).ToListAsync();
             return PaginationUtility<Report_wksh_SumParam>.Create(data, pagination.PageNumber, pagination.PageSize, isPaging);
         }
-         public async Task<List<getBrand>> GetBrand()
+        public async Task<List<getBrand>> GetBrand()
         {
-
             return await _reposioryAccessor.MS_QR_Order.FindAll().Select(x=>new getBrand{
                 brandname = x.brandname,
                 id = x.brandname
             }).Distinct().ToListAsync();
         }
 
-        //#region ExportExcel - Xuất dữ liệu excel
-  
 
-        // private async Task<List<Report_wksh_SumParam>> GetDatas(Report_wksh_SumParam param)
-        // {
-        //     var query = await _reposioryAccessor.MS_QR_Order.FindAll()
-        //                 .Join(_reposioryAccessor.MS_QR_Storage.FindAll(),
-        //                     order => new { order.manuf, order.manno, order.size, order.purno },
-        //                     storage => new { storage.manuf, storage.manno, storage.size, storage.purno },
-        //                     (x, y) => new { order = x, storage = y })
-        //                  .Join(_reposioryAccessor.MS_QR_Sort.FindAll(),
-        //                     x => new { Manuf = x.storage.manuf, x.storage.QRCodeID },
-        //                     sort => new { sort.Manuf, sort.QRCodeID },
-        //                     (x, sort) => new { order = x.order, storage = x.storage, sort = sort })
-        //                  .Select(x => new Report_wksh_SumParam()
-        //                  {
-        //                      mdat = x.order.mdat,
-        //                      is_close = x.storage.qty - x.order.qty == 0 ? "Y": "N",
-        //                      brandname = x.order.brandname,
-        //                      cusid = x.order.cusid,
-        //                      cusna = x.order.cusna,
-        //                      manno = x.order.manno,
-        //                      purno = x.order.purno,
-        //                      rmodel = x.order.rmodel,
-        //                      tolcls = x.order.tolcls,
-        //                      ritnbr = x.order.ritnbr,
-        //                      bitnbr = x.order.bitnbr,
-        //                      kind = x.order.kind,
-        //                      article = x.order.article,
-        //                      eta = x.order.eta,
-        //                      size = x.order.size,
-        //                      qty = x.order.qty,
-        //                      wkshqty = x.order.wkshqty,
-        //                      pqty = x.order.pqty,
-        //                      sort_qty = x.sort.Qty,
-        //                      storage_qty = x.storage.qty,
-        //                      diff_qty = x.sort.Qty - x.storage.qty,
-        //                      cqty = x.order.cqty
-        //                  }).ToListAsync();
-        //     return query;
-        // }
-        // public async Task<byte[]> ExportExcel(PaginationParam pagination, Report_wksh_SumResult_Param param, bool isPaging = true)
-        // {
-        //     List<Report_wksh_SumParam> data = await GetData(pagination, param, false);
-        //     MemoryStream stream = new MemoryStream();
-        //     if (data.Any())
-        //     {
-        //         var path = Path.Combine(_webHostEnvironment.ContentRootPath, "Resources\\Template\\Report\\4.1Report_wksh_Sum\\Report_wksh_Sum.xlsx");
-        //         WorkbookDesigner designer = new WorkbookDesigner();
-        //         designer.Workbook = new Workbook(path);
-        //         Worksheet ws = designer.Workbook.Worksheets[0];
-        //         designer.SetDataSource("query", data);
-        //         designer.Process();
-        //         designer.Workbook.Save(stream, SaveFormat.Xlsx);
-        //     }
-        //     return stream.ToArray();
-        // }
-        // #endregion
+        
     }
 }

@@ -1,12 +1,10 @@
-import { OperationResult } from './../../utilities/operation-result';
-import { ChangePassword } from './../../models/auth/change-password';
 
 import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  updateUsers, UserLoginParam, Userparam } from '../../models/auth/application-user';
+import {  UserLoginParam, Userparam } from '@models/auth/application-user';
 import { LocalStorageConstants } from '@constants/local-storage.constants';
-import { BehaviorSubject, map } from 'rxjs';
+import { map } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -15,8 +13,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   baseUrl = environment.apiUrl + 'C_Auth/';
-  dataSources = new BehaviorSubject<updateUsers>(null);
-  currentDataSource = this.dataSources.asObservable();
 
   jwtHelper = new JwtHelperService();
   constructor(private http: HttpClient
@@ -39,9 +35,7 @@ export class AuthService {
     return JSON.parse(localStorage.getItem(LocalStorageConstants.USER));
   }
 
-  changePassword(model: ChangePassword) {
-    return this.http.put<OperationResult>(this.baseUrl +'changespassword', model);
-  }
+
   loggedIn() {
     const token : string = localStorage.getItem(LocalStorageConstants.TOKEN);
     const roles: string[] = JSON.parse(localStorage.getItem(LocalStorageConstants.ROLES));
@@ -54,10 +48,5 @@ export class AuthService {
     window.location.reload();
   }
 
-  upDate(params: updateUsers) {
-    return this.http.put<OperationResult>(
-      this.baseUrl + 'updateuser',
-      params
-    );
-  }
+
 }

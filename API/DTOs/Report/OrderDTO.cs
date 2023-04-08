@@ -1,6 +1,5 @@
 
 
-using Microsoft.Data.SqlClient;
 
 namespace API.DTOs.Report
 {
@@ -29,5 +28,7 @@ namespace API.DTOs.Report
         public string brandname { get; set; }
 
     }
+    
+    
 
 }

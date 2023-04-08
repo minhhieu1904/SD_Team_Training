@@ -2,11 +2,10 @@
 
 namespace API.Models
 {
-    public class Report_wksh_SumParam
+    public class Report_Sort_SumParam
     {
-      
-        public DateTime mdat { get; set; }
-        public string is_close { get; set; }
+        public DateTime? CrDay { get; set; }
+        public DateTime? mdat { get; set; }
         public string brandname { get; set; }
         public string cusid { get; set; }
         public string cusna { get; set; }
@@ -23,9 +22,7 @@ namespace API.Models
         public decimal? qty { get; set; }
         public decimal? wkshqty { get; set; }
         public decimal? pqty { get; set; }
-        public decimal sort_qty { get; set; }
-        public decimal storage_qty { get; set; }
-
+        public decimal? sort_qty { get; set; }
         public decimal? diff_qty { get; set; }
         public decimal? cqty { get; set; }
     }

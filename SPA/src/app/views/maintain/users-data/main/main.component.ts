@@ -5,9 +5,9 @@ import { IconButton } from '@constants/common.constants';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { UserRole, Users } from '@models/roleUsers';
+import { UserRole, Users } from '@models/maintain/roleUsers';
 import { Pagination } from '@utilities/pagination-utility';
-import { UsersService } from '@services/Maintain/users.service';
+import { UsersService } from '@services/maintain/users.service';
 
 @Component({
   selector: 'app-main',

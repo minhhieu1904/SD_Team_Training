@@ -10,6 +10,14 @@ const routes: Routes = [
     data: {
         role: getInfoMenu('4.1')?.unique
     }
+  },
+  {
+    path: 'sort-sum-report',
+    loadChildren: () => import('./report-sort-sum/report-sort-sum.module')
+      .then((m) => m.ReportSortSumModule),
+    data: {
+        role: getInfoMenu('4.2')?.unique
+    }
   }
 ];
 

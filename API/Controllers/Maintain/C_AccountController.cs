@@ -29,7 +29,7 @@ namespace API.Controllers.Maintain
         [HttpPost("add")]
         public async Task<ActionResult> Add([FromBody] UserDTO user)
         {
-            user.update_by = "admin";
+            user.update_by = userName;
             user.update_time = DateTime.Now;
             var data = await _userRoledata.Add(user);
             return Ok(data);
@@ -38,8 +38,8 @@ namespace API.Controllers.Maintain
         [HttpPut("update")]
         public async Task<ActionResult> Update([FromBody] UserDTO user)
         {
+            user.update_by = userName;
             user.update_time = DateTime.Now;
-            user.update_by = "admin";
             var data = await _userRoledata.Update(user);
             return Ok(data);
         }
@@ -54,6 +54,7 @@ namespace API.Controllers.Maintain
         [HttpPut("UpdateAuthorizeByUser")]
         public async Task<IActionResult> UpdateAuthorizeByUser([FromBody] UserRoleDTO authors)
         {
+            
             var result = await _userRoledata.UpdateAuthorization(authors);
             return Ok(result);
         }

@@ -1,7 +1,6 @@
-import { LocalStorageConstants } from '@constants/local-storage.constants';
-import { AuthService } from './../../_core/services/auth/auth.service';
-import { CaptionConstants, MessageConstants } from './../../_core/constants/message.enum';
-import { UserLoginParam } from './../../_core/models/auth/application-user';
+import { AuthService } from '@services/auth/auth.service';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { UserLoginParam } from '@models/auth/application-user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgSnotifyService } from '@services/common/ng-snotify.service';

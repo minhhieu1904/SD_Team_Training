@@ -4,7 +4,7 @@ import { Pagination } from '@utilities/pagination-utility';
 import { InjectBase } from '@utilities/inject-base-app';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { IconButton } from '@constants/common.constants';
-import { MS_Package, MS_PackageParam } from '@models/package';
+import { MS_Package, MS_PackageParam } from '@models/maintain/package';
 import { Package_dataService } from '@services/maintain/package_data.service';
 
 

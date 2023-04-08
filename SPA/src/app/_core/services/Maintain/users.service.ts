@@ -2,7 +2,7 @@ import { Pagination, PaginationResult } from '@utilities/pagination-utility';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { UserRole, Users } from '@models/roleUsers';
+import { UserRole, Users } from '@models/maintain/roleUsers';
 import { environment } from '@env/environment';
 import { OperationResult } from '@utilities/operation-result';
 

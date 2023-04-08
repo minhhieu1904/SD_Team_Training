@@ -24,6 +24,7 @@ namespace API.Configurations
             services.AddScoped<IUserRoleServices, UserRoleServices>();
             services.AddScoped<IAuthorService, AuthorService>();
             services.AddScoped<IReport_wksh_SumService, Report_wksh_SumService>();
+            services.AddScoped<IReport_Sort_Sumservice, Report_Sort_Sumservice>();
 
         }
     }

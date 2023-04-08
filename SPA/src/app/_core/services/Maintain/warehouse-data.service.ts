@@ -1,7 +1,7 @@
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { MS_Location, MS_LocationParam } from '@models/warehouse';
+import { MS_Location, MS_LocationParam } from '@models/maintain/warehouse';
 import { OperationResult } from '@utilities/operation-result';
 import { Pagination, PaginationResult } from '@utilities/pagination-utility';
 import { BehaviorSubject } from 'rxjs';

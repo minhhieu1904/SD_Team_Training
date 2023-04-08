@@ -1,8 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { IconButton } from '@constants/common.constants';
-import { Users } from '@models/roleUsers';
-import { UsersService } from '@services/Maintain/users.service';
+import { Users } from '@models/maintain/roleUsers';
+import { UsersService } from '@services/maintain/users.service';
 import { InjectBase } from '@utilities/inject-base-app';
 
 

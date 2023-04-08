@@ -3,8 +3,8 @@ import { InjectBase } from '@utilities/inject-base-app';
 
 import { Component, OnInit } from '@angular/core';
 
-import { MS_Shift, MS_ShiftParam } from '@models/shift';
-import { Shift_dataService } from '@services/Maintain/shift_data.service';
+import { MS_Shift, MS_ShiftParam } from '@models/maintain/shift';
+import { Shift_dataService } from '@services/maintain/shift_data.service';
 
 import { Pagination } from '@utilities/pagination-utility';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';

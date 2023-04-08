@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { MS_Package, MS_PackageParam } from '@models/package';
+import { MS_Package, MS_PackageParam } from '@models/maintain/package';
 import { OperationResult } from '@utilities/operation-result';
 import { Pagination, PaginationResult } from '@utilities/pagination-utility';
 import { BehaviorSubject } from 'rxjs';

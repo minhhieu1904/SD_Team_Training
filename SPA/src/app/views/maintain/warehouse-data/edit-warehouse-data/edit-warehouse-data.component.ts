@@ -2,8 +2,8 @@
 import { InjectBase } from '@utilities/inject-base-app';
 import { Component, OnInit } from '@angular/core';
 import { IconButton } from '@constants/common.constants';
-import { MS_LocationParam } from '@models/warehouse';
-import { WarehouseDataService } from '@services/Maintain/warehouse-data.service';
+import { MS_LocationParam } from '@models/maintain/warehouse';
+import { WarehouseDataService } from '@services/maintain/warehouse-data.service';
 
 @Component({
   selector: 'app-edit-warehouse-data',

@@ -2,7 +2,7 @@
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { MS_Shift, MS_ShiftParam } from '@models/shift';
+import { MS_Shift, MS_ShiftParam } from '@models/maintain/shift';
 import { OperationResult } from '@utilities/operation-result';
 import { Pagination, PaginationResult } from '@utilities/pagination-utility';
 

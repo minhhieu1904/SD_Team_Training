@@ -4,8 +4,8 @@ import { Pagination } from '@utilities/pagination-utility';
 import { InjectBase } from '@utilities/inject-base-app';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { IconButton } from '@constants/common.constants';
-import { MS_Location, MS_LocationParam } from '@models/warehouse';
-import { WarehouseDataService } from '@services/Maintain/warehouse-data.service';
+import { MS_Location, MS_LocationParam } from '@models/maintain/warehouse';
+import { WarehouseDataService } from '@services/maintain/warehouse-data.service';
 
 @Component({
   selector: 'app-main',
