@@ -31,37 +31,37 @@ namespace API._Repositories
             Users = new Users_Repository(_dbContext);
         }
 
-         public IMS_Department_Repository MS_Department {get; set;}
+        public IMS_Department_Repository MS_Department { get; set; }
 
-        public IMS_Location_Repository MS_Location {get; set;}
+        public IMS_Location_Repository MS_Location { get; set; }
 
-        public IMS_Package_Repository MS_Package {get; set;}
+        public IMS_Package_Repository MS_Package { get; set; }
 
-        public IMS_QR_Cycle_Repository MS_QR_Cycle {get; set;}
+        public IMS_QR_Cycle_Repository MS_QR_Cycle { get; set; }
 
-        public IMS_QR_Label_Repository MS_QR_Label {get; set;}
+        public IMS_QR_Label_Repository MS_QR_Label { get; set; }
 
-        public IMS_QR_Order_Log_OnlyForST_Repository MS_QR_Order_Log_OnlyForST {get; set;}
+        public IMS_QR_Order_Log_OnlyForST_Repository MS_QR_Order_Log_OnlyForST { get; set; }
 
-        public IMS_QR_Order_Repository MS_QR_Order {get; set;}
+        public IMS_QR_Order_Repository MS_QR_Order { get; set; }
 
-        public IMS_QR_PickingDetail_Repository MS_QR_PickingDetail {get; set;}
+        public IMS_QR_PickingDetail_Repository MS_QR_PickingDetail { get; set; }
 
-        public IMS_QR_PickingMain_Repository MS_QR_PickingMain {get; set;}
+        public IMS_QR_PickingMain_Repository MS_QR_PickingMain { get; set; }
 
-        public IMS_QR_Sort_Repository MS_QR_Sort {get; set;}
+        public IMS_QR_Sort_Repository MS_QR_Sort { get; set; }
 
-        public IMS_QR_Storage_Repository MS_QR_Storage {get; set;}
+        public IMS_QR_Storage_Repository MS_QR_Storage { get; set; }
 
-        public IMS_QR_StorageOut_Repository MS_QR_StorageOut {get; set;}
+        public IMS_QR_StorageOut_Repository MS_QR_StorageOut { get; set; }
 
-        public IMS_Shift_Repository MS_Shift {get; set;}
+        public IMS_Shift_Repository MS_Shift { get; set; }
 
-        public IRoles_Repository Roles {get; set;}
+        public IRoles_Repository Roles { get; set; }
 
-        public IRoleUser_Repository RoleUser {get; set;}
+        public IRoleUser_Repository RoleUser { get; set; }
 
-        public IUsers_Repository Users {get; set;}
+        public IUsers_Repository Users { get; set; }
 
         // public IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;set;}
         public async Task<bool> Save()

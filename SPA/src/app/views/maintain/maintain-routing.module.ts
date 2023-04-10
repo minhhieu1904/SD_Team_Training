@@ -16,6 +16,13 @@ const routes: Routes = [
         './location-data-maintenance/location-data-maintenance.module'
       ).then((m) => m.LocationDataMaintenanceModule),
   },
+  {
+    path: 'department-data-maintenace',
+    loadChildren: () =>
+      import(
+        './department-data-maintenance/department-data-maintenance.module'
+      ).then((m) => m.DepartmentDataMaintenanceModule),
+  },
 ];
 
 @NgModule({

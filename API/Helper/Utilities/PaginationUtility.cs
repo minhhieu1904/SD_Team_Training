@@ -33,7 +33,6 @@ namespace SD3_API.Helpers.Utilities
 
             return new PaginationUtility<T>(items, count, pageNumber, pageSize, skip);
         }
-
         internal static PaginationUtility<MS_Shift_DTO> CreateAsync(IQueryable<MS_Shift> data, int pageNumber, int pageSize)
         {
             throw new NotImplementedException();
