@@ -1,4 +1,4 @@
-export interface SearchForPackingScanParam {
+export interface WkshSumReportParam {
     mdat_start: string;
     mdat_end: string;
     close_status: string;

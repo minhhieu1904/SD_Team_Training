@@ -22,6 +22,10 @@ namespace API._Repositories
         public I_RoleUser_Repository RoleUser { get; }
 
         public I_MS_QrOrder_Repository MS_QrOrder { get; }
+
+        public I_MS_QrSort_Repository MS_QrSort { get; }
+        
+        public I_MS_QrLabel_Repository MS_QrLabel { get; }
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

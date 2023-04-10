@@ -1,6 +1,7 @@
 using API.Models;
 using Microsoft.EntityFrameworkCore;
 using API.DTOs;
+using API.DTOs.Report;
 
 namespace API.Data
 {
@@ -10,9 +11,9 @@ namespace API.Data
         {
         }
 
-        public DBContext(DbContextOptions<DBContext> options)
-            : base(options)
+       public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
+            Database.SetCommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds);
         }
 
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
@@ -38,11 +39,12 @@ namespace API.Data
         public virtual DbSet<RoleUser> RoleUsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-        public virtual DbSet<SearchForPackingScanDTO> SearchForPackingScans {get; set;}
+        public virtual DbSet<WkshSumReportDTO> SearchForPackingScans { get; set; }
+        public virtual DbSet<SortSumReportDTO> SortSumReports { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -153,7 +155,7 @@ namespace API.Data
 
             modelBuilder.Entity<MsQrLabel>(entity =>
             {
-                entity.HasKey(e => new { e.Manuf, e.QrcodeId })
+                entity.HasKey(e => new { e.Manuf, e.QRCodeID })
                     .HasName("PK_MS_QR_Label_1");
 
                 entity.Property(e => e.Flag).HasDefaultValueSql("('Y')");
@@ -162,15 +164,15 @@ namespace API.Data
 
                 entity.Property(e => e.ManNo).HasDefaultValueSql("(N'ManNo')");
 
-                entity.Property(e => e.PrtCnt).HasDefaultValueSql("((1))");
+                entity.Property(e => e.Prt_Cnt).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Prtno).HasComment("列印單號");
+                entity.Property(e => e.prtno).HasComment("列印單號");
 
-                entity.Property(e => e.QrcodeValue).HasComputedColumnSql("(((((((((((((((([ManNo]+',')+[PurNo])+',')+[Size])+',')+CONVERT([nvarchar](5),[Qty]))+',')+CONVERT([nvarchar](5),[Serial]))+',')+[wkshno])+',')+[prtno])+',')+[empno])+',')+[Grade])", false);
+                entity.Property(e => e.QRCodeValue).HasComputedColumnSql("(((((((((((((((([ManNo]+',')+[PurNo])+',')+[Size])+',')+CONVERT([nvarchar](5),[Qty]))+',')+CONVERT([nvarchar](5),[Serial]))+',')+[wkshno])+',')+[prtno])+',')+[empno])+',')+[Grade])", false);
 
                 entity.Property(e => e.Type).HasDefaultValueSql("('A')");
 
-                entity.Property(e => e.Wkshno).HasComment("派工單號");
+                entity.Property(e => e.wkshno).HasComment("派工單號");
             });
 
             modelBuilder.Entity<MsQrOrder>(entity =>
@@ -404,10 +406,12 @@ namespace API.Data
                     .HasName("PK_RoleUser_1");
             });
 
-             modelBuilder.Entity<SearchForPackingScanDTO>(entity =>
-            {
-                entity.HasKey(e => new { e.purno, e.manno, e.size });
-            });
+            modelBuilder.Entity<WkshSumReportDTO>(entity =>
+           {
+               entity.HasKey(e => new { e.purno, e.manno, e.size });
+           });
+
+            modelBuilder.Entity<SortSumReportDTO>().HasNoKey();
 
             OnModelCreatingPartial(modelBuilder);
         }

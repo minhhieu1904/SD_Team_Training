@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { InjectBase } from '@utilities/inject-base-app';
-import { SearchForPackingScanService } from '@services/report/search-for-packing-scan.service';
+import { WkshSumReportService } from '@services/report/wksh-sum-report.service';
 import { MsQrOrder } from '@models/report/msQrOrder';
 import { KeyValuePair } from '@utilities/key-value-pair';
 import { Pagination } from '@utilities/pagination-utility';
-import { SearchForPackingScanParam } from '@models/report/searchForPackingScanParam';
+import { WkshSumReportParam } from '@models/report/wkshSumReportParam';
 import { IconButton } from '@constants/sd-team.utility';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
@@ -28,7 +28,7 @@ export class MainComponent extends InjectBase implements OnInit {
     pageSize: 10,
   };
 
-  param: SearchForPackingScanParam;
+  param: WkshSumReportParam;
 
   bsConfig?: Partial<BsDatepickerConfig>;
   dateFrom_mdat;
@@ -36,7 +36,7 @@ export class MainComponent extends InjectBase implements OnInit {
   dateFrom_eta;
   dateTo_eta;
   iconButton = IconButton;
-  constructor(private service: SearchForPackingScanService) {
+  constructor(private service: WkshSumReportService) {
     super();
   }
 
@@ -87,7 +87,7 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   createParam() {
-    this.param = <SearchForPackingScanParam>{
+    this.param = <WkshSumReportParam>{
       mdat_start: '',
       mdat_end: '',
       close_status: '',
@@ -125,6 +125,7 @@ export class MainComponent extends InjectBase implements OnInit {
     this.spinnerService.show();
     this.service.exportExcel(this.param).subscribe({
       next: (result) => {
+        this.spinnerService.hide();
         const curDate = new Date();
         let fileName =
           'DevelopmentOrder' +

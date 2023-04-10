@@ -1,6 +1,6 @@
 namespace API.DTOs
 {
-    public class SearchForPackingScanDTO
+    public class WkshSumReportDTO
     {
 
         public DateTime mdat { get; set; }

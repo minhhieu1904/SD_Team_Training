@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces;
 using API.Data;
@@ -13,7 +9,7 @@ using SD3_API.Helpers.Utilities;
 
 namespace API._Services.Services.Report
 {
-    public class S_SearchForPackingScanServices : I_SearchForPackingScanServices
+    public class S_WkshSumReportServices : I_WkshSumReportServices
     {
         private readonly IRepositoryAccessor _repositoryAccessor;
 
@@ -21,14 +17,14 @@ namespace API._Services.Services.Report
 
         public DBContext _dbContext;
 
-        public S_SearchForPackingScanServices(IRepositoryAccessor repositoryAccessor, DBContext dbContext, IWebHostEnvironment environment)
+        public S_WkshSumReportServices(IRepositoryAccessor repositoryAccessor, DBContext dbContext, IWebHostEnvironment environment)
         {
             _repositoryAccessor = repositoryAccessor;
             _dbContext = dbContext;
             _environment = environment;
         }
 
-        public async Task<byte[]> ExportExcel(SearchForPackingScanParam param)
+        public async Task<byte[]> ExportExcel(WkshSumReportParam param)
         {
             var data = await GetData(param);
 
@@ -60,7 +56,7 @@ namespace API._Services.Services.Report
             .Select(x => new BrandDTO { brandname = x.Brandname, id = x.Brandname }).Distinct().ToListAsync();
         }
 
-        public async Task<List<SearchForPackingScanDTO>> GetData(SearchForPackingScanParam param)
+        public async Task<List<WkshSumReportDTO>> GetData(WkshSumReportParam param)
         {
             return await _dbContext.SearchForPackingScans.FromSqlRaw
             ("EXEC Report_wksh_Sum @p_mdat_start, @p_mdat_end, @p_close_status, @p_brand, @p_code_of_customer, @p_planning_no, @p_mold_num, @p_tolcls, @p_purchase_no, @p_material_code, @p_kind, @p_etd_start, @p_etd_end, @p_size",
@@ -81,10 +77,10 @@ namespace API._Services.Services.Report
             ).ToListAsync();
         }
 
-        public async Task<PaginationUtility<SearchForPackingScanDTO>> GetDataPagination(PaginationParam pagination, SearchForPackingScanParam param)
+        public async Task<PaginationUtility<WkshSumReportDTO>> GetDataPagination(PaginationParam pagination, WkshSumReportParam param)
         {
             var data = await GetData(param);
-            return PaginationUtility<SearchForPackingScanDTO>.Create(data, pagination.PageNumber, pagination.PageSize);
+            return PaginationUtility<WkshSumReportDTO>.Create(data, pagination.PageNumber, pagination.PageSize);
         }
 
 

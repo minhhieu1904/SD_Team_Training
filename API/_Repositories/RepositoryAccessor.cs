@@ -21,7 +21,9 @@ namespace API._Repositories
             User = new User_Repository(_dbContext);
             Role = new Role_Repository(dbContext);
             RoleUser = new RoleUser_Repository(dbContext);
-            MS_QrOrder = new MS_QrOrder_Repository(dbContext); 
+            MS_QrOrder = new MS_QrOrder_Repository(dbContext);
+            MS_QrSort = new MS_QrSort_Repository(dbContext);
+            MS_QrLabel = new MS_QrLabel_Repository(dbContext);
         }
 
         // public IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;set;}
@@ -33,6 +35,8 @@ namespace API._Repositories
         public I_Role_Repository Role { get; set; }
         public I_RoleUser_Repository RoleUser { get; set; }
         public I_MS_QrOrder_Repository MS_QrOrder { get; set; }
+        public I_MS_QrSort_Repository MS_QrSort { get; set; }
+        public I_MS_QrLabel_Repository MS_QrLabel { get; set; }
         public async Task<bool> Save()
         {
             return await _dbContext.SaveChangesAsync() > 0;

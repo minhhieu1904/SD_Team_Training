@@ -156,7 +156,7 @@ namespace API.Models
 
             modelBuilder.Entity<MsQrLabel>(entity =>
             {
-                entity.HasKey(e => new { e.Manuf, e.QrcodeId })
+                entity.HasKey(e => new { e.Manuf, e.QRCodeID })
                     .HasName("PK_MS_QR_Label_1");
 
                 entity.Property(e => e.Flag).HasDefaultValueSql("('Y')");
@@ -165,15 +165,15 @@ namespace API.Models
 
                 entity.Property(e => e.ManNo).HasDefaultValueSql("(N'ManNo')");
 
-                entity.Property(e => e.PrtCnt).HasDefaultValueSql("((1))");
+                entity.Property(e => e.Prt_Cnt).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Prtno).HasComment("列印單號");
+                entity.Property(e => e.prtno).HasComment("列印單號");
 
-                entity.Property(e => e.QrcodeValue).HasComputedColumnSql("(((((((((((((((([ManNo]+',')+[PurNo])+',')+[Size])+',')+CONVERT([nvarchar](5),[Qty]))+',')+CONVERT([nvarchar](5),[Serial]))+',')+[wkshno])+',')+[prtno])+',')+[empno])+',')+[Grade])", false);
+                entity.Property(e => e.QRCodeValue).HasComputedColumnSql("(((((((((((((((([ManNo]+',')+[PurNo])+',')+[Size])+',')+CONVERT([nvarchar](5),[Qty]))+',')+CONVERT([nvarchar](5),[Serial]))+',')+[wkshno])+',')+[prtno])+',')+[empno])+',')+[Grade])", false);
 
                 entity.Property(e => e.Type).HasDefaultValueSql("('A')");
 
-                entity.Property(e => e.Wkshno).HasComment("派工單號");
+                entity.Property(e => e.wkshno).HasComment("派工單號");
             });
 
             modelBuilder.Entity<MsQrOrder>(entity =>

@@ -5,9 +5,16 @@ const routes: Routes = [
   {
     path: 'wksh-sum-report',
     loadChildren: () =>
-      import(
-        '../report/search-for-packing-scan/search-for-packing-scan.module'
-      ).then((m) => m.SearchForPackingScanModule),
+      import('../report/wksh-sum-report/wksh-sum-report.module').then(
+        (m) => m.WkshSumReportModule
+      ),
+  },
+  {
+    path: 'sort-sum-report',
+    loadChildren: () =>
+      import('../report/sort-sum-report/sort-sum-report.module').then(
+        (m) => m.SortSumReportModule
+      ),
   },
 ];
 

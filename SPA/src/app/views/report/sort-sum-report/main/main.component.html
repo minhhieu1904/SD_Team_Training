@@ -2,7 +2,7 @@
   <div class="card-header">
     <div class="row">
       <div class="col-md-10">
-        <h5>4.1 Wksh Sum Report</h5>
+        <h5>4.2 Sort Sum Report</h5>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -12,8 +12,17 @@
     <div class="row border-shadow">
       <!--  dòng 1 -->
       <div class="row">
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <span class="badge badge-warning"> Production Date</span>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">Date Kind</span>
+
+          <div class="form-group">
+            <ng-select [(ngModel)]="param.date_kind">
+              <ng-option *ngFor="let item of actives" [value]="item.key">{{item.value}}</ng-option>
+            </ng-select>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning"> Date</span>
           <div class="input-group">
             <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
               [maxDate]="dateTo_mdat" [(ngModel)]="dateFrom_mdat" bsDatepicker>
@@ -28,62 +37,54 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <span class="badge badge-warning">Close Stauts</span>
-          <!-- <div class="col"> -->
-          <div class="form-group">
-            <ng-select [(ngModel)]="param.close_status">
-              <ng-option *ngFor="let item of actives" [value]="item.key">{{item.value}}</ng-option>
-            </ng-select>
-          </div>
-          <!-- </div> -->
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
           <span class="badge badge-warning">Brand</span>
-          <!-- <div class="col"> -->
+
           <div class="form-group">
-            <ng-select name="brandname" id="Brand" [(ngModel)]="param.brandname">
+            <ng-select name="brandname" id="Brand" [(ngModel)]="param.brand">
               <ng-option *ngFor="let item of brand" [value]="item.id">{{item.brandname}}</ng-option>
             </ng-select>
           </div>
-          <!-- </div> -->
+
         </div>
-        <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
           <span class="badge badge-warning">Code of Customer</span>
           <input placeholder="Code of Customer..." type="text" name="Code" class="form-control"
-            [(ngModel)]="param.cusna">
+            [(ngModel)]="param.cusid">
         </div>
-      <!--  dòng 2 -->
-        <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <!--  dòng 2 -->
+
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
           <span class="badge badge-warning">Planning No</span>
           <input placeholder="Planning No..." type="text" name="Planning" class="form-control"
             [(ngModel)]="param.manno">
         </div>
-        <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <span class="badge badge-warning">Purchase No</span>
-          <input placeholder="Purchase No..." type="text" name="Purchase" class="form-control"
-            [(ngModel)]="param.purno">
-        </div>
-        <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
           <span class="badge badge-warning">Mold Number</span>
           <input placeholder="Mold Number..." type="text" name="Mold" class="form-control" [(ngModel)]="param.rmodel">
         </div>
-        <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
           <span class="badge badge-warning">tolcls</span>
           <input placeholder="tolcls..." type="text" name="tolcls" class="form-control" [(ngModel)]="param.tolcls">
         </div>
-      <!--  dòng 3 -->
-      
-        <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">Purchase No</span>
+          <input placeholder="Purchase No..." type="text" name="Purchase" class="form-control"
+            [(ngModel)]="param.purchase_no">
+        </div>
+        <!--  dòng 3 -->
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
           <span class="badge badge-warning">Material Code Bottom</span>
           <input placeholder="Material Code Bottom..." type="text" name="Material" class="form-control"
-            [(ngModel)]="param.bitnbr">
+            [(ngModel)]="param.material">
         </div>
-        <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
           <span class="badge badge-warning">Kind</span>
           <input placeholder="Kind..." type="text" name="Kind" class="form-control" [(ngModel)]="param.kind">
         </div>
-        <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
           <span class="badge badge-warning">Confirmed Delivery Date</span>
           <div class="input-group ml-1">
             <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
@@ -99,21 +100,21 @@
             </div>
           </div>
         </div>
-        <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
           <span class="badge badge-warning">Size</span>
           <input placeholder="Size..." type="text" name="Size" class="form-control" [(ngModel)]="param.size">
         </div>
 
-
-      <!--  dòng 4 -->
-      
-        <div class="col-md-10">
+        <!--  dòng 4 -->
+        <div class="col-md-12">
           <button class="btn btn-success mr-2 " (click)="search()">
             <i class="{{iconButton.SEARCH}}"></i> Search </button>
           <button class="btn btn-danger mr-2 " (click)="clear()">
             <i class="{{iconButton.CLEAR}}"></i> Clear </button>
-          <button class="btn btn-primary " (click)="exportExcel()">
+          <button class="btn btn-primary mr-2 " (click)="exportExcel()">
             <i class="{{iconButton.EXCEL}}"></i> Export Excel </button>
+          <button class="btn btn-primary " disabled="disabled" id="btnDetailExcel" (click)="exportDetailExcel()">
+            <i class="{{iconButton.EXCEL}}"></i> Export Detail Excel </button>
         </div>
       </div>
     </div>
@@ -126,8 +127,9 @@
         <table class="table table-bordered">
           <thead>
             <tr>
+              <th class="text-center" scope="col"></th>
+              <th class="text-center" scope="col">Create day</th>
               <th class="text-center" scope="col">Production_Date</th>
-              <th class="text-center" scope="col">Close Stauts</th>
               <th class="text-center" scope="col">Brand</th>
               <th class="text-center" scope="col">Code of Customer</th>
               <th class="text-center" scope="col">Name of Customer</th>
@@ -146,16 +148,23 @@
               <th class="text-center" scope="col">wkshqty</th>
               <th class="text-center" scope="col">Printed Quantity</th>
               <th class="text-center" scope="col">Sort scan Qty</th>
-              <th class="text-center" scope="col">Storage scan Qty</th>
               <th class="text-center" scope="col">Differences Qty</th>
               <th class="text-center" scope="col">Cancel priting quantity</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr *ngFor="let items of data ">
+            <tr *ngFor="let items of data; let i= index" [ngClass]="{'table-warning': items.checked}">
+              <td class="text-center">
+                <div class="custom-control custom-checked">
+                  <input type="checkbox" class="custom-control-input" [id]="'checked_'+i" [name]="'checked_'+i"
+                    [ngModel]="selectedIndex === i" (click)="changeSelection($event,i)">
+                  <label class="custom-control-label" [for]="'checked_'+i"></label>
+                </div>
+              </td>
+
+              <td class="text-center" scope="col">{{items.create_date}}</td>
               <td class="text-center" scope="col">{{items.mdat | date : "dd-MM-yyyy"}}</td>
-              <td class="text-center" scope="col">{{items.is_close}}</td>
               <td class="text-center" scope="col">{{items.brandname}}</td>
               <td class="text-center" scope="col">{{items.cusid}}</td>
               <td class="text-center" scope="col">{{items.cusna}}</td>
@@ -174,7 +183,6 @@
               <td class="text-center" scope="col">{{items.wkshqty}}</td>
               <td class="text-center" scope="col">{{items.pqty}}</td>
               <td class="text-center" scope="col">{{items.sort_qty}}</td>
-              <td class="text-center" scope="col">{{items.storage_qty}}</td>
               <td class="text-center" scope="col">{{items.diff_qty}}</td>
               <td class="text-center" scope="col">{{items.cqty}}</td>
             </tr>

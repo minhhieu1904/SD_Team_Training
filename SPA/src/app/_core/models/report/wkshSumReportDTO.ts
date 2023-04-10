@@ -1,4 +1,4 @@
-export interface SearchForPackingScanDTO {
+export interface WkshSumReportDTO {
     mdat: string;
     is_close: string;
     brandname: string;

@@ -1,0 +1,198 @@
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10">
+          <h5>4.1 Wksh Sum Report</h5>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+  
+    </div>
+    <div class="card-body">
+      <div class="row border-shadow">
+        <!--  dòng 1 -->
+        <div class="row">
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning"> Production Date</span>
+            <div class="input-group">
+              <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
+                [maxDate]="dateTo_mdat" [(ngModel)]="dateFrom_mdat" bsDatepicker>
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+              </div>
+              <label> &nbsp;</label>
+              <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig" class="form-control"
+                [minDate]="dateFrom_mdat" [(ngModel)]="dateTo_mdat" bsDatepicker>
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Close Stauts</span>
+            <!-- <div class="col"> -->
+            <div class="form-group">
+              <ng-select [(ngModel)]="param.close_status">
+                <ng-option *ngFor="let item of actives" [value]="item.key">{{item.value}}</ng-option>
+              </ng-select>
+            </div>
+            <!-- </div> -->
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Brand</span>
+            <!-- <div class="col"> -->
+            <div class="form-group">
+              <ng-select name="brandname" id="Brand" [(ngModel)]="param.brandname">
+                <ng-option *ngFor="let item of brand" [value]="item.id">{{item.brandname}}</ng-option>
+              </ng-select>
+            </div>
+            <!-- </div> -->
+          </div>
+          <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Code of Customer</span>
+            <input placeholder="Code of Customer..." type="text" name="Code" class="form-control"
+              [(ngModel)]="param.cusna">
+          </div>
+        <!--  dòng 2 -->
+          <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Planning No</span>
+            <input placeholder="Planning No..." type="text" name="Planning" class="form-control"
+              [(ngModel)]="param.manno">
+          </div>
+          <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Purchase No</span>
+            <input placeholder="Purchase No..." type="text" name="Purchase" class="form-control"
+              [(ngModel)]="param.purno">
+          </div>
+          <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Mold Number</span>
+            <input placeholder="Mold Number..." type="text" name="Mold" class="form-control" [(ngModel)]="param.rmodel">
+          </div>
+          <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">tolcls</span>
+            <input placeholder="tolcls..." type="text" name="tolcls" class="form-control" [(ngModel)]="param.tolcls">
+          </div>
+        <!--  dòng 3 -->
+        
+          <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Material Code Bottom</span>
+            <input placeholder="Material Code Bottom..." type="text" name="Material" class="form-control"
+              [(ngModel)]="param.bitnbr">
+          </div>
+          <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Kind</span>
+            <input placeholder="Kind..." type="text" name="Kind" class="form-control" [(ngModel)]="param.kind">
+          </div>
+          <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Confirmed Delivery Date</span>
+            <div class="input-group ml-1">
+              <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
+                [maxDate]="dateTo_eta" [(ngModel)]="dateFrom_eta" bsDatepicker>
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+              </div>
+              <label> &nbsp;</label>
+              <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig" class="form-control"
+                [minDate]="dateFrom_eta" [(ngModel)]="dateTo_eta" bsDatepicker>
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="pb-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <span class="badge badge-warning">Size</span>
+            <input placeholder="Size..." type="text" name="Size" class="form-control" [(ngModel)]="param.size">
+          </div>
+  
+  
+        <!--  dòng 4 -->
+        
+          <div class="col-md-10">
+            <button class="btn btn-success mr-2 " (click)="search()">
+              <i class="{{iconButton.SEARCH}}"></i> Search </button>
+            <button class="btn btn-danger mr-2 " (click)="clear()">
+              <i class="{{iconButton.CLEAR}}"></i> Clear </button>
+            <button class="btn btn-primary " (click)="exportExcel()">
+              <i class="{{iconButton.EXCEL}}"></i> Export Excel </button>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+    <div class="card-body">
+      <!--  -->
+      <div style="overflow-x: auto">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">Production_Date</th>
+                <th class="text-center" scope="col">Close Stauts</th>
+                <th class="text-center" scope="col">Brand</th>
+                <th class="text-center" scope="col">Code of Customer</th>
+                <th class="text-center" scope="col">Name of Customer</th>
+                <th class="text-center" scope="col">Planning No.</th>
+                <th class="text-center" scope="col">Purchase No.</th>
+                <th class="text-center" scope="col">Mold Number</th>
+                <th class="text-center" scope="col">tolcls</th>
+                <th class="text-center" scope="col">Material Code Shoes</th>
+                <th class="text-center" scope="col">Material Code Bottom</th>
+                <th class="text-center" scope="col">Type of Order</th>
+                <th class="text-center" scope="col">Article</th>
+                <th class="text-center" scope="col">Kind</th>
+                <th class="text-center" scope="col">Confirmed Delivery Date</th>
+                <th class="text-center" scope="col">Size</th>
+                <th class="text-center" scope="col">Order Quantity</th>
+                <th class="text-center" scope="col">wkshqty</th>
+                <th class="text-center" scope="col">Printed Quantity</th>
+                <th class="text-center" scope="col">Sort scan Qty</th>
+                <th class="text-center" scope="col">Storage scan Qty</th>
+                <th class="text-center" scope="col">Differences Qty</th>
+                <th class="text-center" scope="col">Cancel priting quantity</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              <tr *ngFor="let items of data ">
+                <td class="text-center" scope="col">{{items.mdat | date : "dd-MM-yyyy"}}</td>
+                <td class="text-center" scope="col">{{items.is_close}}</td>
+                <td class="text-center" scope="col">{{items.brandname}}</td>
+                <td class="text-center" scope="col">{{items.cusid}}</td>
+                <td class="text-center" scope="col">{{items.cusna}}</td>
+                <td class="text-center" scope="col">{{items.manno}}</td>
+                <td class="text-center" scope="col">{{items.purno}}</td>
+                <td class="text-center" scope="col">{{items.rmodel}}</td>
+                <td class="text-center" scope="col">{{items.tolcls}}</td>
+                <td class="text-center" scope="col">{{items.ritnbr}}</td>
+                <td class="text-center" scope="col">{{items.bitnbr}}</td>
+                <td class="text-center" scope="col">{{items.kind}}</td>
+                <td class="text-center" scope="col">{{items.article}}</td>
+                <td class="text-center" scope="col">{{items.kind}}</td>
+                <td class="text-center" scope="col">{{items.eta | date : "dd-MM-yyyy"}}</td>
+                <td class="text-center" scope="col">{{items.size}}</td>
+                <td class="text-center" scope="col">{{items.qty}}</td>
+                <td class="text-center" scope="col">{{items.wkshqty}}</td>
+                <td class="text-center" scope="col">{{items.pqty}}</td>
+                <td class="text-center" scope="col">{{items.sort_qty}}</td>
+                <td class="text-center" scope="col">{{items.storage_qty}}</td>
+                <td class="text-center" scope="col">{{items.diff_qty}}</td>
+                <td class="text-center" scope="col">{{items.cqty}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      <div class="d-flex" *ngIf="data.length > 0">
+        <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+          previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+          [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+        </pagination>
+        <span class="cs-page ml-2">
+          Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
+        </span>
+      </div>
+    </div>
+  
+  </div>
