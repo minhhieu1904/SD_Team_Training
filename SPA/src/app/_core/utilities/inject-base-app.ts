@@ -1,7 +1,7 @@
+import { NgSnotifyService } from '@services/ng-snotify.service';
 import { inject } from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import { DestroyService } from "@services/common/destroy.service";
-import { NgSnotifyService } from '@services/common/ng-snotify.service';
+import { DestroyService } from "@services/destroy.service";
 import { FunctionUtility } from "@utilities/function-utility";
 import { NgxSpinnerService } from "ngx-spinner";
 export abstract class InjectBase {
