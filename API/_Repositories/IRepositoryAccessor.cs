@@ -5,6 +5,7 @@ namespace API._Repositories
 {
     public interface IRepositoryAccessor
     {
+
         // IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;}
         IMS_Department_Repository MS_Department { get; }
         IMS_Location_Repository MS_Location { get; }

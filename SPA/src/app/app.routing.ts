@@ -1,4 +1,3 @@
-import { MaintainModule } from './views/maintain/maintain.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

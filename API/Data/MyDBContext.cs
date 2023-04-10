@@ -7,11 +7,11 @@ namespace API.Data
     {
         public MyDBContext()
         {
-            
+
         }
         public MyDBContext(DbContextOptions<MyDBContext> options) : base(options)
         {
-            
+
         }
         public virtual DbSet<MS_Department> MS_Department { get; set; }
         public virtual DbSet<MS_Location> MS_Location { get; set; }
@@ -29,7 +29,7 @@ namespace API.Data
         public virtual DbSet<RoleUser> RoleUser { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-         protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
@@ -44,7 +44,6 @@ namespace API.Data
                 entity.HasKey(e => new { e.Manuf, e.StoreH })
                     .HasName("pk_MS_Location");
             });
-
             modelBuilder.Entity<MS_Package>(entity =>
             {
                 entity.HasKey(e => new { e.Manuf, e.PackageNo })
@@ -55,8 +54,6 @@ namespace API.Data
             {
                 entity.HasKey(e => new { e.purno, e.manno, e.seq, e.cyno, e.size, e.manuf })
                     .HasName("pk_MS_QR_Cycle");
-
-              
             });
 
             modelBuilder.Entity<MS_QR_Label>(entity =>
@@ -80,15 +77,11 @@ namespace API.Data
             modelBuilder.Entity<MS_QR_Order_Log_OnlyForST>(entity =>
             {
                 entity.HasKey(e => new { e.manuf, e.purno, e.manno, e.size, e.wkshno, e.prtno });
-
-               
             });
 
             modelBuilder.Entity<MS_QR_PickingDetail>(entity =>
             {
                 entity.HasKey(e => new { e.manuf, e.pickingTrNo, e.QRCodeID });
-
-             
             });
 
             modelBuilder.Entity<MS_QR_PickingMain>(entity =>
@@ -116,7 +109,7 @@ namespace API.Data
                 entity.Property(e => e.Grade)
                     .IsUnicode(false)
                     .IsFixedLength(true);
-              
+
             });
 
             modelBuilder.Entity<MS_QR_StorageOut>(entity =>
@@ -127,7 +120,6 @@ namespace API.Data
                     .IsUnicode(false)
                     .IsFixedLength(true);
 
-           
             });
 
             modelBuilder.Entity<MS_Shift>(entity =>
@@ -140,9 +132,8 @@ namespace API.Data
                 entity.HasKey(e => new { e.user_account, e.role_unique })
                     .HasName("PK_RoleUser_1");
             });
-
             OnModelCreatingPartial(modelBuilder);
         }
-         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
