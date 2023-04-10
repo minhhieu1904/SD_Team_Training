@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { InjectBase } from '@utilities/inject-base-app';
-import { SortSumReportService } from '@services/report/sort-sum-report.service';
-import { Pagination } from '@utilities/pagination-utility';
-import {
-  SortSumDetailReportParam,
-  SortSumReportParam,
-} from '@models/report/sortSumReportParam';
-import { SortSumReportDTO } from '@models/report/sortSumReportDTO';
 import { IconButton } from '@constants/common.constants';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { KeyValuePair } from '@utilities/key-value-pair';
-import { BrandDTO } from '@models/report/brandDTO';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { BrandDTO } from '@models/report/brandDTO';
+import { StorageSumReportDTO } from '@models/report/storageSumReportDTO';
+import {
+  StorageSumDetailReportParam,
+  StorageSumReportParam,
+} from '@models/report/storageSumReportParam';
+import { StorageSumReportService } from '@services/report/storage-sum-report.service';
+import { InjectBase } from '@utilities/inject-base-app';
+import { KeyValuePair } from '@utilities/key-value-pair';
+import { Pagination } from '@utilities/pagination-utility';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
-  data: SortSumReportDTO[] = [];
+  data: StorageSumReportDTO[] = [];
   brand: BrandDTO[] = [];
   actives: KeyValuePair[] = [
     { key: 'sdat', value: 'Sdat Date' },
@@ -29,8 +29,8 @@ export class MainComponent extends InjectBase implements OnInit {
     pageSize: 10,
   };
 
-  param: SortSumReportParam;
-  paramDetail: SortSumDetailReportParam = <SortSumDetailReportParam>{
+  param: StorageSumReportParam;
+  paramDetail: StorageSumDetailReportParam = <StorageSumDetailReportParam>{
     purno: '',
     size: '',
     manno: '',
@@ -42,7 +42,8 @@ export class MainComponent extends InjectBase implements OnInit {
   dateFrom_eta;
   dateTo_eta;
   iconButton = IconButton;
-  constructor(private _service: SortSumReportService) {
+
+  constructor(private _service: StorageSumReportService) {
     super();
   }
 
@@ -75,7 +76,7 @@ export class MainComponent extends InjectBase implements OnInit {
         this.spinnerService.hide();
         const curDate = new Date();
         let fileName =
-          'SortSumReport' +
+          'StorageSumReport' +
           curDate.getFullYear().toString() +
           (curDate.getMonth() + 1) +
           curDate.getDate();
@@ -95,14 +96,13 @@ export class MainComponent extends InjectBase implements OnInit {
     this.paramDetail.manno = this.data[this.selectedIndex].manno;
     this.paramDetail.purno = this.data[this.selectedIndex].purno;
     this.paramDetail.size = this.data[this.selectedIndex].size;
-    console.log(this.paramDetail)
     this.spinnerService.show();
     this._service.exportDetailExcel(this.paramDetail).subscribe({
       next: (result) => {
         this.spinnerService.hide();
         const curDate = new Date();
         let fileName =
-          'SortSumDetailReport' +
+          'StorageDetailReport' +
           curDate.getFullYear().toString() +
           (curDate.getMonth() + 1) +
           curDate.getDate();
@@ -137,13 +137,13 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getData();
   }
 
+  clearBrand(){
+    this.param.brandname = '';
+  }
+
   clear() {
     this.createParam();
     this.getData();
-  }
-
-  clearBrand(){
-    this.param.brand = '';
   }
 
   pageChanged(e: any) {
@@ -156,12 +156,12 @@ export class MainComponent extends InjectBase implements OnInit {
       date_kind: '',
       date_start: '',
       date_end: '',
-      brand: '',
+      brandname: '',
       cusid: '',
       manno: '',
       rmodel: '',
       tolcls: '',
-      purchase_no: '',
+      purno: '',
       material: '',
       kind: '',
       etd_start: '',

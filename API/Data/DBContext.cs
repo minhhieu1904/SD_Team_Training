@@ -11,7 +11,7 @@ namespace API.Data
         {
         }
 
-       public DBContext(DbContextOptions<DBContext> options) : base(options)
+        public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
             Database.SetCommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds);
         }
@@ -41,6 +41,8 @@ namespace API.Data
 
         public virtual DbSet<WkshSumReportDTO> SearchForPackingScans { get; set; }
         public virtual DbSet<SortSumReportDTO> SortSumReports { get; set; }
+
+        public virtual DbSet<StorageSumReportDTO> StorageSumReports { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -412,6 +414,8 @@ namespace API.Data
            });
 
             modelBuilder.Entity<SortSumReportDTO>().HasNoKey();
+
+            modelBuilder.Entity<StorageSumReportDTO>().HasNoKey();
 
             OnModelCreatingPartial(modelBuilder);
         }

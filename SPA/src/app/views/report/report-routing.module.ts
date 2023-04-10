@@ -16,6 +16,13 @@ const routes: Routes = [
         (m) => m.SortSumReportModule
       ),
   },
+  {
+    path: 'storage-sum-report',
+    loadChildren: () =>
+      import('../report/storage-sum-report/storage-sum-report.module').then(
+        (m) => m.StorageSumReportModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -42,7 +42,7 @@
           <span class="badge badge-warning">Brand</span>
 
           <div class="form-group">
-            <ng-select name="brandname" id="Brand" [(ngModel)]="param.brand">
+            <ng-select name="brandname" id="Brand" [(ngModel)]="param.brand" (clear)="clearBrand()">
               <ng-option *ngFor="let item of brand" [value]="item.id">{{item.brandname}}</ng-option>
             </ng-select>
           </div>
@@ -76,8 +76,8 @@
         </div>
         <!--  dòng 3 -->
         <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-          <span class="badge badge-warning">Material Code Bottom</span>
-          <input placeholder="Material Code Bottom..." type="text" name="Material" class="form-control"
+          <span class="badge badge-warning">Material Code</span>
+          <input placeholder="Material Code..." type="text" name="Material" class="form-control"
             [(ngModel)]="param.material">
         </div>
         <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">

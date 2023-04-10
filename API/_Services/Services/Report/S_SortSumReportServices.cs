@@ -50,7 +50,7 @@ namespace API._Services.Services.Report
             foreach (var item in query)
             {
                 item.crday_str = item.crday.HasValue ? item.crday.Value.ToString("dd/MM/yyyy") : string.Empty;
-                item.mdat_str = item.mdat != null ? item.mdat.ToString("dd/MM/yyyy") : string.Empty;
+                item.mdat_str = item.mdat.HasValue ? item.mdat.Value.ToString("dd/MM/yyyy") : string.Empty;
                 item.eta_str = item.eta.HasValue ? item.eta.Value.ToString("dd/MM/yyyy") : string.Empty;
             }
             return query;
