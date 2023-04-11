@@ -19,15 +19,19 @@ namespace API._Services.Services.Report
 
         private readonly IWebHostEnvironment _environment;
         public DBContext _dbContext;
+        private readonly IConfiguration _configuration;
+        private string _user;
 
-        public S_StorageSumReportServices(IRepositoryAccessor repositoryAccessor, IWebHostEnvironment environment, DBContext dbContext)
+        public S_StorageSumReportServices(IRepositoryAccessor repositoryAccessor, IWebHostEnvironment environment, DBContext dbContext, IConfiguration configuration)
         {
             _repositoryAccessor = repositoryAccessor;
             _environment = environment;
             _dbContext = dbContext;
+            _configuration = configuration;
+            _user = _configuration.GetSection("Appsettings:Area").Value;
         }
 
-        public async Task<byte[]> ExportDetailExcel(StorageSumDetailReportParam param)
+        public async Task<byte[]> ExportDetailExcel(StorageSumDetailReportParam param, string userName)
         {
             var pred = PredicateBuilder.New<MsQrLabel>(true);
 
@@ -44,7 +48,7 @@ namespace API._Services.Services.Report
                                     .GroupJoin(_repositoryAccessor.MS_QrOrder.FindAll(),
                                         l => new { ManNo = l.ManNo, PurNo = l.PurNo, Size = l.Size },
                                         o => new { ManNo = o.Manno, PurNo = o.Purno, Size = o.Size },
-                                        (l, o) => new { T1 = l, T2 = o } 
+                                        (l, o) => new { T1 = l, T2 = o }
                                     ).SelectMany(x => x.T2.DefaultIfEmpty(), (x, y) => new { x.T1, T2 = y })
                                     .GroupJoin(_repositoryAccessor.MS_QrStorage.FindAll().AsNoTracking(),
                                         x => x.T1.QRCodeID,
@@ -81,7 +85,8 @@ namespace API._Services.Services.Report
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
-
+                ws.Cells["B1"].PutValue(userName);
+                ws.Cells["B2"].PutValue(DateTime.Now);
                 designer.SetDataSource("result", data);
                 designer.Process();
 
@@ -95,7 +100,7 @@ namespace API._Services.Services.Report
             return stream.ToArray();
         }
 
-        public async Task<byte[]> ExportExcel(StorageSumReportParam param)
+        public async Task<byte[]> ExportExcel(StorageSumReportParam param, string userName)
         {
             var data = await GetData(param);
 
@@ -108,6 +113,8 @@ namespace API._Services.Services.Report
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
 
+                ws.Cells["B1"].PutValue(userName);
+                ws.Cells["B2"].PutValue(DateTime.Now);
                 designer.SetDataSource("result", data);
                 designer.Process();
 

@@ -6,8 +6,8 @@ namespace API._Services.Interfaces
     {
         Task<PaginationUtility< WkshSumReportDTO>> GetDataPagination(PaginationParam pagination, WkshSumReportParam param);
 
-        Task<byte[]> ExportExcel(WkshSumReportParam param);
+        Task<byte[]> ExportExcel(WkshSumReportParam param, string userName);
 
-        Task<List<BrandDTO>> GetBrand();
+        Task<List<BrandDTO>> GetBrands();
     }
 }

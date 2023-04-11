@@ -152,7 +152,15 @@
               <th class="text-center" scope="col">Cancel priting quantity</th>
             </tr>
           </thead>
-
+          <tbody *ngIf="data.length == 0">
+            <tr>
+              <td colspan="23">
+                <alert class="text-center" type='danger'>
+                  <strong>No Data matching!</strong>
+                </alert>
+              </td>
+            </tr>
+          </tbody>
           <tbody>
             <tr *ngFor="let items of data; let i= index" [ngClass]="{'table-warning': items.checked}">
               <td class="text-center">

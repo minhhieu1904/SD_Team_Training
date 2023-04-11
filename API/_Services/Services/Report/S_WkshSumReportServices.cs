@@ -24,18 +24,21 @@ namespace API._Services.Services.Report
             _environment = environment;
         }
 
-        public async Task<byte[]> ExportExcel(WkshSumReportParam param)
+        public async Task<byte[]> ExportExcel(WkshSumReportParam param, string userName)
         {
             var data = await GetData(param);
 
             MemoryStream stream = new MemoryStream();
             if (data.Count > 0)
             {
-                var path = Path.Combine(_environment.ContentRootPath, "Resources\\Template\\Development_Orders.xlsx");
+                var path = Path.Combine(_environment.ContentRootPath, "Resources\\Template\\wkshSumReport.xlsx");
 
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
+                
+                ws.Cells["B1"].PutValue(userName);
+                ws.Cells["B2"].PutValue(DateTime.Now);
 
                 designer.SetDataSource("result", data);
                 designer.Process();
@@ -50,7 +53,7 @@ namespace API._Services.Services.Report
             return stream.ToArray();
         }
 
-        public async Task<List<BrandDTO>> GetBrand()
+        public async Task<List<BrandDTO>> GetBrands()
         {
             return await _repositoryAccessor.MS_QrOrder.FindAll()
             .Select(x => new BrandDTO { brandname = x.Brandname, id = x.Brandname }).Distinct().ToListAsync();

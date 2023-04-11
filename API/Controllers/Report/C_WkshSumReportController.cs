@@ -7,7 +7,7 @@ namespace API.Controllers.Report
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class C_WkshSumReportController : ControllerBase
+    public class C_WkshSumReportController : APIController
     {
         private readonly I_WkshSumReportServices _service;
 
@@ -17,20 +17,23 @@ namespace API.Controllers.Report
         }
 
         [HttpGet("GetData")]
-        public async Task<IActionResult> GetDataPagination([FromQuery]PaginationParam  pagination,[FromQuery] WkshSumReportParam param){
+        public async Task<IActionResult> GetDataPagination([FromQuery] PaginationParam pagination, [FromQuery] WkshSumReportParam param)
+        {
             var result = await _service.GetDataPagination(pagination, param);
             return Ok(result);
         }
 
         [HttpGet("GetBrand")]
-        public async Task<IActionResult> GetBrand(){
-            var result = await _service.GetBrand();
+        public async Task<IActionResult> GetBrands()
+        {
+            var result = await _service.GetBrands();
             return Ok(result);
         }
 
         [HttpGet("ExportExcel")]
-        public async Task<IActionResult> ExportExcel([FromQuery] WkshSumReportParam param){
-            var result = await _service.ExportExcel(param);
+        public async Task<IActionResult> ExportExcel([FromQuery] WkshSumReportParam param)
+        {
+            var result = await _service.ExportExcel(param, "");
             return await Task.FromResult(File(result, "application/xlsx", $"Excel_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.xlsx"));
         }
     }

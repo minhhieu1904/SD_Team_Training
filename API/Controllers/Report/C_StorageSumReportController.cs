@@ -7,7 +7,7 @@ namespace API.Controllers.Report
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class C_StorageSumReportController : ControllerBase
+    public class C_StorageSumReportController : APIController
     {
         private readonly I_StorageSumReportServices _service;
 
@@ -32,14 +32,14 @@ namespace API.Controllers.Report
         [HttpGet("ExportExcel")]
         public async Task<IActionResult> ExportExcel([FromQuery] StorageSumReportParam param)
         {
-            var result = await _service.ExportExcel(param);
+            var result = await _service.ExportExcel(param, "");
             return await Task.FromResult(File(result, "application/xlsx", $"Excel_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.xlsx"));
         }
 
         [HttpGet("ExportDetailExcel")]
         public async Task<IActionResult> ExportDetailExcel([FromQuery] StorageSumDetailReportParam param)
         {
-            var result = await _service.ExportDetailExcel(param);
+            var result = await _service.ExportDetailExcel(param, "");
             return await Task.FromResult(File(result, "application/xlsx", $"Excel_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.xlsx"));
         }
 

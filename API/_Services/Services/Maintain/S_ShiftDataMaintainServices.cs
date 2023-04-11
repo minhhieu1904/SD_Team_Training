@@ -21,6 +21,9 @@ namespace API._Services.Services.Maintain
 
         public async Task<OperationResult> Add(MsShift model)
         {
+            if (!string.IsNullOrEmpty(model.Shift) || !string.IsNullOrEmpty(model.ShiftName))
+                return new OperationResult(false);
+
             // Tìm xem giá trị đã tồn tại trong dữ liệu chưa
             var originalItem = await _repositoryAccessor.MS_Shift.FindAll(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim()).FirstOrDefaultAsync();
             if (originalItem != null)
@@ -44,6 +47,9 @@ namespace API._Services.Services.Maintain
 
         public async Task<OperationResult> Update(MsShift model)
         {
+            if (!string.IsNullOrEmpty(model.Shift) || !string.IsNullOrEmpty(model.ShiftName))
+                return new OperationResult(false);
+
             var originalItem = await _repositoryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim());
 
             if (originalItem == null)
@@ -66,6 +72,9 @@ namespace API._Services.Services.Maintain
 
         public async Task<OperationResult> Delete(string shift)
         {
+             if (!string.IsNullOrEmpty(shift))
+                return new OperationResult(false);
+
             var originalItem = await _repositoryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == shift.Trim());
 
             if (originalItem == null)

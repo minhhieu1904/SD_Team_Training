@@ -102,7 +102,7 @@ export class MainComponent extends InjectBase implements OnInit {
         this.spinnerService.hide();
         const curDate = new Date();
         let fileName =
-          'SortSumDetailReport' +
+          'SortDetailReport' +
           curDate.getFullYear().toString() +
           (curDate.getMonth() + 1) +
           curDate.getDate();

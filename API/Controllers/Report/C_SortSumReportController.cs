@@ -6,7 +6,7 @@ namespace API.Controllers.Report
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class C_SortSumReportController : ControllerBase
+    public class C_SortSumReportController : APIController
     {
         private readonly I_SortSumReportServices _service;
 
@@ -23,20 +23,20 @@ namespace API.Controllers.Report
         }
 
         [HttpGet("GetBrand")]
-        public async Task<IActionResult> GetBrand(){
-            var result = await _service.GetBrand();
+        public async Task<IActionResult> GetBrands(){
+            var result = await _service.GetBrands();
             return Ok(result);
         }
 
         [HttpGet("ExportExcel")]
         public async Task<IActionResult> ExportExcel([FromQuery] SortSumReportParam param){
-            var result = await _service.ExportExcel(param);
+            var result = await _service.ExportExcel(param, "");
             return await Task.FromResult(File(result, "application/xlsx", $"Excel_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.xlsx"));
         }
 
         [HttpGet("ExportDetailExcel")]
         public async Task<IActionResult> ExportDetailExcel([FromQuery] SortSumDetailReportParam param){
-            var result = await _service.ExportDetailExcel(param);
+            var result = await _service.ExportDetailExcel(param, "");
             return await Task.FromResult(File(result, "application/xlsx", $"Excel_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.xlsx"));
         }
         

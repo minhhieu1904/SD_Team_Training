@@ -38,10 +38,8 @@ namespace API.Data
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleUser> RoleUsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
         public virtual DbSet<WkshSumReportDTO> SearchForPackingScans { get; set; }
         public virtual DbSet<SortSumReportDTO> SortSumReports { get; set; }
-
         public virtual DbSet<StorageSumReportDTO> StorageSumReports { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

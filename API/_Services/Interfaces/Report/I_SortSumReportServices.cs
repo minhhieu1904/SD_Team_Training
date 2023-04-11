@@ -6,10 +6,10 @@ namespace API._Services.Interfaces.Report
     public interface I_SortSumReportServices
     {
         Task<PaginationUtility<SortSumReportDTO>> GetDataPagination(PaginationParam pagination, SortSumReportParam param);
-        Task<List<BrandDTO>> GetBrand();
+        Task<List<BrandDTO>> GetBrands();
 
-        Task<byte[]> ExportExcel(SortSumReportParam param);
+        Task<byte[]> ExportExcel(SortSumReportParam param, string userName);
 
-        Task<byte[]> ExportDetailExcel(SortSumDetailReportParam param);
+        Task<byte[]> ExportDetailExcel(SortSumDetailReportParam param, string userName);
     }
 }

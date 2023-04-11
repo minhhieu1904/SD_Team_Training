@@ -20,6 +20,9 @@ namespace API._Services.Services.Maintain
 
         public async Task<OperationResult> Add(StandardPackingQuantityParam model)
         {
+            if (!string.IsNullOrEmpty(model.PackageNo))
+                return new OperationResult(false);
+
             var originalItem = this._repositoryAccessor.MS_Package.FindAll(x => x.Manuf == "N"
             && x.PackageNo == model.PackageNo.Trim());
 
@@ -30,13 +33,22 @@ namespace API._Services.Services.Maintain
             var item = Mapper.Map(model).ToANew<MsPackage>(x => x.MapEntityKeys());
             _repositoryAccessor.MS_Package.Add(item);
 
-            if (await _repositoryAccessor.Save())
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<OperationResult> Update(StandardPackingQuantityParam model)
         {
+            if (!string.IsNullOrEmpty(model.PackageNo))
+                return new OperationResult(false);
+
             var originalItem = this._repositoryAccessor.MS_Package.FirstOrDefault(x => x.Manuf == "N"
             && x.PackageNo == model.PackageNo.Trim());
 
@@ -46,13 +58,22 @@ namespace API._Services.Services.Maintain
             originalItem.PackageQty = model.PackageQty;
             _repositoryAccessor.MS_Package.Update(originalItem);
 
-            if (await _repositoryAccessor.Save())
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<OperationResult> Delete(string packageNo)
         {
+            if (!string.IsNullOrEmpty(packageNo))
+                return new OperationResult(false);
+
             var originalItem = await _repositoryAccessor.MS_Package.FirstOrDefaultAsync(x => x.Manuf == "N" && x.PackageNo == packageNo.Trim());
 
             if (originalItem == null)
@@ -60,9 +81,15 @@ namespace API._Services.Services.Maintain
 
             _repositoryAccessor.MS_Package.Remove(originalItem);
 
-            if (await _repositoryAccessor.Save())
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<PaginationUtility<MsPackage>> GetData(PaginationParam pagination, StandardPackingQuantityParam param)

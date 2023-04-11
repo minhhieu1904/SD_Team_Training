@@ -54,7 +54,7 @@ export const RolesConstants = [
             {
                 name: '4.4 QRCode WIP Report',
                 role: 'BQRC.QRCodeWIPReport',
-                url: ''
+                url: 'report/qrcode-wip-report'
             } 
         ]
     },

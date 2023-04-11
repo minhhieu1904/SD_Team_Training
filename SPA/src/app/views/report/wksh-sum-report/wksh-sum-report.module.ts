@@ -7,6 +7,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AlertModule } from 'ngx-bootstrap/alert';
 @NgModule({
   declarations: [MainComponent],
   imports: [
@@ -16,6 +17,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     BsDatepickerModule,
     NgSelectModule,
+    AlertModule.forRoot(),
   ],
 })
 export class WkshSumReportModule {}

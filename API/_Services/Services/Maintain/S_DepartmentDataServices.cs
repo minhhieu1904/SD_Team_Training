@@ -19,6 +19,10 @@ namespace API._Services.Services.Maintain
 
         public async Task<OperationResult> Add(MsDepartment model)
         {
+
+            if (!string.IsNullOrEmpty(model.ParName) || !string.IsNullOrEmpty(model.ParNo))
+                return new OperationResult(false);
+
             var originalItem = await _repositoryAccessor.MS_Department.FindAll(x => x.Manuf == model.Manuf.Trim()
             && x.ParNo == model.ParNo.Trim()).FirstOrDefaultAsync();
 
@@ -41,6 +45,9 @@ namespace API._Services.Services.Maintain
 
         public async Task<OperationResult> Update(MsDepartment model)
         {
+            if (!string.IsNullOrEmpty(model.ParName) || !string.IsNullOrEmpty(model.ParNo))
+                return new OperationResult(false);
+
             var originalItem = await _repositoryAccessor.MS_Department.FirstOrDefaultAsync(x => x.Manuf == model.Manuf.Trim()
             && x.ParNo == model.ParNo.Trim());
 
@@ -63,6 +70,9 @@ namespace API._Services.Services.Maintain
 
         public async Task<OperationResult> Delete(string parNo)
         {
+            if (!string.IsNullOrEmpty(parNo))
+                return new OperationResult(false);
+
             var originalItem = await _repositoryAccessor.MS_Department.FirstOrDefaultAsync(x => x.Manuf == "N"
             && x.ParNo == parNo.Trim());
 

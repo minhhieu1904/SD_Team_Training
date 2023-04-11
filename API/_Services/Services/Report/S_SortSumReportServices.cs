@@ -46,13 +46,6 @@ namespace API._Services.Services.Report
              new SqlParameter("p_etd_end", param.etd_end.HasValue ? param.etd_end.Value.Date : (object)DBNull.Value),
              new SqlParameter("p_size", !string.IsNullOrEmpty(param.size) ? param.size : (object)DBNull.Value)
              ).ToListAsync();
-
-            foreach (var item in query)
-            {
-                item.crday_str = item.crday.HasValue ? item.crday.Value.ToString("dd/MM/yyyy") : string.Empty;
-                item.mdat_str = item.mdat.HasValue ? item.mdat.Value.ToString("dd/MM/yyyy") : string.Empty;
-                item.eta_str = item.eta.HasValue ? item.eta.Value.ToString("dd/MM/yyyy") : string.Empty;
-            }
             return query;
         }
 
@@ -62,25 +55,28 @@ namespace API._Services.Services.Report
             return PaginationUtility<SortSumReportDTO>.Create(data, pagination.PageNumber, pagination.PageSize);
         }
 
-        public async Task<List<BrandDTO>> GetBrand()
+        public async Task<List<BrandDTO>> GetBrands()
         {
             return await _repositoryAccessor.MS_QrOrder.FindAll()
             .Select(x => new BrandDTO { brandname = x.Brandname, id = x.Brandname }).Distinct().ToListAsync();
         }
 
-        public async Task<byte[]> ExportExcel(SortSumReportParam param)
+        public async Task<byte[]> ExportExcel(SortSumReportParam param, string userName)
         {
             var data = await GetData(param);
 
             MemoryStream stream = new MemoryStream();
             if (data.Count > 0)
             {
-                var path = Path.Combine(_environment.ContentRootPath, "Resources\\Template\\SortReport.xlsx");
+                var path = Path.Combine(_environment.ContentRootPath, "Resources\\Template\\SortSumReport.xlsx");
 
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
 
+
+                ws.Cells["B1"].PutValue(userName);
+                ws.Cells["B2"].PutValue(DateTime.Now);
                 designer.SetDataSource("result", data);
                 designer.Process();
 
@@ -94,7 +90,7 @@ namespace API._Services.Services.Report
             return stream.ToArray();
         }
 
-        public async Task<byte[]> ExportDetailExcel(SortSumDetailReportParam param)
+        public async Task<byte[]> ExportDetailExcel(SortSumDetailReportParam param, string userName)
         {
             var pred = PredicateBuilder.New<MsQrLabel>(true);
 
@@ -148,6 +144,8 @@ namespace API._Services.Services.Report
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
 
+                ws.Cells["B1"].PutValue(userName);
+                ws.Cells["B2"].PutValue(DateTime.Now);
                 designer.SetDataSource("result", data);
                 designer.Process();
 

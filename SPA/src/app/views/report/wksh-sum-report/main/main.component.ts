@@ -71,6 +71,10 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getData();
   }
 
+  clearBrand() {
+    this.param.brandname = '';
+  }
+
   checkDate() {
     this.param.mdat_start = !this.functionUtility.checkEmpty(this.dateFrom_mdat)
       ? this.functionUtility.getDateFormat(new Date(this.dateFrom_mdat))
@@ -128,7 +132,7 @@ export class MainComponent extends InjectBase implements OnInit {
         this.spinnerService.hide();
         const curDate = new Date();
         let fileName =
-          'DevelopmentOrder' +
+          'wkshSumReport' +
           curDate.getFullYear().toString() +
           (curDate.getMonth() + 1) +
           curDate.getDate();

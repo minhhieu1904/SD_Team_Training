@@ -19,6 +19,9 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
 
         public async Task<OperationResult> Add(MsLocation model)
         {
+            if (!string.IsNullOrEmpty(model.LocationName) || !string.IsNullOrEmpty(model.StoreH))
+                return new OperationResult(false);
+
             var originalItem = await _repositoryAccessor.MS_Location.FindAll(x => x.Manuf == model.Manuf
             && x.StoreH == model.StoreH.Trim()).FirstOrDefaultAsync();
 
@@ -27,14 +30,23 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
 
             model.Manuf = "N";
             _repositoryAccessor.MS_Location.Add(model);
-            if (await _repositoryAccessor.Save())
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
 
         }
 
         public async Task<OperationResult> Update(MsLocation model)
         {
+            if (!string.IsNullOrEmpty(model.LocationName) || !string.IsNullOrEmpty(model.StoreH))
+                return new OperationResult(false);
+
             var originalItem = await _repositoryAccessor.MS_Location.FirstOrDefaultAsync(x => x.Manuf == model.Manuf.Trim()
              && x.StoreH == model.StoreH.Trim());
             if (originalItem == null)
@@ -44,22 +56,37 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
 
             _repositoryAccessor.MS_Location.Update(originalItem);
 
-            if (await _repositoryAccessor.Save())
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<OperationResult> Delete(string StoreH)
         {
+            if (!string.IsNullOrEmpty(StoreH))
+                return new OperationResult(false);
+
             var originalItem = await _repositoryAccessor.MS_Location.FirstOrDefaultAsync(x => x.Manuf == "N" && x.StoreH == StoreH.Trim());
             if (originalItem == null)
                 return new OperationResult(false);
 
             _repositoryAccessor.MS_Location.Remove(originalItem);
 
-            if (await _repositoryAccessor.Save())
+            try
+            {
+                await _repositoryAccessor.Save();
                 return new OperationResult(true);
-            return new OperationResult(false);
+            }
+            catch
+            {
+                return new OperationResult(false);
+            }
         }
 
         public async Task<PaginationUtility<MsLocation>> GetData(PaginationParam pagination, WarehouseBasicDataParam param)
