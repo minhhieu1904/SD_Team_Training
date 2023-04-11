@@ -31,6 +31,7 @@ namespace API.Data
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Report_wksh_SumParam> Report_Wksh_SumResult {get; set;}
         public virtual DbSet<Report_Sort_SumParam> Report_Sort_SumParam {get; set;}
+        public virtual DbSet<Report_Storage_SumParam> Report_Storage_SumParam {get; set;}
         public virtual DbSet<__MigrationHistory> __MigrationHistory { get; set; }
 
 
@@ -138,7 +139,10 @@ namespace API.Data
             {
                 entity.HasKey(e => new { e.purno, e.manno, e.size });
             });
-         
+            modelBuilder.Entity<Report_Storage_SumParam>(entity =>
+            {
+                entity.HasKey(e => new { e.purno, e.manno, e.size });
+            });
             OnModelCreatingPartial(modelBuilder);
         }
 

@@ -18,6 +18,7 @@ namespace API._Repositories
         IMS_QR_SortRepository MS_QR_Sort{get;}
         IReport_wksh_SumParamRepository ReportWkshSum{get;}
         IReport_Sort_SumRepository ReportSortSum{get;}
+        IReport_Storage_SumParamRepository ReportStorageSum{get;}
         IMS_QR_LabelRepository MS_QR_Label{get;}
 
         Task<bool> Save();

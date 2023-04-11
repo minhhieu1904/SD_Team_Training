@@ -9,7 +9,6 @@ import {
   Brand,
   Report_Sort_SumParam,
   SortSumDTO,
-  SortSumDeltailDTO,
   SortSumDeltailDTOParam,
 } from '@models/report/sort-Sum';
 import { KeyValuePair } from '@utilities/key-value-pair';
@@ -37,7 +36,7 @@ export class MainComponent extends InjectBase implements OnInit {
     size: '',
   };
 
-  params: Report_Sort_SumParam = <Report_Sort_SumParam>{};
+  paramsExport: Report_Sort_SumParam = <Report_Sort_SumParam>{};
   data: Report_Sort_SumParam[] = [];
   pagination: Pagination = <Pagination>{
     pageNumber: 1,
@@ -147,6 +146,7 @@ export class MainComponent extends InjectBase implements OnInit {
       this.dateTo_eta = '';
       this.getData();
   }
+
   export() {
     this.param.date_start = !this.functionUtility.checkEmpty(this.dateFrom_mdat)
       ? this.functionUtility.getDateFormat(new Date(this.dateFrom_mdat))
@@ -162,7 +162,7 @@ export class MainComponent extends InjectBase implements OnInit {
       : '';
     this.spinnerService.show();
     this.service
-      .exportExcel(this.params)
+      .exportExcel(this.paramsExport)
       .subscribe({
         next: (result: Blob) => {
           this.functionUtility.exportExcel(result, 'Report Sort Sum');

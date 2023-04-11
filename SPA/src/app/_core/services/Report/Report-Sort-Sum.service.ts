@@ -22,7 +22,7 @@ export class ReportSortSumService {
 
   exportExcel(param: Report_Sort_SumParam) {
     let params = new HttpParams().appendAll({ ...param });
-    return this.http.get(` ${this.apiUrl}/Export`, {
+    return this.http.get(`${this.apiUrl}/Export`, {
       params,
       responseType: 'blob',
     });
@@ -30,7 +30,7 @@ export class ReportSortSumService {
 
   exportExcelDetail(param: SortSumDeltailDTOParam) {
     let params = new HttpParams().appendAll({ ...param });
-    return this.http.get(` ${this.apiUrl}/ExportExcelDeltail`, {
+    return this.http.get(`${this.apiUrl}/ExportExcelDetail`, {
       params,
       responseType: 'blob',
     });

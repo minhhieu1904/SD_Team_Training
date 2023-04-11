@@ -18,6 +18,13 @@ const routes: Routes = [
     data: {
         role: getInfoMenu('4.2')?.unique
     }
+  },  {
+    path: 'storage-sum-report',
+    loadChildren: () => import('./report-storage-sum/report-storage-sum.module')
+      .then((m) => m.ReportStorageSumModule),
+    data: {
+        role: getInfoMenu('4.3')?.unique
+    }
   }
 ];
 

@@ -55,8 +55,8 @@ namespace API.Controllers.Report
             return File(result, "application/xlsx", $"Excel_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.xlsx");
         }
 
-        [HttpGet("ExportExcelDeltail")]
-        public async Task<ActionResult> ExportExcelDeltail([FromQuery]PaginationParam pagination, [FromQuery] SortSumDeltailDTOParam param)
+        [HttpGet("ExportExcelDetail")]
+        public async Task<ActionResult> ExportExcelDetail([FromQuery]PaginationParam pagination, [FromQuery] SortSumDeltailDTOParam param)
         {
             
             var result = await _reportService.ExportExcelDetails(param);

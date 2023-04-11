@@ -26,8 +26,10 @@ namespace API._Repositories
             MS_QR_Sort = new MS_QR_SortRepository(_dbContext);
             ReportSortSum = new Report_Sort_SumRepository(_dbContext);
             MS_QR_Label = new MS_QR_LabelRepository(_dbContext);
+            ReportStorageSum = new Report_Storage_SumParamRepository(_dbContext);
 
         }  
+        public IReport_Storage_SumParamRepository ReportStorageSum{get;set;}
         public IMS_QR_LabelRepository MS_QR_Label{get;set;}
         public IReport_Sort_SumRepository ReportSortSum{get; set;}
         public IMS_QR_SortRepository MS_QR_Sort{get;set;}

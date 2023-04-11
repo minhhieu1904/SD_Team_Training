@@ -1,6 +1,7 @@
+
 namespace API.Models
 {
-    public class Report_Sort_SumParam
+    public class Report_Storage_SumParam
     {
         public DateTime? CrDay { get; set; }
         public DateTime? mdat { get; set; }
@@ -21,6 +22,7 @@ namespace API.Models
         public decimal? wkshqty { get; set; }
         public decimal? pqty { get; set; }
         public decimal? sort_qty { get; set; }
+        public decimal? storage_qty { get; set; }
         public decimal? diff_qty { get; set; }
         public decimal? cqty { get; set; }
     }

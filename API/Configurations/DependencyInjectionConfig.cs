@@ -25,6 +25,7 @@ namespace API.Configurations
             services.AddScoped<IAuthorService, AuthorService>();
             services.AddScoped<IReport_wksh_SumService, Report_wksh_SumService>();
             services.AddScoped<IReport_Sort_Sumservice, Report_Sort_Sumservice>();
+            services.AddScoped<IReport_Storage_Sumservice, Report_Storage_Sumservice>();
 
         }
     }
