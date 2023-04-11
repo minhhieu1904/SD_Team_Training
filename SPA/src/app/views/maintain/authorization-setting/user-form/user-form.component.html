@@ -1,0 +1,91 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-12">
+              <strong class="title-card-cs">
+                1.5 Authorization Setting -
+                <span>{{ title }}</span>
+              </strong>
+              <button type="button" class="btn btn-sm btn-primary float-right" (click)="back()">
+                <i class="{{ icon.BACK }}"></i> Back
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-style">
+          <form class="form-horizontal" #form="ngForm">
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group row p-2">
+                    <label for="account" class="col-sm-2 col-form-label lb form-group required control-label"
+                      style="font-weight: 700; font-size: 20px">Account No.
+                      <i class="i-required" style="color: red">*</i></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control" placeholder="Account No..."
+                        [(ngModel)]="param.account" id="account" name="account" [disabled]="title == 'Edit'"
+                        required maxlength="50" />
+                    </div>
+                    <div class="col-sm-2">&nbsp;</div>
+                    <label for="name"
+                      class="col-sm-2 col-form-label lb text_version form-group required control-label"
+                      style="font-weight: 700; font-size: 20px"><span>Name Of Staff
+                        <i class="i-required" style="color: red">*</i></span></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control" [(ngModel)]="param.name" id="name"
+                        name="name" placeholder="Name Of Staff..." required maxlength="50" />
+                    </div>
+                  </div>
+                  <div class="form-group row p-2">
+                    <label for="password" class="col-sm-2 col-form-label lb form-group required control-label"
+                      style="font-weight: 700; font-size: 20px">ID Card No.
+                      <i class="i-required" style="color: red">*</i></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control" placeholder="ID Card No...."
+                        [(ngModel)]="param.password" id="password" name="password" [disabled]="title == 'Edit'"
+                        required maxlength="50" />
+                    </div>
+                    <div class="col-sm-2">&nbsp;</div>
+                    <label for="email"
+                      class="col-sm-2 col-form-label lb text_version form-group required control-label"
+                      style="font-weight: 700; font-size: 20px"><span>Name Of Department
+                        <i class="i-required" style="color: red">*</i></span></label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control" [(ngModel)]="param.email" id="email"
+                        name="email" placeholder="Name Of Department..." required maxlength="50" />
+                    </div>
+                  </div>
+                  <div class="form-group row p-2">
+                    <label for="is_active" class="col-sm-2 col-form-label lb form-group required control-label"
+                      style="font-weight: 700; font-size: 20px">Date Of Effective
+                      <i class="i-required" style="color: red">*</i></label>
+                    <div class="col-sm-3 style_2">
+                      <select class="form-control" name="is_active" id="is_active" [(ngModel)]="param.is_active">
+                        <option value="0">N</option>
+                        <option value="1">Y</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <ng-container>
+                    <button type="button" class="btn btn-success mr-2" (click)="save()" [disabled]="!form.valid">
+                      <i class="{{ icon.SAVE }}"></i> Save
+                    </button>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,9 @@ namespace API._Repositories
         IMS_WarehouseRepository MS_Warehouse { get; }
         IMS_DepartmentRepository MS_Department { get; }
         IMS_PackageRepository MS_Package { get; }
+        IUserRepository User { get; }
+        IRoleUserRepository RoleUser { get; }
+        IRoleRepository Role { get; }
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

@@ -10,9 +10,9 @@ namespace API._Services.Interfaces
 {
     public interface IStandardPackingQuantitySettingService
     {
-        Task<PaginationUtility<MS_Package>> GetAll(PaginationParam pagination,StandardPackingQuantitySettingParam param );
+        Task<PaginationUtility<MS_Package>> GetAll(PaginationParam pagination, StandardPackingQuantitySettingParam param);
         Task<PaginationUtility<MS_Package>> Search(PaginationParam pagination, string text);
-        Task<OperationResult> Create (MS_Package model);
-        Task<OperationResult> Update (MS_Package model);
+        Task<OperationResult> Create(MS_Package model);
+        Task<OperationResult> Update(MS_Package model);
     }
 }

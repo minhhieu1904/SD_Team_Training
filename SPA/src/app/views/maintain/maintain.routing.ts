@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'standard-packing-quantity-setting',
     loadChildren: () => import('./standard-packing-quantity-setting/standard-packing-quantity-setting.module').then(m => m.StandardPackingQuantitySettingModule)
+  },
+  {
+    path: 'authorization-setting',
+    loadChildren: () => import('./authorization-setting/authorization-setting.module').then(m => m.AuthorizationSettingModule)
   }
 ];
 @NgModule({

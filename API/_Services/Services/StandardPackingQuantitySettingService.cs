@@ -23,7 +23,7 @@ namespace API._Services.Services
 
         public async Task<OperationResult> Create(MS_Package model)
         {
-            var item = await _repositoryAccessor.MS_Package.FirstOrDefaultAsync(x => x.Manuf == "N" && x.PackageNo == model.PackageNo);
+            var item = await _repositoryAccessor.MS_Package.FirstOrDefaultAsync(x => x.Manuf == "N" && x.PackageNo.Trim() == model.PackageNo.Trim());
             if(item != null)
             {
                 return new OperationResult(false, "Đã có dữ liệu");
@@ -46,7 +46,7 @@ namespace API._Services.Services
            var pre = PredicateBuilder.New<MS_Package>(true);
            if(!string.IsNullOrEmpty(param.PackageNo))
            {
-            pre.And(x => x.PackageNo == param.PackageNo);
+            pre.And(x => x.PackageNo.Trim() == param.PackageNo);
            }
            if(param.PackageQty > 0)
            {
@@ -70,6 +70,7 @@ namespace API._Services.Services
 
             return await PaginationUtility<MS_Package>.CreateAsync(data, pagination.PageNumber, pagination.PageSize);
         }
+
 
         public async Task<OperationResult> Update(MS_Package model)
         {

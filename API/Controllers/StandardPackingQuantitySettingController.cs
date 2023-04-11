@@ -33,7 +33,7 @@ namespace API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("Search")]
+         [HttpGet("Search")]
         public async Task<IActionResult> Search ([FromQuery] PaginationParam pagination, string text)
         {
             var result = await _service.Search(pagination, text);
@@ -43,6 +43,7 @@ namespace API.Controllers
         [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] MS_Package model)
         {
+            
             var result = await _service.Update(model);
             return Ok(result);
         }

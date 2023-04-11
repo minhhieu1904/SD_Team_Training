@@ -65,7 +65,6 @@ export class PackageMainComponent extends InjectBase implements OnInit {
     if (this.param.packageQty == 0) {
       this.spinnerService.show();
       this.pagination.pageNumber === 1;
-      this.pagination.pageSize === 20;
       this.service.search(this.pagination.pageNumber, this.pagination.pageSize, this.param.packageNo).subscribe({
         next: result => {
           this.spinnerService.hide();

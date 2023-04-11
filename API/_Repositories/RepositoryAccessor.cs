@@ -17,6 +17,9 @@ namespace API._Repositories
             MS_Warehouse = new MS_WarehouseRepository(_dbContext);
             MS_Department = new MS_DepartmentRepository(_dbContext);
             MS_Package = new MS_PackageRepository(_dbContext);
+            User = new UserRepository(_dbContext);
+            RoleUser = new RoleUserRepository(_dbContext);
+            Role = new RoleRepository(_dbContext);
         }
         public IMS_ShiftRepository MS_Shift { get; private set; }
 
@@ -24,7 +27,12 @@ namespace API._Repositories
 
         public IMS_DepartmentRepository MS_Department { get; private set; }
 
-        public IMS_PackageRepository MS_Package{get; private set;}
+        public IMS_PackageRepository MS_Package { get; private set; }
+
+        public IUserRepository User { get; private set; }
+
+        public IRoleUserRepository RoleUser { get; private set; }
+        public IRoleRepository Role { get; private set; }
 
         public async Task<bool> Save()
         {
