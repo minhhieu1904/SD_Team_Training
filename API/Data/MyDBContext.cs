@@ -30,6 +30,7 @@ namespace API.Data
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Report_wksh_SumResult> Report_Wksh_SumResult { get; set; }
+        public virtual DbSet<Report_Sort_SumResult> Report_Sort_SumResult { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -137,6 +138,11 @@ namespace API.Data
             modelBuilder.Entity<Report_wksh_SumResult>(entity =>
             {
                 entity.HasNoKey().ToView(null);
+            });
+
+            modelBuilder.Entity<Report_Sort_SumResult>(entity =>
+            {
+                entity.HasNoKey();
             });
 
             OnModelCreatingPartial(modelBuilder);

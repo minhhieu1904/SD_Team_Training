@@ -81,7 +81,6 @@ namespace API._Repositories
         {
             return QueryableEntity(includeProperties).FirstOrDefault(predicate);
         }
-
         public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
         {
             return await QueryableEntity(includeProperties).FirstOrDefaultAsync(predicate);
