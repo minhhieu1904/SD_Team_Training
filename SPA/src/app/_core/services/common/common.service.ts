@@ -1,13 +1,18 @@
+import { KeyValueUtility } from './../../utilities/key-value-utility';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
-import {environment} from "@env/environment";
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-  apiUrl = environment.apiUrl;
-  constructor(private http: HttpClient) { }
+  apiUrl: string = environment.apiUrl;
+  constructor(
+    private http: HttpClient
+  ) { }
 
+  getListBrandName () {
+    return this.http.get<KeyValueUtility[]>(`${this.apiUrl}Commom/GetListBrandName`);
+  }
 }

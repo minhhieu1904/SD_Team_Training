@@ -1,4 +1,3 @@
-
 using System.Linq.Expressions;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
@@ -87,7 +86,6 @@ namespace API._Repositories
         {
             return await QueryableEntity(includeProperties).FirstOrDefaultAsync(predicate);
         }
-
         private IQueryable<T> QueryableEntity(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> items = _context.Set<T>();

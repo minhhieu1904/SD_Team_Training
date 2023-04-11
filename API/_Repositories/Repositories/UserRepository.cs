@@ -1,13 +1,15 @@
+
 using API._Repositories.Interfaces;
 using API.Data;
 using API.Models;
 
 namespace API._Repositories.Repositories
 {
-    public class MS_QR_Storage_Repository : Repository<MS_QR_Storage>, IMS_QR_Storage_Repository
+    public class UserRepository : Repository<Users>, IUserRepository
     {
         private MyDBContext _context;
-        public MS_QR_Storage_Repository(MyDBContext context) : base(context)
+
+        public UserRepository(MyDBContext context) : base(context)
         {
             _context = context;
         }

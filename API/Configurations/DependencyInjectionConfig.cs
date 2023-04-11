@@ -1,6 +1,10 @@
 using API._Repositories;
 using API._Services.Interfaces;
 using API._Services.Services;
+using API._Services.Interfaces.Common;
+using API._Services.Interfaces.Report;
+using API._Services.Services.Common;
+using API._Services.Services.Report;
 
 namespace API.Configurations
 {
@@ -26,6 +30,10 @@ namespace API.Configurations
             services.AddScoped<I_UserRoleServices, S_UserRoleServices>();
 
             services.AddScoped<I_Login, S_Login>();
+
+            services.AddScoped<I_CommonService, S_Common>();
+
+            services.AddScoped<I_WksSuReportService, S_WksSuReport>();
         }
     }
 }

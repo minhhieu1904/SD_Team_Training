@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Pagination } from "./pagination-utility";
-import { NgSnotifyService } from "@services/common/ng-snotify.service";
+import { NgSnotifyService } from "@services/ng-snotify.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { BsLocaleService } from "ngx-bootstrap/datepicker";
 import { defineLocale, enGbLocale, idLocale, viLocale, zhCnLocale } from "ngx-bootstrap/chronos";

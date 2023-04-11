@@ -23,9 +23,13 @@ export const routes: Routes = [
         data: {
           title: 'Login'
         }
+      },
+      {
+        path: 'report',
+        loadChildren: () => import('./views/report/report.module').then(m => m.ReportModule)
       }
     ]
-  }
+  },
 ];
 
 @NgModule({

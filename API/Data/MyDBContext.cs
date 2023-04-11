@@ -29,6 +29,7 @@ namespace API.Data
         public virtual DbSet<RoleUser> RoleUser { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Report_wksh_SumResult> Report_Wksh_SumResult { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -132,6 +133,12 @@ namespace API.Data
                 entity.HasKey(e => new { e.user_account, e.role_unique })
                     .HasName("PK_RoleUser_1");
             });
+
+            modelBuilder.Entity<Report_wksh_SumResult>(entity =>
+            {
+                entity.HasNoKey().ToView(null);
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
