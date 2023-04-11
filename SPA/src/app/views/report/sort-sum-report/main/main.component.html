@@ -158,10 +158,10 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let items of data; let i= index" [ngClass]="{'table-warning': items.checked}">
+            <tr *ngFor="let items of data; let i= index" [ngClass]="{'table-warning': selectedIndex === i}">
               <td class="text-center"> 
                 <div class="custom-control custom-checked">
-                  <input type="checkbox" class="custom-control-input" [id]="'checked_'+i" [name]="'checked_'+i" [ngModel]="selectedIndex === i" (click)="checkboxChange($event,i)">
+                  <input type="checkbox" class="custom-control-input" [id]="'checked_'+i" [name]="'checked_'+i" [ngModel]="selectedIndex == i" (click)="checkboxChange($event,i)">
                   <label class="custom-control-label" [for]="'checked_'+i"></label>
                 </div>
               </td>
