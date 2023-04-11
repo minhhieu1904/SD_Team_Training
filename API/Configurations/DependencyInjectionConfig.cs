@@ -1,4 +1,3 @@
-
 using API._Repositories;
 using API._Services.Interfaces;
 using API._Services.Services;
@@ -23,6 +22,10 @@ namespace API.Configurations
             services.AddScoped<I_Department_Data_Maintain, S_Department_Data_Maintain>();
 
             services.AddScoped<I_Packing_Quantity_Setting, S_Packing_Quantity_Setting>();
+
+            services.AddScoped<I_UserRoleServices, S_UserRoleServices>();
+
+            services.AddScoped<I_Login, S_Login>();
         }
     }
 }
