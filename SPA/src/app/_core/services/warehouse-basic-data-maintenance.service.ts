@@ -7,13 +7,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { MS_Location } from './../models/mS_Location_DTO';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocationDataMaintenanceService {
-  baseUrl: string =
-    'https://localhost:5001/api/Warehouse_Basic_Data_Maintenance/';
+  apiUrl: string = environment.apiUrl;
   msLocation = new BehaviorSubject<MS_Location>(null);
   msLocationCurrent = this.msLocation.asObservable();
   constructor(private http: HttpClient) {}
@@ -31,16 +31,16 @@ export class LocationDataMaintenanceService {
     console.log(params);
 
     return this.http.get<PaginationResult<MS_Location>>(
-      this.baseUrl + 'Search',
+      this.apiUrl + 'C_WarehouseBasicDataMaintanance/Search',
       { params: params }
     );
   }
 
   addNew(model: MS_Location): Observable<OperationResult> {
-    return this.http.post<OperationResult>(this.baseUrl + 'Create', model);
+    return this.http.post<OperationResult>(this.apiUrl + 'C_WarehouseBasicDataMaintanance/Create', model);
   }
 
   update(model: MS_Location): Observable<OperationResult> {
-    return this.http.put<OperationResult>(this.baseUrl + 'Update', model);
+    return this.http.put<OperationResult>(this.apiUrl + 'C_WarehouseBasicDataMaintanance/Update', model);
   }
 }

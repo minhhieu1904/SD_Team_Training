@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../../environments/environment';
+import { environment } from '@env/environment';
 import { Injectable } from '@angular/core';
 import { ApplicationUser, userLogin } from '../models/userLogin';
 
@@ -7,9 +7,9 @@ import { ApplicationUser, userLogin } from '../models/userLogin';
   providedIn: 'root'
 })
 export class LoginService {
-  baseUrl: string = 'https://localhost:5001/C_Login/' ;
+  apiUrl:string = environment.apiUrl ;
   constructor(private http: HttpClient) {}
   login(param : any){
-    return this.http.post<ApplicationUser>(this.baseUrl + 'Login', param)
+    return this.http.post<ApplicationUser>(this.apiUrl + 'C_Login/Login', param)
   }
 }

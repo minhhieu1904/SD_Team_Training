@@ -9,13 +9,13 @@ using SD3_API.Helpers.Utilities;
 
 namespace API.Controllers.Maintain
 {
-    
-    public class C_AccountController : APIController
-    {
-        
-         private readonly I_UserRoleServices _userRoledata;
 
-        public C_AccountController(I_UserRoleServices UserRoledata)
+    public class C_Account : APIController
+    {
+
+        private readonly I_UserRoleServices _userRoledata;
+
+        public C_Account(I_UserRoleServices UserRoledata)
         {
             _userRoledata = UserRoledata;
         }

@@ -14,7 +14,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace API.Controllers
 {
-    [Route("[controller]")]
     public class C_Login : APIController
     {
         private readonly IConfiguration _config;
@@ -26,24 +25,26 @@ namespace API.Controllers
             _login = login;
         }
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(UserLogin userLogin){
+        public async Task<IActionResult> Login(UserLogin userLogin)
+        {
             //Lấy thông tin người dùng bao gồm tài khoản và mật khẩu
             // Nếu như tài khoản và mật khẩu không trùng khớp thì trả về null
             var userform = await _login.Login(userLogin);
             // Khi đó sẽ trả về không có quyền đăng nhập (status: 401) không cho phép đăng nhập
-            if(userform==null) return Unauthorized();
+            if (userform == null) return Unauthorized();
             //Khai báo thông tin lưu trữ vào jwt token
-            var claims = new []
+            var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userform.account.ToString()),
                 new Claim(ClaimTypes.Name, userform.name)
             };
-             // Lấy mã Token tại AppSetting,
+            // Lấy mã Token tại AppSetting,
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Appsettings:Token").Value));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
             //Tạo thông tin Claims với ngày hết hạn và thông tin người dùng
 
-            var tokenDescriptor = new SecurityTokenDescriptor{
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(7),
                 SigningCredentials = creds
@@ -51,7 +52,8 @@ namespace API.Controllers
             //Sinh token để trả về kèm theo thông tin Claims
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return Ok(new {
+            return Ok(new
+            {
                 token = tokenHandler.WriteToken(token),
                 User = userform
             });

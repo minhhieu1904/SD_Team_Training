@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Common
 {
-    public class CommonController : APIController
+    public class C_Common : APIController
     {
         private readonly I_CommonService _commonService;
-        public CommonController(I_CommonService commonService)
+        public C_Common(I_CommonService commonService)
         {
             _commonService = commonService;
         }

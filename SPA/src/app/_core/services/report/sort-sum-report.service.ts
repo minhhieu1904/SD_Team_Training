@@ -9,7 +9,7 @@ import { ExportDetailExcelParams } from '@models/Report/exportDetailExcelParams'
   providedIn: 'root'
 })
 export class SortSumReportService {
-  private apiUrl = environment.apiUrl
+  apiUrl: string = environment.apiUrl
   constructor(
     private http: HttpClient,
   ) { }

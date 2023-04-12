@@ -1,6 +1,6 @@
 import { KeyValueUtility } from './../../utilities/key-value-utility';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../../../environments/environment';
+import { environment } from '@env/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -13,6 +13,6 @@ export class CommonService {
   ) { }
 
   getListBrandName () {
-    return this.http.get<KeyValueUtility[]>(this.apiUrl + "Common/GetListBrandName");
+    return this.http.get<KeyValueUtility[]>(this.apiUrl + "C_Common/GetListBrandName");
   }
 }

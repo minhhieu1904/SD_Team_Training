@@ -8,16 +8,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WkshSumReportService {
-  private apiUrl = environment.apiUrl;
+  apiUrl: string = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
   searchWithPagination(pagination: Pagination, param: WkshSumReportParam){
     let params = new HttpParams().appendAll({...pagination, ...param});
-    return this.http.get<PaginationResult<Report_Wksh_SumResult>>(this.apiUrl + "WkshSumReport/SearchWithPagination", {params});
+    return this.http.get<PaginationResult<Report_Wksh_SumResult>>(this.apiUrl + "C_WkshSumReport/SearchWithPagination", {params});
   }
 
   exportExcel(pagination: Pagination, param: WkshSumReportParam){
     let params = new HttpParams().appendAll({...pagination, ...param});
-    return this.http.get(this.apiUrl + "WkshSumReport/ExportExcel", {responseType: 'blob' ,params});
+    return this.http.get(this.apiUrl + "C_WkshSumReport/ExportExcel", {responseType: 'blob' ,params});
   }
 }

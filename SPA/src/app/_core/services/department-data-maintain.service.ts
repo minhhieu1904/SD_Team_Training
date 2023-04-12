@@ -5,12 +5,13 @@ import { HttpParams } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OperationResult } from '../utilities/operation-result';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DepartmentDataMaintainService {
-  baseUrl: string = 'https://localhost:5001/api/DepartmentDataMaintain/';
+  apiUrl:string = environment.apiUrl;
   msDepartment = new BehaviorSubject<MS_Department>(null);
   msDepartmentCurrent = this.msDepartment.asObservable();
 
@@ -30,7 +31,7 @@ export class DepartmentDataMaintainService {
       .set('ParName', param.parName ?? '')
       .set('Manuf', 'N');
     return this.http.get<PaginationResult<MS_Department>>(
-      this.baseUrl + 'Search',
+      this.apiUrl + 'C_DepartmentDataMaintain/Search',
       {
         params: params,
       }
@@ -40,9 +41,9 @@ export class DepartmentDataMaintainService {
   // service add new
   addNew(model: MS_Department): Observable<OperationResult> {
     console.log('md', model);
-    return this.http.post<OperationResult>(this.baseUrl + 'Create', model);
+    return this.http.post<OperationResult>(this.apiUrl + 'C_DepartmentDataMaintain/Create', model);
   }
   update(model: MS_Department): Observable<OperationResult> {
-    return this.http.put<OperationResult>(this.baseUrl + 'Update', model);
+    return this.http.put<OperationResult>(this.apiUrl + 'C_DepartmentDataMaintain/Update', model);
   }
 }

@@ -6,12 +6,12 @@ using SD3_API.Helpers.Utilities;
 
 namespace API.Controllers.Report
 {
-    public class WkshSumReportController : APIController
+    public class C_WkshSumReport : APIController
     {
         private readonly I_WksSuReportService _service;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public WkshSumReportController(I_WksSuReportService wksSuReport, IWebHostEnvironment webHostEnvironment)
+        public C_WkshSumReport(I_WksSuReportService wksSuReport, IWebHostEnvironment webHostEnvironment)
         {
             _service = wksSuReport;
             _webHostEnvironment = webHostEnvironment;

@@ -5,12 +5,13 @@ import { HttpParams } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MS_Shift } from '@models/mS_Shift_DTO';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShiftDataMaintainService {
-baseUrl: string = 'https://localhost:5001/api/Shift_Data_Maintain/'
+apiUrl:string = environment.apiUrl
   // BehaviorSubject là khi mình gửi giá trị vào nó khi chuyển qua trang update mình hứng nhận giá trị nó lại, này có trên gg có gì a tìm hiểu thêm nha
   msShift = new BehaviorSubject<MS_Shift>(null);
   msShiftCurrent = this.msShift.asObservable();
@@ -26,16 +27,16 @@ baseUrl: string = 'https://localhost:5001/api/Shift_Data_Maintain/'
     .set('Shift', param.shift ?? "")
     .set('ShiftName', param.shiftName ?? "")
     .set('Manuf', null)
-  return this.http.get<PaginationResult<MS_Shift>>(this.baseUrl +'Search',{params:params});
+  return this.http.get<PaginationResult<MS_Shift>>(this.apiUrl +'C_ShiftDataMaintain/Search',{params:params});
   }
 
   // service add new
   addNew(model: MS_Shift):Observable<OperationResult>{
-    return this.http.post<OperationResult>(this.baseUrl + 'Create',model);
+    return this.http.post<OperationResult>(this.apiUrl +'C_ShiftDataMaintain/Create',model);
   }
 
   // Service Update
   update(model:MS_Shift):Observable<OperationResult>{
-    return this.http.put<OperationResult>(this.baseUrl + 'Update',model);
+    return this.http.put<OperationResult>(this.apiUrl +'C_ShiftDataMaintain/Update',model);
   }
 }
