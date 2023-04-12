@@ -16,6 +16,7 @@ namespace API.Data
         public DBContext(DbContextOptions<DBContext> options)
             : base(options)
         {
+            Database.SetCommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds);
         }
 
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
@@ -41,7 +42,7 @@ namespace API.Data
         public virtual DbSet<RoleUser> RoleUsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Report_wksh_SumResult> Report_wksh_SumResult {get; set;}
-
+        public virtual DbSet<SortSumReportDTO> Sort_Sum_Report {get; set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -410,6 +411,7 @@ namespace API.Data
             {
                 entity.HasKey(e => new { e.purno, e.manno, e.size });
             });
+            modelBuilder.Entity<SortSumReportDTO>().HasNoKey().ToView(null);
 
             OnModelCreatingPartial(modelBuilder);
         }

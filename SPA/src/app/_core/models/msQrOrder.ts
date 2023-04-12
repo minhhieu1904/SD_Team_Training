@@ -48,3 +48,55 @@ export interface WkshSumReport {
     eta_end: string | null;
     size: string;
 }
+
+export interface SortSumReportParam {
+    date_kind: string;
+    date_start: string | null;
+    date_end: string | null;
+    brandname: string;
+    cusna: string;
+    manno: string;
+    purno: string;
+    rmodel: string;
+    tolcls: string;
+    bitnbr: string;
+    kind: string;
+    eta_start: string | null;
+    eta_end: string | null;
+    size: string;
+}
+
+export interface SortSumReportDTO {
+    crday: string | null;
+    mdat: string | null;
+    brandname: string;
+    cusid: string;
+    cusna: string;
+    manno: string;
+    purno: string;
+    rmodel: string;
+    tolcls: string;
+    ritnbr: string;
+    bitnbr: string;
+    kind: string;
+    article: string;
+    eta: string | null;
+    size: string;
+    qty: number | null;
+    wkshqty: number | null;
+    pqty: number | null;
+    sort_qty: number | null;
+    diff_qty: number | null;
+    cqty: number | null;
+}
+
+export interface BrandDTO {
+    id: string;
+    brandname: string;
+}
+
+export interface SortSumDetailReportParam {
+    manno: string;
+    purno: string;
+    size: string;
+}

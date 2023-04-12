@@ -6,6 +6,7 @@ using API._Services.Interfaces.report;
 using API._Services.Services;
 using API._Services.Services.Login;
 using API._Services.Services.Maintain;
+
 using API._Services.Services.report;
 
 namespace API.Configurations
@@ -27,6 +28,7 @@ namespace API.Configurations
             services.AddScoped<I_AuthorizationServices, S_AuthorizationServices>();
             services.AddScoped<I_LoginServices, S_Loginservices>();
             services.AddScoped<I_WkshSumReport_Services, S_WkshSumReport_Services>();
+            services.AddScoped<I_SortSumReport_Services, S_SortSumReport_Services>();
 
         }
     }
