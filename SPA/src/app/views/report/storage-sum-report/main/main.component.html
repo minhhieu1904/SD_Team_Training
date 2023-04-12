@@ -1,0 +1,286 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <form class="form-horizontal" autocomplete="off">
+          <div class="card-header">
+            <!-- Title -->
+            <div class="row border-title">
+              <div class="col-md-12">
+                <strong class="title-card-cs">
+                  4.3 Storage Sum Report
+                </strong>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="card-body">
+          <form class="form-group row border-shadow" autocomplete="off">
+            <!-- date kind -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 ">
+              <label class="badge badge-warning">
+                Date Kind
+              </label>
+              <div class="full-width">
+                <ng-select [(ngModel)]="param.crday" name="date_kind" (clear)="param.crday = 'sdat'"
+                  [clearable]="param.crday != 'sdat'">
+                  <ng-option *ngFor="let date of dateKind" [value]="date.key">{{date.value}}
+                  </ng-option>
+                </ng-select>
+              </div>
+            </div>
+            <!-- Date -->
+            <div class="col-xxl-3 col-xl-4 col-lg-8 col-md-9 col-sm-12 ">
+              <label class="badge badge-warning">
+                Date
+              </label>
+              <div class="full-width">
+                <div class="container_mdat">
+                  <div class="input-group mr-1">
+                    <input type="text" placeholder="Select From..." name="date_start" [maxDate]="minMdatEndDate"
+                      [bsConfig]="bsConfig" class="form-control" bsDatepicker [(ngModel)]="maxMdatStartDate">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <input type="text" placeholder="Select To..." name="date_end" [minDate]="maxMdatStartDate"
+                      [bsConfig]="bsConfig" class="form-control" bsDatepicker [(ngModel)]="minMdatEndDate">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- BrandName -->
+            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-12 ">
+              <label class="badge badge-warning">
+                Brand
+              </label>
+              <div class="full-width">
+                <ng-select [(ngModel)]="param.brandname" name="brandname" placeholder="Please select...">
+                  <ng-option *ngFor="let brand of brandName" [value]="brand.key">
+                    {{brand.value}}
+                  </ng-option>
+                </ng-select>
+              </div>
+            </div>
+            <!-- Code of Customer -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 ">
+              <label class="badge badge-warning">
+                Code of Customer
+              </label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="cusna" placeholder="Code Of Customer"
+                  [(ngModel)]="param.cusna">
+              </div>
+            </div>
+            <!-- Planning No. -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 ">
+              <label class="badge badge-warning">
+                Planning No
+              </label>
+              <div class="full-width">
+                <input type="text" class="form-control" name="manno" placeholder="Planning No"
+                  [(ngModel)]="param.manno">
+              </div>
+            </div>
+            <!-- Mold Number -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 ">
+              <label class="badge badge-warning">
+                Mold Number
+              </label>
+              <div class="full-width">
+                <input type="text" class="form-control" [(ngModel)]="param.rmodel" name="rmodel"
+                  placeholder="Mold Number">
+              </div>
+            </div>
+            <!-- tolcls -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 ">
+              <label class="badge badge-warning">
+                tolcls
+              </label>
+              <div class="full-width">
+                <input type="text" class="form-control" [(ngModel)]="param.tolcls" name="tolcls" placeholder="tolcls">
+              </div>
+            </div>
+            <!-- PurchaseNo -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 ">
+              <label class="badge badge-warning">
+                Purchase No
+              </label>
+              <div class="full-width">
+                <input type="text" class="form-control" [(ngModel)]="param.purno" name="purno"
+                  placeholder="Purchase No">
+              </div>
+            </div>
+            <!-- Material Code -->
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 ">
+              <label class="badge badge-warning">
+                Material Code
+              </label>
+              <div class="full-width">
+                <input type="text" class="form-control" [(ngModel)]="param.bitnbr" name="bitnbr"
+                  placeholder="Material Code">
+              </div>
+            </div>
+            <!-- Kind -->
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 ">
+              <label class="badge badge-warning">
+                Kind
+              </label>
+              <div class="full-width">
+                <input type="text" class="form-control" [(ngModel)]="param.kind" name="kind" placeholder="Kind">
+              </div>
+            </div>
+            <!-- Confirmed Delivery Date -->
+            <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+              <label class="badge badge-warning">
+                Confirmed Delivery Date
+              </label>
+              <div class="full-width">
+                <div class="container_mdat">
+                  <div class="input-group mr-1">
+                    <input type="text" name="etaFrom" bsDatepicker class="form-control" [maxDate]="minEtaEndDate"
+                      [bsConfig]="bsConfig" placeholder="Select From..." [(ngModel)]="maxEtaStartDate" />
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <input type="text" name="etaTo" bsDatepicker class="form-control" [minDate]="maxEtaStartDate"
+                      [bsConfig]="bsConfig" placeholder="Select To..." [(ngModel)]="minEtaEndDate" />
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Size -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <label class="badge badge-warning">
+                Size
+              </label>
+              <div class="full-width">
+                <input type="text" [(ngModel)]="param.size" class="form-control" name="size" placeholder="Size">
+              </div>
+            </div>
+
+            <!-- Button function: Get data pagination with search params, Clear search params - get data pagination, Print -->
+            <div class="col-xxl-6 mt-4 pt-1" style="padding: 0 15px;">
+              <button type="submit" class="btn btn-success" (click)="search()">
+                <i class="{{iconButton.SEARCH}}"> Search</i>
+              </button>
+              <button type="button" class="btn btn-danger ml-2" (click)="clearSearch()">
+                <i class="{{iconButton.CLEAR}}"> Clear</i>
+              </button>
+              <button type="button" class="btn btn-primary ml-2" (click)="exportExcel()">
+                <i class="{{iconButton.EXCEL}}"> Export Excel</i>
+              </button>
+              <button type="button" class="btn btn-primary ml-2" (click)="exportDetailExcel()"
+                [disabled]="!isCheckItem">
+                <i class="{{iconButton.EXCEL}}"> Export Detail Excel</i>
+              </button>
+            </div>
+          </form>
+          <div class="row justify-content-md-center">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div id="table-order-main" class="table-responsive ">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr class="text-center">
+                      <th>#</th>
+                      <th>Create day</th>
+                      <th>Production_Date</th>
+                      <th>Brand</th>
+                      <th>Code of Customer</th>
+                      <th>Name of Customer</th>
+                      <th>Planning No</th>
+                      <th>Purchase No</th>
+                      <th>Mold Number</th>
+                      <th>tolcls</th>
+                      <th>Material Code Shoes</th>
+                      <th>Material Code Bottom</th>
+                      <th>Type of Order</th>
+                      <th>Article</th>
+                      <th>Kind</th>
+                      <th>Confirmed Delivery Date</th>
+                      <th>Size</th>
+                      <th>Order Quantity</th>
+                      <th>wkshqty</th>
+                      <th>Printed Quantity</th>
+                      <th>Sort scan Qty</th>
+                      <th>Storage scan Qty</th>
+                      <th>Differences Qty</th>
+                      <th>Cancel priting quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="data?.length > 0; else elseTemplate">
+                    <tr *ngFor="let item of data;let i = index" [ngClass]="{'table-warning': item.check}"
+                      (click)="checkRecord(item)">
+                      <td>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" [id]="'check_' + i"
+                            [(ngModel)]="item.check" [name]="'check_' + i" (click)="checkRecord(item)">
+                          <label class="custom-control-label" [for]="'check_' + i"></label>
+                        </div>
+                      </td>
+                      <td>{{item.crday | date: 'YYYY/MM/dd'}}</td>
+                      <td>{{item.mdat | date: 'YYYY/MM/dd'}}</td>
+                      <td>{{item.brandname}}</td>
+                      <td>{{item.cusid}}</td>
+                      <td>{{item.cusna}}</td>
+                      <td>{{item.manno}}</td>
+                      <td>{{item.purno}}</td>
+                      <td>{{item.rmodel}}</td>
+                      <td>{{item.tolcls}}</td>
+                      <td>{{item.ritnbr}}</td>
+                      <td>{{item.bitnbr}}</td>
+                      <td>{{item.kind}}</td>
+                      <td>{{item.article}}</td>
+                      <td>{{item.kind}}</td>
+                      <td>{{item.eta | date: 'YYYY/MM/dd'}}</td>
+                      <td>{{item.size}}</td>
+                      <td>{{item.qty}}</td>
+                      <td>{{item.wkshqty}}</td>
+                      <td>{{item.pqty}}</td>
+                      <td>{{item.sort_qty}}</td>
+                      <td>{{item.storage_qty}}</td>
+                      <td>{{item.diff_qty}}</td>
+                      <td>{{item.cqty}}</td>
+                    </tr>
+                    <tr *ngIf="data?.length === 0">
+                      <td colspan="100%" class="table-warning text-center font-weight-bold">
+                        No Data!
+                      </td>
+                    </tr>
+                  </tbody>
+                  <ng-template #elseTemplate>
+                    <tbody>
+                      <tr>
+                        <td colspan="100%" class="table-warning text-center font-weight-bold">
+                          No data
+                        </td>
+                      </tr>
+                    </tbody>
+                  </ng-template>
+                </table>
+              </div>
+              <div class="d-flex" *ngIf="data.length > 0">
+                <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+                  previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                  [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+                </pagination>
+                <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+                  {{pagination.totalPage}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

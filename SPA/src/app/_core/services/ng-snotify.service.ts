@@ -13,7 +13,6 @@ export class NgSnotifyService {
     closeOnClick: true,
     pauseOnHover: true
   };
-
   constructor(private snotifyService: SnotifyService) {
     this.setDefaults();
   }

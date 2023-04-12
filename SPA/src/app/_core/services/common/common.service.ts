@@ -13,6 +13,6 @@ export class CommonService {
   ) { }
 
   getListBrandName () {
-    return this.http.get<KeyValueUtility[]>(`${this.apiUrl}Commom/GetListBrandName`);
+    return this.http.get<KeyValueUtility[]>(this.apiUrl + "Common/GetListBrandName");
   }
 }

@@ -1,8 +1,8 @@
 namespace API.Dtos.Report.Report_Sort_Sum
 {
-    public class Export_Detail_Excel
+    public class Storage_Export_Detail_Excel
     {
-        public string IsScanSort { get; set; }
+        public string IsStorageSort { get; set; }
         public string QRCodeID { get; set; }
         public DateTime? CrDay { get; set; }
         public string brandname { get; set; }

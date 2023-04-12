@@ -11,7 +11,7 @@ namespace API.Data
         }
         public MyDBContext(DbContextOptions<MyDBContext> options) : base(options)
         {
-
+            Database.SetCommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds);
         }
         public virtual DbSet<MS_Department> MS_Department { get; set; }
         public virtual DbSet<MS_Location> MS_Location { get; set; }
@@ -31,6 +31,7 @@ namespace API.Data
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Report_wksh_SumResult> Report_Wksh_SumResult { get; set; }
         public virtual DbSet<Report_Sort_SumResult> Report_Sort_SumResult { get; set; }
+        public virtual DbSet<Report_Storage_SumResult> Report_Storage_SumResult { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -111,7 +112,6 @@ namespace API.Data
                 entity.Property(e => e.Grade)
                     .IsUnicode(false)
                     .IsFixedLength(true);
-
             });
 
             modelBuilder.Entity<MS_QR_StorageOut>(entity =>
@@ -121,7 +121,6 @@ namespace API.Data
                 entity.Property(e => e.Grade)
                     .IsUnicode(false)
                     .IsFixedLength(true);
-
             });
 
             modelBuilder.Entity<MS_Shift>(entity =>
@@ -144,7 +143,10 @@ namespace API.Data
             {
                 entity.HasNoKey();
             });
-
+            modelBuilder.Entity<Report_Storage_SumResult>(entity =>
+            {
+                entity.HasNoKey();
+            });
             OnModelCreatingPartial(modelBuilder);
         }
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

@@ -8,6 +8,6 @@ namespace API._Services.Interfaces.Report
     public interface I_SortSumReport
     {
         public Task<PaginationUtility<Report_Sort_SumResult>> Search(PaginationParam pagination, SearchSortSumReportParams param, bool is_Paging = true);
-        public Task<List<Export_Detail_Excel>> ExportDetailExcel(ExportDetailExcelParams param);
+        public Task<List<Sort_Export_Detail_Excel>> ExportDetailExcel(SortExportDetailExcelParams param);
     }
 }

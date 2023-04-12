@@ -1,15 +1,15 @@
-import { ExportDetailExcelParams } from '@models/Report/exportDetailExcelParams';
-import { ReportSortSumResult, SearchSortSumReportParams } from '@models/Report/reportSortSumResult';
-import { SortSumReportService } from '@services/report/sort-sum-report.service';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 import { CommonService } from '@services/common/common.service';
-import { InjectBase } from '@utilities/inject-base-app'
-import { IconButton } from '@constants/common.constants';
+import { StorageSumReportService } from '@services/report/storage-sum-report.service';
 import { KeyValueUtility } from '@utilities/key-value-utility';
-import { Pagination } from '@utilities/pagination-utility';
+import { IconButton } from '@constants/common.constants';
+import { Report_Storage_Sum, Report_Storage_Sum_Param } from '@models/Report/report_Storage_Sum_Param';
+import { InjectBase } from '@utilities/inject-base-app';
 import { Component, OnInit } from '@angular/core';
+import { Pagination } from '@utilities/pagination-utility';
 import { BsDatepickerConfig, BsDatepickerViewMode } from 'ngx-bootstrap/datepicker';
 import { DestroyService } from '@services/destroy.service';
+import { ExportDetailExcelParams } from '@models/Report/exportDetailExcelParams';
 
 @Component({
   selector: 'app-main',
@@ -18,20 +18,27 @@ import { DestroyService } from '@services/destroy.service';
   providers: [DestroyService]
 })
 export class MainComponent extends InjectBase implements OnInit {
-  pagination: Pagination = <Pagination>{ pageNumber: 1, pageSize: 10 };
-  minMode: BsDatepickerViewMode = 'day';
-  bsConfig: Partial<BsDatepickerConfig> = <Partial<BsDatepickerConfig>>{
-    dateInputFormat: "YYYY/MM/DD",
-    minMode: this.minMode
-  }
-  param: SearchSortSumReportParams = <SearchSortSumReportParams>{
+  iconButton = IconButton
+  pagination: Pagination = <Pagination>{pageNumber: 1, pageSize: 10};
+  param: Report_Storage_Sum_Param = <Report_Storage_Sum_Param>{
     crday: 'sdat',
     brandname: ''
-  };
+  }
   paramExportDetailExcel: ExportDetailExcelParams = {
     manno: '',
     purno: '',
     size: '',
+  }
+  data: Report_Storage_Sum[] = [];
+  brandName: KeyValueUtility[] = [];
+  maxMdatStartDate: Date;
+  minMdatEndDate: Date;
+  maxEtaStartDate: Date;
+  minEtaEndDate: Date;
+  minMode: BsDatepickerViewMode = 'day';
+  bsConfig: Partial<BsDatepickerConfig> = <Partial<BsDatepickerConfig>>{
+    dateInputFormat: "YYYY/MM/DD",
+    minMode: this.minMode
   }
   dateKind = [
     {
@@ -43,31 +50,25 @@ export class MainComponent extends InjectBase implements OnInit {
       'value': 'Production_Date'
     }
   ]
-  data: ReportSortSumResult[] = [];
-  iconButton = IconButton;
-  maxMdatStartDate: Date;
-  minMdatEndDate: Date;
-  maxEtaStartDate: Date;
-  minEtaEndDate: Date;
-  brandNames: KeyValueUtility[] = [];
-  dataChecked: ReportSortSumResult;
+  dataChecked: Report_Storage_Sum;
   isCheckItem: boolean = false;
+
   constructor(
-    private service: SortSumReportService,
+    private service: StorageSumReportService,
     private commonService: CommonService,
   ) { super() }
 
   ngOnInit() {
     this.getData();
     this.getBranchName();
-    this.clearSearch();
+    // this.clearSearch();
   }
 
   getBranchName() {
     this.spinnerService.show();
     this.commonService.getListBrandName().subscribe({
       next: res => {
-        this.brandNames = res;
+        this.brandName = res;
         this.spinnerService.hide();
       },
       error: () => {
@@ -77,16 +78,11 @@ export class MainComponent extends InjectBase implements OnInit {
     })
   }
 
-  search() {
-    this.pagination.pageNumber = 1;
-    this.getData();
-  }
-
   checkDate(){
-    this.param.dateStart = this.maxMdatStartDate != null ? this.functionUtility.getDateFormat(this.maxMdatStartDate) : ''
-    this.param.dateEnd = this.minMdatEndDate != null ? this.functionUtility.getDateFormat(this.minMdatEndDate) : ''
-    this.param.etaFrom = this.maxEtaStartDate != null ? this.functionUtility.getDateFormat(this.maxEtaStartDate) : ''
-    this.param.etaTo = this.minEtaEndDate != null ? this.functionUtility.getDateFormat(this.minEtaEndDate) : ''
+    this.param.sdat = this.maxMdatStartDate != null ? this.functionUtility.getDateFormat(this.maxMdatStartDate) : ''
+    this.param.mdat = this.minMdatEndDate != null ? this.functionUtility.getDateFormat(this.minMdatEndDate) : ''
+    this.param.startDate = this.maxEtaStartDate != null ? this.functionUtility.getDateFormat(this.maxEtaStartDate) : ''
+    this.param.endDate = this.minEtaEndDate != null ? this.functionUtility.getDateFormat(this.minEtaEndDate) : ''
   }
 
   getData(){
@@ -94,9 +90,9 @@ export class MainComponent extends InjectBase implements OnInit {
     this.spinnerService.show();
     this.service.search(this.pagination, this.param).subscribe({
       next: res => {
-        this.spinnerService.hide();
         this.data = res.result;
         this.pagination = res.pagination;
+        this.spinnerService.hide();
       },
       error: () => {
         this.spinnerService.hide();
@@ -105,13 +101,30 @@ export class MainComponent extends InjectBase implements OnInit {
     })
   }
 
+  clearSearch() {
+    this.param = <Report_Storage_Sum_Param>{
+      crday: 'sdat'
+    };
+    this.maxMdatStartDate = null
+    this.minMdatEndDate = null
+    this.maxEtaStartDate = null
+    this.minEtaEndDate = null
+    this.data = []
+    this.isCheckItem = false;
+  }
+
+  search() {
+    this.pagination.pageNumber = 1;
+    this.getData();
+  }
+
   exportExcel(){
     this.spinnerService.show();
     this.service.exportExcel(this.pagination, this.param).subscribe({
       next: (result: Blob) => {
         this.spinnerService.hide();
         const currentTime = new Date();
-        let fileName = "4.2.SortSumReport_" +
+        let fileName = "4.3.StorageSumReport_" +
           currentTime.getFullYear().toString() +
           (currentTime.getMonth() + 1) +
           currentTime.getDate();
@@ -136,7 +149,7 @@ export class MainComponent extends InjectBase implements OnInit {
       next: (result: Blob) => {
         this.spinnerService.hide();
         const currentTime = new Date();
-        let fileName = "4.2.SortSumReport_" +
+        let fileName = "4.3.StorageSumReport_" +
         currentTime.getFullYear().toString() +
         (currentTime.getMonth() + 1) +
         currentTime.getDate();
@@ -150,7 +163,7 @@ export class MainComponent extends InjectBase implements OnInit {
     })
   }
 
-  checkRecord(item: ReportSortSumResult) {
+  checkRecord(item: Report_Storage_Sum) {
     item.check = !item.check;
     this.isCheckItem = item.check;
     this.data.filter(x => x != item).forEach(x => { x.check = false });
@@ -160,17 +173,5 @@ export class MainComponent extends InjectBase implements OnInit {
   pageChanged(e: any) {
     this.pagination.pageNumber = e.page;
     this.getData();
-  }
-
-  clearSearch() {
-    this.param = <SearchSortSumReportParams>{
-      crday: 'sdat'
-    };
-    this.maxMdatStartDate = null
-    this.minMdatEndDate = null
-    this.maxEtaStartDate = null
-    this.minEtaEndDate = null
-    this.data = []
-    this.isCheckItem = false;
   }
 }

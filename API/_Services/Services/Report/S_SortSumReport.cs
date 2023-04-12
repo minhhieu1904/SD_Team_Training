@@ -22,7 +22,7 @@ namespace API._Services.Services.Report
             _repositoryAccessor = repositoryAccessor;
         }
 
-        public async Task<List<Export_Detail_Excel>> ExportDetailExcel(ExportDetailExcelParams param)
+        public async Task<List<Sort_Export_Detail_Excel>> ExportDetailExcel(SortExportDetailExcelParams param)
         {
             var pred = PredicateBuilder.New<MS_QR_Label>(true);
             if (!string.IsNullOrEmpty(param.manno))
@@ -44,7 +44,7 @@ namespace API._Services.Services.Report
                                     y => y.QRCodeID,
                                     (x, y) => new { T1 = x.T1, T2 = x.T2, T3 = y })
                                     .SelectMany(x => x.T3.DefaultIfEmpty(), (x, y) => new { T1 = x.T1, T2 = x.T2, T3 = y })
-                                    .Select(x => new Export_Detail_Excel
+                                    .Select(x => new Sort_Export_Detail_Excel
                                     {
                                         IsScanSort = (x.T3.QRCodeID != null) ? "Y" : "N",
                                         CrDay = x.T3.CrDay,

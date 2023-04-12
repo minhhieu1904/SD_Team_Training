@@ -1,38 +1,38 @@
 using API._Services.Interfaces.Report;
 using API.DTOs.Report;
-using API.Helpers.Params.SortSumReport;
+using API.Helpers;
 using Aspose.Cells;
 using Microsoft.AspNetCore.Mvc;
 using SD3_API.Helpers.Utilities;
 
 namespace API.Controllers.Report
 {
-    public class C_SortSumReport : APIController
+    public class C_StorageSumReport : APIController
     {
-        private I_SortSumReport _service;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private I_StorageSumReport _service;
+        private IWebHostEnvironment _webHostEnvironment;
 
-        public C_SortSumReport(I_SortSumReport service, IWebHostEnvironment webHostEnvironment)
+        public C_StorageSumReport(I_StorageSumReport service, IWebHostEnvironment webHostEnvironment)
         {
             _service = service;
             _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] PaginationParam pagination, [FromQuery] SearchSortSumReportParams param)
+        public async Task<IActionResult> Search([FromQuery] PaginationParam pagination, [FromQuery] Report_Storage_Sum_Param param, bool isPaging = true)
         {
             return Ok(await _service.Search(pagination, param));
         }
 
         [HttpGet("ExportExcel")]
-        public async Task<IActionResult> ExportExcel([FromQuery] PaginationParam pagination, [FromQuery] SearchSortSumReportParams param)
+        public async Task<IActionResult> ExportExcel([FromQuery] PaginationParam pagination, [FromQuery] Report_Storage_Sum_Param param)
         {
             var data = await _service.Search(pagination, param, false);
             MemoryStream stream = new MemoryStream();
             if (data.Result.Count > 0)
             {
                 var path = Path.Combine(_webHostEnvironment.ContentRootPath,
-                "Resources\\Template\\Report\\SortSumReport\\SortSumReportTemplate.xlsx");
+                "Resources\\Template\\Report\\StorageSumReport\\StorageSumReportTemplate.xlsx");
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
@@ -49,14 +49,14 @@ namespace API.Controllers.Report
         }
 
         [HttpGet("ExportDetailExcel")]
-        public async Task<IActionResult> ExportDetailExcel([FromQuery] SortExportDetailExcelParams param)
+        public async Task<IActionResult> ExportDetailExcel([FromQuery] StorageExportDetailExcelParams param)
         {
             var data = await _service.ExportDetailExcel(param);
             MemoryStream stream = new MemoryStream();
             if (data.Count > 0)
             {
                 var path = Path.Combine(_webHostEnvironment.ContentRootPath,
-                "Resources\\Template\\Report\\SortSumReport\\4.2SortDetailReport.xlsx");
+                "Resources\\Template\\Report\\StorageSumReport\\StorageSumReportDetail.xlsx");
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
