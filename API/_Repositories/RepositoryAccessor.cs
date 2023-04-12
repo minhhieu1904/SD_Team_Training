@@ -1,6 +1,7 @@
+using API._Repositories.Interfaces;
 using API._Repositories.Repositories;
 using API.Data;
-using API._Repositories.Interfaces;
+using API.Models;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace API._Repositories

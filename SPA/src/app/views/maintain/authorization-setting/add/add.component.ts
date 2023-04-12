@@ -27,7 +27,7 @@ export class AddComponent extends InjectBase implements OnInit {
   ngOnInit(): void {
   }
   back(){
-    this.router.navigate(['authorization-setting'])
+    this.router.navigate(['maintain/authorization-setting'])
   }
   add(){
     this.service.add(this.user).subscribe({

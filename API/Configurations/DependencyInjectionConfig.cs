@@ -21,6 +21,7 @@ namespace API.Configurations
             services.AddScoped<I_DepartmentDataMaintainServices, S_DepartmentDataMaintainServices>();
             services.AddScoped<I_StandardPackingQuantityServices, S_StandardPackingQuantityServices>();
             services.AddScoped<I_AuthorizationServices, S_AuthorizationServices>();
+            services.AddScoped<I_LoginServices, S_Loginservices>();
 
         }
     }

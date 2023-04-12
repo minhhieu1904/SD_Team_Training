@@ -1,10 +1,12 @@
+import { ModalService } from './_core/services/common/modal.service';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
@@ -47,6 +49,10 @@ import { FooterContainerComponent } from './containers/footer-container/footer-c
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPrintModule} from 'ngx-print';
+import { LoginComponent } from './views/login/login.component';
+import { AuthGuard } from '@guards/auth.guard';
+// import { ChangePasswordComponent } from './containers/change-password/change-password/change-password.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -69,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
+    ModalModule.forRoot(),
     SnotifyModule,
     NgxSpinnerModule,
     NgxPrintModule,
@@ -83,15 +90,21 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   declarations: [
     AppComponent,
-    ...APP_CONTAINERS,
+    DefaultLayoutComponent,
+    LoginComponent,
+    DashboardComponent,
+  ...APP_CONTAINERS,
     HeaderContainerComponent,
     FooterContainerComponent
+
   ],
   providers: [
+    AuthGuard,
     {
       provide: LocationStrategy,
-      useClass: HashLocationStrategy
+      useClass: HashLocationStrategy,
     },
+    ModalService,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true },
     SnotifyService,

@@ -1,54 +1,48 @@
+import { AuthGuard } from './_core/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { LoginComponent } from './views/login/login.component';
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+   {
+
+    path: '',
+    canActivate: [AuthGuard],
     component: DefaultLayoutComponent,
     data: {
       title: 'Home',
     },
+
     children: [
       {
-        path: 'shift-data-maintain',
-        loadChildren: () =>
-          import(
-            './views/maintain/shift-data-maintain/shift-data-maintain.module'
-          ).then((m) => m.ShiftDataMaintainModule),
+        path: 'dashboard',
+        component: DashboardComponent,
       },
       {
-        path: 'warehouse-basic-data',
-        loadChildren: () =>
-          import(
-            './views/maintain/warehouse-data-basic/warehouse-data-basic.module'
-          ).then((m) => m.WareHouseDataBasicModule),
+        path: 'maintain',
+        loadChildren: () => import('./views/maintain/maintain.module')
+          .then(m => m.MaintainModule),
       },
-      {
-        path: 'department-data-maintain',
-        loadChildren: () => 
-        import('./views/maintain/department-data-maintain/department-data-maintain.module')
-        .then(m => m.DepartmentDataMaintainModule)
-      },
-      {
-        path: 'standard-packing-quantity',
-        loadChildren: () => import('./views/maintain/standard-packing-quantity/standard-packing-quantity.module')
-        .then(m => m.StandardPackingQuantityModule)
-      },
-      {
-        path: 'authorization-setting',
-        loadChildren: () =>
-          import(
-            './views/maintain/authorization-setting/authorization-setting.module'
-          ).then((m) => m.AuthorizationSettingModule)
-      }
-    ],
+    ]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Login Page'
+    }
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  imports: [ RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

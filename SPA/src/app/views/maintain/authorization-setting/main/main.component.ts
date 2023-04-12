@@ -50,7 +50,7 @@ export class MainComponent extends InjectBase implements OnInit {
     });
   }
   add(){
-    this.router.navigate(['authorization-setting/add']);
+    this.router.navigate(['maintain/authorization-setting/add']);
   }
   clear() {
     this.param.account = '';
@@ -58,7 +58,7 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getData();
   }
   update(user: User){
-    this.router.navigate([`authorization-setting/edit/${user.account}`])
+    this.router.navigate([`maintain/authorization-setting/edit/${user.account}`])
   }
   search(){
     this.pagination.pageNumber = 1;
