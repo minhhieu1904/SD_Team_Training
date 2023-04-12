@@ -15,6 +15,7 @@ namespace API._Repositories
         public I_Role_Repository Role {get;}
         public I_RoleUser_Repository RoleUser {get;}
         public I_User_Repository User {get;}
+        public IMS_QROrder_Repository MsQrOrder {get;}
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

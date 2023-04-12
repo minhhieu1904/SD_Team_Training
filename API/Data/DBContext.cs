@@ -40,6 +40,8 @@ namespace API.Data
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleUser> RoleUsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Report_wksh_SumResult> Report_wksh_SumResult {get; set;}
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -403,6 +405,10 @@ namespace API.Data
             {
                 entity.HasKey(e => new { e.UserAccount, e.RoleUnique })
                     .HasName("PK_RoleUser_1");
+            });
+            modelBuilder.Entity<Report_wksh_SumResult>(entity =>
+            {
+                entity.HasKey(e => new { e.purno, e.manno, e.size });
             });
 
             OnModelCreatingPartial(modelBuilder);
