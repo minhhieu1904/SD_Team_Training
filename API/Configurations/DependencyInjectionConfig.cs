@@ -26,6 +26,7 @@ namespace API.Configurations
             services.AddScoped<IReport_wksh_SumService, Report_wksh_SumService>();
             services.AddScoped<IReport_Sort_Sumservice, Report_Sort_Sumservice>();
             services.AddScoped<IReport_Storage_Sumservice, Report_Storage_Sumservice>();
+            services.AddScoped<IReport_QRCODE_WIPservices, Report_QRCODE_WIPservices>();
 
         }
     }

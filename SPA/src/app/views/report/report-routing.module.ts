@@ -25,6 +25,14 @@ const routes: Routes = [
     data: {
         role: getInfoMenu('4.3')?.unique
     }
+  },
+  {
+    path: 'qrcode-wip-report',
+    loadChildren: () => import('./report-qrcode-wip/report-qrcode-wip.module')
+      .then((m) => m.ReportQrcodeWipModule),
+    data: {
+        role: getInfoMenu('4.4')?.unique
+    }
   }
 ];
 

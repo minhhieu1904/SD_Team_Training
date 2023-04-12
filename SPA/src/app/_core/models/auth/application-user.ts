@@ -1,4 +1,3 @@
-
 export interface UserLoginParam {
   account: string;
   username: string;
@@ -6,7 +5,6 @@ export interface UserLoginParam {
   email: string;
   roles: RoleInformation[];
   roleAll : RoleInformation[];
-
 }
 
 export interface RoleInformation {

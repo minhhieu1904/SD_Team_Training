@@ -32,6 +32,8 @@ namespace API.Data
         public virtual DbSet<Report_wksh_SumParam> Report_Wksh_SumResult {get; set;}
         public virtual DbSet<Report_Sort_SumParam> Report_Sort_SumParam {get; set;}
         public virtual DbSet<Report_Storage_SumParam> Report_Storage_SumParam {get; set;}
+
+
         public virtual DbSet<__MigrationHistory> __MigrationHistory { get; set; }
 
 
@@ -42,6 +44,7 @@ namespace API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+     
             modelBuilder.Entity<AspNetUserClaims>(entity =>
             {
                

@@ -62,7 +62,7 @@ dateFrom_mdat = '';
 dateTo_mdat = '';
 dateFrom_eta = '';
 dateTo_eta = '';
-crDay= '';
+crDay = '';
 iconButton = IconButton;
 pageChanged(e: any) {
   this.pagination.pageNumber = e.page;
@@ -132,6 +132,7 @@ clear() {
   this.dateFrom_eta = '';
   this.dateTo_eta = '';
   this.getData();
+
 }
 
 export() {
@@ -152,7 +153,7 @@ export() {
     .exportExcel(this.paramsExport)
     .subscribe({
       next: (result: Blob) => {
-        this.functionUtility.exportExcel(result, 'Report Sort Sum');
+        this.functionUtility.exportExcel(result, 'Report Storage Sum');
       },
       error: () => {
         this.snotifyService.error(
@@ -174,7 +175,7 @@ this.service
   .exportExcelDetail(this.paramsExportDetail)
   .subscribe({
     next: (result: Blob) => {
-      this.functionUtility.exportExcel(result, 'Report Sort Sum Detail');
+      this.functionUtility.exportExcel(result, 'Report Storage Sum Detail');
     },
     error: () => {
       this.spinnerService.hide();
@@ -191,7 +192,6 @@ item.ischeck = !item.ischeck;
 this.ischeckItem = item.ischeck;
 this.data.filter(x => x != item).forEach(x => { x.ischeck = false });
 this.dataChecked = item;
-
 this.paramsExportDetail.manno = item.manno;
 this.paramsExportDetail.purno = item.purno;
 this.paramsExportDetail.size = item.size;
