@@ -3,11 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'wksh-sum-report',
+    path: 'search-for-order-data',
     loadChildren: () => import('./wksh-sum-report/wksh-sum-report.module').then(m => m.WkshSumReportModule)
   },
   {
-    path: 'sort-sum-report',
+    path: 'search-for-cycle-packing-data',
     loadChildren: () => import('./sort-sum-report/sort-sum-report.module').then(m => m.SortSumReportModule)
   }
 ];
