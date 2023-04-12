@@ -32,6 +32,7 @@ namespace API.Configurations
             services.AddScoped<ILoginUser, S_LoginUser>();
             services.AddScoped<I_WkshSumReport, S_WkshSumReport>();
             services.AddScoped<I_SortSumReport, S_SortSumReport>();
+            services.AddScoped<I_StorageSumReport, S_StorageSumReport>();
 
         }
     }

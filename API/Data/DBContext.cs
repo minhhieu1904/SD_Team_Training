@@ -30,7 +30,7 @@ namespace API.Data
         public virtual DbSet<Report_Sort_SumResult> Report_Sort_SumResult { get; set; }
         public virtual DbSet<MS_QR_Sort> MS_QR_Sort { get; set; }
         public virtual DbSet<MS_QR_Label> MS_QR_Label { get; set; }
-
+        public virtual DbSet<Report_Storage_SumResult> Report_Storage_SumResult { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -84,7 +84,7 @@ namespace API.Data
             {
                 entity.HasKey(e => new { e.Manuf, e.TrNo, e.QRCodeID });
             });
-
+            modelBuilder.Entity<Report_Storage_SumResult>().HasNoKey().ToView(null);
             OnModelCreatingPartial(modelBuilder);
         }
 

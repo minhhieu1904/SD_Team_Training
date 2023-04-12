@@ -9,8 +9,11 @@ const routes: Routes = [
   {
     path: 'sort-sum-report',
     loadChildren: () => import('../report/sort-sum-report/sort-sum-report.module').then(m => m.SortSumReportModule)
+  },
+  {
+    path: 'storage-sum-report',
+    loadChildren: () => import('../report/storage-sum-report/storage-sum-report.module').then(m => m.StorageSumReportModule)
   }
-  
 
 ];
 

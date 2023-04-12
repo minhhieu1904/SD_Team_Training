@@ -49,7 +49,7 @@ export const RolesConstants = [
             {
                 name: '4.3 Storage Sum Report',
                 role: 'BQRC.StorageSumReport',
-                url: ''
+                url: '/report/storage-sum-report'
             },
             {
                 name: '4.4 QRCode WIP Report',

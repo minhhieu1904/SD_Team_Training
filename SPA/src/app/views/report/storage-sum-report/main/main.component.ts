@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { IconButton } from '@constants/common.constants';
-import { Brand, MS_QR_Order, Report_Sort_SumResult, SortSumReport, WkshSumReport } from '@models/report/MS_QR_Order';
+import { Brand, StorageSumDetailReportParam, StorageSumReportParam, StorageSumReportResult } from '@models/report/Storage_Sum_Report';
 import { InjectBase } from '@utilities/inject-base-app';
 import { KeyValuePair } from '@utilities/key-value-pair';
 import { Pagination } from '@utilities/pagination-utility';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { SortSumReportService } from "../../../../_core/services/report/sort-sum-report.service";
+import { StorageSumReportService } from "../../../../_core/services/report/storage-sum-report.service";
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
-import { SortSumDetailReportParam } from '@models/report/sortSumReportDetail';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -20,13 +19,13 @@ export class MainComponent extends InjectBase implements OnInit {
     { key: "sdat", value: 'Sdat Date' },
   ]
   brand: Brand[] = [];
-  data: Report_Sort_SumResult[] = [];
+  data: StorageSumReportResult[] = [];
   pagination: Pagination = <Pagination>{
     pageNumber: 1,
     pageSize: 10
   };
   selectedIndex: number;
-  param: SortSumReport = <SortSumReport>{
+  param: StorageSumReportParam = <StorageSumReportParam>{
     date_kind: '',
     date_start: '',
     date_end: '',
@@ -42,7 +41,7 @@ export class MainComponent extends InjectBase implements OnInit {
     eta_end: '',
     size: ''
   }
-  paramDetail: SortSumDetailReportParam = <SortSumDetailReportParam>{
+  paramDetail: StorageSumDetailReportParam = <StorageSumDetailReportParam>{
     manno: '',
     purno: '',
     size: ''
@@ -55,7 +54,7 @@ export class MainComponent extends InjectBase implements OnInit {
   dateFrom_eta = "";
   dateTo_eta = "";
   iconButton = IconButton;
-  constructor(private service: SortSumReportService
+  constructor(private service: StorageSumReportService
   ) { super() }
 
 
