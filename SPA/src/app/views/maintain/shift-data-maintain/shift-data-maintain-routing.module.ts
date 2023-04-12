@@ -12,10 +12,8 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddComponent
-  }, {
-    path: 'edit',
-    component: EditComponent
-  }, {
+  },
+  {
     path: 'edit/:manuf/:shift',
     component: EditComponent
   }

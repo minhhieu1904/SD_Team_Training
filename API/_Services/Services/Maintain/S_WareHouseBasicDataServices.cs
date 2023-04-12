@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces;
-using API.DTOs.WareHouseBasicData;
+using API.DTOs.Maintain.WareHouseBasicData;
 using API.Models;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -40,19 +40,6 @@ namespace API._Services.Services.Maintain
                     return new OperationResult(true);
                     return new OperationResult(false);
                 }
-        }
-
-        public async Task<OperationResult> Delete(string storeH)
-        {
-           var originalItem = await _repositoryAccessor.Ms_Location.FirstOrDefaultAsync(x => x.Manuf == "N" && x.StoreH == storeH.Trim());
-            if (originalItem == null)
-                return new OperationResult(false);
-            
-            _repositoryAccessor.Ms_Location.Remove(originalItem);
-
-            if(await _repositoryAccessor.Save())
-                return new OperationResult(true);
-            return new OperationResult(false);
         }
 
         public async Task<PaginationUtility<MsLocation>> GetData(PaginationParam pagination, WareHouseBasicDataParam param)

@@ -21,7 +21,7 @@ export class AddComponent extends InjectBase implements OnInit {
         super()
     }
     back(){
-        this.router.navigate(['warehouse-basic-data'])
+        this.router.navigate(['maintain/warehouse-basic-data-maintenance'])
     }
     add(){
         this.service.add(this.msLocation).subscribe({

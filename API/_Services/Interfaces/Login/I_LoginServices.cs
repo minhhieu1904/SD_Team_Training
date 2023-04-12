@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs.userLogin;
 
-namespace API._Services.Interfaces
+namespace API._Services.Interfaces.Login
 {
     public interface I_LoginServices
     {

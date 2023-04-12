@@ -37,10 +37,10 @@ export class MainComponent extends InjectBase implements OnInit {
     })
   }
   add(){
-    this.router.navigate(["standard-packing-quantity/add"])
+    this.router.navigate(["maintain/standard-packing-quantity-setting/add"])
   }
   edit(msPackage: MsPackage){
-    this.router.navigate([`standard-packing-quantity/edit/
+    this.router.navigate([`maintain/standard-packing-quantity-setting/edit/
     ${msPackage.manuf}/${msPackage.packageNo}`])
   }
   clear(){

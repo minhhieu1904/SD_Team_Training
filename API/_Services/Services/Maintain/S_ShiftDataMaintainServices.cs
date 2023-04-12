@@ -3,7 +3,7 @@ using API.Models;
 
 using API._Repositories;
 using API._Services.Interfaces;
-using API.DTOs.ShiftDataMaintain;
+using API.DTOs.Maintain.ShiftDataMaintain;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,22 +51,6 @@ namespace API._Services.Services.Maintain
 
         }
 
-        public async Task<OperationResult> Delete(MsShift model)
-        {
-            var originalItem = await _reposioryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim());
-
-            if(originalItem == null)
-                return new OperationResult(false);
-            
-            originalItem.Manuf = model.Manuf;
-            originalItem.Shift = model.Shift;
-            originalItem.ShiftName = model.ShiftName;
-
-            _reposioryAccessor.MS_Shift.Remove(originalItem);
-            if(await _reposioryAccessor.Save())
-                return new OperationResult(true);
-            return new OperationResult(false);
-        }
 
         public async Task<PaginationUtility<MsShift>> GetData(PaginationParam pagination, ShiftDataMaintainParam param)
         {

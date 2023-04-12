@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.DTOs.WareHouseBasicData
+namespace API.DTOs.Maintain.WareHouseBasicData
 {
     public class WareHouseBasicDataParam
     {

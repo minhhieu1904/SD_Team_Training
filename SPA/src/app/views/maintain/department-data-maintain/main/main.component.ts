@@ -35,14 +35,14 @@ export class MainComponent extends InjectBase implements OnInit {
     })
   }
   add(){
-    this.router.navigate(['department-data-maintain/add'])
+    this.router.navigate(['maintain/department-data-maintenance/add'])
   }
   pageChanged(e: any){
     this.pagination.pageNumber = e.page;
     this.getData();
   }
   edit(msDepartment: MsDepartment){
-    this.router.navigate([`department-data-maintain/edit/${msDepartment.manuf}/${msDepartment.parNo}`]);
+    this.router.navigate([`maintain/department-data-maintenance/edit/${msDepartment.manuf}/${msDepartment.parNo}`]);
   }
   clear(){
     this.param.parNo='';

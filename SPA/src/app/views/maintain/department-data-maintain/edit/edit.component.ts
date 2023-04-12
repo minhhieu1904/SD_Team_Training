@@ -40,7 +40,7 @@ export class EditComponent extends InjectBase implements OnInit {
   }
 
   back() {
-    this.router.navigate(['department-data-maintain']);
+    this.router.navigate(['maintain/department-data-maintenance']);
   }
 
   update() {

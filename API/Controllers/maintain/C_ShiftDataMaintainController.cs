@@ -1,5 +1,5 @@
 using API._Services.Interfaces;
-using API.DTOs.ShiftDataMaintain;
+using API.DTOs.Maintain.ShiftDataMaintain;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using SD3_API.Helpers.Utilities;
@@ -41,13 +41,6 @@ namespace API.Controllers.Maintain
         public async Task<IActionResult> Update([FromBody] MsShift model)
         {
             var result = await _services.Update(model);
-            return Ok(result);
-        }
-
-        [HttpDelete("delete")]
-        public async Task<IActionResult> Delete([FromBody] MsShift model)
-        {
-            var result = await _services.Delete(model);
             return Ok(result);
         }
 

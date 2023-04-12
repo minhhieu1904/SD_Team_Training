@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.DTOs
+namespace API.DTOs.Maintain.Authorization
 {
     public class RoleParam
     {
@@ -14,7 +14,5 @@ namespace API.DTOs
         public string roleNote {get; set;}
         public double roleSequence {get; set;}
         public bool isCheck {get; set;}
-
-
     }
 }

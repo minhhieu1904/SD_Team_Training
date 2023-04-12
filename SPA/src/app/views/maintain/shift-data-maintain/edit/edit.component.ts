@@ -19,7 +19,7 @@ export class EditComponent extends InjectBase implements OnInit {
      super()
     }
   backlist(){
-    this.router.navigate(["shift-data-maintain"])
+    this.router.navigate(["maintain/shift-data-maintenance"])
   }
   ngOnInit() {
     let manuf = '';

@@ -6,12 +6,14 @@ import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ShiftDataMaintainRoutingModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   declarations: [
     MainComponent,

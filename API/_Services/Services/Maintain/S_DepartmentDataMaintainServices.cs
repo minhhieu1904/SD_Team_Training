@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces;
-using API.DTOs.DepartmentDataMaintain;
+using API.DTOs.Maintain.DepartmentDataMaintain;
 using API.Models;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -46,20 +46,6 @@ namespace API._Services.Services.Maintain
             original.ParName = model.ParName.Trim();
 
             _repositoryAccessor.MS_Department.Update(original);
-            if(await _repositoryAccessor.Save())
-                    return new OperationResult(true);
-                return new OperationResult(false);
-        }
-
-        public async Task<OperationResult> Delete(string parNo)
-        {
-            var original = await _repositoryAccessor.MS_Department.FirstOrDefaultAsync(
-                x=>x.Manuf == "N" && x.ParNo == parNo.Trim());
-            if (original == null)
-                return new OperationResult(false);
-
-            _repositoryAccessor.MS_Department.Remove(original);
-
             if(await _repositoryAccessor.Save())
                     return new OperationResult(true);
                 return new OperationResult(false);

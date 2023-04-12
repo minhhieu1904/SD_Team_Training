@@ -51,7 +51,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPrintModule} from 'ngx-print';
 import { LoginComponent } from './views/login/login.component';
 import { AuthGuard } from '@guards/auth.guard';
-// import { ChangePasswordComponent } from './containers/change-password/change-password/change-password.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

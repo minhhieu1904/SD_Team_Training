@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces;
+using API._Services.Interfaces.Login;
 using API.DTOs.userLogin;
 using Microsoft.EntityFrameworkCore;
 
-namespace API._Services.Services
+namespace API._Services.Services.Login
 {
     public class S_Loginservices : I_LoginServices
     {

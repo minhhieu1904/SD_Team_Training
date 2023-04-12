@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces;
 using API.DTOs;
+using API.DTOs.Maintain.Authorization;
 using API.Models;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -58,7 +59,7 @@ namespace API._Services.Services
             foreach(var role in roleUser){
                 var check = allRole.Where(x=>x.roleUnique == role).FirstOrDefault();
                 if(check!=null)
-                    check.isCheck = true;
+                    check.isCheck = allRole.Any(x=>x.roleUnique == role);
             }
             // Đối tượng RoleUserParam được trả về, trong đó Account chứa giá trị account ban đầu và listRole chứa danh sách vai trò đã có 
             // isCheck (được liên kết với người dùng) được thiết lập thành true.

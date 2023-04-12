@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.DTOs.DepartmentDataMaintain;
+using API.DTOs.Maintain.DepartmentDataMaintain;
 using API.Models;
 using SD3_API.Helpers.Utilities;
 
@@ -14,6 +14,5 @@ namespace API._Services.Interfaces
         Task<MsDepartment> GetDataOnly(string manuf, string parNo);
         Task<OperationResult> Add(MsDepartment model);
         Task<OperationResult> Update(MsDepartment model);
-        Task<OperationResult> Delete(string parNo);
     }
 }

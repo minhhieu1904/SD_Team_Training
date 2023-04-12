@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API._Services.Interfaces;
-using API.DTOs;
+using API.DTOs.Maintain.Authorization;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using SD3_API.Helpers.Utilities;

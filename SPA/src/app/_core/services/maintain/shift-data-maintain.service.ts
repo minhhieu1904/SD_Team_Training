@@ -21,9 +21,6 @@ export class ShiftDataMaintainService {
     pagination: PaginationParam,
     param: ShiftDataMaintainParam
   ): Observable<PaginationResult<MsShift>> {
-    // let params = new HttpParams()
-    // .set('pageNumber', pagination.pageNumber)
-    // .set('pageSize', pagination.pageSize)
     let params = new HttpParams().appendAll({ ...pagination, ...param });
     return this.http.get<PaginationResult<MsShift>>(
       `${this.baseUrl}/get-data`,
@@ -34,9 +31,6 @@ export class ShiftDataMaintainService {
   getDataOnly(manuf: string, shift: string): Observable<MsShift> {
     let params = new HttpParams().set('manuf', manuf).set('shift', shift);
     return this.http.get<MsShift>(`${this.baseUrl}/GetDataOnly`, { params });
-    // return this.http.get<MsShift>(`${this.baseUrl}/GetDataOnly`, {
-    //   params: { manuf, shift },
-    // });
   }
 
   add(model: MsShift): Observable<OperationResult> {
@@ -47,11 +41,4 @@ export class ShiftDataMaintainService {
     return this.http.post<OperationResult>
     (`${this.baseUrl}/Update`, model);
   }
-
-  // update(model: MsShift): Observable<OperationResult> {
-  //   return this.http.put<OperationResult>
-  //   (this.baseUrl + 'update', model)
-  // }
-
-  delete() {}
 }

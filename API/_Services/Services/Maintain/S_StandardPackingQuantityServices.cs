@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces;
-using API.DTOs.StandardPackingQuantity;
+using API.DTOs.Maintain.StandardPackingQuantity;
 using API.Models;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -67,12 +67,6 @@ namespace API._Services.Services.Maintain
                 return new OperationResult(true);
             return new OperationResult(false);
         }
-
-        public Task<OperationResult> Delete(string packageNo)
-        {
-            throw new NotImplementedException();
-        }
-
 
         
     }

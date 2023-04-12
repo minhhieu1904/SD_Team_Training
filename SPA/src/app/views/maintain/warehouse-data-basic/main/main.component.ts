@@ -30,11 +30,11 @@ export class MainComponent extends InjectBase implements  OnInit {
   }
 
   add(){
-    this.router.navigate(['warehouse-basic-data/add'])
+    this.router.navigate(['maintain/warehouse-basic-data-maintenance/add'])
   }
 
   edit(msLocation: MsLocation){
-    this.router.navigate([`warehouse-basic-data/edit/${msLocation.manuf}/${msLocation.storeH}`])
+    this.router.navigate([`maintain/warehouse-basic-data-maintenance/edit/${msLocation.manuf}/${msLocation.storeH}`])
   }
 
   search(){

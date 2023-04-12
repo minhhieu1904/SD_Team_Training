@@ -35,7 +35,7 @@ export class EditComponent extends InjectBase implements OnInit {
         });
     }
     back(){
-        this.router.navigate(['warehouse-basic-data'])
+        this.router.navigate(['maintain/warehouse-basic-data-maintenance'])
     }
     update(){
         this.service.update(this.msLocation).subscribe({
