@@ -31,7 +31,7 @@ export const routes: Routes = [
           .then(m => m.MaintainModule),
       },
       {
-        path: 'transaction',
+        path: 'report',
         loadChildren: () => import('./views/report/report.module').then(m => m.ReportModule)
       }
 

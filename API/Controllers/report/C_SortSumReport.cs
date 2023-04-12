@@ -18,12 +18,12 @@ namespace API.Controllers.report
             _service = service;
         }
         [HttpGet("GetData")]
-        public async Task<IActionResult> GetData([FromQuery]PaginationParam pagination, [FromQuery]SortSumReportParam param){
-            return Ok(await _service.GetDataPagination(pagination, param));
+        public async Task<IActionResult> GetData([FromQuery]PaginationParam pagination, [FromQuery]SortSumReportParam param, bool isPaging = true){
+            return Ok(await _service.GetData(pagination, param, isPaging));
         }
         [HttpGet("ExportExcel")]
-        public async Task<IActionResult> ExportExcel([FromQuery] SortSumReportParam param){
-            var result = await _service.ExportExcel(param);
+        public async Task<IActionResult> ExportExcel([FromQuery]PaginationParam pagination, [FromQuery] SortSumReportParam param){
+            var result = await _service.ExportExcel(pagination, param);
             return await Task.FromResult(File(result, "application/xlsx", $"SortSumReport.xlsx"));
         }
         [HttpGet("GetBrand")]

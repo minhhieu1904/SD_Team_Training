@@ -28,9 +28,9 @@ namespace API._Services.Services.report
             _dbContext = dbContext;
         }
 
-        public async Task<List<SortSumReportDTO>> GetData(SortSumReportParam param)
+        public async Task<PaginationUtility<SortSumReportDTO>> GetData(PaginationParam pagination ,SortSumReportParam param, bool isPaging = true)
         {
-            var query = await _dbContext.Sort_Sum_Report.FromSqlRaw
+            var data = await _dbContext.Sort_Sum_Report.FromSqlRaw
              ("EXEC Report_Sort_Sum @p_date_kind, @p_date_start, @p_date_end, @p_brand, @p_code_of_customer, @p_planning_no, @p_mold_num, @p_tolcls, @p_purchase_no, @p_material_code, @p_kind, @p_etd_start, @p_etd_end, @p_size",
              new SqlParameter("p_date_kind", !string.IsNullOrEmpty(param.date_kind) ? param.date_kind : (object)DBNull.Value),
              new SqlParameter("p_date_start", param.date_start.HasValue ? param.date_start.Value.Date : (object)DBNull.Value),
@@ -48,19 +48,7 @@ namespace API._Services.Services.report
              new SqlParameter("p_size", !string.IsNullOrEmpty(param.size) ? param.size : (object)DBNull.Value)
              ).ToListAsync();
 
-            foreach (var item in query)
-            {
-                item.crday_str = item.crday.HasValue ? item.crday.Value.ToString("dd/MM/yyyy") : string.Empty;
-                item.mdat_str = item.mdat != null ? item.mdat.ToString("dd/MM/yyyy") : string.Empty;
-                item.eta_str = item.eta.HasValue ? item.eta.Value.ToString("dd/MM/yyyy") : string.Empty;
-            }
-            return query;
-        }
-
-        public async Task<PaginationUtility<SortSumReportDTO>> GetDataPagination(PaginationParam pagination, SortSumReportParam param)
-        {
-            var data = await GetData(param);
-            return PaginationUtility<SortSumReportDTO>.Create(data, pagination.PageNumber, pagination.PageSize);
+            return PaginationUtility<SortSumReportDTO>.Create(data, pagination.PageNumber, pagination.PageSize, isPaging);
         }
 
         public async Task<List<BrandDTO>> GetBrand()
@@ -68,24 +56,23 @@ namespace API._Services.Services.report
             return await _repositoryAccessor.MsQrOrder.FindAll().Select(x => new BrandDTO { brandname = x.Brandname, id = x.Brandname }).Distinct().ToListAsync();
         }
 
-        public async Task<byte[]> ExportExcel(SortSumReportParam param)
+        public async Task<byte[]> ExportExcel(PaginationParam pagination, SortSumReportParam param)
         {
-            var data = await GetData(param);
+            var data = await GetData(pagination, param, false);
             MemoryStream stream = new MemoryStream();
-            if (data.Count > 0)
+            if (data.Result.Count > 0)
             {
                 var path = Path.Combine(_environment.ContentRootPath, "Resources\\Template\\SortSumReport.xlsx");
 
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
-                designer.SetDataSource("result", data);
                 designer.Process();
                 ws.AutoFitColumns();
                 ws.PageSetup.CenterHorizontally = true;
                 ws.PageSetup.FitToPagesWide = 1;
                 ws.PageSetup.FitToPagesTall = 0;
-
+                designer.SetDataSource("result", data.Result);
                 designer.Workbook.Save(stream, SaveFormat.Xlsx);
             }
             return stream.ToArray();
@@ -150,6 +137,6 @@ namespace API._Services.Services.report
             }
             return stream.ToArray();
         }
-
+    public void workbooks(){}
     }
 }
