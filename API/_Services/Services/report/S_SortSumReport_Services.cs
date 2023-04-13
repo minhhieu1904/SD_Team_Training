@@ -67,13 +67,13 @@ namespace API._Services.Services.report
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
+                designer.SetDataSource("result", data.Result);
                 designer.Process();
+                designer.Workbook.Save(stream, SaveFormat.Xlsx);
                 ws.AutoFitColumns();
                 ws.PageSetup.CenterHorizontally = true;
                 ws.PageSetup.FitToPagesWide = 1;
                 ws.PageSetup.FitToPagesTall = 0;
-                designer.SetDataSource("result", data.Result);
-                designer.Workbook.Save(stream, SaveFormat.Xlsx);
             }
             return stream.ToArray();
         }

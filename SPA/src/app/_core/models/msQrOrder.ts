@@ -100,3 +100,9 @@ export interface SortSumDetailReportParam {
     purno: string;
     size: string;
 }
+
+export interface StorageSumDetailReportParam {
+    manno: string;
+    purno: string;
+    size: string;
+}

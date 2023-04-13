@@ -1,32 +1,46 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-
+<div class="app-body">
+  <main class="main d-flex align-items-center">
     <div class="container">
-      <img src="../../../../assets/img/logo/logo.png" width="65"/>
-      <span class="abc">PLM Maintenance System</span>
-    </div>
-
-    <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Login" [(ngModel)]="user.account" name="account" required>
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password" [(ngModel)]="user.password" name="password" required>
-      <input type="submit" class="fadeIn fourth" value="Sign In" (click)="login()" >
-    </form>
-
-    <!-- Remind Passowrd -->
-    <!-- <div id="formFooter">
       <div class="row">
-      <div class="col-md-6">
-        <a class="underlineHover abc" >Sign In</a>
-      </div>
-      <div class="col-md-6">
-        <a class="underlineHover" >Forgot Password?</a>
-      </div>
-      </div>          
-    </div> -->
+        <div class="col-md-6 mx-auto">
+          <div class="login-title">
+            <img src="../../../assets/img/logo/LogoSYF.png" alt="" width="70"> <span>PLM Maintenance System</span>
+          </div>
 
-  </div>
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <ngx-spinner bdOpacity=0.2 bdColor="rgba(51,51,51,0.8)" size="medium" color="#20A8D8" type="pacman">
+                </ngx-spinner>
+                <form #formLogin="ngForm">
+                  <p class="text-muted text-center">Sign in to start your session</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" [(ngModel)]="user.account" name="account" required>
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password" [(ngModel)]="user.password" name="password" required>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6 text-right">
+                      <button type="submit" class="btn btn-primary px-4" (click)="login()" [disabled]="!formLogin.valid"> Sign in</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>

@@ -1,0 +1,186 @@
+<div class="card">
+    <div class="card-header">
+        <h4>4.3. Storage Sum Report </h4>
+    </div>
+    <div class="card-body">
+        <div class="border-shadow">
+            <div class="row">
+                <!-- 1 -->
+                <div class="col-md-3">
+                    <span class="badge badge-warning">Date Kind</span>
+                    <div class="form-group">
+                      <ng-select [(ngModel)]="param.date_kind">
+                        <ng-option *ngFor="let item of dateKind" [value]="item.key">{{item.value}}</ng-option>
+                      </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span class="badge badge-warning">Date</span>
+                    <div class="input-group">
+                        <input type="text" placeholder="Select From..." name="date-start" class="form-control" [bsConfig]="bsConfig" 
+                        [maxDate]="dateTo_date" [(ngModel)]="dateFrom_date" bsDatepicker>
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i>
+                          </span>
+                      </div>
+                      <label> &nbsp;</label>
+                        <input type="text" placeholder="Select To..." name="date-end" class="form-control" [bsConfig]="bsConfig"
+                        [minDate]="dateFrom_date" [(ngModel)]="dateTo_date" bsDatepicker>
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                    <span class="badge badge-warning">Brand</span>
+                    <div class="form-group">
+                      <ng-select name="brandname" id="Brand" [(ngModel)]="param.brandname">
+                        <ng-option *ngFor="let item of brand" [value]="item.id">{{item.brandname}}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <span class="badge badge-warning">Code of Customer</span>
+                    <input placeholder="Code of Customer..." type="text" name="Code" class="form-control" [(ngModel)]="param.cusna">
+                  </div>
+                 <!-- 2 -->
+                <div class="col-md-3">
+                    <span class="badge badge-warning">Planning No</span>
+                    <input placeholder="Planning No..." type="text" name="Planning" class="form-control" [(ngModel)]="param.manno">
+                </div>
+                  <div class="col-md-3">
+                    <span class="badge badge-warning">Mold Number</span>
+                    <input placeholder="Mold Number..." type="text" name="Mold" class="form-control" [(ngModel)]="param.rmodel">
+                  </div>
+                  <div class="col-md-3">
+                    <span class="badge badge-warning">Tolcls</span>
+                    <input placeholder="tolcls..." type="text" name="tolcls" class="form-control" [(ngModel)]="param.tolcls">
+                  </div>
+                  <div class="col-md-3">
+                    <span class="badge badge-warning">Purchase No</span>
+                    <input placeholder="Purchase No..." type="text" name="Purchase" class="form-control" [(ngModel)]="param.purno">
+                  </div>
+                <!-- 3 -->
+                <div class="col-md-3 pt-3">
+                    <span class="badge badge-warning">Material Code</span>
+                    <input placeholder="Material Code..." type="text" name="Material" class="form-control" [(ngModel)]="param.bitnbr">
+                  </div>
+                  <div class="col-md-3 pt-3">
+                    <span class="badge badge-warning">Kind</span>
+                    <input placeholder="Kind..." type="text" name="Kind" class="form-control" [(ngModel)]="param.kind">
+                  </div>
+                  <div class="col-md-3 pt-3">
+                    <span class="badge badge-warning">Confirmed Delivery Date</span>
+                    <div class="input-group ml-1">
+                      <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
+                        [maxDate]="dateTo_eta" [(ngModel)]="dateFrom_eta" bsDatepicker>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                      </div>
+                      <label> &nbsp;</label>
+                      <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig" class="form-control"
+                        [minDate]="dateFrom_eta" [(ngModel)]="dateTo_eta" bsDatepicker>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-md-3 pt-3">
+                    <span class="badge badge-warning">Size</span>
+                    <input placeholder="Size..." type="text" name="Size" class="form-control" [(ngModel)]="param.size">
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-10 pt-3">
+                  <button class="btn btn-success mr-3" (click)="search()"> 
+                    <i class="{{iconButton.SEARCH}}"></i> Search </button>
+                  <button class="btn btn-danger mr-3" (click)="clear()"> 
+                    <i class="{{iconButton.CLEAR}}"></i> Clear </button>
+                  <button class="btn btn-primary mr-3" (click)="exportExcel()">
+                    <i class="{{iconButton.EXCEL}}"></i> Export Excel </button>
+                  <button class="btn btn-primary" disabled="disabled" id="disBtn" (click)="exportDetailExcel()">
+                    <i class="{{iconButton.EXCEL}}"></i> Export Details Excel </button>
+                </div>
+              </div>
+        </div>
+        <div class="card-body border-shadow">
+            <div style="overflow-x: auto">
+              <div class="table-responsive">
+                <table class="table table-bordered border-primary">
+                  <thead>
+                    <tr>
+                      <th class="text-center" scope="col" width="2%"></th>
+                      <th class="text-center" scope="col" width="6%">Create day</th>
+                      <th class="text-center" scope="col" width="6%">Production_Date</th>
+                      <th class="text-center" scope="col" width="4%">Brand</th>
+                      <th class="text-center" scope="col" width="2%">Code of Customer</th>
+                      <th class="text-center" scope="col" width="5%">Name of Customer</th>
+                      <th class="text-center" scope="col" width="5%">Planning No.</th>
+                      <th class="text-center" scope="col" width="5%">Purchase No.</th>
+                      <th class="text-center" scope="col" width="5%">Mold Number</th>
+                      <th class="text-center" scope="col" width="2%">to lcls</th>
+                      <th class="text-center" scope="col" width="5%">Material Code Shoes</th>
+                      <th class="text-center" scope="col" width="5%">Material Code Bottom</th>
+                      <th class="text-center" scope="col" width="2%">Typeof Order</th>
+                      <th class="text-center" scope="col" width="4%">Article</th>
+                      <th class="text-center" scope="col" width="2%">Kind</th>
+                      <th class="text-center" scope="col" width="6%">Confirmed Delivery Date</th>
+                      <th class="text-center" scope="col" width="2%">Size</th>
+                      <th class="text-center" scope="col" width="2%">Order Quantity</th>
+                      <th class="text-center" scope="col" width="2%">wkshqty</th>
+                      <th class="text-center" scope="col" width="2%">Printed Quantity</th>
+                      <th class="text-center" scope="col" width="2%">Sort scan Qty</th>
+                      <th class="text-center" scope="col" width="2%">Storage Qty</th>
+                      <th class="text-center" scope="col" width="1%">Differences Qty</th>
+                      <th class="text-center" scope="col" width="2%">Cancel priting quantity</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr *ngFor="let items of data; let i= index">
+                      <td class="text-center">
+                        <div class="custom-control custom-checked">
+                          <input type="checkbox" class="custom-control-input" [id]="'checked_'+i" [name]="'checked_'+i"
+                          [ngModel]="selectedIndex === i" (click)="changeSelection($event, i)">
+                          <label class="custom-control-label" [for]="'checked_'+i"></label>
+                        </div>
+                      </td>
+                      <th class="text-center" scope="col">{{items.crday | date : "dd-MM-yyyy"}}</th>
+                      <th class="text-center" scope="col">{{items.mdat | date : "dd-MM-yyyy"}}</th>
+                      <th class="text-center" scope="col">{{items.brandname}}</th>
+                      <th class="text-center" scope="col">{{items.cusid}}</th>
+                      <th class="text-center" scope="col">{{items.cusna}}</th>
+                      <th class="text-center" scope="col">{{items.manno}}</th>
+                      <th class="text-center" scope="col">{{items.purno}}</th>
+                      <th class="text-center" scope="col">{{items.rmodel}}</th>
+                      <th class="text-center" scope="col">{{items.tolcls}}</th>
+                      <th class="text-center" scope="col">{{items.ritnbr}}</th>
+                      <th class="text-center" scope="col">{{items.bitnbr}}</th>
+                      <th class="text-center" scope="col">{{items.kind}}</th>
+                      <th class="text-center" scope="col">{{items.article}}</th>
+                      <th class="text-center" scope="col">{{items.kind}}</th>
+                      <th class="text-center" scope="col">{{items.eta | date : "dd-MM-yyyy"}}</th>
+                      <th class="text-center" scope="col">{{items.size}}</th>
+                      <th class="text-center" scope="col">{{items.qty}}</th>
+                      <th class="text-center" scope="col">{{items.wkshqty}}</th>
+                      <th class="text-center" scope="col">{{items.pqty}}</th>
+                      <th class="text-center" scope="col">{{items.sort_qty}}</th>
+                      <th class="text-center" scope="col">{{items.storage_qty}}</th>
+                      <th class="text-center" scope="col">{{items.diff_qty}}</th>
+                      <th class="text-center" scope="col">{{items.cqty}}</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber" [maxSize]="5"
+          (pageChanged)="pageChanged($event)">
+        </pagination>
+        <span class="cs-page"> Page - {{pagination.pageNumber}} / {{pagination.totalPage}}</span>
+      </div>
+    </div>
+    
+</div>

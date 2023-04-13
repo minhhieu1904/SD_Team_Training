@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs.report;
 using API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,6 +44,7 @@ namespace API.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Report_wksh_SumResult> Report_wksh_SumResult {get; set;}
         public virtual DbSet<SortSumReportDTO> Sort_Sum_Report {get; set;}
+        public virtual DbSet<StorageSumReportDTO> Storage_Sum_Report {get; set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -412,7 +414,7 @@ namespace API.Data
                 entity.HasKey(e => new { e.purno, e.manno, e.size });
             });
             modelBuilder.Entity<SortSumReportDTO>().HasNoKey().ToView(null);
-
+            modelBuilder.Entity<StorageSumReportDTO>().HasNoKey().ToView(null);
             OnModelCreatingPartial(modelBuilder);
         }
 
