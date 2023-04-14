@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { InjectBase } from '@utilities/inject-base-app';
 import { StorageSumReportService } from '../../../../_core/services/report/storage-sum-report.service'; 
 import { KeyValuePair } from '@utilities/key-value-pair';
-import { MsQrOrder } from '@models/msQrOrder';
+import { MsQrOrder, BrandDTO, StorageSumDetailReportParam} from '@models/msQrOrder';
 import { Pagination } from '@utilities/pagination-utility';
 import { StorageSumReportParam } from '@models/storageSumReportParam';
+import { StorageSumReportDTO } from '@models/storageSumReportDTO';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { IconButton } from '@constants/sd-team.utility';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
@@ -23,6 +24,7 @@ export class MainComponent extends InjectBase implements OnInit {
   ];
   ngOnInit(): void {
   this.getData();
+  this.getBrand();
   }
   
   iconButton = IconButton;
@@ -110,5 +112,43 @@ exportExcel(){
     }, error: () => this.snotifyService.error(((MessageConstants.SYSTEM_ERROR_MSG)), CaptionConstants.ERROR)
   })
 }
-exportDetailExcel(){}
+
+paramDetail: StorageSumDetailReportParam = <StorageSumDetailReportParam>{
+  manno: '',
+  purno: '',
+  size: ''
+}
+selectedIndex: number;
+exportDetailExcel(){
+  this.paramDetail.manno = this.data[this.selectedIndex].manno;
+  this.paramDetail.purno = this.data[this.selectedIndex].purno;
+  this.paramDetail.size = this.data[this.selectedIndex].size;
+  console.log(this.paramDetail)
+  this.spinnerService.show()
+  this.service.exportDetailExcel(this.paramDetail).subscribe({
+    next: res => {
+      this,this.functionUtility.exportExcel(res, "StorageSumDetailReport")
+      this.spinnerService.hide();
+    },error: () => this.snotifyService.error(((MessageConstants.SYSTEM_ERROR_MSG)), CaptionConstants.ERROR)
+  })
+}
+dataChecked: StorageSumReportDTO[] = [];
+changeSelection(event: any, index: number) {
+  this.selectedIndex = event.target.checked ? index : undefined;
+  let btn = document.getElementById('disBtn') as HTMLInputElement | null;
+  if (typeof this.selectedIndex === "undefined") {
+    btn.setAttribute('disabled', '');
+  } else {
+    btn.removeAttribute('disabled');
+  }
+}
+
+brand: BrandDTO[] = [];
+getBrand(){
+  this.service.getBrand().subscribe({
+    next: res => {
+      this.brand = res;
+    },error: () => {}
+  })
+}
 }

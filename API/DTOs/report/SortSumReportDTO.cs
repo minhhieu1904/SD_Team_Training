@@ -9,11 +9,7 @@ namespace API.Models
     public class SortSumReportDTO
     {
         public DateTime? crday { get; set; }
-        [NotMapped]
-        public string crday_str { get; set; }
         public DateTime mdat { get; set; }
-        [NotMapped]
-        public string? mdat_str { get; set; }
         public string brandname { get; set; }
         public string cusid { get; set; }
         public string cusna { get; set; }
@@ -26,8 +22,6 @@ namespace API.Models
         public string kind { get; set; }
         public string article { get; set; }
         public DateTime? eta { get; set; }
-        [NotMapped]
-        public string? eta_str { get; set; }
         public string size { get; set; }
         public decimal? qty { get; set; }
         public decimal? wkshqty { get; set; }

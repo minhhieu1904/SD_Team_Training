@@ -35,7 +35,7 @@
                     <span class="badge badge-warning">Brand</span>
                     <div class="form-group">
                       <ng-select name="brandname" id="Brand" [(ngModel)]="param.brandname">
-                        <ng-option *ngFor="let item of data" [value]="item.id">{{item.brandname}}</ng-option>
+                        <ng-option *ngFor="let item of brand" [value]="item.id">{{item.brandname}}</ng-option>
                       </ng-select>
                     </div>
                   </div>
@@ -140,11 +140,11 @@
                   <tbody>
                     <tr *ngFor="let items of data; let i= index">
                       <td class="text-center">
-                        <!-- <div class="custom-control custom-checked">
+                        <div class="custom-control custom-checked">
                           <input type="checkbox" class="custom-control-input" [id]="'checked_'+i" [name]="'checked_'+i"
                           [ngModel]="selectedIndex === i" (click)="changeSelection($event, i)">
                           <label class="custom-control-label" [for]="'checked_'+i"></label>
-                        </div> -->
+                        </div>
                       </td>
                       <th class="text-center" scope="col">{{items.crday | date : "dd-MM-yyyy"}}</th>
                       <th class="text-center" scope="col">{{items.mdat | date : "dd-MM-yyyy"}}</th>

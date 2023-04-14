@@ -3,7 +3,8 @@ import {environment } from '../../../../environments/environment'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { PaginationParam, PaginationResult} from './../../utilities/pagination-utility';
 import { StorageSumReportParam } from './../../models/storageSumReportParam';
-import { MsQrOrder } from './../../models/msQrOrder';
+import { MsQrOrder, StorageSumDetailReportParam } from './../../models/msQrOrder';
+import { BrandDTO } from '@models/brandDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,11 @@ exportExcel(param: StorageSumReportParam){
   let params = new HttpParams().appendAll({...param});
   return this.http.get(this.baseUrl + 'ExportExcel',{params, responseType: 'blob'})
 }
-exportDetailExcel(param: StorageSumReportParam){
+exportDetailExcel(param: StorageSumDetailReportParam){
   let params = new HttpParams().appendAll({...param});
   return this.http.get(this.baseUrl + 'ExportDetailExcel',{params, responseType: 'blob'})
+}
+getBrand(){
+  return this.http.get<BrandDTO[]>(this.baseUrl+'GetBrand')
 }
 }
