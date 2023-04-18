@@ -1,0 +1,133 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-10">
+                <h5>4.4 QRCode WIP Report</h5>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row border-shadow">
+            <!--  dòng 1 -->
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">Mold Number</span>
+
+                    <input placeholder="Code of Customer..." type="text" name="Code" class="form-control"
+                        [(ngModel)]="param.rmodel">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">Tolcls</span>
+
+                    <input placeholder="Code of Customer..." type="text" name="Code" class="form-control"
+                        [(ngModel)]="param.tolcls">
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">Production_Date</span>
+                    <div class="input-group">
+                        <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig"
+                            class="form-control" [maxDate]="dateTo_mdat" [(ngModel)]="dateFrom_mdat" bsDatepicker>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                        </div>
+                        <label> &nbsp;</label>
+                        <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig"
+                            class="form-control" [minDate]="dateFrom_mdat" [(ngModel)]="dateTo_mdat" bsDatepicker>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!--  dòng 4 -->
+                <div class="mt-3 col-md-12">
+                    <button class="btn btn-success mr-2 " (click)="search()">
+                        <i class="{{iconButton.SEARCH}}"></i> Search </button>
+                    <button class="btn btn-danger mr-2 " (click)="clear()">
+                        <i class="{{iconButton.CLEAR}}"></i> Clear </button>
+                    <button class="btn btn-primary mr-2 " (click)="exportExcel()">
+                        <i class="{{iconButton.EXCEL}}"></i> Export Excel </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <!--  -->
+        <div style="overflow-x: auto">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">yymmdd</th>
+                            <th class="text-center" scope="col">Manuf</th>
+                            <th class="text-center" scope="col">Type</th>
+                            <th class="text-center" scope="col">Plan No.</th>
+                            <th class="text-center" scope="col">PO NO.</th>
+                            <th class="text-center" scope="col">Print No.</th>
+                            <th class="text-center" scope="col">wksh NO.</th>
+                            <th class="text-center" scope="col">QRCodeID</th>
+                            <th class="text-center" scope="col">Mold NO.</th>
+                            <th class="text-center" scope="col">Tool NO.</th>
+                            <th class="text-center" scope="col">Bitnbr</th>
+                            <th class="text-center" scope="col">ETA</th>
+                            <th class="text-center" scope="col">empno</th>
+                            <th class="text-center" scope="col">Serial</th>
+                            <th class="text-center" scope="col">Size</th>
+                            <th class="text-center" scope="col">QTY</th>
+                            <th class="text-center" scope="col">Create empno</th>
+                            <th class="text-center" scope="col">Create Datetime</th>
+                            <th class="text-center" scope="col">SortPairs</th>
+                            <th class="text-center" scope="col">StoragePairs</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="data.length == 0">
+                        <tr>
+                            <td colspan="20">
+                                <alert class="text-center" type='danger'>
+                                    <strong>No Data matching!</strong>
+                                </alert>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr *ngFor="let items of data">
+                            <td class="text-center" scope="col">{{items.yymmdd}}</td>
+                            <td class="text-center" scope="col">{{items.manuf}}</td>
+                            <td class="text-center" scope="col">{{items.type}}</td>
+                            <td class="text-center" scope="col">{{items.manNo}}</td>
+                            <td class="text-center" scope="col">{{items.purNo}}</td>
+                            <td class="text-center" scope="col">{{items.prtNo}}</td>
+                            <td class="text-center" scope="col">{{items.wkshNo}}</td>
+                            <td class="text-center" scope="col">{{items.qrCodeID}}</td>
+                            <td class="text-center" scope="col">{{items.rmodel}}</td>
+                            <td class="text-center" scope="col">{{items.tolcls}}</td>
+                            <td class="text-center" scope="col">{{items.bitnbr}}</td>
+                            <td class="text-center" scope="col">{{items.eta | date: "yyyy-MM-dd"}}</td>
+                            <td class="text-center" scope="col">{{items.empNo}}</td>
+                            <td class="text-center" scope="col">{{items.serial}}</td>
+                            <td class="text-center" scope="col">{{items.size}}</td>
+                            <td class="text-center" scope="col">{{items.qty}}</td>
+                            <td class="text-center" scope="col">{{items.crUsr}}</td>
+                            <td class="text-center" scope="col">{{items.crdaY | date: "yyyy-MM-dd"}} </td>
+                            <td class="text-center" scope="col">{{items.sortFlag}}</td>
+                            <td class="text-center" scope="col">{{items.storageFlag}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="d-flex" *ngIf="data.length > 0">
+            <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+            </pagination>
+            <span class="cs-page ml-2">
+                Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
+            </span>
+        </div>
+    </div>
+
+</div>

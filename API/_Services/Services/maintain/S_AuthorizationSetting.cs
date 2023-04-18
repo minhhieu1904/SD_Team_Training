@@ -78,11 +78,9 @@ namespace API._Services.Services
         public async Task<UserRoleDTO> GetAllRoleByAccount(string account)
         {
             var user = await _reposioryAccessor.Users.FirstOrDefaultAsync(x => x.account == account.Trim());
-            // // Nếu user không tồn tại trả về lỗi
             if (user == null)
                 return new UserRoleDTO();
 
-            // lấy tất cả các quyền trong role
             var allRole = await _reposioryAccessor.Roles.FindAll().Select(x => new RoleDto()
             {
                 role_unique = x.role_unique,
@@ -90,20 +88,14 @@ namespace API._Services.Services
                 role_name = x.role_name,
                 IsCheck = false
             })
-            //sắp xếp theo role_sequence
             .OrderBy(x => x.role_sequence)
             .ToListAsync();
-
-            // lấy tất cả các quyền của user
             var roleOfUser = _reposioryAccessor.RoleUser.FindAll(x => x.user_account == user.account)
                 .Select(x => x.role_unique)
                 .ToList();
-
-            // join lại lấy các quyeenf có trong user và ko có trong role 
             foreach (var role in roleOfUser)
             {
                 var check = allRole.Where(x => x.role_unique == role).FirstOrDefault();
-                // Nếu roleOfUser có thằng role thì , user đó có quyền 
                 if (check != null)
                     check.IsCheck = true;
             }

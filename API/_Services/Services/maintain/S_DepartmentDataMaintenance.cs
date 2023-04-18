@@ -63,6 +63,7 @@ namespace API._Services.Services.DepartmentDataMaintenance
                 return new OperationResult(false);
 
             originalItem.ParName = model.ParName.Trim();
+            
 
             _reposioryAccessor.MS_Department.Update(originalItem);
 

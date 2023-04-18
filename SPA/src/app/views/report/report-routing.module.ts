@@ -13,8 +13,11 @@ const routes: Routes = [
   {
     path: 'storage-sum-report',
     loadChildren: () => import('../report/storage-sum-report/storage-sum-report.module').then(m => m.StorageSumReportModule)
+  },
+  {
+    path: 'qrcode-wip-report',
+    loadChildren: () => import('../report/qrcode-wip-report/qrcode-wip-report.module').then(m => m.QrcodeWipReportModule)
   }
-
 ];
 
 @NgModule({
