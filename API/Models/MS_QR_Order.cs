@@ -207,4 +207,7 @@ public partial class MS_QR_Order
 
     [StringLength(1)]
     public string uscod { get; set; }
+
+     [StringLength(20)]
+     public string remark { get; set; }
 }

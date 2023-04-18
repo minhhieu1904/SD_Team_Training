@@ -4,6 +4,7 @@ using API._Repositories.Interfaces;
 using API._Repositories.Repositories;
 using API._Services.Interfaces;
 using API._Services.Services;
+using SD3_API.Helpers.Utilities;
 
 namespace API.Configurations
 {
@@ -17,11 +18,14 @@ namespace API.Configurations
             services.AddScoped<IRepositoryAccessor, RepositoryAccessor>();
 
             // Add Service
-            services.AddScoped<IShiftDataMaintainService,ShiftDataMaintainService>();
+            services.AddScoped<IShiftDataMaintainService, ShiftDataMaintainService>();
             services.AddScoped<IWarehouseBasicDataMaintenanceService, WarehouseBasicDataMaintenanceService>();
             services.AddScoped<IDepartmentDataMaintenanceService, DepartmentDataMaintenanceService>();
             services.AddScoped<IStandardPackingQuantitySettingService, StandardPackingQuantitySettingService>();
             services.AddScoped<IAuthorizationSettingService, AuthorizationSettingService>();
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<ISearchForOrderDataService, SearchForOrderDataService>();
+             services.AddScoped<IFunctionUtility, FunctionUtility>();
         }
     }
 }

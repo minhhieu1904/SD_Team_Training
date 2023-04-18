@@ -26,7 +26,6 @@ AsposeUtility.Install();
 
 //Exception Handling Middleware Error
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
-
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
@@ -43,6 +42,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseStaticFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
 

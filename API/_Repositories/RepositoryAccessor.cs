@@ -20,6 +20,8 @@ namespace API._Repositories
             User = new UserRepository(_dbContext);
             RoleUser = new RoleUserRepository(_dbContext);
             Role = new RoleRepository(_dbContext);
+            MS_QR_Label = new MS_QR_LabelRepository(_dbContext);
+            MS_QR_Order = new MS_QR_OrderRepository(_dbContext);
         }
         public IMS_ShiftRepository MS_Shift { get; private set; }
 
@@ -33,6 +35,10 @@ namespace API._Repositories
 
         public IRoleUserRepository RoleUser { get; private set; }
         public IRoleRepository Role { get; private set; }
+
+        public IMS_QR_OrderRepository MS_QR_Order { get; private set; }
+
+        public IMS_QR_LabelRepository MS_QR_Label { get; private set; }
 
         public async Task<bool> Save()
         {

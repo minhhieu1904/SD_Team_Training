@@ -1,8 +1,8 @@
 export interface KeyValueUtility {
   key?: any;
-  value?: string;
-  value_vi?: string;
-  value_en?: string;
-  value_zh?: string;
+  value?: any;
+  value_vi?: any;
+  value_en?: any;
+  value_zh?: any;
   optional?: any;
 }

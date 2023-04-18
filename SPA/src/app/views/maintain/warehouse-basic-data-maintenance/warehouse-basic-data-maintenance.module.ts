@@ -10,8 +10,8 @@ import { WarehouseFormComponent } from './warehouse-form/warehouse-form.componen
   imports: [
     CommonModule,
     FormsModule,
+    PaginationModule.forRoot(),
     WarehouseBasicDataMaintenanceRoutingModule,
-    PaginationModule.forRoot()
   ],
   declarations: [
     WarehouseMainComponent,

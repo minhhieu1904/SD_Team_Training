@@ -14,6 +14,8 @@ namespace API._Repositories
         IUserRepository User { get; }
         IRoleUserRepository RoleUser { get; }
         IRoleRepository Role { get; }
+        IMS_QR_OrderRepository MS_QR_Order { get; }
+        IMS_QR_LabelRepository MS_QR_Label { get; }
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }
