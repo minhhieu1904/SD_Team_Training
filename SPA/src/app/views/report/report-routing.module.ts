@@ -12,8 +12,11 @@ const routes: Routes = [
   },
   {
     path: 'storage-sum-report',
-    loadChildren: () => import('./storage-sum-report/storage-sum-report.module')
-    .then(m => m.StorageSumReportModule)
+    loadChildren: () => import('./storage-sum-report/storage-sum-report.module').then(m => m.StorageSumReportModule)
+  },
+  {
+    path: 'qrcode-wip-report',
+    loadChildren: () => import('./qrcode-wip-report/qrcode-wip-report.module').then(m => m.QrcodeWipReportModule)
   }
 ];
 

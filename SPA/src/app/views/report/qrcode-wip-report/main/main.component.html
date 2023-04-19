@@ -1,0 +1,151 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form class="form-horizontal" autocomplete="off">
+        <div class="card-header">
+          <!-- Title -->
+          <div class="row border-title">
+            <div class="col-md-12">
+              <strong class="title-card-cs">
+                4.4 QRCode WIP Report
+              </strong>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="card-body">
+        <form class="form-group row border-shadow" autocomplete="off">
+          <!-- Mold Number -->
+          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <label class="badge badge-warning">
+              Mold Number
+            </label>
+            <div class="full-width">
+              <input type="text" class="form-control" name="rmodel" [(ngModel)]="param.moldno"
+                placeholder="Mold Number...">
+            </div>
+          </div>
+          <!-- Tolcls -->
+          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <label class="badge badge-warning">
+              Tolcls
+            </label>
+            <div class="full-width">
+              <input type="text" class="form-control" name="tolcls" [(ngModel)]="param.toolno" placeholder="Tolcls...">
+            </div>
+          </div>
+          <!-- mdat -->
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+            <label class="badge badge-warning">
+              Production_Date
+            </label>
+            <div class="full-width">
+              <div class="container_mdat">
+                <div class="input-group mr-1">
+                  <input type="text" placeholder="Select From..." name="date_start" [maxDate]="minMdatEndDate"
+                    [bsConfig]="bsConfig" class="form-control" bsDatepicker [(ngModel)]="maxMdatStartDate">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                  </div>
+                </div>
+                <div class="input-group ml-1">
+                  <input type="text" placeholder="Select To..." name="date_end" [minDate]="maxMdatStartDate"
+                    [bsConfig]="bsConfig" class="form-control" bsDatepicker [(ngModel)]="minMdatEndDate">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button function-->
+          <div class="col-lg-6 col-md-12 mt-4 pt-1">
+            <div class="">
+              <button type="submit" class="btn btn-success" (click)="search()">
+                <i class="{{iconButton.SEARCH}}"></i> Search
+              </button>
+              <button type="button" class="btn btn-danger ml-2" (click)="clearSearch()">
+                <i class="{{iconButton.CLEAR}}"></i> Clear
+              </button>
+              <button type="button" class="btn btn-primary ml-2" (click)="exportExcel()" [disabled]="data.length === 0">
+                <i class="{{iconButton.EXCEL}}"></i> Export Excel
+              </button>
+            </div>
+          </div>
+        </form>
+        <!-- table content -->
+        <div class="row justify-content-md-center">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div id="table-order-main" class="table-responsive mb-3">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>yymmdd</th>
+                    <th>Manuf</th>
+                    <th>Type</th>
+                    <th>Plan No</th>
+                    <th>PO NO</th>
+                    <th>Print No</th>
+                    <th>wksh NO</th>
+                    <th>QRCodeID</th>
+                    <th>Mold NO</th>
+                    <th>Tool NO</th>
+                    <th>Bitnbr</th>
+                    <th>ETA</th>
+                    <th>empno</th>
+                    <th>Serial</th>
+                    <th>Size</th>
+                    <th>QTY</th>
+                    <th>Create Empno</th>
+                    <th>Create Datetime</th>
+                    <th>SortPairs</th>
+                    <th>StoagePairs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of data">
+                    <td>{{item?.yymmdd}}</td>
+                    <td>{{item?.manuf}}</td>
+                    <td>{{item?.type}}</td>
+                    <td>{{item?.manNo}}</td>
+                    <td>{{item?.purNo}}</td>
+                    <td>{{item?.prtno}}</td>
+                    <td>{{item?.wkshno}}</td>
+                    <td>{{item?.qrCodeID}}</td>
+                    <td>{{item?.model}}</td> <!-- rmodel -->
+                    <td>{{item?.tolcls}}</td>
+                    <td>{{item?.bitnbr}}</td>
+                    <td>{{item?.eta | date: 'YYYY/MM/dd'}}</td>
+                    <td>{{item?.empno}}</td>
+                    <td>{{item?.serial}}</td>
+                    <td>{{item?.size}}</td>
+                    <td>{{item?.qty}}</td>
+                    <td>{{item?.crUsr}}</td>
+                    <td>{{item?.crdaY | date: 'YYYY/MM/dd'}}</td>
+                    <td>{{item?.sortflag}}</td>
+                    <td>{{item?.storageflag}}</td>
+                  </tr>
+                  <tr *ngIf="data.length === 0">
+                    <td colspan="100%" class="table-warning text-center font-weight-bold">
+                      No Data
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+            <div class="d-flex" *ngIf="data.length > 0">
+              <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+              </pagination>
+              <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+                {{pagination.totalPage}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
