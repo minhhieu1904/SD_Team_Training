@@ -1,0 +1,41 @@
+#printData {
+    .box {
+      min-width: 1050px;
+      display: table;
+      margin: 0 auto;
+
+        table {
+            tr td {
+                // width: 90%;
+                border: 2px solid #000;
+                font-size: 52px;
+                font-weight: 700;
+                padding: 10px;
+                vertical-align: middle;
+
+                span {
+                    font-size: 82px;
+                }
+
+                .orderPrintKind {
+                    margin-bottom: 0;
+                    max-width: 100px;
+                    float: right;
+                }
+            }
+        }
+    }
+}
+
+@media print {
+    @page {
+        size: 82mm 82mm portrait;
+    }
+
+    table {
+        width: 100% !important;
+        aspect-ratio: 1/1 !important;
+        page-break-before: always !important;
+        page-break-after: always !important;
+    }
+}

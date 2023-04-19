@@ -8,6 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { NgSnotifyService } from '@services/common/ng-snotify.service';
 import { Role } from '@models/maintain/roleUsers';
 import { CaptionConstants } from '@constants/message.enum';
+import { LangConstants } from '@constants/lang-constant';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,8 @@ import { CaptionConstants } from '@constants/message.enum';
 export class DefaultLayoutComponent implements OnInit, OnDestroy {
   bsModalRef?: BsModalRef;
   public sidebarMinimized = false;
-  public navItems: INavData[];
+  public navItems: INavData[] = [];
+  lang: string = localStorage.getItem(LocalStorageConstants.LANG);
   user: UserLoginParam =
     JSON.parse(localStorage.getItem(LocalStorageConstants.USER)) ?? '{}';
   roless: Role[] =
@@ -27,10 +29,12 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
     private snotifyService: NgSnotifyService,
     private authService: AuthService,
     private navItem: Nav
-  ) {}
+      ) {}
 
   async ngOnInit() {
-    this.navItems = await this.navItem.getNav();
+    this.navItems = this.navItem.getNav();
+    if (!this.lang)
+    localStorage.setItem(LocalStorageConstants.LANG, LangConstants.VI);
   }
 
   toggleMinimize(e) {

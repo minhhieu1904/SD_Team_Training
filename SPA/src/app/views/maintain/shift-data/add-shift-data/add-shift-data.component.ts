@@ -24,7 +24,6 @@ export class AddShiftDataComponent extends InjectBase implements OnInit {
   save() {
     this.service.add(this.params).subscribe({
       next: res => {
-        console.log(res)
         this.router.navigate(['/shift-data-maintenance']);
       },
       error: () => {

@@ -33,8 +33,7 @@ namespace API._Services.Services.Report
         }
         public async Task<PaginationUtility<QRCODEWIPDetailReportDTO>> GetDataPagination(PaginationParam pagination, ReportQRCODEWIPParam param)
         {
-            Tuple<List<QRCODEWIPHeaderReportDTO>, List<QRCODEWIPDetailReportDTO>> data = await GetData(param);
-            
+            Tuple<List<QRCODEWIPHeaderReportDTO>, List<QRCODEWIPDetailReportDTO>> data = await GetData(param);           
             return PaginationUtility<QRCODEWIPDetailReportDTO>.Create(data.Item2, pagination.PageNumber, pagination.PageSize);  
 
         }
@@ -88,7 +87,8 @@ namespace API._Services.Services.Report
                         SumStoragePairs = listHeader.Sum(x => x.SumStoragePairs),
                         MissPackage = listHeader.Sum(x => x.MissPackage),
                         MissPairs = listHeader.Sum(x => x.MissPairs),
-                        ProPortion = listHeader.Sum(x => x.SumPairs) > 0 ? Math.Round(listHeader.Sum(x => x.MissPairs).Value / listHeader.Sum(x => x.SumPairs).Value, 2) : 0
+                        ProPortion = listHeader.Sum(x => x.SumPairs) > 0 ? 
+                        Math.Round(listHeader.Sum(x => x.MissPairs).Value / listHeader.Sum(x => x.SumPairs).Value, 2) : 0
                     });
                 
                 foreach (DataRow drow in tableDetail.Rows)
@@ -114,7 +114,7 @@ namespace API._Services.Services.Report
                         CrUsr = drow.ItemArray[16] != (object)DBNull.Value ? Convert.ToString(drow.ItemArray[16]) : null,
                         CrdaY = drow.ItemArray[17] != (object)DBNull.Value ? Convert.ToDateTime(drow.ItemArray[17]) : null,
                         CrdaY_str = drow.ItemArray[17] != (object)DBNull.Value ? Convert.ToDateTime(drow.ItemArray[17])
-                                        .ToString("yyyy/M/d tt h:mm:ss", CultureInfo.GetCultureInfo("zh-TW")) : null,
+                                            .ToString("yyyy/M/d tt h:mm:ss", CultureInfo.GetCultureInfo("zh-TW")) : null,
                         SortFlag = drow.ItemArray[18] != (object)DBNull.Value ? Convert.ToString(drow.ItemArray[18]) : null,
                         StorageFlag = drow.ItemArray[19] != (object)DBNull.Value ? Convert.ToString(drow.ItemArray[19]) : null
                     };   listDetail.Add(detail);
@@ -126,10 +126,7 @@ namespace API._Services.Services.Report
         public async Task<byte[]> ExportExcel(ReportQRCODEWIPParam param)
         {
             Tuple<List<QRCODEWIPHeaderReportDTO>, List<QRCODEWIPDetailReportDTO>> data = await GetData(param);
-            
             MemoryStream stream = new MemoryStream();
-
-            
             if(data.Item1.Any() && data.Item2.Any())
             {
                 var path = Path.Combine(_webHostEnvironment.ContentRootPath, "Resources\\Template\\Report\\4.4Report_QRCODE_WIP\\Report_QRCODE_WIP.xlsx");
@@ -152,6 +149,5 @@ namespace API._Services.Services.Report
             }
             return stream.ToArray();
         }
-
     }
 }

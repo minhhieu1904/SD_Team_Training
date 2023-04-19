@@ -12,7 +12,6 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
    {
-
     path: '',
     canActivate: [AuthGuard],
     component: DefaultLayoutComponent,
@@ -29,6 +28,11 @@ export const routes: Routes = [
         path: 'maintain',
         loadChildren: () => import('./views/maintain/maintain.module')
           .then(m => m.MaintainModule),
+      },
+      {
+        path: 'transaction',
+        loadChildren: () => import('./views/transaction/transaction.module')
+          .then(m => m.TransactionModule),
       },
       {
         path: 'report',

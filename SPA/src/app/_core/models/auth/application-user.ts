@@ -10,13 +10,13 @@ export interface UserLoginParam {
 export interface RoleInformation {
   name: string;
   unique: string;
-  position: number | null;
+  position: number ;
 }
 
 
-export interface Userparam {
-  user_account: string;
-  user_name: string;
+export interface UserparamLogin {
+  account: string;
+  password: string;
 }
 
 

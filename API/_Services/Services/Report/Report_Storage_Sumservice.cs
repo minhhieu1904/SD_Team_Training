@@ -29,7 +29,6 @@ namespace API._Services.Services.Report
 
         public async Task<byte[]> ExportExcelDetails(StorageSumDeltailDTOParam param)
         {
-
             List<StorageSumDeltailDTO> data = await GetDataDetails(param);
             MemoryStream stream = new MemoryStream();
             if (data.Any())
@@ -88,7 +87,6 @@ namespace API._Services.Services.Report
                         }).ToListAsync();
             return result;
         }
-
 
         #endregion
         public async Task<List<getBrand>> GetBrand()

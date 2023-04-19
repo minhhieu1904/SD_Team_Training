@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppGuard } from '@guards/app.guard';
 import { getInfoMenu } from '@utilities/function-utility';
 
 const routes: Routes = [
   {
+
     path: 'wksh-sum-report',
+    canLoad: [AppGuard],
+
     loadChildren: () => import('./report-wksh-sum/report-wksh-sum.module')
       .then((m) => m.ReportWkshSumModule),
     data: {
@@ -13,6 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'sort-sum-report',
+    canLoad: [AppGuard],
+
     loadChildren: () => import('./report-sort-sum/report-sort-sum.module')
       .then((m) => m.ReportSortSumModule),
     data: {
@@ -20,6 +26,8 @@ const routes: Routes = [
     }
   },  {
     path: 'storage-sum-report',
+    canLoad: [AppGuard],
+
     loadChildren: () => import('./report-storage-sum/report-storage-sum.module')
       .then((m) => m.ReportStorageSumModule),
     data: {
@@ -28,6 +36,8 @@ const routes: Routes = [
   },
   {
     path: 'qrcode-wip-report',
+    canLoad: [AppGuard],
+
     loadChildren: () => import('./report-qrcode-wip/report-qrcode-wip.module')
       .then((m) => m.ReportQrcodeWipModule),
     data: {

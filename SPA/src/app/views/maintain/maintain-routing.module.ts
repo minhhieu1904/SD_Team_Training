@@ -1,3 +1,4 @@
+import { AppGuard } from './../../_core/guards/app.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { getInfoMenu } from '@utilities/function-utility';
@@ -6,6 +7,7 @@ import { getInfoMenu } from '@utilities/function-utility';
 const routes: Routes = [
   {
     path: 'department-data-maintenance',
+    canLoad: [AppGuard],
     loadChildren: () => import('./department-data/department-data.module')
       .then((m) => m.DepartmentDataModule),
     data: {
@@ -15,6 +17,7 @@ const routes: Routes = [
   {
 
     path: 'shift-data-maintenance',
+    canLoad: [AppGuard],
     loadChildren: () => import('./shift-data/shift-data.module')
       .then((m) => m.ShiftDataModule),
       data: {
@@ -23,6 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'warehouse-basic-data-maintenance',
+    canLoad: [AppGuard],
     loadChildren: () => import('./warehouse-data/warehouse-data.module')
       .then((m) => m.WarehouseDataModule),
       data: {
@@ -31,6 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'standard-packing-quantity-setting',
+    canLoad: [AppGuard],
     loadChildren: () => import('./package-data/package-data.module')
       .then((m) => m.PackageDataModule),
       data: {
@@ -39,6 +44,7 @@ const routes: Routes = [
   },
   {
     path: 'authorization-setting',
+    canLoad: [AppGuard],
     loadChildren: () => import('./users-data/users-data.module')
       .then((m) => m.UsersDataModule),
     data: {

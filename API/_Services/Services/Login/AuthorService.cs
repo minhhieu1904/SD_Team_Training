@@ -1,10 +1,10 @@
 
+using AgileObjects.AgileMapper;
 using API._Repositories;
 using API._Services.Interfaces;
-using API.DTOs;
 using API.DTOs.Author;
+using API.Helper.Mappers;
 using Microsoft.EntityFrameworkCore;
-using SD3_API.Helpers.Utilities;
 
 namespace API._Services.Services
 {
@@ -16,31 +16,49 @@ namespace API._Services.Services
         {
             _repoAccessor = repoAccessor;
         }
-
-
-
-
-
         public async Task<UserLoginDto> Login(UserLogin userLogin)
         {
-            var user = await _repoAccessor.Users.FindSingle(x => x.account.Trim() == userLogin.account.Trim() && x.is_active == true);
-            if (user == null) return null;
-            if (user.password != userLogin.password) return null;
-            var role = _repoAccessor.Roles.FindAll();
-            var roleUser = _repoAccessor.RoleUser.FindAll(x => x.user_account == user.account);
-            var data = await roleUser.Join(role,
-                                   x => x.role_unique,
-                                   y => y.role_unique,
-                                   (x, y) => new RoleInformation { name = y.role_name, unique = y.role_unique, position = y.role_sequence }).ToListAsync();
+
+             var user = await _repoAccessor.Users.FirstOrDefaultAsync(x => x.account.Trim() == userLogin.account.Trim() && x.is_active);
+
+            // Kiểm tra sự tồn tại của user
+            if(user == null) {
+                return null;
+            }
+
+            // Nếu tồn tại user => Check password
+            if(user.password != userLogin.password) {
+                return null;
+            }
+
+            var roleUsers = _repoAccessor.RoleUser.FindAll(x => x.user_account.Trim() == user.account.Trim());
+            var roles = _repoAccessor.Roles.FindAll();
+
+            var mapper = Mapper.CreateNew();
+            mapper.WhenMapping.UseConfigurations.From<MapperConfig>();
+
+            var roleForUser = await roleUsers.Join(
+                roles,
+                x => x.role_unique,
+                y => y.role_unique,
+                (x,y) => y).Select(x=> new RoleInformation(){
+                     name = x.role_name,
+                     unique = x.role_unique,
+                     position = x.role_sequence
+                }).ToListAsync();
+
             var result = new UserLoginDto
             {
                 account = user.account,
                 email = user.email,
                 username = user.account,
                 name = user.name,
-                roles = data.OrderBy(x => x.position).ToList()
+                roles = roleForUser.OrderBy(x => x.position).ToList(),
+                roleAll = roleForUser.ToList()
             };
+
             return result;
+
         }
 
        

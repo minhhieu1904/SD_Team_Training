@@ -43,6 +43,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseStaticFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
 

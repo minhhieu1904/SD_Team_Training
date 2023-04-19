@@ -87,5 +87,7 @@ namespace API.Models
         public DateTime mdat { get; set; }
         [StringLength(1)]
         public string uscod { get; set; }
+         [StringLength(20)]
+        public string remark { get; set; }
     }
 }

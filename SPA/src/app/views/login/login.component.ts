@@ -1,26 +1,20 @@
 import { AuthService } from '@services/auth/auth.service';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
-import { UserLoginParam } from '@models/auth/application-user';
+import { UserLoginParam, UserparamLogin } from '@models/auth/application-user';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgSnotifyService } from '@services/common/ng-snotify.service';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { InjectBase } from '@utilities/inject-base-app';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent  implements OnInit {
-  user: any = {};
-  appUser: UserLoginParam = <UserLoginParam>{};
+export class LoginComponent extends InjectBase  implements OnInit {
+  user: UserparamLogin = <UserparamLogin>{};
   isDisabled: boolean = false;
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private snotifyService: NgSnotifyService,
-    private spinnerService: NgxSpinnerService,
-  ) {}
+  ) { super();}
 
   ngOnInit() {
     if (this.authService.loggedIn) this.router.navigate(["/dashboard"]);
@@ -30,18 +24,20 @@ export class LoginComponent  implements OnInit {
     this.spinnerService.show();
     this.authService.login(this.user).subscribe({
       next: () => {
+        console.log(this.user);
 
-          this.snotifyService.success(
-            MessageConstants.LOGGED_IN,CaptionConstants.SUCCESS);
-          this.spinnerService.hide();
+        this.snotifyService.success(
+          MessageConstants.LOGGED_IN,
+          CaptionConstants.SUCCESS);
+        this.spinnerService.hide();
       },
-      error: (res) => {
-        console.log("err: ",res);
+      error: () => {
         this.snotifyService.error(MessageConstants.LOGIN_FAILED, CaptionConstants.ERROR);
         this.spinnerService.hide();
       },
-      complete : () => {
-        this.router.navigate(["/dashboard"])
+      complete: () => {
+        this.router.navigate(["/dashboard"]);
+        this.spinnerService.hide();
       }
     });
   }

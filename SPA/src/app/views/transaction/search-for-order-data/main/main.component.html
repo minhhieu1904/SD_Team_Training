@@ -1,0 +1,333 @@
+<div class="animated fadeIn">
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="card">
+              <form class="form-horizontal" autocomplete="off">
+                  <div class="card-header">
+                      <!-- Title -->
+                      <div class="row border-title">
+                          <div class="col-md-12">
+                              <strong class="title-card-cs">
+                                  {{'Roles.Menu_Child.BQRC.SearchForOrderData' | translate}}
+                              </strong>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+              <div class="card-body">
+                  <form class="form-group row border-shadow" autocomplete="off">
+                      <!-- BrandName -->
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                          <label class="badge badge-warning">
+                              {{'Transaction.SearchForOrderData.Brand' | translate}}
+                          </label>
+                          <div class="full-width">
+                              <ng-select [(ngModel)]="param.brandname" name="brandname"
+                                  (clear)="param.brandname = 'All'" [clearable]="param.brandname != 'All'">
+                                  <ng-option *ngFor="let brand of listBrandName" [value]="brand.key">
+                                      {{brand.value}}
+                                  </ng-option>
+                              </ng-select>
+                          </div>
+                      </div>
+                      <!-- Mold Number -->
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                          <label class="badge badge-warning">
+                              {{'Transaction.SearchForOrderData.MoldNumber' | translate}}
+                          </label>
+                          <div class="full-width">
+                              <input type="text" class="form-control" name="rmodel" [(ngModel)]="param.rmodel"
+                                  placeholder="Enter Mold Number...">
+                          </div>
+                      </div>
+                      <!-- Material Code -->
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                          <label class="badge badge-warning">
+                              {{'Transaction.SearchForOrderData.MaterialCode' | translate}}
+                          </label>
+                          <div class="full-width">
+                              <input type="text" class="form-control" name="bitnbr" [(ngModel)]="param.bitnbr"
+                                  placeholder="Enter Material Code...">
+                          </div>
+                      </div>
+                      <!-- Size -->
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                          <label class="badge badge-warning">
+                              {{'Transaction.SearchForOrderData.Size' | translate}}
+                          </label>
+                          <div class="full-width">
+                              <input type="text" class="form-control" name="size mr-2" [(ngModel)]="param.size"
+                                  placeholder="Enter Size...">
+                          </div>
+                      </div>
+                      <!-- Code of Customer -->
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                          <label class="badge badge-warning">
+                              {{'Transaction.SearchForOrderData.CodeOfCustomer' | translate}}
+                          </label>
+                          <div class="full-width">
+                              <input type="text" class="form-control" name="cusid" [(ngModel)]="param.cusid"
+                                  placeholder="Enter Code of Customer...">
+                          </div>
+                      </div>
+                      <!-- Planning No. -->
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                          <label class="badge badge-warning">
+                              {{'Transaction.SearchForOrderData.PlanningNo' | translate}}
+                          </label>
+                          <div class="full-width">
+                              <input type="text" class="form-control" name="manno" [(ngModel)]="param.manno"
+                                  placeholder="Enter Planning No...">
+                          </div>
+                      </div>
+                      <!-- Status -->
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                          <label class="badge badge-warning">
+                              {{'Transaction.SearchForOrderData.Status' | translate}}
+                          </label>
+                          <div class="full-width">
+                              <ng-select [(ngModel)]="param.endcod" name="endcod" (clear)="param.endcod = 'N'"
+                                  [clearable]="param.endcod != 'N'">
+                                  <ng-option *ngFor="let endcod of listStatus" [value]="endcod.key">{{endcod.value}}
+                                  </ng-option>
+                              </ng-select>
+                          </div>
+                      </div>
+                      <!-- Name of Customer -->
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                          <label class="badge badge-warning">
+                              {{'Transaction.SearchForOrderData.NameOfCustomer' | translate}}
+                          </label>
+                          <div class="full-width">
+                              <input type="text" class="form-control" name="cusna" [(ngModel)]="param.cusna"
+                                  placeholder="Enter Name of Customer...">
+                          </div>
+                      </div>
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                          <label class="badge badge-warning">
+                              {{'Transaction.SearchForOrderData.prtno' | translate}}
+                          </label>
+                          <div class="full-width">
+                              <input type="text" class="form-control" name="prtno" [(ngModel)]="param.prtno"
+                                  placeholder="Enter prtno...">
+                          </div>
+                      </div>
+                      <!-- Remark Column Checkbox -->
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex align-items-end">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="isremark" name="isremark"
+                                [(ngModel)]="param.is_Remark" >
+                            <label class="custom-control-label font-weight-bold" for="isremark">
+                                Remark Column
+                            </label>
+                        </div>
+                      </div>
+                      <!-- Button function: Get data pagination with search params, Clear search params - get data pagination, Print -->
+                      <div class="col mt-4 pt-1">
+                          <button type="submit" class="btn btn-success" (click)="search()">
+                              <i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' | translate}}
+                          </button>
+                          <button type="button" class="btn btn-danger ml-2" (click)="clearSearch()">
+                              <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' | translate}}
+                          </button>
+                          <button type="button" class="btn btn-primary ml-2" (click)="print()">
+                              <i class="{{iconButton.PRINT}}"></i> {{'System.Action.Print' | translate}}
+                          </button>
+                      </div>
+                  </form>
+                  <div class="row justify-content-md-center">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                          <div id="table-order-main" class="table-responsive mb-3">
+                              <table class="table table-bordered table-hover">
+                                  <thead>
+                                      <tr>
+                                          <!-- Checkbox All - chcked all row items in current page -->
+                                          <th>
+                                              <div class="custom-control custom-checkbox checkAll">
+                                                  <input type="checkbox" class="custom-control-input" id="checkAll"
+                                                      [(ngModel)]="checkAll" (change)="changCheckAll()" [disabled]="!isCheckAll">
+                                                  <label class="custom-control-label" for="checkAll"></label>
+                                              </div>
+                                          </th>
+                                          <th>{{'Transaction.SearchForOrderData.Brand' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.MoldNumber' | translate}}</th>
+                                          <th>Material Code Bottom</th>
+                                          <th>{{'Transaction.SearchForOrderData.Size' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.CodeOfCustomer' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.PlanningNo' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.PurchaseNo' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.Status' | translate}}</th>
+                                          <th>wkshno</th>
+                                          <th>{{'Transaction.SearchForOrderData.NameOfCustomer' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.TypeOfOrder' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.ConfirmedDeliveryDate' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.Article' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.OrderQuantity' | translate}}</th>
+                                          <th>wkshqty</th>
+                                          <th>{{'Transaction.SearchForOrderData.IncreaseOrderQuantity' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.ReduceOrderQuantity' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.AvailableQuantityForPrint' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.PrintedQuantity' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.CancelPritingQuantity' | translate}}</th>
+                                          <th>Material Code Shoes</th>
+                                          <th>{{'Transaction.SearchForOrderData.ModelName' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.ToolingSize' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.Remark' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.TimeOfUpdating' | translate}}</th>
+                                          <th>{{'Transaction.SearchForOrderData.UpdatedBy' | translate}}</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <!-- Click function - checked row item -->
+                                      <!-- Change background row into yellow when item is checked -->
+                                      <tr *ngFor="let item of data" (click)="changeChecked(item)"
+                                          [ngClass]="{'table-warning': item.isChecked, 'table-disabled': item.isDisabled}">
+                                          <!-- Click checkbox function - checked item -->
+                                          <td>
+                                              <div class="custom-control custom-checkbox">
+                                                  <input type="checkbox" class="custom-control-input" [disabled]="item.isDisabled"
+                                                      id="{{item.brandname + '_' + item.manno + '_' + item.biz_Key}}"
+                                                      [(ngModel)]="item.isChecked" (click)="changeChecked(item)">
+                                                  <label class="custom-control-label"
+                                                      for="{{item.brandname + '_' + item.manno + '_' + item.biz_Key}}"></label>
+                                              </div>
+                                          </td>
+                                          <!-- Brandname -->
+                                          <td>{{item.brandname}}</td>
+                                          <!-- Mold Number -->
+                                          <td>{{item.rmodel}}</td>
+                                          <!-- Material Code Bottom -->
+                                          <td>{{item.bitnbr}}</td>
+                                          <!-- Size -->
+                                          <td>{{item.size}}</td>
+                                          <!-- Code Of Customer -->
+                                          <td>{{item.cusid}}</td>
+                                          <!-- Planing No. -->
+                                          <td style="white-space: nowrap;">{{item.manno}}</td>
+                                          <!-- Purchase No. -->
+                                          <td>{{item.purno}}</td>
+                                          <!-- Status -->
+                                          <td>{{item.endcod}}</td>
+                                          <!-- wkshno -->
+                                          <td>{{item.wkshno}}</td>
+                                          <!-- Name Of Customer -->
+                                          <td>{{item.cusna}}</td>
+                                          <!-- Type Of Order -->
+                                          <td>{{item.kind}}</td>
+                                          <!-- Confirmed Delivery Date -->
+                                          <td>{{item.eta | date: 'YYYY/MM/dd'}}</td>
+                                          <!-- Article -->
+                                          <td>{{item.article}}</td>
+                                          <!-- Order Quantity -->
+                                          <td class="text-right">{{item.qty}}</td>
+                                          <!-- wkshqty -->
+                                          <td class="text-right">{{item.wkshqty}}</td>
+                                          <!-- Increase Order Quantity -->
+                                          <td class="text-right">{{item.addqty}}</td>
+                                          <!-- Reduce Order Quantity -->
+                                          <td class="text-right">{{item.lessqty}}</td>
+                                          <!-- Available Quantity For Print -->
+                                          <td class="text-right">{{item.available_quantity_for_Print}}</td>
+                                          <!-- Printed Quantity -->
+                                          <td class="text-right">{{item.pqty}}</td>
+                                          <!-- Cancel Priting Quantity -->
+                                          <td class="text-right">{{item.cqty}}</td>
+                                          <!-- Material Code Shoes -->
+                                          <td>{{item.ritnbr}}</td>
+                                          <!-- Model Name -->
+                                          <td>{{item.style}}</td>
+                                          <!-- Tooling Size -->
+                                          <td>{{item.tsize}}</td>
+                                          <!-- Remark -->
+                                          <td>{{item.remark}}</td>
+                                          <!-- Time Of Updating -->
+                                          <td>{{item.update_time | date: 'YYYY/MM/dd'}}</td>
+                                          <!-- Updated By -->
+                                          <td>{{item.updated_by}}</td>
+                                      </tr>
+                                      <tr *ngIf="data?.length === 0">
+                                          <td colspan="100%" class="table-warning text-center font-weight-bold">
+                                              No Data!
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <!-- Choose packageQty - enter printQty - ischecked Balance - empno - isB_grade to print info and QR code -->
+                          <div class="form-group row">
+                              <div class="col-xxl-3 col-xl-4 col-lg-5 col-md-6 col-sm-12 d-flex">
+                                  <label class="col-form-label lb form-group control-label mr-2">
+                                      <span class="note-label font-weight-bold">
+                                          {{'Transaction.SearchForOrderData.StandardPackingQuantity' | translate}}
+                                      </span>
+                                  </label>
+                                  <div class="full-width">
+                                      <ng-select [(ngModel)]="orderDataPrint.packageQty" name="packageQty"
+                                          (clear)="orderDataPrint.packageQty = 5"
+                                          [clearable]="orderDataPrint.packageQty != 5" [disabled]="!isPackingQty">
+                                          <ng-option *ngFor="let package of listPackage" [value]="package.key">
+                                              {{package.value}}
+                                          </ng-option>
+                                      </ng-select>
+                                  </div>
+                              </div>
+                              <div class="col-xxl-3 col-xl-4 col-lg-5 col-md-6 col-sm-12 d-flex">
+                                  <label class="col-form-label lb form-group control-label mr-2">
+                                      <span class="note-label font-weight-bold">
+                                          {{'Transaction.SearchForOrderData.QuantityOfPrint' | translate}}
+                                      </span>
+                                  </label>
+                                  <div class="full-width">
+                                      <input type="number" class="form-control" name="printQty" min="1"
+                                          onkeypress="return /[0-9]/i.test(event.key)" onpaste="return false;"
+                                          [(ngModel)]="orderDataPrint.printQty" placeholder="Enter Print Qty..."
+                                          (ngModelChange)="onCheckValuePrint($event)" [disabled]="!isQtyOfPrint">
+                                  </div>
+                              </div>
+                              <div class="col-xxl-1 col-xl-2 col-lg-2 col-md-2 col-sm-4 d-flex">
+                                  <div class="custom-control custom-checkbox pt-2" >
+                                      <input type="checkbox" class="custom-control-input" id="balance" name="balance"
+                                          [(ngModel)]="orderDataPrint.balance" [disabled]="!isBalance">
+                                      <label class="custom-control-label font-weight-bold" for="balance">
+                                          Balance
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="col-xxl-2 col-xl-2 col-lg-4 col-md-4 col-sm-8 d-flex">
+                                  <label class="col-form-label lb form-group control-label mr-2" >
+                                      <span class="note-label font-weight-bold">
+                                          {{'Transaction.SearchForOrderData.empno' | translate}}
+                                      </span>
+                                  </label>
+                                  <div class="full-width">
+                                      <input type="text" class="form-control" name="empno" autocomplete="off"
+                                          [(ngModel)]="orderDataPrint.empno" placeholder="Enter Empno..." >
+                                  </div>
+                              </div>
+                              <div class="col-xxl-1 col-xl-2 col-lg-2 col-md-4 col-sm-4 d-flex">
+                                  <div class="custom-control custom-checkbox pt-2">
+                                      <input type="checkbox" class="custom-control-input" id="IsB_grade" name="IsB_grade"
+                                          [(ngModel)]="orderDataPrint.isB_grade">
+                                      <label class="custom-control-label font-weight-bold" for="IsB_grade">
+                                          IsB_grade
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="col-12 d-flex justify-content-end">
+                                  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount"
+                                      [itemsPerPage]="pagination.pageSize" previousText="&lsaquo;"
+                                      [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)"
+                                      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+                                  </pagination>
+                                  <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} / {{pagination.totalPage}}</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Data print -->
+  <app-qrcode-printer #qrcodeprinter></app-qrcode-printer>
+</div>

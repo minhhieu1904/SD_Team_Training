@@ -1,0 +1,39 @@
+<!-- Data print -->
+<div id="printData">
+    <div class="box">
+        <table class="table" *ngFor="let item of data">
+            <tbody>
+                <tr>
+                    <td colspan="100%">
+                        {{item.rmodel}} / {{item.serial}}
+                        <p class="orderPrintKind">{{item.kind}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{item.custid}}</td>
+                    <td>{{item.article}}</td>
+                </tr>
+                <tr>
+                    <td colspan="100%">{{item.manno}}</td>
+                </tr>
+                <tr>
+                    <td>{{item.printDate | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{item.bitnbr}}</td>
+                </tr>
+                <tr>
+                    <td class="text-center" style="border-right: none !important; vertical-align: middle;">
+                        <qrcode [qrdata]="item.qrCodeName" [width]="600" [errorCorrectionLevel]="'M'"
+                            [elementType]="'img'"></qrcode>
+                    </td>
+                    <td class="text-right" style="border-left: none !important; vertical-align: middle;">
+                        <div class="row">
+                            <span class="col-12">{{item.size}}</span>
+                            <span class="col-12 qty">{{item.qty}}</span>
+                            <span class="col-12 qty">{{item.remark}}</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

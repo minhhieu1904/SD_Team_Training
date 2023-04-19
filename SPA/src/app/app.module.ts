@@ -2,7 +2,7 @@ import { ModalService } from './_core/services/common/modal.service';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -51,9 +51,18 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPrintModule} from 'ngx-print';
 import { LoginComponent } from './views/login/login.component';
 import { AuthGuard } from '@guards/auth/auth.guard';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { JwtModule } from '@auth0/angular-jwt';
+import { environment } from '@env/environment';
+import { LocalStorageConstants } from '@constants/local-storage.constants';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { RouterModule } from '@angular/router';
+import { AppGuard } from '@guards/app.guard';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+export function tokenGetter() {
+  return localStorage.getItem(LocalStorageConstants.TOKEN);
 }
 @NgModule({
   imports: [
@@ -74,17 +83,27 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
-    ModalModule.forRoot(),
     SnotifyModule,
     NgxSpinnerModule,
     NgxPrintModule,
+    RouterModule,
+    NgSelectModule,
+    CommonModule,
     NgxBreadcrumbModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
+      }
+    }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: environment.allowedDomains,
+        disallowedRoutes: environment.disallowedRoutes,
       },
+
     }),
   ],
   declarations: [
@@ -98,7 +117,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 
   ],
   providers: [
+    AppGuard,
     AuthGuard,
+
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
@@ -109,7 +130,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     SnotifyService,
     IconSetService,
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
-
