@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InjectBase } from '@utilities/inject-base-app';
-import { LoginUserService } from '../../../_core/services/login/login-user.service';
+import { LoginUserService } from '@services/login/login-user.service';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
-import { LocalStorageConstant } from '../../../_core/constants/localStorge.constants';
+import { LocalStorageConstant } from '@constants/localStorge.constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

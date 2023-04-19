@@ -186,5 +186,9 @@ namespace API.Models
         [Column("uscod")]
         [StringLength(1)]
         public string? Uscod { get; set; }
+
+        [Column("remark")]
+        [StringLength(20)]
+        public string? Remark { get; set; }
     }
 }

@@ -32,6 +32,19 @@ export const RolesConstants = [
         ]
     },
     {
+        name: '2. Transaction', 
+        url: '/transaction',
+        icon: 'fa fa-newspaper-o', 
+        children: [
+            {
+                name: '2.1 Search For Order Data',
+                role: 'BQRC.SearchForOrderData',
+                url: '/transaction/search-for-order-data'
+            }
+        ]
+    },
+
+    {
         name: '4. Report', 
         url: '/report',
         icon: 'fa fa-newspaper-o', 

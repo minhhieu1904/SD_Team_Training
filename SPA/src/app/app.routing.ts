@@ -19,11 +19,16 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'transaction',
+        loadChildren: () =>
+          import('./views/transaction/transaction.module').then(
+            (m) => m.TransactionModule
+          ),
+      },
+      {
         path: 'report',
         loadChildren: () =>
-          import('./views/report/report.module').then(
-            (m) => m.ReportModule
-          ),
+          import('./views/report/report.module').then((m) => m.ReportModule),
       },
     ],
   },
