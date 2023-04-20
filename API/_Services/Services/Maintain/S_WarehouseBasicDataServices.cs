@@ -17,18 +17,15 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
             _repositoryAccessor = repositoryAccessor;
         }
 
+        #region Add
         public async Task<OperationResult> Add(MsLocation model)
         {
-            if (!string.IsNullOrEmpty(model.LocationName) || !string.IsNullOrEmpty(model.StoreH))
-                return new OperationResult(false);
-
-            var originalItem = await _repositoryAccessor.MS_Location.FindAll(x => x.Manuf == model.Manuf
+            var originalItem = await _repositoryAccessor.MS_Location.FindAll(x => x.Manuf == model.Manuf.Trim()
             && x.StoreH == model.StoreH.Trim()).FirstOrDefaultAsync();
 
             if (originalItem != null)
                 return new OperationResult(false);
 
-            model.Manuf = "N";
             _repositoryAccessor.MS_Location.Add(model);
             try
             {
@@ -39,14 +36,12 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
             {
                 return new OperationResult(false);
             }
-
         }
+        #endregion
 
+        #region Update
         public async Task<OperationResult> Update(MsLocation model)
         {
-            if (!string.IsNullOrEmpty(model.LocationName) || !string.IsNullOrEmpty(model.StoreH))
-                return new OperationResult(false);
-
             var originalItem = await _repositoryAccessor.MS_Location.FirstOrDefaultAsync(x => x.Manuf == model.Manuf.Trim()
              && x.StoreH == model.StoreH.Trim());
             if (originalItem == null)
@@ -66,10 +61,12 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
                 return new OperationResult(false);
             }
         }
+        #endregion
 
+        #region Delete
         public async Task<OperationResult> Delete(string StoreH)
         {
-            if (!string.IsNullOrEmpty(StoreH))
+            if (!string.IsNullOrEmpty(StoreH.Trim()))
                 return new OperationResult(false);
 
             var originalItem = await _repositoryAccessor.MS_Location.FirstOrDefaultAsync(x => x.Manuf == "N" && x.StoreH == StoreH.Trim());
@@ -88,14 +85,16 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
                 return new OperationResult(false);
             }
         }
+        #endregion
 
+        #region GetData
         public async Task<PaginationUtility<MsLocation>> GetData(PaginationParam pagination, WarehouseBasicDataParam param)
         {
             var pred_MS_Location = PredicateBuilder.New<MsLocation>(true);
             if (!string.IsNullOrEmpty(param.StoreH))
-                pred_MS_Location.And(x => x.StoreH == param.StoreH);
+                pred_MS_Location.And(x => x.StoreH.Trim().ToLower().Contains(param.StoreH.Trim().ToLower()));
             if (!string.IsNullOrEmpty(param.LocationName))
-                pred_MS_Location.And(x => x.LocationName == param.LocationName);
+                pred_MS_Location.And(x => x.LocationName.Trim().ToLower().Contains(param.LocationName.Trim().ToLower()));
 
             var data = await _repositoryAccessor.MS_Location.FindAll(pred_MS_Location).ToListAsync();
 
@@ -106,7 +105,6 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
         {
             return await _repositoryAccessor.MS_Location.FirstOrDefaultAsync(item => item.Manuf.ToUpper() == manuf.ToUpper() && item.StoreH.ToUpper() == StoreH.ToUpper());
         }
-
-
+        #endregion
     }
 }

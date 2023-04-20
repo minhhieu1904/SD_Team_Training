@@ -69,7 +69,7 @@ namespace API._Services.Services.Maintain
         #region Delete
         public async Task<OperationResult> Delete(string shift)
         {
-            if (!string.IsNullOrEmpty(shift))
+            if (string.IsNullOrEmpty(shift.Trim()))
                 return new OperationResult(false);
 
             var originalItem = await _repositoryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == shift.Trim());
@@ -95,9 +95,9 @@ namespace API._Services.Services.Maintain
         {
             var pred_MS_Shift = PredicateBuilder.New<MsShift>(true);
             if (!string.IsNullOrEmpty(param.Shift))
-                pred_MS_Shift.And(x => x.Shift == param.Shift);
+                pred_MS_Shift.And(x => x.Shift.Trim().ToLower().Contains(param.Shift.Trim().ToLower()));
             if (!string.IsNullOrEmpty(param.Shift_Name))
-                pred_MS_Shift.And(x => x.ShiftName == param.Shift_Name);
+                pred_MS_Shift.And(x => x.ShiftName.Trim().ToLower().Contains(param.Shift_Name.Trim().ToLower()));
 
             var data = _repositoryAccessor.MS_Shift.FindAll(pred_MS_Shift);
             return await PaginationUtility<MsShift>.CreateAsync(data, pagination.PageNumber, pagination.PageSize);

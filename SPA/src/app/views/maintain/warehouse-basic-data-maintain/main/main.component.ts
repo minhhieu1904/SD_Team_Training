@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MsLocation } from '@models/msLocation';
+import { MsLocation } from '@models/maintain/msLocation';
 import { WarehouseBasicDataParam } from '@models/warehouseBasicDataParam';
 import { InjectBase } from '@utilities/inject-base-app';
 import { Pagination } from '@utilities/pagination-utility';
@@ -12,6 +12,7 @@ import { CaptionConstants, MessageConstants } from '@constants/message.enum';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  //#region attribute
   msLocation: MsLocation[] = [];
 
   pagination: Pagination = <Pagination>{
@@ -23,6 +24,8 @@ export class MainComponent extends InjectBase implements OnInit {
     storeH: '',
     locationName: '',
   };
+  //#endregion
+
   constructor(private service: WarehouseBasicDataService) {
     super();
   }
@@ -30,7 +33,8 @@ export class MainComponent extends InjectBase implements OnInit {
   ngOnInit(): void {
     this.getDataPagination();
   }
-
+  
+  //#region function
   add() {
     this.router.navigate([`${url.maintain.warehouse_basic_data_maintain}/add`]);
   }
@@ -42,8 +46,9 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   search() {
-    this.pagination.pageNumber = 1;
-    this.getDataPagination();
+    this.pagination.pageNumber === 1
+      ? this.getDataPagination()
+      : (this.pagination.pageNumber = 1);
   }
 
   clear() {
@@ -74,4 +79,5 @@ export class MainComponent extends InjectBase implements OnInit {
     this.pagination.pageNumber = e.page;
     this.getDataPagination();
   }
+  //#endregion
 }

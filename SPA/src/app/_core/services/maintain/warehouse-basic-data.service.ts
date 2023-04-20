@@ -1,14 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MsLocation } from '@models/msLocation';
+import { MsLocation } from '@models/maintain/msLocation';
 import { WarehouseBasicDataParam } from '@models/warehouseBasicDataParam';
 import {
   PaginationParam,
   PaginationResult,
 } from '@utilities/pagination-utility';
-import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
-import { OperationResult } from '../../utilities/operation-result';
+import { environment } from '@env/environment';
+import { OperationResult } from '@utilities/operation-result';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +16,7 @@ export class WarehouseBasicDataService {
   baseUrl: string = environment.apiUrl + 'C_WarehouseBasicData';
   constructor(private http: HttpClient) {}
 
-  getData(
-    pagination: PaginationParam,
-    param: WarehouseBasicDataParam
-  ): Observable<PaginationResult<MsLocation>> {
+  getData(pagination: PaginationParam, param: WarehouseBasicDataParam) {
     // Cách khai báo thứ nhất
 
     // let params = new HttpParams()
@@ -36,21 +32,23 @@ export class WarehouseBasicDataService {
     );
   }
 
-  getDataOnly(manuf: string, storeH: string): Observable<MsLocation> {
+  getDataOnly(manuf: string, storeH: string) {
     let params = new HttpParams().set('manuf', manuf).set('storeH', storeH);
 
     return this.http.get<MsLocation>(`${this.baseUrl}/GetDataOnly`, { params });
   }
 
-  add(model: MsLocation): Observable<OperationResult> {
+  add(model: MsLocation) {
     return this.http.post<OperationResult>(`${this.baseUrl}/Add`, model);
-  };
+  }
 
-  update(model: MsLocation): Observable<OperationResult> {
+  update(model: MsLocation) {
     return this.http.put<OperationResult>(`${this.baseUrl}/Update`, model);
-  };
+  }
 
-  delete(StoreH: string): Observable<OperationResult> {
-    return this.http.post<OperationResult>(`${this.baseUrl}/Delete`, {param: {StoreH},});
-  };
+  delete(StoreH: string) {
+    return this.http.post<OperationResult>(`${this.baseUrl}/Delete`, {
+      param: { StoreH },
+    });
+  }
 }
