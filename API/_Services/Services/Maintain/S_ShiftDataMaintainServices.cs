@@ -90,7 +90,7 @@ namespace API._Services.Services.Maintain
         }
         #endregion
 
-        #region GetData
+        #region Get Data
         public async Task<PaginationUtility<MsShift>> GetData(PaginationParam pagination, ShiftDataMaintainParam param)
         {
             var pred_MS_Shift = PredicateBuilder.New<MsShift>(true);

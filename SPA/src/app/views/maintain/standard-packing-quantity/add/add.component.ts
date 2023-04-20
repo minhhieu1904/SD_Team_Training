@@ -11,11 +11,13 @@ import { InjectBase } from '@utilities/inject-base-app';
   styleUrls: ['./add.component.scss'],
 })
 export class AddComponent extends InjectBase implements OnInit {
+  //#region attribute
   msPackage: MsPackage = <MsPackage>{
     manuf: 'N',
     packageNo: '',
     packageQty: 0,
   };
+  //#endregion
 
   constructor(private service: StandardPackingQuantityService) {
     super();
@@ -23,7 +25,22 @@ export class AddComponent extends InjectBase implements OnInit {
 
   ngOnInit(): void {}
 
+  //#region function
+  back() {
+    this.router.navigate([url.maintain.standard_packing_quantity]);
+  }
+  vadidate() {
+    if (this.functionUtility.checkEmpty(this.msPackage.packageNo)) return true;
+    return false;
+  }
+
   add() {
+    if (this.vadidate())
+      return this.snotifyService.error(
+        MessageConstants.PLEASE_FILL_REQUIRED,
+        CaptionConstants.ERROR
+      );
+
     this.spinnerService.show();
     this.service.add(this.msPackage).subscribe({
       next: (result) => {
@@ -43,15 +60,12 @@ export class AddComponent extends InjectBase implements OnInit {
       },
       error: () => {
         this.spinnerService.hide();
-          this.snotifyService.error(
-            MessageConstants.SYSTEM_ERROR_MSG,
-            CaptionConstants.ERROR
-          );
+        this.snotifyService.error(
+          MessageConstants.SYSTEM_ERROR_MSG,
+          CaptionConstants.ERROR
+        );
       },
     });
   }
-
-  back() {
-    this.router.navigate([url.maintain.department_data_maintain]);
-  }
+  //#endregion
 }

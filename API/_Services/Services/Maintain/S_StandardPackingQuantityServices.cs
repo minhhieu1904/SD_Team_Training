@@ -18,18 +18,15 @@ namespace API._Services.Services.Maintain
             _repositoryAccessor = repositoryAccessor;
         }
 
+        #region Add
         public async Task<OperationResult> Add(StandardPackingQuantityParam model)
         {
-            if (!string.IsNullOrEmpty(model.PackageNo))
-                return new OperationResult(false);
-
-            var originalItem = this._repositoryAccessor.MS_Package.FindAll(x => x.Manuf == "N"
+            var originalItem = this._repositoryAccessor.MS_Package.FindAll(x => x.Manuf == model.Manuf
             && x.PackageNo == model.PackageNo.Trim());
 
             if (originalItem == null)
                 return new OperationResult(false);
 
-            model.Manuf = "N";
             var item = Mapper.Map(model).ToANew<MsPackage>(x => x.MapEntityKeys());
             _repositoryAccessor.MS_Package.Add(item);
 
@@ -43,13 +40,12 @@ namespace API._Services.Services.Maintain
                 return new OperationResult(false);
             }
         }
+        #endregion
 
+        #region Update
         public async Task<OperationResult> Update(StandardPackingQuantityParam model)
         {
-            if (!string.IsNullOrEmpty(model.PackageNo))
-                return new OperationResult(false);
-
-            var originalItem = this._repositoryAccessor.MS_Package.FirstOrDefault(x => x.Manuf == "N"
+            var originalItem = this._repositoryAccessor.MS_Package.FirstOrDefault(x => x.Manuf == model.Manuf
             && x.PackageNo == model.PackageNo.Trim());
 
             if (originalItem == null)
@@ -68,7 +64,9 @@ namespace API._Services.Services.Maintain
                 return new OperationResult(false);
             }
         }
+        #endregion
 
+        #region Delete
         public async Task<OperationResult> Delete(string packageNo)
         {
             if (!string.IsNullOrEmpty(packageNo))
@@ -91,12 +89,14 @@ namespace API._Services.Services.Maintain
                 return new OperationResult(false);
             }
         }
+        #endregion
 
+        #region Get Data
         public async Task<PaginationUtility<MsPackage>> GetData(PaginationParam pagination, StandardPackingQuantityParam param)
         {
             var pred_MS_Package = PredicateBuilder.New<MsPackage>(true);
             if (!string.IsNullOrEmpty(param.PackageNo))
-                pred_MS_Package.And(x => x.PackageNo == param.PackageNo);
+                pred_MS_Package.And(x => x.PackageNo.Trim().ToLower().Contains(param.PackageNo.Trim().ToLower()));
             if (param.PackageQty != 0)
                 pred_MS_Package.And(x => x.PackageQty == param.PackageQty);
 
@@ -110,6 +110,6 @@ namespace API._Services.Services.Maintain
             return await _repositoryAccessor.MS_Package.FirstOrDefaultAsync(item => item.Manuf == manuf.Trim()
             && item.PackageNo == packageNo.Trim());
         }
-
+        #endregion
     }
 }

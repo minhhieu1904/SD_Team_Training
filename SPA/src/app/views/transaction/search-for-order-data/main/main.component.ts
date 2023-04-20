@@ -24,10 +24,6 @@ import { OperationResult } from '@utilities/operation-result';
 export class MainComponent extends InjectBase implements OnInit {
   @ViewChild('qrcodeprinter') qrcodeprinter: QrcodePrinterComponent;
 
-  //#region Modal
-  
-  //#endregion
-
   data: SearchForOrderDataDTO[] = [];
 
   dataPrint: OrderDataPrint = <OrderDataPrint>{

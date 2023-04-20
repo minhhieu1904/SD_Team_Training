@@ -12,6 +12,7 @@ import { CaptionConstants, MessageConstants } from '@constants/message.enum';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  //#region attribute
   msPackage: MsPackage[] = [];
 
   pagination: Pagination = <Pagination>{
@@ -24,6 +25,7 @@ export class MainComponent extends InjectBase implements OnInit {
     packageNo: '',
     packageQty: 0,
   };
+  //#endregion
 
   constructor(private service: StandardPackingQuantityService) {
     super();
@@ -33,6 +35,7 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getDataPagination();
   }
 
+  //#region function
   add() {
     this.router.navigate([`${url.maintain.standard_packing_quantity}/add`]);
   }
@@ -50,8 +53,9 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   search() {
-    this.pagination.pageNumber = 1;
-    this.getDataPagination();
+    this.pagination.pageNumber === 1
+      ? this.getDataPagination()
+      : (this.pagination.pageNumber = 1);
   }
 
   getDataPagination() {
@@ -76,4 +80,5 @@ export class MainComponent extends InjectBase implements OnInit {
     this.pagination.pageNumber = e.page;
     this.getDataPagination();
   }
+  //#endregion
 }

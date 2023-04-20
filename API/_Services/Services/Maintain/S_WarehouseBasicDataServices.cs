@@ -87,7 +87,7 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
         }
         #endregion
 
-        #region GetData
+        #region Get Data
         public async Task<PaginationUtility<MsLocation>> GetData(PaginationParam pagination, WarehouseBasicDataParam param)
         {
             var pred_MS_Location = PredicateBuilder.New<MsLocation>(true);

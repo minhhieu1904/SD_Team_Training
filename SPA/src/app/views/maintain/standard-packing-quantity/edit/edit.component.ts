@@ -11,11 +11,13 @@ import { InjectBase } from '@utilities/inject-base-app';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent extends InjectBase implements OnInit {
+  //#region attribute
   msPackage: MsPackage = <MsPackage>{
     manuf: 'N',
     packageNo: '',
     packageQty: 0,
   };
+  //#endregion
   constructor(private service: StandardPackingQuantityService) {
     super();
   }
@@ -31,6 +33,7 @@ export class EditComponent extends InjectBase implements OnInit {
     });
   }
 
+  //#region function
   getMsPackage(manuf: string, packageNo: string) {
     this.service.getDataOnly(manuf, packageNo).subscribe({
       next: (result) => {
@@ -45,13 +48,27 @@ export class EditComponent extends InjectBase implements OnInit {
     });
   }
 
+  back() {
+    this.router.navigate([url.maintain.standard_packing_quantity]);
+  }
+
+  vadidate() {
+    if (this.functionUtility.checkEmpty(this.msPackage.packageNo)) return true;
+    return false;
+  }
+
   update() {
+    if (this.vadidate())
+      return this.snotifyService.error(
+        MessageConstants.PLEASE_FILL_REQUIRED,
+        CaptionConstants.ERROR
+      );
     this.spinnerService.show();
     this.service.update(this.msPackage).subscribe({
       next: (result) => {
         this.spinnerService.hide();
         if (result.isSuccess) {
-          this.snotifyService.error(
+          this.snotifyService.success(
             MessageConstants.UPDATED_OK_MSG,
             CaptionConstants.SUCCESS
           );
@@ -72,7 +89,5 @@ export class EditComponent extends InjectBase implements OnInit {
       },
     });
   }
-  back() {
-    this.router.navigate([url.maintain.department_data_maintain]);
-  }
+  //#endregion
 }

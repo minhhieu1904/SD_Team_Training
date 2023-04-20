@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-2">
         <span class="badge badge-warning">Packing Quantity</span>
-        <input type="text" name="packageQty" class="form-control" [(ngModel)]="msPackage.packageQty">
+        <input type="number" min="0" max="999999999" name="packageQty" class="form-control" [(ngModel)]="msPackage.packageQty">
       </div>
       <div class="col pt-4">
         <button class="btn btn-primary" (click)="add()"> Add New </button>

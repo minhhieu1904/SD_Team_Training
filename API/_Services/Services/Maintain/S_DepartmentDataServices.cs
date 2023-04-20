@@ -89,7 +89,7 @@ namespace API._Services.Services.Maintain
         }
         #endregion
 
-        #region GetData
+        #region Get Data
         public async Task<PaginationUtility<MsDepartment>> GetData(PaginationParam pagination, DepartmentDataParam param)
         {
             var pred_MS_Department = PredicateBuilder.New<MsDepartment>(true);

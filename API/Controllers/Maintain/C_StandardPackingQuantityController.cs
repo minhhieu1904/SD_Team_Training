@@ -7,7 +7,7 @@ namespace API.Controllers.Maintain
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class C_StandardPackingQuantityController : ControllerBase
+    public class C_StandardPackingQuantityController : APIController
     {
         private readonly I_StandardPackingQuantityServices _services;
 
