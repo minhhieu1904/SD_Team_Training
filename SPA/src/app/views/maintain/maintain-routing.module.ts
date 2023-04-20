@@ -1,25 +1,48 @@
 import { NgModule } from '@angular/core';
+import { getInfoMenu } from '@utilities/function-utility';
 import { RouterModule, Routes } from '@angular/router';
+import { AppGuard } from '@guards/app.guard';
+import { RolesConstants_role } from '@constants/role.constants';
 const routes: Routes = [
   {
     path: 'shift-data-maintain',
-    loadChildren: () => import('../maintain/shift-data-maintain/shift-data-maintain.module').then(m => m.ShiftDataMaintainModule)
+    canLoad: [AppGuard],
+    loadChildren: () => import('../maintain/shift-data-maintain/shift-data-maintain.module').then(m => m.ShiftDataMaintainModule),
+    data: { 
+      unique: RolesConstants_role.ShiftDataMaintenance
+    }
   },
   {
     path: 'warehouse-basic-data',
-    loadChildren: () => import('../maintain/warehouse-basic-data/warehouse-basic-data.module').then(m => m.WarehouseBasicDataModule)
+    canLoad: [AppGuard],
+    loadChildren: () => import('../maintain/warehouse-basic-data/warehouse-basic-data.module').then(m => m.WarehouseBasicDataModule),
+    data: { 
+      unique: RolesConstants_role.WarehouseBasicDataMaintenance
+    }
   },
   {
     path: 'department-data-maintenance',
-    loadChildren: () => import('../maintain/department-data-maintenance/department-data-maintenance.module').then(m => m.DepartmentDataMaintenanceModule)
+    canLoad: [AppGuard],
+    loadChildren: () => import('../maintain/department-data-maintenance/department-data-maintenance.module').then(m => m.DepartmentDataMaintenanceModule),
+    data: { 
+      unique: RolesConstants_role.DepartmentDataMaintenance
+    }
   },
   {
     path: 'standard-packing-quantity',
-    loadChildren: () => import('../maintain/standard-packing-quantity/standard-packing-quantity.module').then(m => m.StandardPackingQuantityModule)
+    canLoad: [AppGuard],
+    loadChildren: () => import('../maintain/standard-packing-quantity/standard-packing-quantity.module').then(m => m.StandardPackingQuantityModule),
+    data: { 
+      unique: RolesConstants_role.StandardPackingQuantitySetting
+    }
   },
   {
     path: 'authorization-setting',
-    loadChildren: () => import('../maintain/authorization-setting/authorization-setting.module').then(m => m.AuthorizationSettingModule)
+    canLoad: [AppGuard],
+    loadChildren: () => import('../maintain/authorization-setting/authorization-setting.module').then(m => m.AuthorizationSettingModule),
+    data: { 
+      unique: RolesConstants_role.AuthorizationSetting
+    }
   }
 ];
 

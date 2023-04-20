@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AuthGuard } from '../app/_core/guards/auth/auth.guard';
 import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
@@ -7,6 +8,7 @@ import { LoginComponent } from './views/login/login/login.component';
 export const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     component: DefaultLayoutComponent,
     data: {
       title: 'Home'

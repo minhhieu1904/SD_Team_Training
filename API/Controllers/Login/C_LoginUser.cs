@@ -14,7 +14,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace API.Controllers.Login
 {
-    public class C_LoginUser : APIController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class C_LoginUser : ControllerBase
     {
         private readonly ILoginUser _services;
         private readonly IConfiguration _config;

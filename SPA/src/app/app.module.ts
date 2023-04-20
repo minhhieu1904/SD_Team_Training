@@ -48,6 +48,12 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPrintModule} from 'ngx-print';
 import { LoginComponent } from './views/login/login/login.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { LocalStorageConstant } from '@constants/localStorge.constants';
+import { environment } from '@env/environment';
+export function tokenGetter() {
+  return localStorage.getItem(LocalStorageConstant.Token);
+}
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -79,6 +85,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
+      },
+    }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: environment.allowedDomains,
+        disallowedRoutes: environment.disallowedRoutes,
       },
     }),
   ],

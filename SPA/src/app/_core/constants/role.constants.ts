@@ -59,3 +59,14 @@ export const RolesConstants = [
         ]
     },
 ]
+export class RolesConstants_role {
+    public static ShiftDataMaintenance = "BQRC.ShiftDataMaintenance"
+    public static WarehouseBasicDataMaintenance = "BQRC.WarehouseBasicDataMaintenance"
+    public static DepartmentDataMaintenance = "BQRC.DepartmentDataMaintenance"
+    public static StandardPackingQuantitySetting = "BQRC.StandardPackingQuantitySetting"
+    public static AuthorizationSetting = "BQRC.AuthorizationSetting"
+    public static wkshSumReport = "BQRC.wkshSumReport"
+    public static SortSumReport = "BQRC.SortSumReport"
+    public static StorageSumReport = "BQRC.StorageSumReport"
+    public static QRCodeWIPReport = "BQRC.QRCodeWIPReport"
+}
