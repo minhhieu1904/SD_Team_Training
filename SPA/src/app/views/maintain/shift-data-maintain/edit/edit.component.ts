@@ -12,12 +12,14 @@ import { InjectBase } from '@utilities/inject-base-app';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent extends InjectBase implements OnInit {
+  //#region attribute
   msShift: MsShift = <MsShift>{
     manuf: 'N',
     shift: '',
     shiftName: '',
   };
-
+  //#endregion
+  
   constructor(private service: ShiftDataMaintainService) {
     super();
   }
@@ -33,6 +35,7 @@ export class EditComponent extends InjectBase implements OnInit {
     });
   }
 
+  //#region function
   getMsShift(manuf: string, shift: string) {
     this.service.getDataOnly(manuf, shift).subscribe({
       next: (result) => {
@@ -51,7 +54,22 @@ export class EditComponent extends InjectBase implements OnInit {
     this.router.navigate([url.maintain.shift_data_maitain]);
   }
 
+  vadidate() {
+    if (
+      this.functionUtility.checkEmpty(this.msShift.shift) ||
+      this.functionUtility.checkEmpty(this.msShift.shiftName)
+    )
+      return true;
+    return false;
+  }
+
   update() {
+    if (this.vadidate())
+      return this.snotifyService.error(
+        MessageConstants.PLEASE_FILL_REQUIRED,
+        CaptionConstants.ERROR
+      );
+
     this.spinnerService.show();
     this.service.update(this.msShift).subscribe({
       next: (res) => {
@@ -78,4 +96,5 @@ export class EditComponent extends InjectBase implements OnInit {
       },
     });
   }
+  //#endregion
 }

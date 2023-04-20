@@ -12,6 +12,7 @@ import { CaptionConstants, MessageConstants } from '@constants/message.enum';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  //#region attribute
   msShift: MsShift[] = [];
   pagination: Pagination = <Pagination>{
     pageNumber: 1,
@@ -22,6 +23,7 @@ export class MainComponent extends InjectBase implements OnInit {
     shift: '',
     shift_Name: '',
   };
+  //#endregion
 
   constructor(private service: ShiftDataMaintainService) {
     super();
@@ -31,6 +33,7 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getDataPagination();
   }
 
+  //#region function
   add() {
     this.router.navigate([`${url.maintain.shift_data_maitain}/add`]);
   }
@@ -48,8 +51,9 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   search() {
-    this.pagination.pageNumber = 1;
-    this.getDataPagination();
+    this.pagination.pageNumber === 1
+      ? this.getDataPagination()
+      : (this.pagination.pageNumber = 1);
   }
 
   getDataPagination() {
@@ -74,4 +78,5 @@ export class MainComponent extends InjectBase implements OnInit {
     this.pagination.pageNumber = e.page;
     this.getDataPagination();
   }
+  //#endregion
 }

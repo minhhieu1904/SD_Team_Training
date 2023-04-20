@@ -57,6 +57,7 @@ export enum MessageConstants {
   CHANGE_CONTENT = "Please change the content",
 
   CLEAR = 'Clear successfully',
+  PLEASE_FILL_REQUIRED = 'Please fill the required fields'
 }
 
 export enum CaptionConstants {

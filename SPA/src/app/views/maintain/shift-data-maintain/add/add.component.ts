@@ -11,23 +11,39 @@ import { InjectBase } from '@utilities/inject-base-app';
   styleUrls: ['./add.component.scss'],
 })
 export class AddComponent extends InjectBase implements OnInit {
+  //#region attribute
   msShift: MsShift = <MsShift>{
     manuf: 'N',
     shift: '',
     shiftName: '',
   };
+  //#endregion
 
   constructor(private service: ShiftDataMaintainService) {
     super();
   }
 
   ngOnInit(): void {}
-
+  
+  //#region function
   back() {
     this.router.navigate([url.maintain.shift_data_maitain]);
   }
-
+  vadidate() {
+    if (
+      this.functionUtility.checkEmpty(this.msShift.shift) ||
+      this.functionUtility.checkEmpty(this.msShift.shiftName)
+    )
+      return true;
+    return false;
+  }
   add() {
+    if (this.vadidate())
+      return this.snotifyService.error(
+        MessageConstants.PLEASE_FILL_REQUIRED,
+        CaptionConstants.ERROR
+      );
+
     this.spinnerService.show();
     this.service.add(this.msShift).subscribe({
       next: (result) => {
@@ -54,4 +70,5 @@ export class AddComponent extends InjectBase implements OnInit {
       },
     });
   }
+  //#endregion
 }

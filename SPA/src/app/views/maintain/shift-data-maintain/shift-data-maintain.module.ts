@@ -7,6 +7,7 @@ import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [MainComponent, AddComponent, EditComponent],
@@ -15,6 +16,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     FormsModule,
     ShiftDataMaintainRoutingModule,
     PaginationModule.forRoot(),
+    AlertModule.forRoot(),
   ],
 })
 export class ShiftDataMaintainModule {}
