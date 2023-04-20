@@ -40,7 +40,15 @@
         <th class="text-center" scope="col">Name of Department</th>
       </tr>
     </thead>
-
+    <tbody *ngIf="msDepartment.length == 0">
+      <tr>
+        <td colspan="100%">
+          <alert class="text-center" type='danger'>
+            <strong>No Data Matching </strong>
+          </alert>
+        </td>
+      </tr>
+    </tbody>
     <tbody>
       <tr *ngFor="let msdepartment of msDepartment ">
         <td class="text-center">
@@ -53,10 +61,11 @@
 
     </tbody>
   </table>
-  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
-    (pageChanged)="pageChanged($event)">
-    <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
-      {{pagination.totalPage}}</span>
-
-  </pagination>
+  <div class="d-flex" *ngIf="msDepartment.length > 0">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
+      (pageChanged)="pageChanged($event)">
+      <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+        {{pagination.totalPage}}</span>
+    </pagination>
+  </div>
 </div>

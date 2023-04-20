@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MsLocation } from '@models/maintain/msLocation';
-import { WarehouseBasicDataParam } from '@models/warehouseBasicDataParam';
+import { WarehouseBasicDataParam } from '@models/maintain/warehouseBasicDataParam';
 import {
   PaginationParam,
   PaginationResult,

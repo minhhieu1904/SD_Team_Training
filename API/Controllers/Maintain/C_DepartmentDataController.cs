@@ -8,7 +8,7 @@ namespace API.Controllers.Maintain
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class C_DepartmentDataController : ControllerBase
+    public class C_DepartmentDataController : APIController
     {
         private readonly I_DepartmentDataServices _services;
 

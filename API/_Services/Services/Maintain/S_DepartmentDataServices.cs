@@ -16,20 +16,15 @@ namespace API._Services.Services.Maintain
         {
             _repositoryAccessor = repositoryAccessor;
         }
-
+        #region Add
         public async Task<OperationResult> Add(MsDepartment model)
         {
-
-            if (!string.IsNullOrEmpty(model.ParName) || !string.IsNullOrEmpty(model.ParNo))
-                return new OperationResult(false);
-
             var originalItem = await _repositoryAccessor.MS_Department.FindAll(x => x.Manuf == model.Manuf.Trim()
             && x.ParNo == model.ParNo.Trim()).FirstOrDefaultAsync();
 
             if (originalItem != null)
                 return new OperationResult(false);
 
-            model.Manuf = "N";
             _repositoryAccessor.MS_Department.Add(model);
 
             try
@@ -42,14 +37,13 @@ namespace API._Services.Services.Maintain
                 return new OperationResult(false);
             }
         }
+        #endregion
 
+        #region Update
         public async Task<OperationResult> Update(MsDepartment model)
         {
-            if (!string.IsNullOrEmpty(model.ParName) || !string.IsNullOrEmpty(model.ParNo))
-                return new OperationResult(false);
-
-            var originalItem = await _repositoryAccessor.MS_Department.FirstOrDefaultAsync(x => x.Manuf == model.Manuf.Trim()
-            && x.ParNo == model.ParNo.Trim());
+            var originalItem = await _repositoryAccessor.MS_Department.FirstOrDefaultAsync(x => x.Manuf.Trim() == model.Manuf.Trim()
+            && x.ParNo.Trim() == model.ParNo.Trim());
 
             if (originalItem == null)
                 return new OperationResult(false);
@@ -67,10 +61,12 @@ namespace API._Services.Services.Maintain
                 return new OperationResult(false);
             }
         }
+        #endregion
 
+        #region Delete
         public async Task<OperationResult> Delete(string parNo)
         {
-            if (!string.IsNullOrEmpty(parNo))
+            if (string.IsNullOrEmpty(parNo.Trim()))
                 return new OperationResult(false);
 
             var originalItem = await _repositoryAccessor.MS_Department.FirstOrDefaultAsync(x => x.Manuf == "N"
@@ -91,14 +87,16 @@ namespace API._Services.Services.Maintain
                 return new OperationResult(false);
             }
         }
+        #endregion
 
+        #region GetData
         public async Task<PaginationUtility<MsDepartment>> GetData(PaginationParam pagination, DepartmentDataParam param)
         {
             var pred_MS_Department = PredicateBuilder.New<MsDepartment>(true);
             if (!string.IsNullOrEmpty(param.ParName))
-                pred_MS_Department.And(x => x.ParName == param.ParName);
+                pred_MS_Department.And(x => x.ParName.Trim().ToLower().Contains(param.ParName.Trim().ToLower()));
             if (!string.IsNullOrEmpty(param.ParNo))
-                pred_MS_Department.And(x => x.ParNo == param.ParNo);
+                pred_MS_Department.And(x => x.ParNo.Trim().ToLower().Contains(param.ParNo.Trim().ToLower()));
 
             var data = await _repositoryAccessor.MS_Department.FindAll(pred_MS_Department).ToListAsync();
 
@@ -110,6 +108,6 @@ namespace API._Services.Services.Maintain
             return await _repositoryAccessor.MS_Department.FirstOrDefaultAsync(item => item.Manuf.ToUpper() == manuf.ToUpper()
             && item.ParNo.ToUpper() == parNo.ToUpper());
         }
-
+        #endregion
     }
 }

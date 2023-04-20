@@ -6,9 +6,8 @@ import {
   PaginationParam,
   PaginationResult,
 } from '@utilities/pagination-utility';
-import { Observable } from 'rxjs';
-import { DepartmentDataParam } from '../../models/maintain/departmentDataParam';
-import { MsDepartment } from '../../models/maintain/msDepartment';
+import { DepartmentDataParam } from '@models/maintain/departmentDataParam';
+import { MsDepartment } from '@models/maintain/msDepartment';
 
 @Injectable({
   providedIn: 'root',
@@ -18,10 +17,7 @@ export class DepartmentDataMaintainService {
 
   constructor(private http: HttpClient) {}
 
-  getData(
-    pagination: PaginationParam,
-    param: DepartmentDataParam
-  ): Observable<PaginationResult<MsDepartment>> {
+  getData(pagination: PaginationParam, param: DepartmentDataParam) {
     let params = new HttpParams().appendAll({ ...pagination, ...param });
 
     return this.http.get<PaginationResult<MsDepartment>>(
@@ -29,7 +25,7 @@ export class DepartmentDataMaintainService {
       { params }
     );
   }
-  getDataOnly(manuf: string, parNo: string): Observable<MsDepartment> {
+  getDataOnly(manuf: string, parNo: string) {
     let params = new HttpParams().set('manuf', manuf).set('parNo', parNo);
 
     return this.http.get<MsDepartment>(`${this.baseUrl}/GetDataOnly`, {
@@ -37,15 +33,15 @@ export class DepartmentDataMaintainService {
     });
   }
 
-  add(model: MsDepartment): Observable<OperationResult> {
+  add(model: MsDepartment) {
     return this.http.post<OperationResult>(`${this.baseUrl}/Add`, model);
   }
 
-  update(model: MsDepartment): Observable<OperationResult> {
+  update(model: MsDepartment) {
     return this.http.put<OperationResult>(`${this.baseUrl}/Update`, model);
   }
 
-  delete(parNo: string): Observable<OperationResult> {
+  delete(parNo: string) {
     return this.http.post<OperationResult>(`${this.baseUrl}/Delete`, {
       params: { parNo },
     });

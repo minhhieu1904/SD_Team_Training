@@ -13,6 +13,7 @@ import { Pagination } from '@utilities/pagination-utility';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  //#region attribute
   msDepartment: MsDepartment[] = [];
 
   pagination: Pagination = <Pagination>{
@@ -24,6 +25,8 @@ export class MainComponent extends InjectBase implements OnInit {
     parNo: '',
     parName: '',
   };
+  //#endregion
+
   constructor(private service: DepartmentDataMaintainService) {
     super();
   }
@@ -31,7 +34,8 @@ export class MainComponent extends InjectBase implements OnInit {
   ngOnInit() {
     this.getDataPagination();
   }
-
+  
+  //#region function
   add() {
     this.router.navigate([`${url.maintain.department_data_maintain}/add`]);
   }
@@ -49,8 +53,9 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   search() {
-    this.pagination.pageNumber = 1;
-    this.getDataPagination();
+    this.pagination.pageNumber === 1
+      ? this.getDataPagination()
+      : (this.pagination.pageNumber = 1);
   }
 
   getDataPagination() {
@@ -75,4 +80,5 @@ export class MainComponent extends InjectBase implements OnInit {
     this.pagination.pageNumber = e.page;
     this.getDataPagination();
   }
+  //#endregion
 }

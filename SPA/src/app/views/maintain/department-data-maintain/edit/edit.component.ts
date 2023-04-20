@@ -11,11 +11,14 @@ import { InjectBase } from '@utilities/inject-base-app';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent extends InjectBase implements OnInit {
+  //#region attribute
   msDepartment: MsDepartment = <MsDepartment>{
     manuf: 'N',
     parNo: '',
     parName: '',
   };
+  //#endregion
+
   constructor(private service: DepartmentDataMaintainService) {
     super();
   }
@@ -30,6 +33,7 @@ export class EditComponent extends InjectBase implements OnInit {
       this.getMsDepartment(manuf, parNo);
     });
   }
+  //#region function
   getMsDepartment(manuf: string, parNo: string) {
     this.service.getDataOnly(manuf, parNo).subscribe({
       next: (result) => {
@@ -47,8 +51,21 @@ export class EditComponent extends InjectBase implements OnInit {
   back() {
     this.router.navigate([url.maintain.department_data_maintain]);
   }
-
+  vadidate() {
+    if (
+      this.functionUtility.checkEmpty(this.msDepartment.parName) ||
+      this.functionUtility.checkEmpty(this.msDepartment.parNo)
+    )
+      return true;
+    return false;
+  }
   update() {
+    if (this.vadidate())
+      return this.snotifyService.error(
+        MessageConstants.PLEASE_FILL_REQUIRED,
+        CaptionConstants.ERROR
+      );
+
     this.spinnerService.show();
     this.service.update(this.msDepartment).subscribe({
       next: (result) => {
@@ -75,4 +92,5 @@ export class EditComponent extends InjectBase implements OnInit {
       },
     });
   }
+  //#endregion
 }

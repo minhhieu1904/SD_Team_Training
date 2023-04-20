@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MsLocation } from '@models/maintain/msLocation';
-import { WarehouseBasicDataParam } from '@models/warehouseBasicDataParam';
+import { WarehouseBasicDataParam } from '@models/maintain/warehouseBasicDataParam';
 import { InjectBase } from '@utilities/inject-base-app';
 import { Pagination } from '@utilities/pagination-utility';
 import { WarehouseBasicDataService } from '@services/maintain/warehouse-basic-data.service';
@@ -21,6 +21,7 @@ export class MainComponent extends InjectBase implements OnInit {
   };
 
   param: WarehouseBasicDataParam = <WarehouseBasicDataParam>{
+    manuf: 'N',
     storeH: '',
     locationName: '',
   };
@@ -33,7 +34,7 @@ export class MainComponent extends InjectBase implements OnInit {
   ngOnInit(): void {
     this.getDataPagination();
   }
-  
+
   //#region function
   add() {
     this.router.navigate([`${url.maintain.warehouse_basic_data_maintain}/add`]);

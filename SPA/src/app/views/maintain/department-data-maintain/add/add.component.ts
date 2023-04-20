@@ -10,22 +10,40 @@ import { CaptionConstants, MessageConstants } from '@constants/message.enum';
   styleUrls: ['./add.component.scss'],
 })
 export class AddComponent extends InjectBase implements OnInit {
+  //#region attribute
   msDepartment: MsDepartment = <MsDepartment>{
     manuf: 'N',
     parNo: '',
     parName: '',
   };
+  //#endregion
+
   constructor(private service: DepartmentDataMaintainService) {
     super();
   }
 
   ngOnInit() {}
 
+  //#region function
   back() {
     this.router.navigate([url.maintain.department_data_maintain]);
   }
 
+  vadidate() {
+    if (
+      this.functionUtility.checkEmpty(this.msDepartment.parName) ||
+      this.functionUtility.checkEmpty(this.msDepartment.parNo)
+    )
+      return true;
+    return false;
+  }
   add() {
+    if (this.vadidate())
+      return this.snotifyService.error(
+        MessageConstants.PLEASE_FILL_REQUIRED,
+        CaptionConstants.ERROR
+      );
+
     this.spinnerService.show();
     this.service.add(this.msDepartment).subscribe({
       next: (result) => {
@@ -52,4 +70,5 @@ export class AddComponent extends InjectBase implements OnInit {
       },
     });
   }
+  //#endregion
 }
