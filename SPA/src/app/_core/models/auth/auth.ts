@@ -13,7 +13,13 @@ export interface User {
     name: string;
     email: string;
     roles: RoleInformation[]
+    roleAll: RoleInformation[]
 }
 export interface Role {
     role: string;
 }
+
+export interface UserLogin {
+    account: string;
+    password: string;
+  }

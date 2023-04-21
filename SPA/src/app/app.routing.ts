@@ -40,7 +40,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'default',
+    path: 'dashboard',
     component: DefaultLayoutComponent,
     data: {
       title: 'Trang Chủ',

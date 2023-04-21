@@ -11,6 +11,7 @@ import { KeyValuePair } from '@utilities/key-value-pair';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent extends InjectBase implements OnInit {
+  //#region attribute
   actives: KeyValuePair[] = [
     { key: false, value: 'N' },
     { key: true, value: 'Y' },
@@ -23,6 +24,8 @@ export class EditComponent extends InjectBase implements OnInit {
     password: '',
     isActive: true,
   };
+  //#endregion
+
   constructor(private service: AuthorizationSettingService) {
     super();
   }
@@ -35,6 +38,7 @@ export class EditComponent extends InjectBase implements OnInit {
     });
   }
 
+  //#region function
   back() {
     this.router.navigate([url.maintain.authorization_setting]);
   }
@@ -56,7 +60,24 @@ export class EditComponent extends InjectBase implements OnInit {
     });
   }
 
+  vadidate() {
+    if (
+      this.functionUtility.checkEmpty(this.user.account) ||
+      this.functionUtility.checkEmpty(this.user.password) ||
+      this.functionUtility.checkEmpty(this.user.email) ||
+      this.functionUtility.checkEmpty(this.user.name)
+    )
+      return true;
+    return false;
+  }
+
   update() {
+    if (this.vadidate())
+      return this.snotifyService.error(
+        MessageConstants.PLEASE_FILL_REQUIRED,
+        CaptionConstants.ERROR
+      );
+
     this.spinnerService.show();
     this.service.update(this.user).subscribe({
       next: (result) => {
@@ -82,4 +103,5 @@ export class EditComponent extends InjectBase implements OnInit {
       },
     });
   }
+  //#endregion
 }

@@ -3,7 +3,7 @@ import { List_RoleUserParam } from '@models/maintain/list_RoleUserParam';
 import { User } from '@models/maintain/user';
 import { InjectBase } from '@utilities/inject-base-app';
 import { Pagination } from '@utilities/pagination-utility';
-import { AuthorizationSettingService } from '../../../../_core/services/maintain/authorization-setting.service';
+import { AuthorizationSettingService } from '@services/maintain/authorization-setting.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UserParam } from '@models/maintain/userParam';
 import { IconButton } from '@constants/common.constants';
@@ -16,6 +16,7 @@ import { url } from '@constants/url.constants';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  //#region attribute
   data: User[] = [];
   user: User = <User>{};
   modalRef?: BsModalRef;
@@ -35,6 +36,8 @@ export class MainComponent extends InjectBase implements OnInit {
     pageNumber: 1,
     pageSize: 10,
   };
+  //#endregion
+
   constructor(
     private service: AuthorizationSettingService,
     private modalService: BsModalService
@@ -46,6 +49,7 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getDataPagination();
   }
 
+  //#region function
   getDataPagination() {
     this.spinnerService.show();
     this.service.getData(this.pagination, this.param.account).subscribe({
@@ -119,4 +123,5 @@ export class MainComponent extends InjectBase implements OnInit {
       },
     });
   }
+  //#endregion
 }

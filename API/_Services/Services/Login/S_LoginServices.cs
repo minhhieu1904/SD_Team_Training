@@ -15,13 +15,14 @@ namespace API._Services.Services.Maintain
             _repositoryAccessor = repositoryAccessor;
         }
 
+        #region Login
         public async Task<UserLoginDTO> Login(UserLogin userLogin)
         {
             // Tìm tài khoản dựa vào tài khoản
-            var user = await _repositoryAccessor.User.FindSingle(x => x.Account == userLogin.Account.Trim() && x.IsActive == true);
+            var user = await _repositoryAccessor.User.FindSingle(x => x.Account.Trim() == userLogin.Account.Trim() && x.IsActive == true);
 
             // Không tìm thấy hoặc MK khác với MK trong dữ liệu tài khoản trả về Null
-            if (user == null || user.Password != userLogin.Password.Trim()) return null;
+            if (user == null || user.Password.Trim() != userLogin.Password.Trim()) return null;
 
             var role = _repositoryAccessor.Role.FindAll();
             var roleUser = _repositoryAccessor.RoleUser.FindAll(x => x.UserAccount == userLogin.Account.Trim());
@@ -36,8 +37,8 @@ namespace API._Services.Services.Maintain
                 User = user.Account,
                 Roles = data.OrderBy(x => x.Position).ToList()
             };
-
             return result;
         }
+        #endregion
     }
 }

@@ -11,6 +11,7 @@ import { KeyValuePair } from '@utilities/key-value-pair';
   styleUrls: ['./add.component.scss'],
 })
 export class AddComponent extends InjectBase implements OnInit {
+  //#region attribute
   actives: KeyValuePair[] = [
     { key: false, value: 'N' },
     { key: true, value: 'Y' },
@@ -24,6 +25,7 @@ export class AddComponent extends InjectBase implements OnInit {
     isActive: true,
     updateBy: 'Admin',
   };
+  //#endregion
 
   constructor(private service: AuthorizationSettingService) {
     super();
@@ -31,7 +33,25 @@ export class AddComponent extends InjectBase implements OnInit {
 
   ngOnInit(): void {}
 
+  //#region function
+  vadidate() {
+    if (
+      this.functionUtility.checkEmpty(this.user.account) ||
+      this.functionUtility.checkEmpty(this.user.password) ||
+      this.functionUtility.checkEmpty(this.user.email) ||
+      this.functionUtility.checkEmpty(this.user.name)
+    )
+      return true;
+    return false;
+  }
+
   add() {
+    if (this.vadidate())
+      return this.snotifyService.error(
+        MessageConstants.PLEASE_FILL_REQUIRED,
+        CaptionConstants.ERROR
+      );
+
     this.spinnerService.show();
     this.service.add(this.user).subscribe({
       next: (result) => {
@@ -62,4 +82,5 @@ export class AddComponent extends InjectBase implements OnInit {
   back() {
     this.router.navigate([url.maintain.authorization_setting]);
   }
+  //#endregion
 }

@@ -4,7 +4,6 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import {
@@ -57,6 +56,8 @@ import { LoginComponent } from './views/login/login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '@env/environment';
 import { LocalStorageConstant } from '@constants/localStorge.constants';
+import { AppGuard } from '@guards/app.guard';
+import { AuthGuard } from '@guards/auth.guard';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -109,6 +110,8 @@ export function tokenGetter() {
     LoginComponent,
   ],
   providers: [
+    AuthGuard,
+    AppGuard,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,

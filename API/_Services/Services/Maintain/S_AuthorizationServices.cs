@@ -17,6 +17,7 @@ namespace API._Services.Services.Maintain
             _repositoryAccessor = repository;
         }
 
+        #region Add
         public async Task<OperationResult> Add(User model)
         {
             var originalItem = await _repositoryAccessor.User.FindAll(x => x.Account == model.Account).FirstOrDefaultAsync();
@@ -35,9 +36,10 @@ namespace API._Services.Services.Maintain
             {
                 return new OperationResult(false);
             }
-
         }
+        #endregion
 
+        #region Update
         public async Task<OperationResult> Update(User model)
         {
             var originalItem = await _repositoryAccessor.User.FirstOrDefaultAsync(x => x.Account == model.Account.Trim());
@@ -61,12 +63,14 @@ namespace API._Services.Services.Maintain
                 return new OperationResult(false);
             }
         }
+        #endregion
 
+        #region Get Data
         public async Task<PaginationUtility<User>> GetData(PaginationParam pagination, string account)
         {
             var pred_User = PredicateBuilder.New<User>(true);
             if (!string.IsNullOrEmpty(account))
-                pred_User.And(x => x.Account == account.Trim());
+                pred_User.And(x => x.Account.Trim().ToLower().Contains(account.Trim().ToLower()));
 
             var data = await _repositoryAccessor.User.FindAll(pred_User).ToListAsync();
 
@@ -75,13 +79,13 @@ namespace API._Services.Services.Maintain
 
         public async Task<User> GetDataOnly(string account)
         {
-            return await _repositoryAccessor.User.FirstOrDefaultAsync(item => item.Account == account.Trim());
+            return await _repositoryAccessor.User.FirstOrDefaultAsync(item => item.Account.Trim() == account.Trim());
         }
 
         public async Task<List_RoleUserParam> GetAllRoleByAccount(string account)
         {
             // Kiểm tra User có tồn tại hay không
-            var user = await _repositoryAccessor.User.FirstOrDefaultAsync(x => x.Account == account.Trim());
+            var user = await _repositoryAccessor.User.FirstOrDefaultAsync(x => x.Account.Trim() == account.Trim());
 
             if (user == null)
                 return new List_RoleUserParam();
@@ -106,9 +110,10 @@ namespace API._Services.Services.Maintain
             }
 
             return new List_RoleUserParam() { Account = user.Account, ListRoles = allRole };
-
         }
+        #endregion
 
+        #region Update Authorization
         public async Task<OperationResult> UpdateAuthorization(List_RoleUserParam list_RoleUserParam)
         {
             var originalItem = await _repositoryAccessor.RoleUser.FindAll(x => x.UserAccount.Trim() == list_RoleUserParam.Account.Trim()).AsNoTracking().ToListAsync();
@@ -142,5 +147,6 @@ namespace API._Services.Services.Maintain
                 return new OperationResult(false);
             }
         }
+        #endregion
     }
 }
