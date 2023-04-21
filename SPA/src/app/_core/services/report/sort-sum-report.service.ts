@@ -7,7 +7,7 @@ import {
   SortSumReportParam,
 } from '@models/report/sortSumReportParam';
 import { SortSumReportDTO } from '@models/report/sortSumReportDTO';
-import { BrandDTO } from '@models/report/brandDTO';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -22,10 +22,6 @@ export class SortSumReportService {
       `${this.apiUrl}/GetData`,
       { params }
     );
-  }
-
-  getBrand() {
-    return this.http.get<BrandDTO[]>(`${this.apiUrl}/GetBrand`);
   }
 
   exportExcel(param: SortSumReportParam) {

@@ -55,12 +55,6 @@ namespace API._Services.Services.Report
             return PaginationUtility<SortSumReportDTO>.Create(data, pagination.PageNumber, pagination.PageSize);
         }
 
-        public async Task<List<BrandDTO>> GetBrands()
-        {
-            return await _repositoryAccessor.MS_QrOrder.FindAll()
-            .Select(x => new BrandDTO { brandname = x.Brandname, id = x.Brandname }).Distinct().ToListAsync();
-        }
-
         public async Task<byte[]> ExportExcel(SortSumReportParam param, string userName)
         {
             var data = await GetData(param);
@@ -73,7 +67,6 @@ namespace API._Services.Services.Report
                 WorkbookDesigner designer = new WorkbookDesigner();
                 designer.Workbook = new Workbook(path);
                 Worksheet ws = designer.Workbook.Worksheets[0];
-
 
                 ws.Cells["B1"].PutValue(userName);
                 ws.Cells["B2"].PutValue(DateTime.Now);

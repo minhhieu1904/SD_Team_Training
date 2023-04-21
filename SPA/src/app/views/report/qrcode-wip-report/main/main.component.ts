@@ -13,10 +13,11 @@ import { CaptionConstants, MessageConstants } from '@constants/message.enum';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  //#region attribute
+  iconButton = IconButton;
   data: CheckSumMissDetailReportDTO[] = [];
   param: CheckSumMissReportParam;
 
-  iconButton = IconButton;
   bsConfig?: Partial<BsDatepickerConfig>;
   dateFrom_mdat;
   dateTo_mdat;
@@ -24,6 +25,7 @@ export class MainComponent extends InjectBase implements OnInit {
     pageNumber: 1,
     pageSize: 10,
   };
+  //#endregion
 
   constructor(private _service: QrcodeWipReportService) {
     super();
@@ -34,18 +36,22 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getData();
   }
 
+  //#region function
   getData() {
     this.checkDate();
     this.spinnerService.show();
     this._service.getData(this.pagination, this.param).subscribe({
       next: (result) => {
         this.spinnerService.hide();
-        console.log(result.result);
         this.pagination = result.pagination;
         this.data = result.result;
       },
       error: () => {
         this.spinnerService.hide();
+        this.snotifyService.error(
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
+        );
       },
     });
   }
@@ -67,8 +73,8 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
@@ -80,8 +86,9 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   search() {
-    this.pagination.pageNumber = 1;
-    this.getData();
+    this.pagination.pageNumber === 1
+      ? this.getData()
+      : (this.pagination.pageNumber = 1);
   }
 
   createParam() {
@@ -108,4 +115,5 @@ export class MainComponent extends InjectBase implements OnInit {
     this.pagination.pageNumber = e.page;
     this.getData();
   }
+  //#endregion
 }

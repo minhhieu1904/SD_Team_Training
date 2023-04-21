@@ -1,25 +1,38 @@
 <div class="card">
   <div class="card-header">
     <div class="row">
+      <!-- Title -->
       <div class="col-md-10">
-        <h5>1.2 Warehouse Basic Data Maintenance</h5>
+        <h5>{{'Roles.Menu_Child.BQRC.WarehouseBasicDataMaintenance' | translate}}</h5>
       </div>
+
+      <!-- Button Back -->
       <div class="col-md-2">
-        <button class="btn btn-primary" (click)="back()">
-          <i class="fa fa-arrow-left"></i> Back </button>
+        <button class="btn btn-primary float-right" (click)="back()">
+          <i class="{{iconButton.BACK}}"></i> {{'System.Action.Back' | translate}} </button>
       </div>
     </div>
+
+  </div>
+  <div class="card-body">
     <div class="row">
+      <!-- Kode Of Warehouse -->
       <div class="col-md-2">
-        <span class="badge badge-warning">Kode Of Warehouse</span>
+        <span class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' |
+          translate}}</span>
         <input type="text" disabled="disabled" name="storeH" [(ngModel)]="msLocation.storeH" class="form-control">
       </div>
+
+      <!-- Name Of Warehouse -->
       <div class="col-md-2">
-        <span class="badge badge-warning">Name Of Warehouse</span>
+        <span class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' |
+          translate}}</span>
         <input type="text" name="locationName" [(ngModel)]="msLocation.locationName" class="form-control">
       </div>
+
+       <!-- Button Update-->
       <div class="col pt-4">
-        <button class="btn btn-primary" (click)="update()"> Save </button>
+        <button class="btn btn-primary" (click)="update()"> {{'System.Action.Save' | translate}} </button>
       </div>
     </div>
   </div>

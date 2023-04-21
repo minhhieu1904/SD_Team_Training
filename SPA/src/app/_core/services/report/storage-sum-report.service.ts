@@ -7,7 +7,6 @@ StorageSumDetailReportParam,
   StorageSumReportParam,
 } from '@models/report/storageSumReportParam';
 import { StorageSumReportDTO } from "@models/report/storageSumReportDTO";
-import { BrandDTO } from '@models/report/brandDTO';
 
 
 @Injectable({
@@ -25,10 +24,6 @@ export class StorageSumReportService {
         `${this.apiUrl}/GetData`,
         { params }
       );
-    }
-  
-    getBrand() {
-      return this.http.get<BrandDTO[]>(`${this.apiUrl}/GetBrand`);
     }
   
     exportExcel(param: StorageSumReportParam) {

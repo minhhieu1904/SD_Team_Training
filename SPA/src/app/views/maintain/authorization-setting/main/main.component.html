@@ -1,78 +1,89 @@
 <div class="card">
   <div class="card-header">
     <div class="row">
+      <!-- Title -->
       <div class="col-md-10">
-        <h5>1.5 Authorization Setting</h5>
+        <h5>{{'Roles.Menu_Child.BQRC.AuthorizationSetting' | translate}}</h5>
       </div>
       <div class="col-md-2"></div>
     </div>
+  </div>
+
+  <div class="card-body">
     <div class="row">
+      <!-- User Account -->
       <div class="col-md-2">
-        <span class="badge badge-warning">User Account</span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Account' |translate}}</span>
         <input type="text" name="paccount" class="form-control" [(ngModel)]="param.account">
       </div>
+
+      <!-- User Name -->
       <div class="col-md-2">
-        <span class="badge badge-warning">User Name </span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.UserName' |translate}} </span>
         <input type="text" name="pname" class="form-control" [(ngModel)]="param.name">
       </div>
 
       <div class="col pt-4">
+        <!-- Button Search -->
         <button class="btn btn-primary" (click)="search()">
-          <i class="fa fa-search"></i>
-          Search</button>
-        <button class="btn button" class="btn btn-danger" (click)="clear()">
-          <i class="fa fa-refresh"></i>
-          Clear
-        </button>
-        <button class="btn btn-success" (click)="add()">
+          <i class="{{iconButton.SEARCH}}"></i>
+          {{ 'System.Action.Search' | translate}}</button>
 
-          <i class="fa fa-plus"></i>
-          Add</button>
+        <!-- Button Clear -->
+        <button class="btn button" class="btn btn-danger" (click)="clear()">
+          <i class="{{iconButton.CLEAR}}"></i>
+          {{ 'System.Action.Clear' | translate}}
+        </button>
+
+        <!-- Button Add New -->
+        <button class="btn btn-success" (click)="add()">
+          <i class="{{iconButton.ADD}}"></i>
+          {{ 'System.Action.AddNew' | translate}}</button>
       </div>
 
     </div>
   </div>
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col">{{'AuthorizationSetting.UserAccount' |translate}}</th>
+          <th class="text-center" scope="col">{{'AuthorizationSetting.UserName' |translate}}</th>
+          <th class="text-center" scope="col">{{'AuthorizationSetting.Email' |translate}} </th>
+          <th class="text-center" scope="col">{{'AuthorizationSetting.Authorize' |translate}}</th>
+          <th class="text-center" scope="col">{{'AuthorizationSetting.Modify' |translate}}</th>
+        </tr>
+      </thead>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
+      <tbody>
+        <tr *ngFor="let users of data ">
 
-        <th class="text-center" scope="col">User Account</th>
-        <th class="text-center" scope="col">User Name </th>
-        <th class="text-center" scope="col">E-mail Address </th>
-        <th class="text-center" scope="col">Authorize </th>
-        <th class="text-center" scope="col">Modify</th>
-      </tr>
-    </thead>
+          <td class="text-center"> {{users.account}}</td>
+          <td class="text-center"> {{users.name}}</td>
+          <td class="text-center"> {{users.email}}</td>
+          <td class="text-center">
+            <button type="button" class="btn btn-warning">
+              <i class="{{iconButton.AUTHOR}}" (click)="openModal(users,template)"></i></button>
+          </td>
+          <td class="text-center">
+            <button type="button" class="btn btn-primary btn-sm">
+              <i class="{{iconButton.EDIT}}" (click)="update(users)"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
+      (pageChanged)="pageChanged($event)">
+      <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+        {{pagination.totalPage}}</span>
 
-    <tbody>
-      <tr *ngFor="let users of data ">
-
-        <td class="text-center"> {{users.account}}</td>
-        <td class="text-center"> {{users.name}}</td>
-        <td class="text-center"> {{users.email}}</td>
-        <td class="text-center">
-          <button type="button" class="btn btn-warning">
-            <i class="fa fa-key" (click)="openModal(users,template)"></i></button>
-        </td>
-        <td class="text-center">
-          <button type="button" class="btn btn-primary btn-sm">
-            <i class="fa fa-edit fa-lg" (click)="update(users)"></i></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
-    (pageChanged)="pageChanged($event)">
-    <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
-      {{pagination.totalPage}}</span>
-
-  </pagination>
+    </pagination>
+  </div>
 </div>
 
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Authorization</h4>
+    <h4 class="modal-title pull-left">{{'AuthorizationSetting.Authorization' |translate}}</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
@@ -80,15 +91,15 @@
   <div class="modal-body">
     <div class="row">
       <div class="col-md-6  ">
-        <span class="badge badge-warning">User Account </span>
+        <span class="badge badge-warning">{{'AuthorizationSetting.UserAccount' |translate}}</span>
         <input type="text" name="account" [(ngModel)]="user.account" class="form-control" readonly>
       </div>
       <div class="col-md-6">
-        <span class="badge badge-warning">user Name </span>
+        <span class="badge badge-warning">{{'AuthorizationSetting.UserName' |translate}}</span>
         <input type="text" name="name" [(ngModel)]="user.name" class="form-control" readonly>
       </div>
 
-      <div class="row">
+      <div class="row pt-3">
         <div class="col-12 pl-5" *ngFor="let roles of list_RoleUserParam.listRoles; let i = index">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" [id]="roles.roleName" [name]="roles.roleName"
@@ -101,8 +112,8 @@
     <br>
     <br /><br /><br />
     <button type="button" class="btn btn-danger ml-2 mb-2" (click)="closeModal()"><i class="{{iconButton.CLOSE}}"></i>
-      Cancel</button>
+      {{'System.Action.Close' | translate}} </button>
     <button type="button" class="btn btn-primary ml-2 mb-2" (click)="updateAuthorizeByUser()"><i
-        class="{{iconButton.SAVE}}"></i> Save</button>
+        class="{{iconButton.SAVE}}"></i> {{'System.Action.AddNew' | translate}} </button>
   </div>
 </ng-template>

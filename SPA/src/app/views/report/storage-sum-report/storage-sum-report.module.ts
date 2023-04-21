@@ -7,11 +7,11 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TranslateModule } from '@ngx-translate/core';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
-  declarations: [
-    MainComponent
-  ],
+  declarations: [MainComponent],
   imports: [
     CommonModule,
     StorageSumReportRoutingModule,
@@ -19,6 +19,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     BsDatepickerModule,
     NgSelectModule,
-  ]
+    AlertModule.forRoot(),
+    TranslateModule,
+  ],
 })
-export class StorageSumReportModule { }
+export class StorageSumReportModule {}

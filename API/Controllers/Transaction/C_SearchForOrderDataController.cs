@@ -16,27 +16,6 @@ namespace API.Controllers.Transaction
             _service = service;
         }
 
-        [HttpGet("GetListBrandName")]
-        public async Task<IActionResult> GetListBrandName()
-        {
-            var result = await _service.GetListBrandName();
-            return Ok(result);
-        }
-
-        [HttpGet("GetListStatus")]
-        public async Task<IActionResult> GetListStatus()
-        {
-            var result = await _service.GetListStatus();
-            return Ok(result);
-        }
-
-        [HttpGet("GetListPackage")]
-        public async Task<IActionResult> GetListPackage()
-        {
-            var result = await _service.GetListPackage();
-            return Ok(result);
-        }
-
         [HttpGet("GetData")]
         public async Task<IActionResult> GetData([FromQuery] PaginationParam pagination, [FromQuery] SearchForOrderDataParam param)
         {

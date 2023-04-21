@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IconButton } from '@constants/common.constants';
-import { CaptionConstants, MessageConstants } from '@constants/message.enum';
-import { BrandDTO } from '@models/report/brandDTO';
 import { StorageSumReportDTO } from '@models/report/storageSumReportDTO';
 import {
   StorageSumDetailReportParam,
   StorageSumReportParam,
 } from '@models/report/storageSumReportParam';
+import { CommonService } from '@services/common/common.service';
 import { StorageSumReportService } from '@services/report/storage-sum-report.service';
 import { InjectBase } from '@utilities/inject-base-app';
 import { KeyValuePair } from '@utilities/key-value-pair';
@@ -18,8 +17,10 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  //#region attribute
+  iconButton = IconButton;
   data: StorageSumReportDTO[] = [];
-  brand: BrandDTO[] = [];
+  listBrandName: KeyValuePair[] = [];
   actives: KeyValuePair[] = [
     { key: 'sdat', value: 'Sdat Date' },
     { key: 'mdat', value: 'Production_Date' },
@@ -41,9 +42,13 @@ export class MainComponent extends InjectBase implements OnInit {
   dateTo_mdat;
   dateFrom_eta;
   dateTo_eta;
-  iconButton = IconButton;
+  selectedIndex: number;
+  //#endregion
 
-  constructor(private _service: StorageSumReportService) {
+  constructor(
+    private service: StorageSumReportService,
+    private commonService: CommonService
+  ) {
     super();
   }
 
@@ -53,10 +58,11 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getData();
   }
 
+  //#region function
   getData() {
     this.checkDate();
     this.spinnerService.show();
-    this._service.getData(this.pagination, this.param).subscribe({
+    this.service.getData(this.pagination, this.param).subscribe({
       next: (result) => {
         this.spinnerService.hide();
         this.pagination = result.pagination;
@@ -71,7 +77,7 @@ export class MainComponent extends InjectBase implements OnInit {
   exportExcel() {
     this.checkDate();
     this.spinnerService.show();
-    this._service.exportExcel(this.param).subscribe({
+    this.service.exportExcel(this.param).subscribe({
       next: (result) => {
         this.spinnerService.hide();
         const curDate = new Date();
@@ -85,8 +91,8 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
@@ -97,7 +103,7 @@ export class MainComponent extends InjectBase implements OnInit {
     this.paramDetail.purno = this.data[this.selectedIndex].purno;
     this.paramDetail.size = this.data[this.selectedIndex].size;
     this.spinnerService.show();
-    this._service.exportDetailExcel(this.paramDetail).subscribe({
+    this.service.exportDetailExcel(this.paramDetail).subscribe({
       next: (result) => {
         this.spinnerService.hide();
         const curDate = new Date();
@@ -111,13 +117,12 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
   }
-  selectedIndex: number;
 
   changeSelection(event: any, index: number) {
     this.selectedIndex = event.target.checked ? index : undefined;
@@ -132,13 +137,9 @@ export class MainComponent extends InjectBase implements OnInit {
     }
   }
   search() {
-    this.pagination.pageNumber = 1;
-    console.log(this.param);
-    this.getData();
-  }
-
-  clearBrand(){
-    this.param.brandname = '';
+    this.pagination.pageNumber === 1
+      ? this.getData()
+      : (this.pagination.pageNumber = 1);
   }
 
   clear() {
@@ -191,16 +192,17 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   getBrand() {
-    this._service.getBrand().subscribe({
+    this.commonService.getListBrandName().subscribe({
       next: (result) => {
-        this.brand = result;
+        this.listBrandName = result;
       },
       error: () => {
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
   }
+  //#endregion
 }

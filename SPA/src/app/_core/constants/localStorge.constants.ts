@@ -3,4 +3,5 @@ export enum LocalStorageConstant {
     User = 'BottomQRCode_User',
     Role = 'BottomQRCode_Role',
     RoleAll = 'BottomQRCode_RoleAll',
+    Lang = 'BottomQRCode_Lang'
 }

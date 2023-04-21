@@ -22,12 +22,6 @@ namespace API.Controllers.Report
             return Ok(data);
         }
 
-        [HttpGet("GetBrand")]
-        public async Task<IActionResult> GetBrands(){
-            var result = await _service.GetBrands();
-            return Ok(result);
-        }
-
         [HttpGet("ExportExcel")]
         public async Task<IActionResult> ExportExcel([FromQuery] SortSumReportParam param){
             var result = await _service.ExportExcel(param, "");

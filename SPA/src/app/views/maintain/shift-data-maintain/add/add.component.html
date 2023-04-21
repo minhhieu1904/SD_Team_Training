@@ -1,28 +1,36 @@
 <div class="card">
   <div class="card-header">
     <div class="row">
+      <!-- Title -->
       <div class="col-md-10">
-        <h5>1.1 Shift Data Maintain</h5>
+        <h5>{{'Roles.Menu_Child.BQRC.ShiftDataMaintenance' | translate}}</h5>
       </div>
+
+      <!-- Button Back -->
       <div class="col-md-2">
-        <button class="btn btn-primary" (click)="back()">
-          <i class="fa fa-arrow-left"></i> Back </button>
+        <button class="btn btn-primary float-right" (click)="back()">
+          <i class="{{iconButton.BACK}}"></i> {{'System.Action.Back' | translate}} </button>
       </div>
     </div>
+  </div>
+  <div class="card-body">
     <div class="row">
+      <!-- Shift -->
       <div class="col-md-2">
-        <span class="badge badge-warning">Shift</span>
-        <input type="text" name="shift" class="form-control" [(ngModel)]="msShift.shift">
+        <span class="badge badge-warning">{{'Maintain.ShiftDataMaintenance.Shift' | translate}}</span>
+        <input type="text" name="shift" [(ngModel)]="msShift.shift" class="form-control">
       </div>
+
+      <!-- Shift Name -->
       <div class="col-md-2">
-        <span class="badge badge-warning">Shift Name</span>
-        <input type="text" name="shift-name" class="form-control" [(ngModel)]="msShift.shiftName">
+        <span class="badge badge-warning">{{'Maintain.ShiftDataMaintenance.ShiftName' | translate}}</span>
+        <input type="text" name="shift-name" [(ngModel)]="msShift.shiftName" class="form-control">
       </div>
+      
+      <!-- Button Add New-->
       <div class="col pt-4">
-        <button class="btn btn-primary" (click)="add()"> Add New </button>
-
+        <button class="btn btn-primary" (click)="add()"> {{'System.Action.AddNew' | translate}} </button>
       </div>
-
     </div>
   </div>
 </div>

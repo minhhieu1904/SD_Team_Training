@@ -17,10 +17,11 @@ import { url } from '@constants/url.constants';
 })
 export class MainComponent extends InjectBase implements OnInit {
   //#region attribute
+  iconButton: typeof IconButton = IconButton;
   data: User[] = [];
   user: User = <User>{};
   modalRef?: BsModalRef;
-  iconButton: typeof IconButton = IconButton;
+  //iconButton: typeof IconButton = IconButton;
   list_RoleUserParam: List_RoleUserParam = <List_RoleUserParam>{
     account: '',
     listRoles: [],
@@ -97,7 +98,6 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   openModal(users: User, tmp: TemplateRef<any>) {
-    debugger;
     this.spinnerService.show();
     this.user.account = users.account;
     this.user.name = users.name;

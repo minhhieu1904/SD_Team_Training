@@ -6,6 +6,7 @@ import { LocalStorageConstant } from '@constants/localStorge.constants';
 import { HttpClient } from '@angular/common/http';
 import { User, UserLogin } from '@models/auth/auth';
 import { Router } from '@angular/router';
+import { LangConstant } from "@constants/lang.constants";
 @Injectable({
   providedIn: 'root',
 })
@@ -33,6 +34,10 @@ export class AuthService {
             LocalStorageConstant.RoleAll,
             JSON.stringify(user.user.roleAll)
           );
+          localStorage.setItem(
+            LocalStorageConstant.Lang,
+            LangConstant.EN
+          )
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
         }
       })
@@ -41,8 +46,7 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-    window.location.href = '/#/login';
-    window.location.reload();
+    this.router.navigate(['/login']);
   }
 
   loggedIn() {

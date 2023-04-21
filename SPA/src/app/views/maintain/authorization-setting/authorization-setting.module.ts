@@ -9,6 +9,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [MainComponent, AddComponent, EditComponent],
   imports: [
@@ -18,6 +19,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     PaginationModule.forRoot(),
     NgSelectModule,
     ModalModule.forRoot(),
+    TranslateModule
   ],
 })
 export class AuthorizationSettingModule {}

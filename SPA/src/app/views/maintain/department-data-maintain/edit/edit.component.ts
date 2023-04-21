@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IconButton } from '@constants/common.constants';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 import { url } from '@constants/url.constants';
 import { MsDepartment } from '@models/maintain/msDepartment';
@@ -12,6 +13,7 @@ import { InjectBase } from '@utilities/inject-base-app';
 })
 export class EditComponent extends InjectBase implements OnInit {
   //#region attribute
+  iconButton = IconButton;
   msDepartment: MsDepartment = <MsDepartment>{
     manuf: 'N',
     parNo: '',
@@ -41,8 +43,8 @@ export class EditComponent extends InjectBase implements OnInit {
       },
       error: () => {
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
@@ -51,6 +53,7 @@ export class EditComponent extends InjectBase implements OnInit {
   back() {
     this.router.navigate([url.maintain.department_data_maintain]);
   }
+
   vadidate() {
     if (
       this.functionUtility.checkEmpty(this.msDepartment.parName) ||
@@ -63,7 +66,7 @@ export class EditComponent extends InjectBase implements OnInit {
     if (this.vadidate())
       return this.snotifyService.error(
         MessageConstants.PLEASE_FILL_REQUIRED,
-        CaptionConstants.ERROR
+        this.translateService.instant('System.Caption.Error')
       );
 
     this.spinnerService.show();
@@ -72,22 +75,28 @@ export class EditComponent extends InjectBase implements OnInit {
         this.spinnerService.hide();
         if (result.isSuccess) {
           this.snotifyService.success(
-            MessageConstants.UPDATED_OK_MSG,
-            CaptionConstants.SUCCESS
+            this.translateService.instant('System.Message.UpdateOKMsg'),
+            this.translateService.instant('System.Caption.Success')
           );
           this.back();
         } else {
-          this.snotifyService.error(
-            MessageConstants.UPDATED_ERROR_MSG,
-            CaptionConstants.ERROR
-          );
+          if (!result.error)
+            this.snotifyService.error(
+              this.translateService.instant('System.Message.UpdateErrorMsg'),
+              this.translateService.instant('System.Caption.Error')
+            );
+          else
+            this.snotifyService.error(
+              result.error,
+              this.translateService.instant('System.Caption.Error')
+            );
         }
       },
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });

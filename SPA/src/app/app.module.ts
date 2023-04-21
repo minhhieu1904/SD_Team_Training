@@ -92,7 +92,7 @@ export function tokenGetter() {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
-      },
+      }
     }),
     JwtModule.forRoot({
       config: {

@@ -25,7 +25,7 @@ namespace API._Services.Services.Maintain
             && x.PackageNo == model.PackageNo.Trim());
 
             if (originalItem == null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data is exists" };
 
             var item = Mapper.Map(model).ToANew<MsPackage>(x => x.MapEntityKeys());
             _repositoryAccessor.MS_Package.Add(item);
@@ -33,11 +33,11 @@ namespace API._Services.Services.Maintain
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -49,7 +49,7 @@ namespace API._Services.Services.Maintain
             && x.PackageNo == model.PackageNo.Trim());
 
             if (originalItem == null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data Not Found" };
 
             originalItem.PackageQty = model.PackageQty;
             _repositoryAccessor.MS_Package.Update(originalItem);
@@ -57,11 +57,11 @@ namespace API._Services.Services.Maintain
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -70,23 +70,23 @@ namespace API._Services.Services.Maintain
         public async Task<OperationResult> Delete(string packageNo)
         {
             if (!string.IsNullOrEmpty(packageNo))
-                return new OperationResult(false);
+                 return new OperationResult { IsSuccess = false };
 
             var originalItem = await _repositoryAccessor.MS_Package.FirstOrDefaultAsync(x => x.Manuf == "N" && x.PackageNo == packageNo.Trim());
 
             if (originalItem == null)
-                return new OperationResult(false);
+                 return new OperationResult { IsSuccess = false };
 
             _repositoryAccessor.MS_Package.Remove(originalItem);
 
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
             }
         }
         #endregion

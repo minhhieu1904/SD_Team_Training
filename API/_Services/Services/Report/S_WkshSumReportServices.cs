@@ -24,6 +24,7 @@ namespace API._Services.Services.Report
             _environment = environment;
         }
 
+        #region Export Excel
         public async Task<byte[]> ExportExcel(WkshSumReportParam param, string userName)
         {
             var data = await GetData(param);
@@ -52,13 +53,9 @@ namespace API._Services.Services.Report
             }
             return stream.ToArray();
         }
+        #endregion
 
-        public async Task<List<BrandDTO>> GetBrands()
-        {
-            return await _repositoryAccessor.MS_QrOrder.FindAll()
-            .Select(x => new BrandDTO { brandname = x.Brandname, id = x.Brandname }).Distinct().ToListAsync();
-        }
-
+        #region Get Data
         public async Task<List<WkshSumReportDTO>> GetData(WkshSumReportParam param)
         {
             return await _dbContext.SearchForPackingScans.FromSqlRaw
@@ -85,7 +82,6 @@ namespace API._Services.Services.Report
             var data = await GetData(param);
             return PaginationUtility<WkshSumReportDTO>.Create(data, pagination.PageNumber, pagination.PageSize);
         }
-
-
+        #endregion
     }
 }

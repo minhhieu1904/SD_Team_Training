@@ -1,27 +1,38 @@
 <div class="card">
   <div class="card-header">
     <div class="row">
+      <!-- Title -->
       <div class="col-md-10">
-        <h5>1.2 Warehouse Basic Data Maintenance</h5>
-      </div>
-      <div class="col-md-2">
-        <button class="btn btn-primary" (click)="back()">
-          <i class="fa fa-arrow-left"></i> Back </button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-        <span class="badge badge-warning">Kode Of Warehouse</span>
-        <input type="text" name="storeH" class="form-control" [(ngModel)]="msLocation.storeH">
-      </div>
-      <div class="col-md-2">
-        <span class="badge badge-warning">Name Of Warehouse</span>
-        <input type="text" name="locationName" class="form-control" [(ngModel)]="msLocation.locationName">
-      </div>
-      <div class="col pt-4">
-        <button class="btn btn-primary" (click)="add()"> Save </button>
+        <h5>{{'Roles.Menu_Child.BQRC.WarehouseBasicDataMaintenance' | translate}}</h5>
       </div>
 
+      <!-- Button Back -->
+      <div class="col-md-2">
+        <button class="btn btn-primary float-right" (click)="back()">
+          <i class="{{iconButton.BACK}}"></i> {{'System.Action.Back' | translate}} </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <!-- Kode Of Warehouse -->
+      <div class="col-md-2">
+        <span class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' |
+          translate}}</span>
+        <input type="text" name="storeH" class="form-control" [(ngModel)]="msLocation.storeH">
+      </div>
+
+      <!-- Name Of Warehouse -->
+      <div class="col-md-2">
+        <span class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' |
+          translate}}</span>
+        <input type="text" name="locationName" class="form-control" [(ngModel)]="msLocation.locationName">
+      </div>
+
+      <!-- Button Add New-->
+      <div class="col pt-4">
+        <button class="btn btn-primary" (click)="add()"> {{'System.Action.AddNew' | translate}} </button>
+      </div>
     </div>
   </div>
 </div>

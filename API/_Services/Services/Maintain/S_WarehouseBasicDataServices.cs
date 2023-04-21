@@ -24,17 +24,17 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
             && x.StoreH == model.StoreH.Trim()).FirstOrDefaultAsync();
 
             if (originalItem != null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data is exists" };
 
             _repositoryAccessor.MS_Location.Add(model);
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -45,20 +45,19 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
             var originalItem = await _repositoryAccessor.MS_Location.FirstOrDefaultAsync(x => x.Manuf == model.Manuf.Trim()
              && x.StoreH == model.StoreH.Trim());
             if (originalItem == null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data Not Found" };
 
             originalItem.LocationName = model.LocationName.Trim();
-
             _repositoryAccessor.MS_Location.Update(originalItem);
 
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -67,22 +66,22 @@ namespace API._Services.Services.S_WarehouseBasicDataMaintenance
         public async Task<OperationResult> Delete(string StoreH)
         {
             if (!string.IsNullOrEmpty(StoreH.Trim()))
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
 
             var originalItem = await _repositoryAccessor.MS_Location.FirstOrDefaultAsync(x => x.Manuf == "N" && x.StoreH == StoreH.Trim());
             if (originalItem == null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
 
             _repositoryAccessor.MS_Location.Remove(originalItem);
 
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
             }
         }
         #endregion

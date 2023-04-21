@@ -7,8 +7,6 @@ namespace API._Services.Interfaces.Report
     {
         Task<PaginationUtility<StorageSumReportDTO>> GetDataPagination( PaginationParam pagination, StorageSumReportParam param);
 
-        Task<List<BrandDTO>> GetBrands();
-
         Task<byte[]> ExportExcel(StorageSumReportParam param, string userName);
 
         Task<byte[]> ExportDetailExcel(StorageSumDetailReportParam param, string userName);

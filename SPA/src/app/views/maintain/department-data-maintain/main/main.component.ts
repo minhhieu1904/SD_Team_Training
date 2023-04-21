@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IconButton } from '@constants/common.constants';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 import { url } from '@constants/url.constants';
 import { DepartmentDataParam } from '@models/maintain/departmentDataParam';
@@ -14,6 +15,7 @@ import { Pagination } from '@utilities/pagination-utility';
 })
 export class MainComponent extends InjectBase implements OnInit {
   //#region attribute
+  iconButton = IconButton;
   msDepartment: MsDepartment[] = [];
 
   pagination: Pagination = <Pagination>{
@@ -69,8 +71,8 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });

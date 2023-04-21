@@ -31,7 +31,7 @@ export class AuthGuard implements CanLoad {
     if (checkRole) {
       return true;
     } else {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/login']);
       return false;
     }
   }

@@ -128,12 +128,6 @@ namespace API._Services.Services.Report
             return stream.ToArray();
         }
 
-        public async Task<List<BrandDTO>> GetBrands()
-        {
-            return await _repositoryAccessor.MS_QrOrder.FindAll()
-            .Select(x => new BrandDTO { brandname = x.Brandname, id = x.Brandname }).Distinct().ToListAsync();
-        }
-
         public async Task<List<StorageSumReportDTO>> GetData(StorageSumReportParam param)
         {
             var query = await _dbContext.StorageSumReports.FromSqlRaw(

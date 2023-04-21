@@ -23,18 +23,18 @@ namespace API._Services.Services.Maintain
             var originalItem = await _repositoryAccessor.User.FindAll(x => x.Account == model.Account).FirstOrDefaultAsync();
 
             if (originalItem != null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data is exists" };
 
             _repositoryAccessor.User.Add(model);
 
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -45,7 +45,7 @@ namespace API._Services.Services.Maintain
             var originalItem = await _repositoryAccessor.User.FirstOrDefaultAsync(x => x.Account == model.Account.Trim());
 
             if (originalItem == null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data Not Found" };
 
             originalItem.Email = model.Email.Trim();
             originalItem.Name = model.Name.Trim();
@@ -53,14 +53,15 @@ namespace API._Services.Services.Maintain
             originalItem.IsActive = model.IsActive;
 
             _repositoryAccessor.User.Update(originalItem);
+
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -140,11 +141,11 @@ namespace API._Services.Services.Maintain
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion

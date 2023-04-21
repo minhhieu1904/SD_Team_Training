@@ -1,207 +1,243 @@
 <div class="card">
-    <div class="card-header">
-      <div class="row">
-        <div class="col-md-10">
-          <h5>4.3 Storage Sum Report</h5>
-        </div>
-        <div class="col-md-2"></div>
+  <div class="card-header">
+    <div class="row">
+      <!-- Title -->
+      <div class="col-md-10">
+        <h5>{{'Roles.Menu_Child.BQRC.StorageSumReport' | translate}}</h5>
       </div>
-  
+      <div class="col-md-2"></div>
     </div>
-    <div class="card-body">
-      <div class="row border-shadow">
-        <!--  dòng 1 -->
-        <div class="row">
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Date Kind</span>
-  
-            <div class="form-group">
-              <ng-select [(ngModel)]="param.date_kind">
-                <ng-option *ngFor="let item of actives" [value]="item.key">{{item.value}}</ng-option>
-              </ng-select>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning"> Date</span>
-            <div class="input-group">
-              <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
-                [maxDate]="dateTo_mdat" [(ngModel)]="dateFrom_mdat" bsDatepicker>
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
-              </div>
-              <label> &nbsp;</label>
-              <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig" class="form-control"
-                [minDate]="dateFrom_mdat" [(ngModel)]="dateTo_mdat" bsDatepicker>
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Brand</span>
-  
-            <div class="form-group">
-              <ng-select name="brandname" id="Brand" [(ngModel)]="param.brandname" (clear)="clearBrand()">
-                <ng-option *ngFor="let item of brand" [value]="item.id">{{item.brandname}}</ng-option>
-              </ng-select>
-            </div>
-  
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Code of Customer</span>
-            <input placeholder="Code of Customer..." type="text" name="Code" class="form-control"
-              [(ngModel)]="param.cusid">
-          </div>
-          <!--  dòng 2 -->
-  
-          <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Planning No</span>
-            <input placeholder="Planning No..." type="text" name="Planning" class="form-control"
-              [(ngModel)]="param.manno">
-          </div>
-  
-          <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Mold Number</span>
-            <input placeholder="Mold Number..." type="text" name="Mold" class="form-control" [(ngModel)]="param.rmodel">
-          </div>
-          <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">tolcls</span>
-            <input placeholder="tolcls..." type="text" name="tolcls" class="form-control" [(ngModel)]="param.tolcls">
-          </div>
-          <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Purchase No</span>
-            <input placeholder="Purchase No..." type="text" name="Purchase" class="form-control"
-              [(ngModel)]="param.purno">
-          </div>
-          <!--  dòng 3 -->
-          <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Material Code</span>
-            <input placeholder="Material Code..." type="text" name="Material" class="form-control"
-              [(ngModel)]="param.material">
-          </div>
-          <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Kind</span>
-            <input placeholder="Kind..." type="text" name="Kind" class="form-control" [(ngModel)]="param.kind">
-          </div>
-          <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Confirmed Delivery Date</span>
-            <div class="input-group ml-1">
-              <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
-                [maxDate]="dateTo_eta" [(ngModel)]="dateFrom_eta" bsDatepicker>
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
-              </div>
-              <label> &nbsp;</label>
-              <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig" class="form-control"
-                [minDate]="dateFrom_eta" [(ngModel)]="dateTo_eta" bsDatepicker>
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <span class="badge badge-warning">Size</span>
-            <input placeholder="Size..." type="text" name="Size" class="form-control" [(ngModel)]="param.size">
-          </div>
-  
-          <!--  dòng 4 -->
-          <div class="col-md-12">
-            <button class="btn btn-success mr-2 " (click)="search()">
-              <i class="{{iconButton.SEARCH}}"></i> Search </button>
-            <button class="btn btn-danger mr-2 " (click)="clear()">
-              <i class="{{iconButton.CLEAR}}"></i> Clear </button>
-            <button class="btn btn-primary mr-2 " (click)="exportExcel()">
-              <i class="{{iconButton.EXCEL}}"></i> Export Excel </button>
-            <button class="btn btn-primary " disabled="disabled" id="btnDetailExcel" (click)="exportDetailExcel()">
-              <i class="{{iconButton.EXCEL}}"></i> Export Detail Excel </button>
-          </div>
-        </div>
-      </div>
-  
-    </div>
-    <div class="card-body">
-      <!--  -->
-      <div style="overflow-x: auto">
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th class="text-center" scope="col">#</th>
-                <th class="text-center" scope="col">Create day</th>
-                <th class="text-center" scope="col">Production_Date</th>
-                <th class="text-center" scope="col">Brand</th>
-                <th class="text-center" scope="col">Code of Customer</th>
-                <th class="text-center" scope="col">Name of Customer</th>
-                <th class="text-center" scope="col">Planning No.</th>
-                <th class="text-center" scope="col">Purchase No.</th>
-                <th class="text-center" scope="col">Mold Number</th>
-                <th class="text-center" scope="col">tolcls</th>
-                <th class="text-center" scope="col">Material Code Shoes</th>
-                <th class="text-center" scope="col">Material Code Bottom</th>
-                <th class="text-center" scope="col">Type of Order</th>
-                <th class="text-center" scope="col">Article</th>
-                <th class="text-center" scope="col">Kind</th>
-                <th class="text-center" scope="col">Confirmed Delivery Date</th>
-                <th class="text-center" scope="col">Size</th>
-                <th class="text-center" scope="col">Order Quantity</th>
-                <th class="text-center" scope="col">wkshqty</th>
-                <th class="text-center" scope="col">Printed Quantity</th>
-                <th class="text-center" scope="col">Sort scan Qty</th>
-                <th class="text-center" scope="col">Storage scan Qty</th>
-                <th class="text-center" scope="col">Differences Qty</th>
-                <th class="text-center" scope="col">Cancel priting quantity</th>
-              </tr>
-            </thead>
 
-            <tbody>
-              <tr *ngFor="let items of data; let i= index" [ngClass]="{'table-warning': items.checked}">
-                <td class="text-center">
-                  <div class="custom-control custom-checked">
-                    <input type="checkbox" class="custom-control-input" [id]="'checked_'+i" [name]="'checked_'+i"
-                      [ngModel]="selectedIndex === i" (click)="changeSelection($event,i)">
-                    <label class="custom-control-label" [for]="'checked_'+i"></label>
-                  </div>
-                </td>
-  
-                <td class="text-center" scope="col">{{items.create_date | date : "dd-MM-yyyy"}}</td>
-                <td class="text-center" scope="col">{{items.mdat | date : "dd-MM-yyyy"}}</td>
-                <td class="text-center" scope="col">{{items.brandname}}</td>
-                <td class="text-center" scope="col">{{items.cusid}}</td>
-                <td class="text-center" scope="col">{{items.cusna}}</td>
-                <td class="text-center" scope="col">{{items.manno}}</td>
-                <td class="text-center" scope="col">{{items.purno}}</td>
-                <td class="text-center" scope="col">{{items.rmodel}}</td>
-                <td class="text-center" scope="col">{{items.tolcls}}</td>
-                <td class="text-center" scope="col">{{items.ritnbr}}</td>
-                <td class="text-center" scope="col">{{items.bitnbr}}</td>
-                <td class="text-center" scope="col">{{items.kind}}</td>
-                <td class="text-center" scope="col">{{items.article}}</td>
-                <td class="text-center" scope="col">{{items.kind}}</td>
-                <td class="text-center" scope="col">{{items.eta | date : "dd-MM-yyyy"}}</td>
-                <td class="text-center" scope="col">{{items.size}}</td>
-                <td class="text-center" scope="col">{{items.qty}}</td>
-                <td class="text-center" scope="col">{{items.wkshqty}}</td>
-                <td class="text-center" scope="col">{{items.pqty}}</td>
-                <td class="text-center" scope="col">{{items.sort_qty}}</td>
-                <td class="text-center" scope="col">{{items.storage_qty}}</td>
-                <td class="text-center" scope="col">{{items.diff_qty}}</td>
-                <td class="text-center" scope="col">{{items.cqty}}</td>
-              </tr>
-            </tbody>
-          </table>
+  </div>
+  <div class="card-body">
+    <div class="row border-shadow">
+      <!--  dòng 1 -->
+      <div class="row">
+        <!-- Date Kind -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.DateKind'| translate}}</span>
+          <div class="form-group">
+            <ng-select [(ngModel)]="param.date_kind" (clear)="param.date_kind = ''">
+              <ng-option *ngFor="let item of actives" [value]="item.key">{{item.value}}</ng-option>
+            </ng-select>
+          </div>
+        </div>
+
+        <!-- Date -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.Date'| translate}}</span>
+          <div class="input-group">
+            <input type="text" placeholder="{{'Report.StorageSumReport.SelectStartSdat'| translate}}" name="date_start"
+              [bsConfig]="bsConfig" class="form-control" [maxDate]="dateTo_mdat" [(ngModel)]="dateFrom_mdat"
+              bsDatepicker>
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+            </div>
+            <label> &nbsp;</label>
+            <input type="text" placeholder="{{'Report.StorageSumReport.SelectEndSdat'| translate}}." name="date_end"
+              [bsConfig]="bsConfig" class="form-control" [minDate]="dateFrom_mdat" [(ngModel)]="dateTo_mdat"
+              bsDatepicker>
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brand -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.Brand'| translate}}</span>
+          <div class="form-group">
+            <ng-select name="brandname" id="Brand" [(ngModel)]="param.brandname" (clear)="param.brandname =''">
+              <ng-option *ngFor="let item of listBrandName" [value]="item.key">{{item.value}}</ng-option>
+            </ng-select>
+          </div>
+        </div>
+
+        <!-- Code Of Customer -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.CodeOfCustomer'| translate}}</span>
+          <input placeholder="{{'Report.StorageSumReport.EnterCodeofCustomer'| translate}}" type="text" name="Code"
+            class="form-control" [(ngModel)]="param.cusid">
+        </div>
+
+        <!--  dòng 2 -->
+        <!-- Planning No -->
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.PlanningNo' | translate}}</span>
+          <input placeholder="{{'Report.StorageSumReport.EnterPlanningNo'| translate}}" type="text" name="Planning"
+            class="form-control" [(ngModel)]="param.manno">
+        </div>
+
+        <!-- Mold Number -->
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.MoldNumber' | translate}}</span>
+          <input placeholder="{{'Report.StorageSumReport.EnterMoldNumber'| translate}}" type="text" name="Mold"
+            class="form-control" [(ngModel)]="param.rmodel">
+        </div>
+
+        <!-- Tolcls -->
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.Tolcls' | translate}}</span>
+          <input placeholder="{{'Report.StorageSumReport.EnterTolclsNumber'| translate}}" type="text" name="tolcls"
+            class="form-control" [(ngModel)]="param.tolcls">
+        </div>
+
+        <!-- Purchase No -->
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.PurchaseNo' | translate}}</span>
+          <input placeholder="{{'Report.StorageSumReport.EnterPurchaseNo'| translate}}" type="text" name="Purchase"
+            class="form-control" [(ngModel)]="param.purno">
+        </div>
+        <!--  dòng 3 -->
+        <!-- Material Code Bottom  -->
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.MaterialCode' | translate}}</span>
+          <input placeholder="{{'Report.StorageSumReport.EnterMaterialCode'| translate}}" type="text" name="Material"
+            class="form-control" [(ngModel)]="param.material">
+        </div>
+
+        <!-- Kind -->
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.Kind' | translate}}</span>
+          <input placeholder="{{'Report.StorageSumReport.EnterKind'| translate}}" type="text" name="Kind"
+            class="form-control" [(ngModel)]="param.kind">
+        </div>
+
+        <!-- Confirmed Delivery Date -->
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.ConfirmedDeliveryDate' | translate}}e</span>
+          <div class="input-group ml-1">
+            <input type="text" placeholder="{{'Report.StorageSumReport.SelectStartEta'| translate}}" name="date_start"
+              [bsConfig]="bsConfig" class="form-control" [maxDate]="dateTo_eta" [(ngModel)]="dateFrom_eta" bsDatepicker>
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+            </div>
+            <label> &nbsp;</label>
+            <input type="text" placeholder="{{'Report.StorageSumReport.SelectEndEta'| translate}}" name="date_end"
+              [bsConfig]="bsConfig" class="form-control" [minDate]="dateFrom_eta" [(ngModel)]="dateTo_eta" bsDatepicker>
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Size -->
+        <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <span class="badge badge-warning">{{'Report.StorageSumReport.Size' | translate}}</span>
+          <input placeholder="{{'Report.StorageSumReport.EnterSize'| translate}}" type="text" name="Size"
+            class="form-control" [(ngModel)]="param.size">
+        </div>
+
+        <!--  dòng 4 -->
+        <div class="col-md-12">
+          <!-- Button Search -->
+          <button class="btn btn-success mr-2 " (click)="search()">
+            <i class="{{iconButton.SEARCH}}"></i> {{ 'System.Action.Search' | translate}} </button>
+
+          <!-- Button Clear -->
+          <button class="btn btn-danger mr-2 " (click)="clear()">
+            <i class="{{iconButton.CLEAR}}"></i> {{ 'System.Action.Clear' | translate}} </button>
+
+          <!-- Button Export Excel  -->
+          <button class="btn btn-primary mr-2 " (click)="exportExcel()">
+            <i class="{{iconButton.EXCEL}}"></i> {{ 'System.Action.ExportExcel' | translate}} </button>
+
+          <!-- Button Export Detail Excel  -->
+          <button class="btn btn-primary " disabled="disabled" id="btnDetailExcel" (click)="exportDetailExcel()">
+            <i class="{{iconButton.EXCEL}}"></i> {{ 'System.Action.ExportDetailExcel' | translate}} </button>
         </div>
       </div>
-  
-      <div class="d-flex" *ngIf="data.length > 0">
-        <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
-          previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
-          [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
-        </pagination>
-        <span class="cs-page ml-2">
-          Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
-        </span>
+    </div>
+
+  </div>
+  <div class="card-body">
+    <div style="overflow-x: auto">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">#</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.Sdat'| translate}}</th>
+              <th class="text-center" scope="col">Production_Date</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.Brand'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.CodeOfCustomer'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.NameOfCustomer'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.PlanningNo'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.PurchaseNo'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.MoldNumber'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.Tolcls'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.MaterialCodeShoes'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.MaterialCodeBottom'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.TypeOfOrder'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.Article'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.Kind'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.ConfirmedDeliveryDate'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.Size'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.OrderQuantity'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.Wkshqty'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.PrintedQuantity'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.SortScanQty'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.DifferencesQty'| translate}}</th>
+              <th class="text-center" scope="col">{{'Report.StorageSumReport.CancelPritingQuantity'| translate}}</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="data.length == 0">
+            <tr>
+              <td colspan="100%">
+                <alert class="text-center" type='danger'>
+                  <strong>{{'System.Message.Nodata' | translate}}</strong>
+                </alert>
+              </td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr *ngFor="let items of data; let i= index" [ngClass]="{'table-warning': items.checked}">
+              <td class="text-center">
+                <div class="custom-control custom-checked">
+                  <input type="checkbox" class="custom-control-input" [id]="'checked_'+i" [name]="'checked_'+i"
+                    [ngModel]="selectedIndex === i" (click)="changeSelection($event,i)">
+                  <label class="custom-control-label" [for]="'checked_'+i"></label>
+                </div>
+              </td>
+
+              <td class="text-center" scope="col">{{items.create_date | date : "dd-MM-yyyy"}}</td>
+              <td class="text-center" scope="col">{{items.mdat | date : "dd-MM-yyyy"}}</td>
+              <td class="text-center" scope="col">{{items.brandname}}</td>
+              <td class="text-center" scope="col">{{items.cusid}}</td>
+              <td class="text-center" scope="col">{{items.cusna}}</td>
+              <td class="text-center" scope="col">{{items.manno}}</td>
+              <td class="text-center" scope="col">{{items.purno}}</td>
+              <td class="text-center" scope="col">{{items.rmodel}}</td>
+              <td class="text-center" scope="col">{{items.tolcls}}</td>
+              <td class="text-center" scope="col">{{items.ritnbr}}</td>
+              <td class="text-center" scope="col">{{items.bitnbr}}</td>
+              <td class="text-center" scope="col">{{items.kind}}</td>
+              <td class="text-center" scope="col">{{items.article}}</td>
+              <td class="text-center" scope="col">{{items.kind}}</td>
+              <td class="text-center" scope="col">{{items.eta | date : "dd-MM-yyyy"}}</td>
+              <td class="text-center" scope="col">{{items.size}}</td>
+              <td class="text-center" scope="col">{{items.qty}}</td>
+              <td class="text-center" scope="col">{{items.wkshqty}}</td>
+              <td class="text-center" scope="col">{{items.pqty}}</td>
+              <td class="text-center" scope="col">{{items.sort_qty}}</td>
+              <td class="text-center" scope="col">{{items.storage_qty}}</td>
+              <td class="text-center" scope="col">{{items.diff_qty}}</td>
+              <td class="text-center" scope="col">{{items.cqty}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  
+
+    <div class="d-flex" *ngIf="data.length > 0">
+      <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+        [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+      </pagination>
+      <span class="cs-page ml-2">
+        Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
+      </span>
+    </div>
   </div>
+
+</div>

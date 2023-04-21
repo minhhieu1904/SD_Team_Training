@@ -1,8 +1,10 @@
 
 using API._Repositories;
 using API._Services.Interfaces;
+using API._Services.Interfaces.Common;
 using API._Services.Interfaces.Report;
 using API._Services.Interfaces.Transaction;
+using API._Services.Services.Common;
 using API._Services.Services.Maintain;
 using API._Services.Services.Report;
 using API._Services.Services.S_WarehouseBasicDataMaintenance;
@@ -20,6 +22,7 @@ namespace API.Configurations
             services.AddScoped<IRepositoryAccessor, RepositoryAccessor>();
 
             // Add Service
+            services.AddScoped<I_CommonServices, S_CommonServices>();
             services.AddScoped<I_ShiftDataMaintainServices, S_ShiftDataMaintainServices>();
             services.AddScoped<I_WarehouseBasicDataServices, S_WarehouseBasicDataServices>();
             services.AddScoped<I_DepartmentDataServices, S_DepartmentDataServices>();

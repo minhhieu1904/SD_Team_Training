@@ -89,26 +89,6 @@ namespace API._Services.Services.Transaction
             return PaginationUtility<SearchForOrderDataDTO>.Create(data, pagination.PageNumber, pagination.PageSize);
         }
 
-        public async Task<List<KeyValuePair<string, string>>> GetListBrandName()
-        {
-            return await _repositoryAccessor.MS_QrOrder.FindAll()
-                    .Select(x => new KeyValuePair<string, string>(x.Brandname, x.Brandname)).Distinct().ToListAsync();
-        }
-
-        public async Task<List<KeyValuePair<decimal, decimal>>> GetListPackage()
-        {
-            var data = await _repositoryAccessor.MS_Package.FindAll()
-                    .Select(x => new KeyValuePair<decimal, decimal>(x.PackageQty, x.PackageQty)).Distinct().ToListAsync();
-            return data.OrderBy(x => x.Value).ToList();
-        }
-
-        public async Task<List<KeyValuePair<string, string>>> GetListStatus()
-        {
-            var data = await _repositoryAccessor.MS_QrOrder.FindAll()
-                    .Select(x => new KeyValuePair<string, string>(x.Endcod, x.Endcod)).Distinct().ToListAsync();
-            return data.OrderByDescending(x => x.Value).ToList();
-        }
-
         public async Task<OperationResult> Print(OrderDataPrint dataPrint)
         {
             var labelLast = await _repositoryAccessor.MS_QrLabel.FindAll().OrderBy(x => x.CrDay).ThenBy(x => x.QRCodeID).LastOrDefaultAsync();

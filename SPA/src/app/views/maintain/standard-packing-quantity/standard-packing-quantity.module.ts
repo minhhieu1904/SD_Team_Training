@@ -8,6 +8,7 @@ import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [MainComponent, AddComponent, EditComponent],
   imports: [
@@ -16,6 +17,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     FormsModule,
     PaginationModule.forRoot(),
     AlertModule.forRoot(),
+    TranslateModule,
   ],
 })
 export class StandardPackingQuantityModule {}

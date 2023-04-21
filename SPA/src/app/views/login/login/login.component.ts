@@ -16,7 +16,7 @@ export class LoginComponent extends InjectBase implements OnInit {
 
   ngOnInit(): void {
     // Nếu đã đăng nhập thì tự động chuyển về dashboard
-    if (this.authService.loggedIn) this.router.navigate(['/dashboard']);
+    //if (this.authService.loggedIn) this.router.navigate(['/dashboard']);
   }
 
   login() {

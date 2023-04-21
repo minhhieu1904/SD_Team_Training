@@ -9,6 +9,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { QrcodePrinterComponent } from '../../commons/qrcode-printer/qrcode-printer.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [MainComponent],
@@ -21,6 +22,7 @@ import { QrcodePrinterComponent } from '../../commons/qrcode-printer/qrcode-prin
     NgSelectModule,
     AlertModule.forRoot(),
     QrcodePrinterComponent,
+    TranslateModule
   ],
   exports: [QrcodePrinterComponent],
 })

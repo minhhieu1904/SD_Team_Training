@@ -12,7 +12,6 @@ export class AppGuard implements CanLoad {
   constructor(private router: Router) { }
 
   canLoad(route: Route): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    debugger
     let role = route.data['role'];
     let roleOfUser: RoleInformation[] = JSON.parse(localStorage.getItem(LocalStorageConstant.Role));
     let checkRole = roleOfUser.map(x => x.unique).some(x => x.trim() === role?.trim());
@@ -20,7 +19,7 @@ export class AppGuard implements CanLoad {
     if (checkRole) {
       return true;
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
       return false;
     }
   }

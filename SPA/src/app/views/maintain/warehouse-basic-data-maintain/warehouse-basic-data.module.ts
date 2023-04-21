@@ -7,6 +7,7 @@ import { MainComponent } from './main/main.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [MainComponent, AddComponent, EditComponent],
@@ -16,6 +17,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     WarehouseBasicDataRoutingModule,
     PaginationModule.forRoot(),
     AlertModule.forRoot(),
+    TranslateModule
   ],
 })
 export class WarehouseBasicDataModule {}

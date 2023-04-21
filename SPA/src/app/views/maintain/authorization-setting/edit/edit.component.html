@@ -1,33 +1,47 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
+            <!-- Title -->
             <div class="col-md-10">
-                <h5>1.5 Authorization Setting</h5>
+                <h5>{{'Roles.Menu_Child.BQRC.AuthorizationSetting' | translate}}</h5>
             </div>
+
+            <!-- Button Back -->
             <div class="col-md-2">
-                <button class="btn btn-primary" (click)="back()">
-                    <i class="fa fa-arrow-left"></i> Back</button>
+                <button class="btn btn-primary float-right" (click)="back()">
+                    <i class="{{iconButton.BACK}}"></i> {{'System.Action.Back' | translate}} </button>
             </div>
         </div>
+    </div>
+    <div class="card-body">
         <div class="row">
+            <!-- User Account -->
             <div class="col-md-2">
-                <span class="badge badge-warning">User Account</span>
+                <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Account' |translate}}</span>
                 <input type="text" disabled="disabled" [(ngModel)]="user.account" class="form-control">
             </div>
+
+            <!-- User Name -->
             <div class="col-md-2">
-                <span class="badge badge-warning">User Name</span>
+                <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.UserName' |translate}} </span>
                 <input type="text" disabled="disabled" [(ngModel)]="user.name" class="form-control">
             </div>
+
+            <!-- Password -->
             <div class="col-md-2">
-                <span class="badge badge-warning">password</span>
+                <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Password'| translate}}</span>
                 <input type="text" [(ngModel)]="user.password" class="form-control">
             </div>
+
+            <!-- Email -->
             <div class="col-md-2">
-                <span class="badge badge-warning">email</span>
+                <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Email'| translate}}</span>
                 <input type="text" [(ngModel)]="user.email" class="form-control">
             </div>
+
+            <!-- Active -->
             <div class="col-md-2">
-                <span class="badge badge-warning">Is Active</span>
+                <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Active'| translate}}</span>
                 <div class="form-group">
                     <ng-select [(ngModel)]="user.isActive">
                         <ng-option *ngFor="let item of actives" [value]="item.key">{{item.value}}</ng-option>
@@ -36,8 +50,9 @@
 
             </div>
 
+            <!-- Button Save -->
             <div class="col pt-4">
-                <button class="btn btn-primary" (click)="update()"> Save </button>
+                <button class="btn btn-primary" (click)="update()"> {{'System.Action.Save' | translate}} </button>
             </div>
 
         </div>

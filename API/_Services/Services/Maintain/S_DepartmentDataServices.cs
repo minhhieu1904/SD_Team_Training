@@ -23,18 +23,18 @@ namespace API._Services.Services.Maintain
             && x.ParNo == model.ParNo.Trim()).FirstOrDefaultAsync();
 
             if (originalItem != null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data is exists" };
 
             _repositoryAccessor.MS_Department.Add(model);
 
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -46,7 +46,7 @@ namespace API._Services.Services.Maintain
             && x.ParNo.Trim() == model.ParNo.Trim());
 
             if (originalItem == null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data Not Found" };
 
             originalItem.ParName = model.ParName.Trim();
             _repositoryAccessor.MS_Department.Update(originalItem);
@@ -54,11 +54,11 @@ namespace API._Services.Services.Maintain
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -67,24 +67,24 @@ namespace API._Services.Services.Maintain
         public async Task<OperationResult> Delete(string parNo)
         {
             if (string.IsNullOrEmpty(parNo.Trim()))
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
 
             var originalItem = await _repositoryAccessor.MS_Department.FirstOrDefaultAsync(x => x.Manuf == "N"
             && x.ParNo == parNo.Trim());
 
             if (originalItem == null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
 
             _repositoryAccessor.MS_Department.Remove(originalItem);
 
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
             }
         }
         #endregion

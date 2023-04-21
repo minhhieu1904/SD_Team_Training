@@ -7,16 +7,16 @@ import { Pagination } from '@utilities/pagination-utility';
 import { WkshSumReportParam } from '@models/report/wkshSumReportParam';
 import { IconButton } from '@constants/sd-team.utility';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-
-import { BrandDTO } from '@models/report/brandDTO';
-import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { CommonService } from '@services/common/common.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
-  brand: BrandDTO[] = [];
+  //#region attribute
+  iconButton = IconButton;
+  listBrandName: KeyValuePair[] = [];
   data: MsQrOrder[] = [];
   actives: KeyValuePair[] = [
     { key: false, value: 'N' },
@@ -35,8 +35,12 @@ export class MainComponent extends InjectBase implements OnInit {
   dateTo_mdat;
   dateFrom_eta;
   dateTo_eta;
-  iconButton = IconButton;
-  constructor(private service: WkshSumReportService) {
+  //#endregion
+
+  constructor(
+    private service: WkshSumReportService,
+    private commonService: CommonService
+  ) {
     super();
   }
 
@@ -46,6 +50,7 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getData();
   }
 
+  //#region function
   getData() {
     this.checkDate();
     this.spinnerService.show();
@@ -59,8 +64,8 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
@@ -69,10 +74,6 @@ export class MainComponent extends InjectBase implements OnInit {
   search() {
     this.pagination.pageNumber = 1;
     this.getData();
-  }
-
-  clearBrand() {
-    this.param.brandname = '';
   }
 
   checkDate() {
@@ -141,24 +142,26 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
   }
 
   getBrand() {
-    this.service.getBrand().subscribe({
+    debugger
+    this.commonService.getListBrandName().subscribe({
       next: (result) => {
-        this.brand = result;
+        this.listBrandName = result;
       },
       error: () => {
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
   }
+  //#endregion
 }

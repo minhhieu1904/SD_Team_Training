@@ -14,6 +14,7 @@ import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 import { QrcodePrinterComponent } from '../../../commons/qrcode-printer/qrcode-printer.component';
 import { KeyValueUtility } from '@utilities/key-value-utility';
 import { OperationResult } from '@utilities/operation-result';
+import { CommonService } from '@services/common/common.service';
 
 
 @Component({
@@ -58,6 +59,7 @@ export class MainComponent extends InjectBase implements OnInit {
 
   constructor(
     private service: SearchForOrderDataService,
+    private commonService: CommonService
   ) {
     super();
   }
@@ -77,7 +79,7 @@ export class MainComponent extends InjectBase implements OnInit {
 
   getListBrandName() {
     this.spinnerService.show();
-    this.service.getListBrandName().subscribe({
+    this.commonService.getListBrandName().subscribe({
       next: (result) => {
         this.spinnerService.hide();
         this.listBrandName = result;
@@ -99,7 +101,7 @@ export class MainComponent extends InjectBase implements OnInit {
 
   getListStatus() {
     this.spinnerService.show();
-    this.service.getListStatus().subscribe({
+    this.commonService.getListStatus().subscribe({
       next: (result) => {
         this.spinnerService.hide();
         this.listStatus = result;
@@ -116,7 +118,7 @@ export class MainComponent extends InjectBase implements OnInit {
 
   getListPackage() {
     this.spinnerService.show();
-    this.service.getListPackage().subscribe({
+    this.commonService.getListPackage().subscribe({
       next: (result) => {
         this.spinnerService.hide();
         this.listPackage = result;

@@ -4,7 +4,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@env/environment';
 import { WkshSumReportParam } from '@models/report/wkshSumReportParam';
 import { MsQrOrder } from '@models/report/msQrOrder';
-import { BrandDTO } from '@models/report/brandDTO';
 @Injectable({
   providedIn: 'root',
 })
@@ -18,10 +17,6 @@ export class WkshSumReportService {
       `${this.apiUrl}/GetData`,
       { params }
     );
-  }
-
-  getBrand() {
-    return this.http.get<BrandDTO[]>(`${this.apiUrl}/GetBrand`);
   }
 
   exportExcel(param: WkshSumReportParam) {

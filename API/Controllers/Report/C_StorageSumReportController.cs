@@ -22,12 +22,6 @@ namespace API.Controllers.Report
             var result = await _service.GetDataPagination(pagination, param);
             return Ok(result);
         }
-        [HttpGet("GetBrand")]
-        public async Task<IActionResult> GetBrands()
-        {
-            var result = await _service.GetBrands();
-            return Ok(result);
-        }
 
         [HttpGet("ExportExcel")]
         public async Task<IActionResult> ExportExcel([FromQuery] StorageSumReportParam param)

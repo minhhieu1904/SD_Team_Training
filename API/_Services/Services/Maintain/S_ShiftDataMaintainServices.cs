@@ -24,7 +24,7 @@ namespace API._Services.Services.Maintain
             // Tìm xem giá trị đã tồn tại trong dữ liệu chưa
             var originalItem = await _repositoryAccessor.MS_Shift.FindAll(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim()).FirstOrDefaultAsync();
             if (originalItem != null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data is exists" };
 
             // Nếu giá trị chưa tồn tại thì thêm vào dữ liệu
             model.Manuf = "N";
@@ -34,11 +34,11 @@ namespace API._Services.Services.Maintain
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -49,7 +49,7 @@ namespace API._Services.Services.Maintain
             var originalItem = await _repositoryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == model.Shift.Trim());
 
             if (originalItem == null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "Data Not Found" };
 
             originalItem.ShiftName = model.ShiftName.Trim();
             _repositoryAccessor.MS_Shift.Update(originalItem);
@@ -57,11 +57,11 @@ namespace API._Services.Services.Maintain
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false, Error = "" };
             }
         }
         #endregion
@@ -70,22 +70,22 @@ namespace API._Services.Services.Maintain
         public async Task<OperationResult> Delete(string shift)
         {
             if (string.IsNullOrEmpty(shift.Trim()))
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
 
             var originalItem = await _repositoryAccessor.MS_Shift.FirstOrDefaultAsync(x => x.Manuf.Trim() == "N" && x.Shift.Trim() == shift.Trim());
 
             if (originalItem == null)
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
 
             _repositoryAccessor.MS_Shift.Remove(originalItem);
             try
             {
                 await _repositoryAccessor.Save();
-                return new OperationResult(true);
+                return new OperationResult { IsSuccess = true };
             }
             catch
             {
-                return new OperationResult(false);
+                return new OperationResult { IsSuccess = false };
             }
         }
         #endregion

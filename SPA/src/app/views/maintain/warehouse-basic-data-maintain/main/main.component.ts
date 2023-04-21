@@ -6,6 +6,7 @@ import { Pagination } from '@utilities/pagination-utility';
 import { WarehouseBasicDataService } from '@services/maintain/warehouse-basic-data.service';
 import { url } from '@constants/url.constants';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { IconButton } from '@constants/common.constants';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -13,6 +14,7 @@ import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 })
 export class MainComponent extends InjectBase implements OnInit {
   //#region attribute
+  iconButton = IconButton;
   msLocation: MsLocation[] = [];
 
   pagination: Pagination = <Pagination>{
@@ -69,8 +71,8 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });

@@ -10,16 +10,18 @@ import { SortSumReportDTO } from '@models/report/sortSumReportDTO';
 import { IconButton } from '@constants/common.constants';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { KeyValuePair } from '@utilities/key-value-pair';
-import { BrandDTO } from '@models/report/brandDTO';
-import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { KeyValueUtility } from '@utilities/key-value-utility';
+import { CommonService } from '@services/common/common.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
+  //#region attribute
+  iconButton = IconButton;
   data: SortSumReportDTO[] = [];
-  brand: BrandDTO[] = [];
+  listBrandName: KeyValueUtility[] = [];
   actives: KeyValuePair[] = [
     { key: 'sdat', value: 'Sdat Date' },
     { key: 'mdat', value: 'Production_Date' },
@@ -41,8 +43,12 @@ export class MainComponent extends InjectBase implements OnInit {
   dateTo_mdat;
   dateFrom_eta;
   dateTo_eta;
-  iconButton = IconButton;
-  constructor(private _service: SortSumReportService) {
+  //#endregion
+
+  constructor(
+    private service: SortSumReportService,
+    private commonService: CommonService
+  ) {
     super();
   }
 
@@ -52,10 +58,11 @@ export class MainComponent extends InjectBase implements OnInit {
     this.getData();
   }
 
+  //#region function
   getData() {
     this.checkDate();
     this.spinnerService.show();
-    this._service.getData(this.pagination, this.param).subscribe({
+    this.service.getData(this.pagination, this.param).subscribe({
       next: (result) => {
         this.spinnerService.hide();
         this.pagination = result.pagination;
@@ -70,7 +77,7 @@ export class MainComponent extends InjectBase implements OnInit {
   exportExcel() {
     this.checkDate();
     this.spinnerService.show();
-    this._service.exportExcel(this.param).subscribe({
+    this.service.exportExcel(this.param).subscribe({
       next: (result) => {
         this.spinnerService.hide();
         const curDate = new Date();
@@ -84,8 +91,8 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
@@ -95,9 +102,9 @@ export class MainComponent extends InjectBase implements OnInit {
     this.paramDetail.manno = this.data[this.selectedIndex].manno;
     this.paramDetail.purno = this.data[this.selectedIndex].purno;
     this.paramDetail.size = this.data[this.selectedIndex].size;
-    console.log(this.paramDetail)
+    console.log(this.paramDetail);
     this.spinnerService.show();
-    this._service.exportDetailExcel(this.paramDetail).subscribe({
+    this.service.exportDetailExcel(this.paramDetail).subscribe({
       next: (result) => {
         this.spinnerService.hide();
         const curDate = new Date();
@@ -111,8 +118,8 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
@@ -132,18 +139,14 @@ export class MainComponent extends InjectBase implements OnInit {
     }
   }
   search() {
-    this.pagination.pageNumber = 1;
-    console.log(this.param);
-    this.getData();
+    this.pagination.pageNumber === 1
+      ? this.getData()
+      : (this.pagination.pageNumber = 1);
   }
 
   clear() {
     this.createParam();
     this.getData();
-  }
-
-  clearBrand(){
-    this.param.brand = '';
   }
 
   pageChanged(e: any) {
@@ -191,16 +194,17 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   getBrand() {
-    this._service.getBrand().subscribe({
+    this.commonService.getListBrandName().subscribe({
       next: (result) => {
-        this.brand = result;
+        this.listBrandName = result;
       },
       error: () => {
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
   }
+  //#endregion
 }

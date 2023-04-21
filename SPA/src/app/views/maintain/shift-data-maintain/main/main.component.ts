@@ -5,6 +5,7 @@ import { ShiftDataMaintainService } from '@services/maintain/shift-data-maintain
 import { InjectBase } from '@utilities/inject-base-app';
 import { url } from '@constants/url.constants';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { IconButton } from '@constants/common.constants';
 
 @Component({
   selector: 'app-main',
@@ -13,6 +14,7 @@ import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 })
 export class MainComponent extends InjectBase implements OnInit {
   //#region attribute
+  iconButton = IconButton;
   msShift: MsShift[] = [];
   pagination: Pagination = <Pagination>{
     pageNumber: 1,
@@ -67,8 +69,8 @@ export class MainComponent extends InjectBase implements OnInit {
       error: () => {
         this.spinnerService.hide();
         this.snotifyService.error(
-          MessageConstants.SYSTEM_ERROR_MSG,
-          CaptionConstants.ERROR
+          this.translateService.instant('System.Message.SystemError'),
+          this.translateService.instant('System.Caption.Error')
         );
       },
     });
