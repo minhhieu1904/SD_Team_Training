@@ -9,8 +9,6 @@ using SD3_API.Helpers.Utilities;
 
 namespace API.Controllers.report
 {
-    [ApiController]
-    [Route("api/[controller]")]
     public class C_SortSumReport : APIController
     {
         public readonly I_SortSumReport_Services _service;

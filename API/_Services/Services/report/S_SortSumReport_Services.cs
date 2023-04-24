@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using API._Repositories;
@@ -7,6 +8,7 @@ using API._Services.Interfaces.report;
 using API.Data;
 using API.DTOs;
 using API.DTOs.report;
+using API.Helper.Utilities;
 using API.Models;
 using Aspose.Cells;
 using LinqKit;
@@ -28,7 +30,7 @@ namespace API._Services.Services.report
             _dbContext = dbContext;
         }
 
-        public async Task<PaginationUtility<SortSumReportDTO>> GetData(PaginationParam pagination ,SortSumReportParam param, bool isPaging = true)
+        public async Task<PaginationUtility<SortSumReportDTO>> GetData(PaginationParam pagination, SortSumReportParam param, bool isPaging = true)
         {
             var data = await _dbContext.Sort_Sum_Report.FromSqlRaw
              ("EXEC Report_Sort_Sum @p_date_kind, @p_date_start, @p_date_end, @p_brand, @p_code_of_customer, @p_planning_no, @p_mold_num, @p_tolcls, @p_purchase_no, @p_material_code, @p_kind, @p_etd_start, @p_etd_end, @p_size",
@@ -60,20 +62,11 @@ namespace API._Services.Services.report
         {
             var data = await GetData(pagination, param, false);
             MemoryStream stream = new MemoryStream();
-            if (data.Result.Count > 0)
+            if (data.Result.Any())
             {
                 var path = Path.Combine(_environment.ContentRootPath, "Resources\\Template\\SortSumReport.xlsx");
-
-                WorkbookDesigner designer = new WorkbookDesigner();
-                designer.Workbook = new Workbook(path);
-                Worksheet ws = designer.Workbook.Worksheets[0];
-                designer.SetDataSource("result", data.Result);
-                designer.Process();
-                designer.Workbook.Save(stream, SaveFormat.Xlsx);
-                ws.AutoFitColumns();
-                ws.PageSetup.CenterHorizontally = true;
-                ws.PageSetup.FitToPagesWide = 1;
-                ws.PageSetup.FitToPagesTall = 0;
+                var exportutility = new ExportExcelUtility<SortSumReportDTO>();
+                exportutility.ExportData(data.Result, path, stream);
             }
             return stream.ToArray();
         }
@@ -83,24 +76,25 @@ namespace API._Services.Services.report
         public async Task<byte[]> ExportDetailExcel(SortSumDetailReportParam param)
         {
             var pred = PredicateBuilder.New<MsQrLabel>(true);
-            if(!string.IsNullOrWhiteSpace(param.manno)) 
+            if (!string.IsNullOrWhiteSpace(param.manno))
                 pred.And(x => x.ManNo == param.manno);
-            if(!string.IsNullOrWhiteSpace(param.purno))
+            if (!string.IsNullOrWhiteSpace(param.purno))
                 pred.And(x => x.PurNo == param.purno);
-            if(!string.IsNullOrWhiteSpace(param.size))
+            if (!string.IsNullOrWhiteSpace(param.size))
                 pred.And(x => x.Size == param.size);
             var data = await _repositoryAccessor.MSQrLabel.FindAll(pred)
-                        .GroupJoin(_repositoryAccessor.MsQrOrder.FindAll(), 
-                            l => new { ManNo = l.ManNo,PurNo = l.PurNo,Size = l.Size },
+                        .GroupJoin(_repositoryAccessor.MsQrOrder.FindAll(),
+                            l => new { ManNo = l.ManNo, PurNo = l.PurNo, Size = l.Size },
                             s => new { ManNo = s.Manno, PurNo = s.Purno, Size = s.Size },
-                            (l,s) => new { T1 = l, T2 = s }
-                        ).SelectMany(x => x.T2.DefaultIfEmpty(), (x,y) => new { x.T1, T2 = y }) 
+                            (l, s) => new { T1 = l, T2 = s }
+                        ).SelectMany(x => x.T2.DefaultIfEmpty(), (x, y) => new { x.T1, T2 = y })
                         .GroupJoin(_repositoryAccessor.MSQrSort.FindAll(),
                             x => x.T1.QrcodeId,
                             y => y.QrcodeId,
-                            (x,y) => new { x.T1, x.T2, T3 = y}
-                        ).SelectMany(x => x.T3.DefaultIfEmpty(), (x,y) => new { x.T1, x.T2, T3 = y})
-                        .Select(x => new SortSumReportDetail(){
+                            (x, y) => new { x.T1, x.T2, T3 = y }
+                        ).SelectMany(x => x.T3.DefaultIfEmpty(), (x, y) => new { x.T1, x.T2, T3 = y })
+                        .Select(x => new SortSumReportDetail()
+                        {
                             IsScanSort = x.T3.QrcodeId != null ? "Y" : "N",
                             CrDay = x.T3.CrDay.ToString("dd/MM/yyyy"),
                             brandname = x.T2.Brandname,
@@ -115,28 +109,20 @@ namespace API._Services.Services.report
                             tolcls = x.T2.Tolcls,
                             ritnbr = x.T2.Ritnbr,
                             bitnbr = x.T2.Bitnbr,
-                            article= x.T2.Article,
+                            article = x.T2.Article,
                             kind = x.T2.Kind,
                             eta = x.T2.Eta
                         }).ToListAsync();
 
             MemoryStream stream = new MemoryStream();
-            if (data.Count > 0)
+            if (data.Any())
             {
                 var path = Path.Combine(_environment.ContentRootPath, "Resources\\Template\\SortDetailReport.xlsx");
-                WorkbookDesigner designer = new WorkbookDesigner();
-                designer.Workbook = new Workbook(path);
-                Worksheet ws = designer.Workbook.Worksheets[0];
-                designer.SetDataSource("result", data);
-                designer.Process();
-                designer.Workbook.Save(stream, SaveFormat.Xlsx);
-                ws.AutoFitColumns();
-                ws.PageSetup.CenterHorizontally = true;
-                ws.PageSetup.FitToPagesWide = 1;
-                ws.PageSetup.FitToPagesTall = 0;
+                var exportutility = new ExportExcelUtility<SortSumReportDetail>();
+                exportutility.ExportData(data, path, stream);
+
             }
             return stream.ToArray();
         }
-    public void workbooks(){}
     }
 }

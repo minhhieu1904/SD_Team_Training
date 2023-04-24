@@ -51,9 +51,18 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPrintModule} from 'ngx-print';
 import { LoginComponent } from './views/login/login.component';
 import { AuthGuard } from '@guards/auth.guard';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalModule } from 'ngx-bootstrap/modal';  
+import { AppGuard } from '@guards/app.guard';
+import { LocalStorageConstants } from '@constants/localStorge.constants';
+import { environment } from '@env/environment';
+import { JwtModule } from '@auth0/angular-jwt';
+import { RouterModule } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+export function tokenGetter() {
+  return localStorage.getItem(LocalStorageConstants.TOKEN);
 }
 @NgModule({
   imports: [
@@ -78,6 +87,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SnotifyModule,
     NgxSpinnerModule,
     NgxPrintModule,
+    NgSelectModule,
+    RouterModule,
     NgxBreadcrumbModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -86,18 +97,26 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: environment.allowedDomains,
+        disallowedRoutes: environment.disallowedRoutes,
+      },
+
+    }),
   ],
   declarations: [
     AppComponent,
     DefaultLayoutComponent,
-    LoginComponent,
     DashboardComponent,
   ...APP_CONTAINERS,
     HeaderContainerComponent,
-    FooterContainerComponent
-
+    FooterContainerComponent,
+    LoginComponent,
   ],
   providers: [
+    AppGuard,
     AuthGuard,
     {
       provide: LocationStrategy,

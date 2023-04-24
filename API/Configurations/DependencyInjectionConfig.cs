@@ -30,6 +30,7 @@ namespace API.Configurations
             services.AddScoped<I_WkshSumReport_Services, S_WkshSumReport_Services>();
             services.AddScoped<I_SortSumReport_Services, S_SortSumReport_Services>();
             services.AddScoped<I_StorageSumReport_Services, S_StorageSumReport_Services>();
+            services.AddScoped<I_QRCodeWIPReportServices, S_QRCodeWIPReportServices>();
 
         }
     }

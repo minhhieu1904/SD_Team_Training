@@ -29,11 +29,6 @@ namespace API._Services.Services.Maintain
                 if(original != null){
                     return new OperationResult(false);
                 } else {
-                    // model.Manuf = 'N';
-                    // _repositoryAccessor.MS_Location.Add(model);
-                    // if(await _repositoryAccessor.Save())
-                    //     return new OperationResult(true);
-                    // return new OperationResult(false);
                     model.Manuf = "N";
                     _repositoryAccessor.Ms_Location.Add(model);
                     if(await _repositoryAccessor.Save())
