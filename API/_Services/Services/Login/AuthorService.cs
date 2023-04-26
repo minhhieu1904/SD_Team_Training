@@ -18,25 +18,17 @@ namespace API._Services.Services
         }
         public async Task<UserLoginDto> Login(UserLogin userLogin)
         {
-
-             var user = await _repoAccessor.Users.FirstOrDefaultAsync(x => x.account.Trim() == userLogin.account.Trim() && x.is_active);
-
+            var user = await _repoAccessor.Users.FirstOrDefaultAsync(x => x.account.Trim() == userLogin.account.Trim() && x.is_active);
             // Kiểm tra sự tồn tại của user
             if(user == null) {
                 return null;
             }
-
             // Nếu tồn tại user => Check password
             if(user.password != userLogin.password) {
                 return null;
             }
-
             var roleUsers = _repoAccessor.RoleUser.FindAll(x => x.user_account.Trim() == user.account.Trim());
             var roles = _repoAccessor.Roles.FindAll();
-
-            var mapper = Mapper.CreateNew();
-            mapper.WhenMapping.UseConfigurations.From<MapperConfig>();
-
             var roleForUser = await roleUsers.Join(
                 roles,
                 x => x.role_unique,
@@ -56,11 +48,7 @@ namespace API._Services.Services
                 roles = roleForUser.OrderBy(x => x.position).ToList(),
                 roleAll = roleForUser.ToList()
             };
-
             return result;
-
-        }
-
-       
+        }       
     }
 }

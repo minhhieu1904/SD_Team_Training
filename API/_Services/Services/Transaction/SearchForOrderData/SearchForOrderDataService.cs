@@ -53,7 +53,6 @@ namespace API._Services.Services.Transaction.SearchForOrderData
             predicate = param.remark ? predicate.And(x => x.kind.Trim() == "4" && x.remark != null) : predicate.And(x => x.remark == null);
             var data = _repository.MS_QR_Order.FindAll(predicate).OrderBy(x => x.eta).ThenBy(x => x.wkshqty).AsNoTracking().Project().To<SearchForOrderDataViewModel>();
             return await PaginationUtility<SearchForOrderDataViewModel>.CreateAsync(data, pagination.PageNumber, pagination.PageSize, isPaging);
-
         }
         #region GetListPackage
         public async Task<List<KeyValuePair<decimal, decimal>>> GetListPackage()
@@ -80,7 +79,7 @@ namespace API._Services.Services.Transaction.SearchForOrderData
             }
         }
         #endregion
-        #region   orderPrintRemark
+        #region orderPrintRemark
         private async Task<OperationResult> OrderPrintRemark(OrderDataPrint dataPrint, string QRCodeIDDay, string code)
         {
             List<OrderPrintParam> printDataParam = new ();
@@ -103,7 +102,6 @@ namespace API._Services.Services.Transaction.SearchForOrderData
             data.pqty = dataPrint.PrintQty;
             data.update_time = DateTime.Now;
             _repository.MS_QR_Order.Update(data);
-
             await _repository.Save();
             try{
                 await transaction.CommitAsync();
@@ -143,8 +141,7 @@ namespace API._Services.Services.Transaction.SearchForOrderData
                             var orderQty = Math.Min(Convert.ToInt32(canPrintQty), dataPrint.PackageQty);
                             item.max_qty_can_print -= orderQty;
                             canPrintQty -= orderQty;
-                            dataPrint.PrintQty -=(int)orderQty;
-                            
+                            dataPrint.PrintQty -=(int)orderQty;   
                             var serial = ++tempSerial;
                             OrderPrintParam orderData = await OrderPrintData(data , orderQty, serial, dataPrint);
                             MS_QR_Label newLabel  = await LabelData(data, orderData, dataPrint, $"{QRCodeIDDay}{code}");
@@ -157,7 +154,6 @@ namespace API._Services.Services.Transaction.SearchForOrderData
                         }
                         data.update_time = DateTime.Now;
                         data.updated_by = dataPrint.UserName;
-
                         _repository.MS_QR_Order.Update(data);
                         await _repository.Save();
                     }
@@ -184,7 +180,6 @@ namespace API._Services.Services.Transaction.SearchForOrderData
             decimal canPrintQty = 0;
             decimal printQty = dataPrint.PrintQty;
             decimal currentPrintQty = 0;
-
             using var transaction = await _repository.BeginTransactionAsync();
             foreach (var item in dataPrint.Items)
             {
@@ -193,44 +188,34 @@ namespace API._Services.Services.Transaction.SearchForOrderData
                 if (compare.IsSuccess)
                 {
                     var data = await GetQROrderRecord(item);
-
                     if (data == null)
                     {
                         await transaction.RollbackAsync();
                         return new OperationResult() { IsSuccess = false };
                     }
-
                     short tempSerial = await GetSerial(item);
                     canPrintQty = Math.Min(item.max_qty_can_print, dataPrint.PrintQty);
-
                     while (canPrintQty > 0)
                     {
                         var orderQty = Math.Min(Convert.ToInt32(canPrintQty), dataPrint.PackageQty);
                         item.max_qty_can_print -= orderQty;
                         canPrintQty -= orderQty;
                         dataPrint.PrintQty -= (int)orderQty;
-
                         if (orderQty == dataPrint.PackageQty)
                         {
                             var serial = ++tempSerial;
                             OrderPrintParam orderData = await OrderPrintData(data, orderQty, serial, dataPrint);
-
                             MS_QR_Label newLabel = await LabelData(data, orderData, dataPrint, $"{QRCodeIDDay}{code}");
-
                             _repository.MS_QR_Label.Add(newLabel);
                             await _repository.Save();
                             orderData.qrCodeName = newLabel.QRCodeValue;
-
                             data.pqty += orderData.qty;
                             printDataResult.Add(orderData);
-
                             code = _functionUtility.GenerateCodeIdentity(code);
                         }
                     }
-
                     data.update_time = DateTime.Now;
                     data.updated_by = dataPrint.UserName;
-
                     _repository.MS_QR_Order.Update(data);
                     await _repository.Save();
                 }
@@ -239,7 +224,6 @@ namespace API._Services.Services.Transaction.SearchForOrderData
                     await transaction.RollbackAsync();
                     return new OperationResult() { IsSuccess = false, Error = "QuantityExceeded", Data = compare.Data };
                 }
-
                 printQty = printQty - item.wkshqty;
             }
             try
@@ -255,7 +239,7 @@ namespace API._Services.Services.Transaction.SearchForOrderData
         }
         #endregion
 
-         #region Compare_Qty
+        #region Compare_Qty
         private async Task<OperationResult> Compare_Qty(OrderDataItem item, decimal currentPrintQty)
         {
             var listOrder = await _repository.MS_QR_Order
@@ -272,7 +256,7 @@ namespace API._Services.Services.Transaction.SearchForOrderData
             };
         }
         #endregion
-         #region GetQROrderRecord
+        #region GetQROrderRecord
         private async Task<MS_QR_Order> GetQROrderRecord(OrderDataItem item)
         {
             return await _repository.MS_QR_Order
@@ -283,7 +267,7 @@ namespace API._Services.Services.Transaction.SearchForOrderData
                     x.prtno.Trim() == item.prtno.Trim());
         }
         #endregion
-     #region GetSerial
+        #region GetSerial
         private async Task<short> GetSerial(OrderDataItem item)
         {
             var mS_QR_Label = await _repository.MS_QR_Label
@@ -295,7 +279,7 @@ namespace API._Services.Services.Transaction.SearchForOrderData
             return mS_QR_Label == null ? Convert.ToInt16(0) : mS_QR_Label.Serial;
         }
         #endregion
-         #region OrderPrintData
+        #region OrderPrintData
         private async Task<OrderPrintParam> OrderPrintData(MS_QR_Order data, decimal orderQty, short serial, OrderDataPrint dataPrint)
         {
             OrderPrintParam orderData = new OrderPrintParam()
@@ -318,7 +302,7 @@ namespace API._Services.Services.Transaction.SearchForOrderData
             return await Task.FromResult(orderData);
         }
         #endregion
-     #region LabelData
+        #region LabelData
         private async Task<MS_QR_Label> LabelData(MS_QR_Order data, OrderPrintParam orderData, OrderDataPrint dataPrint, string QRCodeID)
         {
             MS_QR_Label newLabel = new()
@@ -345,5 +329,4 @@ namespace API._Services.Services.Transaction.SearchForOrderData
         }
         #endregion
     }
-
 }

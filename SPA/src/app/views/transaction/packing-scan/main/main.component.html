@@ -1,0 +1,110 @@
+<div class="animated fadeIn">
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="card">
+              <div class="card-header">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <strong class="title-card-cs">2.3. {{'Transaction.PackingScan.Title' | translate }}</strong>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <div class="row border-shadow">
+                      <div class="col-md-3">
+                          <label class="badge badge-warning">{{'Transaction.PackingScan.ScanDate' | translate
+                              }}</label>
+                          <div class="input-group">
+                              <input type="text" class="form-control" [(ngModel)]="scanDate" disabled />
+                              <div class="input-group-append">
+                                  <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-3">
+                          <label class="badge badge-warning">{{'Transaction.PackingScan.Shift' | translate }} <i
+                                  class="i-required">*</i></label>
+                          <ng-select [(ngModel)]="shift" name="shiftname"
+                              placeholder="{{'Transaction.PackingScan.PleaseChooseShift' | translate}}">
+                              <ng-option *ngFor="let item of listShift" [value]="item.key">{{item.value}}</ng-option>
+                          </ng-select>
+                      </div>
+                      <div class="col-md-6">
+                          <label class="d-block">&nbsp;</label>
+                          <button class="btn btn-success mr-2" [disabled]="!shift"
+                              (click)="openScanModal('qr-code-scan-modal')"><i class="{{iconButton.QRCODE}}"></i>
+                              {{'System.Action.Scan' | translate }}</button>
+                          <button class="btn btn-primary" [disabled]="listPackingScan.length === 0"
+                              (click)="export()"><i class="{{iconButton.PRINT}}"></i> {{'System.Action.Export' |
+                              translate }}</button>
+                      </div>
+                  </div>
+                  <div class="row justify-content-md-center">
+                      <div class="col-12">
+                          <div class="table-responsive mb-3">
+                              <table class="table table-bordered">
+                                  <thead>
+                                      <tr>
+                                          <th>{{'Transaction.PackingScan.TransferFromNo' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.PlanningNo' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.PurchaseNo' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.MaterialCodeBottom' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.ModelName' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.Article' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.Batch' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.Cycle' | translate}}</th>
+                                          <!-- <th>{{'Transaction.PackingScan.Grade' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.QRCodeID' | translate}}</th> -->
+                                          <th>{{'Transaction.PackingScan.SerialNumber' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.Size' | translate}}</th>
+                                          <th>{{'Transaction.PackingScan.Quantity' | translate}}</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <ng-container *ngIf="listPackingScan.length > 0; else elseBlock">
+                                          <tr *ngFor="let item of listPackingScan">
+                                              <td>{{item.trNo}}</td>
+                                              <td>{{item.manNo}}</td>
+                                              <td>{{item.purNo}}</td>
+                                              <td>{{item.bitnbr}}</td>
+                                              <td>{{item.style}}</td>
+                                              <td>{{item.article}}</td>
+                                              <td>{{item.seq}}</td>
+                                              <td>{{item.cyNo}}</td>
+                                              <!-- <td>{{item.grade}}</td>
+                                              <td>{{item.qrCodeID}}</td> -->
+                                              <td>{{item.serial}}</td>
+                                              <td>{{item.size}}</td>
+                                              <td>{{item.qty}}</td>
+                                          </tr>
+                                      </ng-container>
+                                      <ng-template #elseBlock>
+                                          <tr>
+                                              <td class="table-warning text-center font-weight-bold" colspan="100%">
+                                                  {{'System.Message.Nodata' | translate }}</td>
+                                          </tr>
+                                      </ng-template>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="d-flex justify-content-start" *ngIf="listPackingScan.length > 0">
+                              <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount"
+                                  [itemsPerPage]="pagination.pageSize" previousText="&lsaquo;"
+                                  [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)"
+                                  nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+                              </pagination>
+                              <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+                                  {{pagination.totalPage}}</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<app-qr-code-scan id="qr-code-scan-modal" (modalChange)="modalChange($event)"></app-qr-code-scan>
+
+<!-- ------------------------------------- print template -------------------------------------- -->
+<app-packing-scan-export #printTemplate></app-packing-scan-export>

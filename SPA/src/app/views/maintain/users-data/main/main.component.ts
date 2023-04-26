@@ -55,12 +55,12 @@ export class MainComponent extends InjectBase implements OnInit {
   getData() {
     this.userService.getData(this.params, this.pagination).subscribe({
       next: (res) => {
-        console.log(this.params);
         this.data = res.result;
         this.pagination = res.pagination;
       },
       error: () => {
-        alert(' Error ');
+        this.spinnerService.hide();
+        this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
       },
     });
   }
@@ -100,15 +100,13 @@ export class MainComponent extends InjectBase implements OnInit {
     this.spinnerService.show();
     this.userService.getAuthorizeByUser(account).subscribe({
       next: (result) => {
-        console.log(result)
         this.userRole = result;
         console.log(`quyen user ${this.userRole.account}`, this.userRole);
-
         this.spinnerService.hide();
       },
-      error: (err) => {
+      error: () => {
         this.spinnerService.hide();
-        console.log(err);
+        this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
       },
       complete: () => {
         this.spinnerService.hide();
@@ -120,17 +118,16 @@ export class MainComponent extends InjectBase implements OnInit {
   {
     this.userService.updateAuthorizeByUser(this.userRole).subscribe({
       next: res => {
-        console.log(res)
         this.closeModal();
       },
-      error: (err) =>{
-        console.log('save not successfully', err)
+      error: () =>{
+        this.spinnerService.hide();
+        this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
       }
     })
   }
   openModal(user: Users, template: TemplateRef<any>) {
     this.getAuthorizeByAccount(user.account);
-    console.log(user);
     // gọi lên API lấy danh sách quyền của User đó bao gồm những tin:
     this.userAuthorize.account = user.account;
     this.userAuthorize.name = user.name;

@@ -2,28 +2,28 @@
   <div class="card-header">
     <div class="row">
       <div class="col-md-10">
-        <h5>Standard Packing Quantity Setting </h5>
+        <h5>{{'Maintain.StandardPackingQuantitySetting.Title' | translate }}</h5>
       </div>
       <div class="col-md-2"></div>
     </div>
     <div class="row">
       <div class="col-md-4 ">
-        <span class="badge badge-warning">Packing No </span>
+        <span class="badge badge-warning">{{'Maintain.StandardPackingQuantitySetting.PackingNo' | translate }}</span>
         <input type="text" name="packageNo" [(ngModel)]="params.packageNo" class="form-control">
       </div>
       <div class="col-md-4">
-        <span class="badge badge-warning">Packing Quantity </span>
+        <span class="badge badge-warning">{{'Maintain.StandardPackingQuantitySetting.PackingQuantity' | translate }} </span>
         <input type="text" name="packageQty" [(ngModel)]="params.packageQty" class="form-control">
       </div>
       <div class="row mt-3">
       <div class="col md-2">
-        <button class=" btn btn-primary " (click)="search()"><i class="{{iconButton.SEARCH}}"></i> Search </button>
+        <button class=" btn btn-primary " (click)="search()"><i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' | translate }} </button>
       </div>
       <div class="col md-2">
-        <button class=" btn btn-success" (click)="add()"><i class="{{iconButton.ADD}}"></i> Add </button>
+        <button class=" btn btn-success" (click)="add()"><i class="{{iconButton.ADD}}"></i> {{'System.Action.AddNew' | translate }}  </button>
       </div>
       <div class="col md-2">
-        <button class=" btn btn-danger" (click)="clear()"><i class="{{iconButton.DELETE}}"></i> clear </button>
+        <button class=" btn btn-danger" (click)="clear()"><i class="{{iconButton.DELETE}}"></i> {{'System.Action.Clear' | translate }} </button>
       </div>
     </div>
     </div>
@@ -32,8 +32,8 @@
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col"  class="text-center">Packing No</th>
-        <th scope="col" class="text-center">Packing Quantity </th>
+        <th scope="col"  class="text-center">{{'Maintain.StandardPackingQuantitySetting.PackingNo' | translate }}</th>
+        <th scope="col" class="text-center">{{'Maintain.StandardPackingQuantitySetting.PackingQuantity' | translate }} </th>
       </tr>
     </thead>
     <tbody>

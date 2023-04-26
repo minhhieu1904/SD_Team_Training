@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-10">
-                <h5>4.4 QRCode WIP Report</h5>
+                <h5>4.4 {{'Report.QRCodeWIPReport.Title' | translate }}</h5>
             </div>
             <div class="col-md-2"></div>
         </div>
@@ -13,27 +13,27 @@
             <!--  dòng 1 -->
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                    <span class="badge badge-warning">Mold Number</span>
+                    <span class="badge badge-warning">{{'Report.QRCodeWIPReport.MoldNumber' | translate }}</span>
 
-                    <input placeholder="Code of Customer..." type="text" name="Code" class="form-control"
+                    <input placeholder="{{'Report.QRCodeWIPReport.EnterMoldNumber' | translate }}" type="text" name="Code" class="form-control"
                         [(ngModel)]="param.rmodel">
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                    <span class="badge badge-warning">Tolcls</span>
+                    <span class="badge badge-warning">{{'Report.QRCodeWIPReport.Tolcls' | translate }}</span>
 
-                    <input placeholder="Code of Customer..." type="text" name="Code" class="form-control"
+                    <input placeholder="{{'Report.QRCodeWIPReport.EnterTolclsNumber' | translate }}" type="text" name="Code" class="form-control"
                         [(ngModel)]="param.tolcls">
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <span class="badge badge-warning">Production_Date</span>
+                    <span class="badge badge-warning">{{'Report.QRCodeWIPReport.mdat' | translate }}</span>
                     <div class="input-group">
-                        <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig"
+                        <input type="text" placeholder="{{'Report.QRCodeWIPReport.SelectStartSdat' | translate }}" name="date_start" [bsConfig]="bsConfig"
                             class="form-control" [maxDate]="dateTo_mdat" [(ngModel)]="dateFrom_mdat" bsDatepicker>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
                         </div>
                         <label> &nbsp;</label>
-                        <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig"
+                        <input type="text" placeholder="{{'Report.QRCodeWIPReport.SelectEndSdat' | translate }}" name="date_end" [bsConfig]="bsConfig"
                             class="form-control" [minDate]="dateFrom_mdat" [(ngModel)]="dateTo_mdat" bsDatepicker>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
@@ -43,11 +43,11 @@
                 <!--  dòng 4 -->
                 <div class="mt-3 col-md-12">
                     <button class="btn btn-success mr-2 " (click)="search()">
-                        <i class="{{iconButton.SEARCH}}"></i> Search </button>
+                        <i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' | translate }}  </button>
                     <button class="btn btn-danger mr-2 " (click)="clear()">
-                        <i class="{{iconButton.CLEAR}}"></i> Clear </button>
+                        <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' | translate }} </button>
                     <button class="btn btn-primary mr-2 " (click)="export()">
-                        <i class="{{iconButton.EXCEL}}"></i> Export Excel </button>
+                        <i class="{{iconButton.EXCEL}}"></i> {{'System.Action.ExportExcel' | translate }}  </button>
                 </div>
             </div>
         </div>
@@ -61,26 +61,26 @@
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">yymmdd</th>
-                            <th class="text-center" scope="col">Manuf</th>
-                            <th class="text-center" scope="col">Type</th>
-                            <th class="text-center" scope="col">Plan No.</th>
-                            <th class="text-center" scope="col">PO NO.</th>
-                            <th class="text-center" scope="col">Print No.</th>
-                            <th class="text-center" scope="col">wksh NO.</th>
-                            <th class="text-center" scope="col">QRCodeID</th>
-                            <th class="text-center" scope="col">Mold NO.</th>
-                            <th class="text-center" scope="col">Tool NO.</th>
-                            <th class="text-center" scope="col">Bitnbr</th>
-                            <th class="text-center" scope="col">ETA</th>
-                            <th class="text-center" scope="col">empno</th>
-                            <th class="text-center" scope="col">Serial</th>
-                            <th class="text-center" scope="col">Size</th>
-                            <th class="text-center" scope="col">QTY</th>
-                            <th class="text-center" scope="col">Create empno</th>
-                            <th class="text-center" scope="col">Create Datetime</th>
-                            <th class="text-center" scope="col">SortPairs</th>
-                            <th class="text-center" scope="col">StoragePairs</th>
-                        </tr>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Manuf' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Type' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.PlanNo' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.PONO' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.prtno' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.wkshno' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.QRCodeID' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.MoldNO' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.ToolNO' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Bitnbr' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.ETA' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.empno' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Serial' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.Size' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.QTY' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.CreateEmpno' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.CreateDatetime' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.SortPairs' | translate }}</th>
+                            <th class="text-center" scope="col">{{'Report.QRCodeWIPReport.StoagePairs' | translate }}</th>
+                          </tr>
                     </thead>
                     <tbody *ngIf="data.length == 0">
                         <tr>

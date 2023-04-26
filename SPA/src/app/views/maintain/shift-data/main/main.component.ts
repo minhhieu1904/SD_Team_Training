@@ -9,6 +9,7 @@ import { Shift_dataService } from '@services/maintain/shift_data.service';
 import { Pagination } from '@utilities/pagination-utility';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { IconButton } from '@constants/common.constants';
+import { LangConstants } from '@constants/lang-constant';
 
 @Component({
   selector: 'app-main',
@@ -41,11 +42,14 @@ export class MainComponent extends InjectBase implements OnInit {
     // theo thứ tự truyền vào
     this.service.getData(this.params, this.pagination).subscribe({
       next: (res) => {
-        console.log(res);
         this.data = res.result;
         this.pagination = res.pagination;
       },
-      error: () => {},
+      error: () => {
+        this.spinnerService.hide();
+        this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error')
+       );
+      },
     });
   }
 

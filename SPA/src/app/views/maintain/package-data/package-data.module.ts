@@ -8,6 +8,7 @@ import { EditPackageDataComponent } from './edit-package-data/edit-package-data.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -23,6 +24,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     RouterModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
+    TranslateModule,
+
     PackageDataRoutingModule
   ]
 })

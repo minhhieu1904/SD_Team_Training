@@ -1,6 +1,6 @@
 import { AuthService } from '@services/auth/auth.service';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
-import { UserLoginParam, UserparamLogin } from '@models/auth/application-user';
+import { UserparamLogin } from '@models/auth/application-user';
 import { Component, OnInit } from '@angular/core';
 import { InjectBase } from '@utilities/inject-base-app';
 

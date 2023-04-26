@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportWkshSumService } from '@services/Report/Report-wksh-Sum.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
+import { LangConstants } from '@constants/lang-constant';
 
 @Component({
   selector: 'app-main',
@@ -55,7 +56,9 @@ export class MainComponent extends InjectBase implements OnInit {
   iconButton = IconButton;
   constructor(private service: ReportWkshSumService) {
     super();
+
   }
+  lang: string = localStorage.getItem(LangConstants.LANG) != null ? localStorage.getItem(LangConstants.LANG):'en'
 
   ngOnInit(): void {
     this.search();
@@ -148,10 +151,8 @@ export class MainComponent extends InjectBase implements OnInit {
           this.functionUtility.exportExcel(result, 'Report wksh Sum');
         },
         error: () => {
-          this.snotifyService.error(
-            MessageConstants.UN_KNOWN_ERROR,
-            CaptionConstants.ERROR
-          );
+          this.spinnerService.hide();
+          this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
         },
       })
       .add(() => this.spinnerService.hide());

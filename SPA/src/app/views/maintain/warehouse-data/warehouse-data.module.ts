@@ -8,6 +8,7 @@ import { EditWarehouseDataComponent } from './edit-warehouse-data/edit-warehouse
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     RouterModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
+    TranslateModule,
+
     WarehouseDataRoutingModule
   ]
 })

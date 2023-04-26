@@ -34,14 +34,16 @@ import { Package_dataService } from '@services/maintain/package_data.service';
     save()
     {
       this.service.upDate(this.params).subscribe({
-        next: res => {
-          console.log(res)
-          alert('save  successfully')
+        next: () => {
+          this.spinnerService.hide();
+          this.snotifyService.success(this.translateService.instant('System.Message.UpdateOKMsg'), this.translateService.instant('System.Caption.Success'));
           this.router.navigate(['maintain/standard-packing-quantity-setting']);
         },
         error: () =>{
-          alert('update not successfully')
-        }
+          this.spinnerService.hide();
+          this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error')
+         );
+         }
       })
     }
     back(){

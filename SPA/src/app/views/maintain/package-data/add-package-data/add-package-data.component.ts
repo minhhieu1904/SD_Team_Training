@@ -26,12 +26,14 @@ import { MS_PackageParam } from '@models/maintain/package';
     save()
     {
       this.service.add(this.params).subscribe({
-        next: res => {
-          console.log(res)
+        next: () => {
+          this.spinnerService.hide();
+          this.snotifyService.success(this.translateService.instant('System.Message.UpdateOKMsg'), this.translateService.instant('System.Caption.Success'));
           this.router.navigate(['maintain/standard-packing-quantity-setting']);
         },
         error: () =>{
-          alert('save not successfully')
+          this.spinnerService.hide();
+          this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
         }
       })
     }

@@ -5,6 +5,7 @@ import { ReportRoutingModule } from './report-routing.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -17,6 +18,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     FormsModule,
     ReportRoutingModule,
     PaginationModule.forRoot(),
+    TranslateModule
+
   ]
 })
 export class ReportModule { }

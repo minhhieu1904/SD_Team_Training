@@ -2,28 +2,28 @@
   <div class="card-header">
     <div class="row ">
       <div class="col-md-10">
-        <h5>Authorization Setting </h5>
+        <h5>{{'Maintain.AuthorizationSetting.Title' | translate }} </h5>
       </div>
       <div class="col-md-2"></div>
     </div>
     <div class="row mt-4">
       <div class="col-md-4 ">
-        <span class="badge badge-warning">User Account </span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Account' | translate }}</span>
         <input type="text" name="account" [(ngModel)]="params.account" class="form-control">
       </div>
       <div class="col-md-4">
-        <span class="badge badge-warning">user Name </span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.UserName' | translate }} </span>
         <input type="text" name="name" [(ngModel)]="params.name" class="form-control">
       </div>
       <div class="row mt-3  ">
       <div class="col md-4">
-        <button class=" btn btn-primary " (click)="search()"><i class="{{iconButton.SEARCH}}"></i> Search </button>
+        <button class=" btn btn-primary " (click)="search()"><i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' | translate }} </button>
       </div>
       <div class="col md-4">
-        <button class=" btn btn-success" (click)="add()"><i class="{{iconButton.ADD}}"></i> Add </button>
+        <button class=" btn btn-success" (click)="add()"><i class="{{iconButton.ADD}}"></i> {{'System.Action.AddNew' | translate }} </button>
       </div>
       <div class="col md-4">
-        <button class=" btn btn-danger" (click)="clear()"><i class="{{iconButton.DELETE}}"></i> clear </button>
+        <button class=" btn btn-danger" (click)="clear()"><i class="{{iconButton.DELETE}}"></i> {{'System.Action.Clear' | translate }} </button>
       </div>
     </div>
     </div>
@@ -35,11 +35,11 @@
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col" class="text-center"> User Account</th>
-          <th scope="col" class="text-center">User Name </th>
-          <th scope="col" class="text-center">User Password </th>
-          <th scope="col" class="text-center">User Email </th>
-          <th scope="col" class="text-center">User Active </th>
+          <th scope="col" class="text-center"> {{'Maintain.AuthorizationSetting.Account' | translate }}</th>
+          <th scope="col" class="text-center">{{'Maintain.AuthorizationSetting.UserName' | translate }} </th>
+          <th scope="col" class="text-center">{{'Maintain.AuthorizationSetting.Password' | translate }} </th>
+          <th scope="col" class="text-center">{{'Maintain.AuthorizationSetting.Email' | translate }} </th>
+          <th scope="col" class="text-center">{{'Maintain.AuthorizationSetting.Active' | translate }} </th>
         </tr>
       </thead>
       <tbody>
@@ -72,7 +72,7 @@
 
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Authorization</h4>
+    <h4 class="modal-title pull-left">{{'Maintain.AuthorizationSetting.Authorization' | translate }}</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
@@ -80,11 +80,11 @@
   <div class="modal-body">
     <div class="row">
       <div class="col-md-6  ">
-        <span class="badge badge-warning">User Account </span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Account' | translate }}</span>
         <input type="text" name="account" [(ngModel)]="userAuthorize.account" class="form-control" readonly>
       </div>
       <div class="col-md-6">
-        <span class="badge badge-warning">user Name </span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.UserName' | translate }} </span>
         <input type="text" name="name" [(ngModel)]="userAuthorize.name" class="form-control" readonly>
       </div>
 

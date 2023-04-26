@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { AddDepartmentDataComponent } from './add-department-data/add-department-data.component';
 import { EditDepartmentDataComponent } from './edit-department-data/edit-department-data.component';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
+    TranslateModule,
     DepartmentDataRoutingModule
   ]
 })

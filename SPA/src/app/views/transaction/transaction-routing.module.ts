@@ -11,7 +11,16 @@ const routes: Routes = [ {
   data: {
       role: getInfoMenu('2.1')?.unique
   }
-},];
+}, {
+  path: 'packing-scan',
+  canLoad: [AppGuard],
+  loadChildren: () => import('./packing-scan/packing-scan.module')
+    .then((m) => m.PackingScanModule),
+  data: {
+      role: getInfoMenu('2.3')?.unique
+  }
+},
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

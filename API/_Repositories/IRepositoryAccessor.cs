@@ -20,6 +20,7 @@ namespace API._Repositories
         IReport_Sort_SumRepository ReportSortSum{get;}
         IReport_Storage_SumParamRepository ReportStorageSum{get;}
         IMS_QR_LabelRepository MS_QR_Label{get;}
+        IMS_QR_CycleRepository MS_QR_Cycle{get;}
 
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();

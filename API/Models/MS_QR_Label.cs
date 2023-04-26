@@ -18,15 +18,11 @@ namespace API.Models
         [Required]
         [StringLength(10)]
         public string PurNo { get; set; }
-        /// <summary>
-        /// &#27966;&#24037;&#21934;&#34399;
-        /// </summary>
+
         [Required]
         [StringLength(10)]
         public string wkshno { get; set; }
-        /// <summary>
-        /// &#21015;&#21360;&#21934;&#34399;
-        /// </summary>
+
         [Required]
         [StringLength(10)]
         public string prtno { get; set; }

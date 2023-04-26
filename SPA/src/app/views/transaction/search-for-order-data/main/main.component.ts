@@ -1,8 +1,9 @@
+import { LangConstants } from './../../../../_core/constants/lang-constant';
 import { CompareQtyResult } from '@models/Transaction/SearchForOrderData/Search_For_Order_Data';
 import { OperationResult } from '@utilities/operation-result';
 import { DestroyService } from '@services/common/destroy.service';
 import { IconButton } from '@constants/common.constants';
-import { QrcodePrinterComponent } from './../../../qrcode-printer/qrcode-printer.component';
+import { QrcodePrinterComponent } from '../../../common/qrcode-printer/qrcode-printer.component';
 import { KeyValueUtility } from '@utilities/key-value-utility';
 import { Pagination } from '@utilities/pagination-utility';
 import { SearchForOrderDataViewModel, OrderDataPrint, SearchForOrderDataParam, OrderPrintResult } from '@models/Transaction/SearchForOrderData/Search_For_Order_Data';
@@ -57,13 +58,13 @@ export class MainComponent extends InjectBase implements OnInit {
     private searchForOrderDataService: SearchForOrderDataService,
   ) {
     super();
-    this.translateService.setDefaultLang('en');
 
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
-   this.translateService.use('en');
   }
+  lang: string = localStorage.getItem(LangConstants.LANG) != null ? localStorage.getItem(LangConstants.LANG):'en'
 
   ngOnInit(): void {
+    this.translateService.onLangChange.subscribe(event => {
+      this.lang = event.lang}),
     this.listStatus.unshift({
       key: 'All',
       value: this.translateService.get('System.SelectAll'),
@@ -249,8 +250,6 @@ export class MainComponent extends InjectBase implements OnInit {
       this.listDataChecked[0].kind == '4' &&
       this.listDataChecked[0].remark != null
     ) {
-      console.log("a");
-
       let dataChecked: SearchForOrderDataViewModel = this.listDataChecked[0];
       this.orderDataPrint.is_Remark = true;
       // Check empty value Empno
@@ -448,7 +447,7 @@ export class MainComponent extends InjectBase implements OnInit {
                   0
                 );
                 element.available_quantity_for_Print =
-                  element.wkshqty - element.pqty;
+                element.wkshqty - element.pqty;
                 element.updated_by = data[0].update_by;
                 element.update_time = data[0].update_time;
               }

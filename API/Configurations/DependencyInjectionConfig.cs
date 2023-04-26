@@ -2,9 +2,11 @@
 using API._Repositories;
 using API._Services.Interfaces;
 using API._Services.Interfaces.Report;
+using API._Services.Interfaces.Transaction.PackingScan;
 using API._Services.Interfaces.Transaction.SearchForOderData;
 using API._Services.Services;
 using API._Services.Services.Report;
+using API._Services.Services.Transaction.PackingScan;
 using API._Services.Services.Transaction.SearchForOrderData;
 using SD3_API.Helpers.Utilities;
 
@@ -31,6 +33,7 @@ namespace API.Configurations
             services.AddScoped<IReport_Storage_Sumservice, Report_Storage_Sumservice>();
             services.AddScoped<IReport_QRCODE_WIPservices, Report_QRCODE_WIPservices>();
             services.AddScoped<ISearchForOrderDataService, SearchForOrderDataService>();
+            services.AddScoped<IPackingScanService, PackingScanService>();
 
             services.AddScoped<IFunctionUtility, FunctionUtility>();
 

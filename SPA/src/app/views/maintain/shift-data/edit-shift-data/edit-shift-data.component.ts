@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IconButton } from '@constants/common.constants';
+import { LangConstants } from '@constants/lang-constant';
 import { MS_Shift } from '@models/maintain/shift';
 import { Shift_dataService } from '@services/maintain/shift_data.service';
 import { InjectBase } from '@utilities/inject-base-app';
@@ -26,14 +27,6 @@ export class EditShiftDataComponent extends InjectBase  implements OnInit {
         this.params.shiftName = res.shiftName
       }
     })
-
-    // let shift='';
-    // let manuf= '';
-    // this.route.params.subscribe(params => {
-    //   manuf =params['manuf'];
-    //   shift =params['shift'];
-    //   this.getMsShift(manuf,shift)
-    // });
   }
 
   save() {
@@ -43,8 +36,9 @@ export class EditShiftDataComponent extends InjectBase  implements OnInit {
         this.router.navigate(['/shift-data-maintenance']);
       },
       error: () => {
-        alert('Save not successfully')
-      }
+        this.spinnerService.hide();
+        this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))}
+
     })
   }
   back(){

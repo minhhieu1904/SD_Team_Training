@@ -14,4 +14,6 @@ export abstract class InjectBase {
     protected functionUtility = inject(FunctionUtility);
     protected translateService = inject(TranslateService);
 
+
+
 }

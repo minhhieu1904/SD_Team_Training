@@ -1,3 +1,4 @@
+import { LangConstants } from './../../_core/constants/lang-constant';
 import { Nav } from './../../_nav';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { INavData } from '@coreui/angular';
@@ -8,7 +9,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { NgSnotifyService } from '@services/common/ng-snotify.service';
 import { Role } from '@models/maintain/roleUsers';
 import { CaptionConstants } from '@constants/message.enum';
-import { LangConstants } from '@constants/lang-constant';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,19 +25,24 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
     JSON.parse(localStorage.getItem(LocalStorageConstants.USER)) ?? '{}';
   roless: Role[] =
     JSON.parse(localStorage.getItem(LocalStorageConstants.ROLES)) ?? '[]';
-    isAuthChangePassword: boolean = false;
+  langConstants: typeof LangConstants = LangConstants;
+
   constructor(
     private snotifyService: NgSnotifyService,
     private authService: AuthService,
-    private navItem: Nav
-      ) {}
+    private navItem: Nav,
+    private translate: TranslateService
+    ) {}
 
   async ngOnInit() {
     this.navItems = this.navItem.getNav();
     if (!this.lang)
     localStorage.setItem(LocalStorageConstants.LANG, LangConstants.VI);
   }
-
+  switchLang(lang: string){
+    this.translate.use(lang);
+    localStorage.setItem(LangConstants.LANG,lang);
+  }
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }

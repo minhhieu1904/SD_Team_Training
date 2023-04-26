@@ -7,6 +7,7 @@ import { ReportQrcodeWipRoutingModule } from './report-qrcode-wip-routing.module
 import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     FormsModule,
     BsDatepickerModule,
     NgSelectModule,
+    TranslateModule,
     ReportQrcodeWipRoutingModule
   ]
 })

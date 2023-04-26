@@ -2,20 +2,20 @@
 <div class="card ">
   <div class="card-header">
 
-    <h5>Shift Data Maintain - add new</h5>
+    <h5>{{'Maintain.ShiftDataMaintenance.TitleEdit' | translate }}</h5>
     <div class="col md-4 text-right">
-      <button class="btn btn-primary" (click)="back()">Back </button>
+      <button class="btn btn-primary" (click)="back()">{{'System.Action.Back' | translate }}  </button>
     </div>
   </div>
   <div class="card-body">
     <div class="row">
      <!--  <form #form="ngForm"> -->
       <div class="col-md-2">
-        <span class="badge badge-warning">Shift </span>
+        <span class="badge badge-warning">{{'Maintain.ShiftDataMaintenance.Shift' | translate }}  </span>
         <input type="text" name="shift" [(ngModel)]="params.shift" class="form-control" readonly >
       </div>
       <div class="col-md-2">
-        <span class="badge badge-warning">Name Of Shift </span>
+        <span class="badge badge-warning">{{'Maintain.ShiftDataMaintenance.ShiftName' | translate }} </span>
         <input type="text" name="shiftName" [(ngModel)]="params.shiftName" class="form-control">
       </div>
     <!-- </form> -->
@@ -23,7 +23,7 @@
   </div>
   <div class="card-footer text-muted">
     <div class="col md-4">
-      <button class="btn btn-success" (click)="save()"><i class="{{iconButton.SAVE}}"> Save</i> </button>
+      <button class="btn btn-success" (click)="save()"><i class="{{iconButton.SAVE}}">{{'System.Action.Save' | translate }}</i> </button>
     </div>
   </div>
 </div>

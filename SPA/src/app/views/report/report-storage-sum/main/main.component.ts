@@ -8,6 +8,7 @@ import { ReportStorageSumService } from '@services/Report/Report-Storage-Sum.ser
 import { Report_Storage_SumParam,Brand,StorageSumDeltailDTOParam,Storage_sumDTO } from '@models/report/storage-Sum';
 import { KeyValuePair } from '@utilities/key-value-pair';
 import { Component, OnInit } from '@angular/core';
+import { LangConstants } from '@constants/lang-constant';
 
 @Component({
   selector: 'app-main',
@@ -22,7 +23,10 @@ export class MainComponent  extends InjectBase implements OnInit {
   ischeckItem: boolean = false;
   dataChecked: Report_Storage_SumParam;
 
-  constructor(private service : ReportStorageSumService) {super(); }
+  constructor(private service : ReportStorageSumService) {super();
+
+  }
+  lang: string = localStorage.getItem(LangConstants.LANG) != null ? localStorage.getItem(LangConstants.LANG):'en'
 
   ngOnInit(): void {
     this.search();
@@ -156,10 +160,9 @@ export() {
         this.functionUtility.exportExcel(result, 'Report Storage Sum');
       },
       error: () => {
-        this.snotifyService.error(
-          MessageConstants.UN_KNOWN_ERROR,
-          CaptionConstants.ERROR
-        );
+        this.spinnerService.hide();
+        this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
+
       },
     })
     .add(() => this.spinnerService.hide());
@@ -179,10 +182,8 @@ this.service
     },
     error: () => {
       this.spinnerService.hide();
-      this.snotifyService.error(
-        MessageConstants.UN_KNOWN_ERROR,
-        CaptionConstants.ERROR
-      );
+      this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
+
     },
   })
 }

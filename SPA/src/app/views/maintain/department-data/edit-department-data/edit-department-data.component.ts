@@ -33,13 +33,14 @@ export class EditDepartmentDataComponent extends InjectBase  implements OnInit {
   save()
   {
     this.service.upDate(this.params).subscribe({
-      next: res => {
-        console.log(res)
-        alert('save  successfully')
+      next: () => {
+        this.spinnerService.hide();
+        this.snotifyService.success(this.translateService.instant('System.Message.UpdateOKMsg'), this.translateService.instant('System.Caption.Success'));
         this.router.navigate(['maintain/department-data-maintenance']);
       },
       error: () =>{
-        alert('save not successfully')
+        this.spinnerService.hide();
+        this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
       }
     })
   }

@@ -40,7 +40,6 @@ export const routes: Routes = [
           .then(m => m.ReportModule),
       }
     ]
-
   },
   {
     path: 'login',
