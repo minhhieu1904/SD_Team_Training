@@ -6,6 +6,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ReportWkshSumRoutingModule } from './report-wksh-sum-routing.module';
 import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     BsDatepickerModule,
     NgSelectModule,
+    TranslateModule,
     ReportWkshSumRoutingModule
   ]
 })

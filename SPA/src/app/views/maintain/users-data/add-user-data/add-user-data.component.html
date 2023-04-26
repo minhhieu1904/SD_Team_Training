@@ -1,31 +1,31 @@
 <div class="card ">
   <div class="card-header">
 
-    <h5> Authorization Setting - add new</h5>
+    <h5> {{'Maintain.AuthorizationSetting.TitleAdNew' | translate }}</h5>
     <div class="col md-4 text-right">
-      <button class="btn btn-primary" (click)="back()">Back </button>
+      <button class="btn btn-primary" (click)="back()">{{'System.Action.Back' | translate }}  </button>
     </div>
   </div>
   <div class="card-body">
     <div class="row ">
       <div class="col-md-2">
-        <span class="badge badge-warning">User Account </span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Account' | translate }}</span>
         <input type="text" name="account" [(ngModel)]="params.account" class="form-control">
       </div>
       <div class="col-md-2">
-        <span class="badge badge-warning">password</span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Password' | translate }}</span>
         <input type="text" name="password" [(ngModel)]="params.password" class="form-control">
       </div>
       <div class="col-md-2">
-        <span class="badge badge-warning">User Name </span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.UserName' | translate }}</span>
         <input type="text" name="name" [(ngModel)]="params.name" class="form-control">
       </div>
       <div class="col-md-2 ">
-        <span class="badge badge-warning">Email </span>
+        <span class="badge badge-warning">{{'Maintain.AuthorizationSetting.Email' | translate }}</span>
         <input type="text" name="email" [(ngModel)]="params.email" class="form-control">
       </div>
       <div class="col-md-2">
-        <label class="badge badge-warning">Active</label>
+        <label class="badge badge-warning">{{'Maintain.AuthorizationSetting.Active' | translate }}</label>
         <ng-select [(ngModel)]="params.is_active" name="is_active">
           <ng-option [value]="true">True</ng-option>
           <ng-option [value]="false">False</ng-option>
@@ -35,7 +35,7 @@
   </div>
   <div class="card-footer text-muted">
     <div class="col md-4">
-      <button class="btn btn-success" (click)="save()"><i class="{{iconButton.SAVE}}"> Save</i> </button>
+      <button class="btn btn-success" (click)="save()"><i class="{{iconButton.SAVE}}"> {{'System.Action.Save' | translate }} </i> </button>
     </div>
   </div>
 </div>

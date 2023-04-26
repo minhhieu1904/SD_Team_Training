@@ -212,7 +212,22 @@ export class FunctionUtility {
     defineLocale('lang', dateLangs[country]);
     localeService.use('lang');
   }
+  playAudioSuccess() {
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/correct-sound.wav";
+    audio.load();
+    audio.play();
+  }
 
+  /**
+   * Audio play successful
+   */
+  playAudioFail() {
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/wrong-sound.wav";
+    audio.load();
+    audio.play();
+  }
 }
 export function getInfoMenu(str: string): RoleInformation {
   const roles: RoleInformation[] = JSON.parse(localStorage.getItem(LocalStorageConstants.ROLE_ALL));

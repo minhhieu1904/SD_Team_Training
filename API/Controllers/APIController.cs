@@ -9,6 +9,6 @@ namespace API.Controllers
     [Authorize]
     public class APIController : ControllerBase
     {
-        protected string userName => (HttpContext.User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Name).Value;
+        protected string userName => (HttpContext.User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier).Value;
     }
 }

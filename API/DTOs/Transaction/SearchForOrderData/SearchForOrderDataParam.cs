@@ -7,7 +7,6 @@ namespace API.DTOs.Transaction.SearchForOrderData
 {
     public class SearchForOrderDataParam
     {
-
         public string brandname { get; set; }
         public string manno { get; set; }
         public string size { get; set; }

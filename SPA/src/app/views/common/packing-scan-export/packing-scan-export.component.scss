@@ -1,0 +1,16 @@
+.td-border {
+    border: 1px solid #000;
+}
+
+@media print {
+    @page {
+        size: A5 landscape;
+    }
+
+    .table {
+        display: table !important;
+        margin: 0 auto !important;
+        width: 90%;
+        page-break-before: always !important;
+    }
+}

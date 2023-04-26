@@ -362,7 +362,9 @@
   },
   "Maintain": {
     "DepartmentDataMaintenance": {
-      "DepartmentDataMaintenance": "Department Data Maintenance",
+      "Title": "Department Data Maintenance",
+      "TitleAdNew": "Department Data Maintenance AddNew",
+      "TitleEdit": "Department Data Maintenance Edit",
       "Department": "Department",
       "NameOfDepartment": "Name of Department",
       "Action": "Action",
@@ -370,7 +372,9 @@
       "PlaceHolderNameOFDepartment": "Name of Department"
     },
     "StandardPackingQuantitySetting": {
-      "StandardPackingQuantitySetting": "Standard Packing Quantity Setting",
+      "Title": "Standard Packing Quantity Setting",
+      "TitleAdNew": "Standard Packing Quantity Setting AddNew",
+      "TitleEdit": "Standard Packing Quantity Setting Edit",
       "PackingNo": "Packing No.",
       "PackingQuantity": "Packing Quantity",
       "Action": "Action",
@@ -379,34 +383,42 @@
     },
     "ShiftDataMaintenance": {
       "Title": "Shift Data Maintenance",
+      "TitleAdNew": "Shift Data Maintenance AddNew",
+      "TitleEdit": "Shift Data Maintenance Edit",
       "Shift": "Shift",
       "ShiftName": "Shift Name",
       "Action": "Action"
     },
     "WarehouseBasicDataMaintenance": {
       "Title": "Warehouse Basic Data Maintenance",
+      "TitleAdNew": "Warehouse Basic Data Maintenance AddNew",
+      "TitleEdit": "Warehouse Basic Data Maintenance Edit",
       "KodeOfWarehouse": "Kode Of Warehouse",
       "NameOfWarehouse": "Name Of Warehouse",
       "Action": "Action"
     },
     "AuthorizationSetting": {
       "Title": "Authorization Setting",
+      "TitleAdNew": "Authorization Setting AddNew",
+      "TitleEdit": "Authorization Setting Edit",
       "Account": "User Account",
       "Password": "Password",
       "UserName": "User Name",
       "Email": "Email",
       "Active": "Active",
+      "Authorization": "Authorization",
+
       "Action": "Action"
     }
   },
   "Report": {
     "SortSumReport": {
-      "SortSumReport": "Sort Sum Report",
+      "Title": "Sort Sum Report",
       "DateKind": "Date Kind",
       "Date": "Date",
       "Crday": "crday",
       "Sdat": "Create day",
-      "Mdat": "mdat",
+      "Mdat": "Production Date",
       "Brand": "Brand",
       "CodeOfCustomer": "Code Of Customer",
       "NameOfCustomer": "Name of Customer",
@@ -429,16 +441,22 @@
       "DifferencesQty": "Differences Qty",
       "CancelPritingQuantity": "Cancel Priting Quantity",
       "Eta": "Confirmed Delivery Date",
+      "SelectStartSdat": "Select from...",
+      "SelectEndSdat": "Select to...",
+      "SelectStartEta": "Select from date eta...",
+      "SelectEndEta": "Select to date eta...",
       "EtaFrom": "Eta From",
       "EtaTo": "Eta To"
     },
     "StorageSumReport": {
+      "Title": "Storage Sum Report",
+      "DateKind": "Date kind",
       "Startsdat": "Start sdat",
       "Endsdat": "End sdat",
       "Date": "Date",
       "Endmdat": "End mdat",
       "Sdat": "Create day",
-      "Mdat": "mdat",
+      "Mdat": "Production Date",
       "Kind": "Kind",
       "Brand": "Brand",
       "EtaFrom": "Confirmed Delivery Date",
@@ -461,7 +479,6 @@
       "EnterSize": "Enter Size...",
       "SelectStartEta": "Select from date eta...",
       "SelectEndEta": "Select to date eta...",
-      "DateKind": "Date kind",
       "CodeOfCustomer": "Code Of Customer",
       "NameOfCustomer": "Name of Customer",
       "PlanningNo": "Planning No",
@@ -480,8 +497,8 @@
       "CancelPritingQuantity": "Cancel Priting Quantity"
     },
     "WkshSumReport": {
-      "Title": "4.1 wksh Sum Report",
-      "mdat": "mdat",
+      "Title": " wksh Sum Report",
+      "mdat": "Production Date",
       "CloseStatus": "Close Status",
       "Brand": "Brand",
       "CodeOfCustomer": "Code of Customer",
@@ -503,10 +520,16 @@
       "StorageScanQty": "Storge scan Qty",
       "DifferencesQty": "Differences Qty",
       "CancelPritingQuantity": "Cancel Priting Quantity",
+      "SelectStartSdat": "Select from...",
+      "SelectEndSdat": "Select to...",
+      "SelectStartEta": "Select from date eta...",
+      "SelectEndEta": "Select to date eta...",
       "TypeOfOrder": "Type of Order"
     },
     "QRCodeWIPReport": {
-      "MoldNumber": "MoldNumber",
+      "Title": " QRCode WIP Report",
+      "MoldNumber": "Mold Number",
+      "mdat": "Production Date",
       "Tolcls": "Tolcls",
       "Mdat": "Mdat",
       "Manuf": "Manuf",
@@ -527,7 +550,12 @@
       "CreateEmpno": "Create empno",
       "CreateDatetime": "Create Datetime",
       "SortPairs": "SortPairs",
-      "StoagePairs": "StoagePairs"
+      "StoagePairs": "StoagePairs",
+      "SelectStartSdat": "Select from...",
+      "EnterMoldNumber": "Enter Mold Number...",
+      "EnterTolclsNumber": "Enter Tolcls Number...",
+
+      "SelectEndSdat": "Select to..."
     }
   }
 }

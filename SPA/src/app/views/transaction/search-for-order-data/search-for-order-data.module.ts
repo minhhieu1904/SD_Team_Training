@@ -1,4 +1,4 @@
-import { QrcodePrinterComponent } from './../../qrcode-printer/qrcode-printer.component';
+import { QrcodePrinterComponent } from '../../common/qrcode-printer/qrcode-printer.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgSelectModule } from '@ng-select/ng-select';

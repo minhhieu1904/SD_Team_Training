@@ -17,4 +17,5 @@ namespace API.DTOs.Transaction.SearchForOrderData
         public string update_time { get => printDate; set => value = update_time; }
         public string remark { get; set; }
     }
+    
 }

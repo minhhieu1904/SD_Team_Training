@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportQRCODEWIPService } from '@services/Report/Report-QRCODE-WIP.service';
 import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 import { IconButton } from '@constants/common.constants';
+import { LangConstants } from '@constants/lang-constant';
 
 @Component({
   selector: 'app-main',
@@ -16,6 +17,7 @@ import { IconButton } from '@constants/common.constants';
 export class MainComponent extends InjectBase  implements OnInit {
 
   constructor(private service : ReportQRCODEWIPService) {super(); }
+  lang: string = localStorage.getItem(LangConstants.LANG) != null ? localStorage.getItem(LangConstants.LANG):'en'
 
   ngOnInit(): void {
     this.search();
@@ -91,10 +93,8 @@ export class MainComponent extends InjectBase  implements OnInit {
           this.functionUtility.exportExcel(result, 'Report QRCODE WIP');
         },
         error: () => {
-          this.snotifyService.error(
-            MessageConstants.UN_KNOWN_ERROR,
-            CaptionConstants.ERROR
-          );
+          this.spinnerService.hide();
+          this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
         },
       })
       .add(() => this.spinnerService.hide());

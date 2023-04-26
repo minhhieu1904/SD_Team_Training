@@ -15,7 +15,7 @@ namespace API.Controllers.Transaction.SearchForOrderData
             _service = service;
         }
         [HttpGet("GetDataPagination")]
-         public async Task<IActionResult> GetDataPagination([FromQuery] PaginationParam pagination, [FromQuery] SearchForOrderDataParam param)
+        public async Task<IActionResult> GetDataPagination([FromQuery] PaginationParam pagination, [FromQuery] SearchForOrderDataParam param)
         {
             return Ok(await _service.GetDataPagination(pagination, param));
         }
@@ -28,7 +28,7 @@ namespace API.Controllers.Transaction.SearchForOrderData
             dataPrint.UserName = userName;
             return Ok(await _service.OrderPrint(dataPrint));
         }
-         [HttpGet("GetListBrandname")]
+        [HttpGet("GetListBrandname")]
         public async Task<IActionResult> GetListBrandname() => Ok(await _service.GetListBrandname());
     }
 }

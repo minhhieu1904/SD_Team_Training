@@ -7,6 +7,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { AddShiftDataComponent } from './add-shift-data/add-shift-data.component';
 import { RouterModule } from '@angular/router';
 import { EditShiftDataComponent } from './edit-shift-data/edit-shift-data.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -21,6 +22,8 @@ import { EditShiftDataComponent } from './edit-shift-data/edit-shift-data.compon
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    TranslateModule,
+
     PaginationModule.forRoot(),
     ShiftDataRoutingModule
   ]

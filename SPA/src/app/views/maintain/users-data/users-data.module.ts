@@ -9,6 +9,7 @@ import { AddUserDataComponent } from './add-user-data/add-user-data.component';
 import { EditUserDataComponent } from './edit-user-data/edit-user-data.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     NgSelectModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
+    TranslateModule,
     UsersDataRoutingModule,
     ModalModule.forRoot()
   ]

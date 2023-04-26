@@ -40,14 +40,14 @@ export class MainComponent extends InjectBase implements OnInit {
     // theo thứ tự truyền vào
     this.service.getData(this.params, this.pagination).subscribe({
       next: res => {
-        console.log(this.params)
         this.data = res.result;
         this.pagination = res.pagination;
       },
       error: () => {
-        alert(' Error ')
-    }
+        this.spinnerService.hide();
+        this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))}
     })
+
   }
 
   search(){

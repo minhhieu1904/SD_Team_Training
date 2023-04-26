@@ -400,6 +400,8 @@
   },
   "Report": {
     "SortSumReport": {
+      "Title": "排序总和报表",
+
       "SortSumReport": "整理掃描彙總日報表",
       "DateKind": "日期類型",
       "Date": "日期",
@@ -432,6 +434,8 @@
       "EtaTo": "Eta To"
     },
     "StorageSumReport": {
+      "Title": " 贮存 总结报告",
+
       "Startsdat": "自扫描之日起",
       "Endsdat": "到扫描的那一天",
       "Date": "日期",
@@ -483,7 +487,7 @@
       "Eta": "確認交期"
     },
     "WkshSumReport": {
-      "Title": "4.1 wksh 总结报告",
+      "Title": "wksh 总结报告",
       "mdat": "派工日期",
       "CloseStatus": "訂單結案否",
       "Brand": "品牌",
@@ -509,6 +513,8 @@
       "TypeOfOrder": "訂單類別"
     },
     "QRCodeWIPReport": {
+      "Title": "QRCode 在制品报告",
+
       "MoldNumber": "模具編號",
       "Tolcls": "工具代碼",
       "Mdat": "派工日期",

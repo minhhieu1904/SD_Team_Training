@@ -12,6 +12,7 @@ import {
   SortSumDeltailDTOParam,
 } from '@models/report/sort-Sum';
 import { KeyValuePair } from '@utilities/key-value-pair';
+import { LangConstants } from '@constants/lang-constant';
 
 @Component({
   selector: 'app-main',
@@ -27,6 +28,7 @@ export class MainComponent extends InjectBase implements OnInit {
   dataChecked: Report_Sort_SumParam;
   constructor(private service: ReportSortSumService) {
     super();
+
   }
   brand: Brand[] = [];
 
@@ -35,6 +37,7 @@ export class MainComponent extends InjectBase implements OnInit {
     purno: '',
     size: '',
   };
+  lang: string = localStorage.getItem(LangConstants.LANG) != null ? localStorage.getItem(LangConstants.LANG):'en'
 
   paramsExport: Report_Sort_SumParam = <Report_Sort_SumParam>{};
   data: Report_Sort_SumParam[] = [];
@@ -168,10 +171,9 @@ export class MainComponent extends InjectBase implements OnInit {
           this.functionUtility.exportExcel(result, 'Report Sort Sum');
         },
         error: () => {
-          this.snotifyService.error(
-            MessageConstants.UN_KNOWN_ERROR,
-            CaptionConstants.ERROR
-          );
+          this.spinnerService.hide();
+          this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error')
+         );
         },
       })
       .add(() => this.spinnerService.hide());
@@ -193,10 +195,8 @@ export class MainComponent extends InjectBase implements OnInit {
         },
         error: () => {
           this.spinnerService.hide();
-          this.snotifyService.error(
-            MessageConstants.UN_KNOWN_ERROR,
-            CaptionConstants.ERROR
-          );
+          this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'))
+
         },
       })
   }

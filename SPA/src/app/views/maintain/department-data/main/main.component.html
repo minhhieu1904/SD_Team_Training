@@ -2,28 +2,28 @@
   <div class="card-header">
     <div class="row">
       <div class="col-md-10">
-        <h5>Department Data Maintenance</h5>
+        <h5>{{'Maintain.DepartmentDataMaintenance.Title' | translate }}</h5>
       </div>
       <div class="col-md-2"></div>
     </div>
     <div class="row">
       <div class="col-md-4 ">
-        <span class="badge badge-warning">Department </span>
+        <span class="badge badge-warning">{{'Maintain.DepartmentDataMaintenance.Department' | translate }} </span>
         <input type="text" name="parNo" [(ngModel)]="params.parNo" class="form-control">
       </div>
       <div class="col-md-4">
-        <span class="badge badge-warning">Name Of Department </span>
+        <span class="badge badge-warning">{{'Maintain.DepartmentDataMaintenance.NameOfDepartment' | translate }} </span>
         <input type="text" name="parName" [(ngModel)]="params.parName" class="form-control">
       </div>
       <div class="row mt-4">
       <div class="col md-2">
-        <button class=" btn btn-primary " (click)="search()"><i class="{{iconButton.SEARCH}}"></i> Search </button>
+        <button class=" btn btn-primary " (click)="search()"><i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' | translate }} </button>
       </div>
       <div class="col md-2">
-        <button class=" btn btn-success" (click)="add()"><i class="{{iconButton.ADD}}"></i> Add </button>
+        <button class=" btn btn-success" (click)="add()"><i class="{{iconButton.ADD}}"></i> {{'System.Action.AddNew' | translate }} </button>
       </div>
       <div class="col md-2">
-        <button class=" btn btn-danger" (click)="clear()"><i class="{{iconButton.DELETE}}"></i> clear </button>
+        <button class=" btn btn-danger" (click)="clear()"><i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' | translate }} </button>
       </div>
     </div>
     </div>
@@ -33,8 +33,8 @@
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col"  class="text-center">Department</th>
-            <th scope="col" class="text-center">Name Of Department</th>
+            <th scope="col"  class="text-center">{{'Maintain.DepartmentDataMaintenance.Department' | translate }}</th>
+            <th scope="col" class="text-center">{{'Maintain.DepartmentDataMaintenance.NameOfDepartment' | translate }} </th>
           </tr>
         </thead>
         <tbody>

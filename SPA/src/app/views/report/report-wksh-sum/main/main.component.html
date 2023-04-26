@@ -2,7 +2,7 @@
   <div class="card-header">
     <div class="row">
       <div class="col-md-10">
-        <h5>4.1 Wksh Sum Report</h5>
+        <h5>4.1{{'Report.WkshSumReport.Title' | translate }}</h5>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -11,15 +11,15 @@
     <div class="row border-shadow">
       <div class="row">
         <div class="col-md-3">
-          <span class="badge badge-warning"> Production Date</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.mdat' | translate }} </span>
           <div class="input-group ml-1">
-            <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
+            <input type="text" placeholder="{{'Report.WkshSumReport.SelectStartSdat' | translate }}" name="date_start" [bsConfig]="bsConfig" class="form-control"
               [maxDate]="dateTo_mdat" [(ngModel)]="dateFrom_mdat" bsDatepicker>
             <div class="input-group-append">
               <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
             </div>
             <label> &nbsp;</label>
-            <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig" class="form-control"
+            <input type="text" placeholder="{{'Report.WkshSumReport.SelectEndSdat' | translate }}" name="date_end" [bsConfig]="bsConfig" class="form-control"
               [minDate]="dateFrom_mdat" [(ngModel)]="dateTo_mdat" bsDatepicker>
             <div class="input-group-append">
               <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">Close Stauts</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.CloseStatus' | translate }}</span>
           <div class="col">
             <div class="form-group">
               <ng-select [(ngModel)]="param.close_status">
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">Brand</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.Brand' | translate }}</span>
           <div class="form-group">
             <ng-select name="brandname" id="Brand" [(ngModel)]="param.brandname">
               <ng-option *ngFor="let item of brand" [value]="item.id">{{item.brandname}}</ng-option>
@@ -45,47 +45,47 @@
           </div>
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">Code of Customer</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.CodeOfCustomer' | translate }}</span>
           <input type="text" name="cusna" [(ngModel)]="param.cusna" class="form-control">
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <span class="badge badge-warning">Planning No</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.PlanningNo' | translate }}</span>
           <input type="text" name="manno" [(ngModel)]="param.manno" class="form-control">
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">Purchase No</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.PurchaseNo' | translate }}</span>
           <input type="text" name="purno" [(ngModel)]="param.purno" class="form-control">
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">Mold Number</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.MoldNumber' | translate }}</span>
           <input type="text" name="rmodel" [(ngModel)]="param.rmodel" class="form-control">
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">tolcls</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.tolcs' | translate }}</span>
           <input type="text" name="tolcls" [(ngModel)]="param.tolcls" class="form-control">
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <span class="badge badge-warning">Material Code Bottom</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.MaterialCodeBottom' | translate }}</span>
           <input type="text" name="bitnbr" [(ngModel)]="param.bitnbr" class="form-control">
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">Kind</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.Kind' | translate }}</span>
           <input type="text" name="kind" [(ngModel)]="param.kind" class="form-control">
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">Confirmed Delivery Date</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.ConfirmedDeliveryDate' | translate }}</span>
           <div class="input-group ml-1">
-            <input type="text" placeholder="Select From..." name="date_start" [bsConfig]="bsConfig" class="form-control"
+            <input type="text" placeholder="{{'Report.WkshSumReport.SelectStartEta' | translate }}" name="date_start" [bsConfig]="bsConfig" class="form-control"
               bsDatepicker>
             <div class="input-group-append">
               <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
             </div>
             <label> &nbsp;</label>
-            <input type="text" placeholder="Select To..." name="date_end" [bsConfig]="bsConfig" class="form-control"
+            <input type="text" placeholder="{{'Report.WkshSumReport.SelectEndEta' | translate }}" name="date_end" [bsConfig]="bsConfig" class="form-control"
               bsDatepicker>
             <div class="input-group-append">
               <span class="input-group-text"><i class="{{iconButton.CALENDAR}}"></i></span>
@@ -93,7 +93,7 @@
           </div>
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">Size</span>
+          <span class="badge badge-warning">{{'Report.WkshSumReport.Size' | translate }}</span>
           <input type="text" name="size" [(ngModel)]="param.size" class="form-control">
         </div>
       </div>
@@ -101,11 +101,11 @@
       <div class="row">
         <div class="col-md-10">
           <button class="btn btn-success mr-2 " (click)="search()">
-            <i class="{{iconButton.SEARCH}}"></i> Search </button>
+            <i class="{{iconButton.SEARCH}}"></i> {{'System.Action.Search' | translate }} </button>
           <button class="btn btn-danger mr-2 " (click)="clear()">
-            <i class="{{iconButton.CLEAR}}"></i> Clear </button>
+            <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Clear' | translate }}  </button>
           <button class="btn btn-primary " (click)="export()">
-            <i class="{{iconButton.EXCEL}}"></i> Export Excel </button>
+            <i class="{{iconButton.EXCEL}}"></i> {{'System.Action.ExportExcel' | translate }} </button>
         </div>
       </div>
     </div>
@@ -117,29 +117,29 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th class="text-center" scope="col">Production_Date</th>
-              <th class="text-center" scope="col">Close Stauts</th>
-              <th class="text-center" scope="col">Brand</th>
-              <th class="text-center" scope="col">Code of Customer</th>
-              <th class="text-center" scope="col">Name of Customer</th>
-              <th class="text-center" scope="col">Planning No.</th>
-              <th class="text-center" scope="col">Purchase No.</th>
-              <th class="text-center" scope="col">Mold Number</th>
-              <th class="text-center" scope="col">tolcls</th>
-              <th class="text-center" scope="col">Material Code Shoes</th>
-              <th class="text-center" scope="col">Material Code Bottom</th>
-              <th class="text-center" scope="col">Type of Order</th>
-              <th class="text-center" scope="col">Article</th>
-              <th class="text-center" scope="col">Kind</th>
-              <th class="text-center" scope="col">Confirmed Delivery Date</th>
-              <th class="text-center" scope="col">Size</th>
-              <th class="text-center" scope="col">Order Quantity</th>
-              <th class="text-center" scope="col">wkshqty</th>
-              <th class="text-center" scope="col">Printed Quantity</th>
-              <th class="text-center" scope="col">Sort scan Qty</th>
-              <th class="text-center" scope="col">Storage scan Qty</th>
-              <th class="text-center" scope="col">Differences Qty</th>
-              <th class="text-center" scope="col">Cancel priting quantity</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.mdat' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.CloseStatus' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.Brand' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.CodeOfCustomer' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.NameOfCustomer' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.PlanningNo' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.PurchaseNo' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.MoldNumber' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.tolcs' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.MaterialCodeShoes' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.MaterialCodeBottom' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.TypeOfOrder' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.Article' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.Kind' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.ConfirmedDeliveryDate' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.Size' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.OrderQuantity' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.wkshqty' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.PrintedQuantity' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.SortScanQty' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.StorageScanQty' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.DifferencesQty' | translate }}</th>
+              <th class="text-center" scope="col">{{'Report.WkshSumReport.CancelPritingQuantity' | translate }}</th>
             </tr>
           </thead>
           <tbody>
