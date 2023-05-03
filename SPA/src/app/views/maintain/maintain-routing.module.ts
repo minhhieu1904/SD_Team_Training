@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppGuard } from '@guards/app.guard';
 import { getInfoMenu } from '@utilities/function-utility';
 
 const routes: Routes = [
   {
     path: 'shift-data-maintenance',
+    canLoad: [AppGuard],
     loadChildren: () =>
       import('./shift-data-maintain/shift-data-maintain.module').then((m) => m.ShiftDataMaintainModule),
       data: {
@@ -12,6 +14,7 @@ const routes: Routes = [
     }
   },{
     path: 'warehouse-basic-data-maintenance',
+    canLoad: [AppGuard],
     loadChildren: () =>
       import(
         './warehouse-data-basic/warehouse-data-basic.module'
@@ -21,6 +24,7 @@ const routes: Routes = [
     }
   },{
     path: 'department-data-maintenance',
+    canLoad: [AppGuard],
     loadChildren: () =>
       import(
         './department-data-maintain/department-data-maintain.module'
@@ -30,6 +34,7 @@ const routes: Routes = [
     }
   },{
     path: 'standard-packing-quantity-setting',
+    canLoad: [AppGuard],
     loadChildren: () =>
       import(
         './standard-packing-quantity/standard-packing-quantity.module'
@@ -40,6 +45,7 @@ const routes: Routes = [
   },
   {
     path: 'authorization-setting',
+    canLoad: [AppGuard],
     loadChildren: () =>
       import(
         './authorization-setting/authorization-setting.module'

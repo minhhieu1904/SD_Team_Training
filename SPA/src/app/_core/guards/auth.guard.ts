@@ -6,12 +6,13 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthGuard {
-  constructor(private authService: UserLoginService, private router: Router) { }
+  constructor(private service: UserLoginService, private router: Router) { }
   canActivate(): boolean {
-    if (this.authService.loggedIn()) {
+    if (this.service.loggedIn()) {
       return true;
     }
     this.router.navigate(["/login"]);
     return false;
   }
 }
+

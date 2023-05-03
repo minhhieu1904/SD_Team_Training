@@ -8,12 +8,6 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
-   {
-
-    path: '',
     canActivate: [AuthGuard],
     component: DefaultLayoutComponent,
     data: {
@@ -27,27 +21,29 @@ export const routes: Routes = [
       },
       {
         path: 'maintain',
-        loadChildren: () => import('./views/maintain/maintain.module')
-          .then(m => m.MaintainModule),
+        loadChildren: () =>
+          import('./views/maintain/maintain.module').then(
+            (m) => m.MaintainModule
+          ),
       },
       {
         path: 'report',
-        loadChildren: () => import('./views/report/report.module').then(m => m.ReportModule)
-      }
-
-    ]
+        loadChildren: () =>
+          import('./views/report/report.module').then((m) => m.ReportModule),
+      },
+    ],
   },
   {
     path: 'login',
     component: LoginComponent,
     data: {
-      title: 'Login Page'
-    }
+      title: 'Login Page',
+    },
   },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using API._Services.Interfaces.Login;
 using API.DTOs.userLogin;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -18,6 +19,7 @@ namespace API.Controllers
             _services = services;
             _config = config;
         }
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> Login(userLogin userLogin){
             //Gán thông tin người dùng từ method Login() bên Services vào biến userfrom

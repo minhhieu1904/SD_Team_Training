@@ -12,5 +12,6 @@ namespace API.DTOs.userLogin
         public string name {get; set;}
         public string email {get; set;}
         public List<RoleLogin> roles {get;set;}
+        public List<RoleLogin> roleAll {get;set;}
     }
 }

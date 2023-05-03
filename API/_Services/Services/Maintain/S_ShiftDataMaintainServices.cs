@@ -26,9 +26,8 @@ namespace API._Services.Services.Maintain
             } else{
                 model.Manuf = "N";
                 _reposioryAccessor.MS_Shift.Add(model);
-                if(await _reposioryAccessor.Save()){
+                if(await _reposioryAccessor.Save())
                     return new OperationResult(true);
-                }
                 return new OperationResult(false);
             }
         }
@@ -43,10 +42,8 @@ namespace API._Services.Services.Maintain
             originalItem.ShiftName = model.ShiftName.Trim();
             _reposioryAccessor.MS_Shift.Update(originalItem);
 
-            if(await _reposioryAccessor.Save()){
+            if(await _reposioryAccessor.Save())
                 return new OperationResult(true);
-            }
-
             return new OperationResult(false);
 
         }
@@ -54,16 +51,12 @@ namespace API._Services.Services.Maintain
 
         public async Task<PaginationUtility<MsShift>> GetData(PaginationParam pagination, ShiftDataMaintainParam param)
         {
-            var pred_MS_Shift = PredicateBuilder.New<MsShift>(true);
-            if(!string.IsNullOrEmpty(param.Shift)){
-                pred_MS_Shift.And(x => x.Shift == param.Shift);
-            }
-
-            if(!string.IsNullOrEmpty(param.Shift_Name)){
-                pred_MS_Shift.And(x => x.ShiftName == param.Shift_Name);
-            }
-
-            var data = _reposioryAccessor.MS_Shift.FindAll(pred_MS_Shift);
+            var pred = PredicateBuilder.New<MsShift>(true);
+            if(!string.IsNullOrEmpty(param.Shift))
+                pred.And(x => x.Shift == param.Shift);
+            if(!string.IsNullOrEmpty(param.Shift_Name))
+                pred.And(x => x.ShiftName == param.Shift_Name);
+            var data = _reposioryAccessor.MS_Shift.FindAll(pred);
             return await PaginationUtility<MsShift>.CreateAsync(data, pagination.PageNumber, pagination.PageSize);
         }
 

@@ -7,6 +7,7 @@ using API._Services.Interfaces.report;
 using API.Data;
 using API.DTOs;
 using API.DTOs.report;
+using API.Helper.Utilities;
 using API.Models;
 using Aspose.Cells;
 using Microsoft.Data.SqlClient;
@@ -30,30 +31,11 @@ namespace API._Services.Services.report
         {
             var data = await GetData(pagination, param, false);
             MemoryStream stream = new MemoryStream();
-            // using(var package = new ExcelPackage(stream)){
-            //     var sheet = package.Workbook.Worksheets.Add("manuf");
-            //     sheet.Cells.LoadFromCollection(data.Result, true);
-            //     package.Save();
-            // }
-            //stream.Position = 0;
-            //byte[] result = stream.ToArray();
-            if (data.Result.Count > 0)
+            if (data.Result.Any())
             {
                 var path = Path.Combine(_webHostEnvironment.ContentRootPath, "Resources\\Template\\Development_Orders.xlsx");
-                WorkbookDesigner designer = new WorkbookDesigner();
-                designer.Workbook = new Workbook(path);
-                Worksheet ws = designer.Workbook.Worksheets[0];
-
-
-                designer.SetDataSource("result", data.Result);
-                designer.Process();
-
-                ws.AutoFitColumns();
-                ws.PageSetup.CenterHorizontally = true;
-                ws.PageSetup.FitToPagesWide = 1;
-                ws.PageSetup.FitToPagesTall = 0;
-
-                designer.Workbook.Save(stream, SaveFormat.Xlsx);
+                var exportutility = new ExportExcelUtility<Report_wksh_SumResult>();
+                exportutility.ExportData(data.Result, path, stream);
             }
             return stream.ToArray();
         }

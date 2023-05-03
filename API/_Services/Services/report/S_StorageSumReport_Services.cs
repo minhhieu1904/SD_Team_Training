@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces.report;
 using API.Data;
 using API.DTOs;
 using API.DTOs.report;
+using API.Helper.Utilities;
 using API.Models;
-using Aspose.Cells;
 using LinqKit;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -69,18 +65,10 @@ namespace API._Services.Services.report
                             eta = x.T2.Eta
                         }).ToListAsync();
             MemoryStream stream = new MemoryStream();
-            if(data.Count > 0){
+            if(data.Any()){
                 var path = Path.Combine(_enviroment.ContentRootPath, "Resources\\Template\\StorageDetailReport.xlsx");
-                WorkbookDesigner designer = new WorkbookDesigner();
-                designer.Workbook = new Workbook(path);
-                Worksheet ws = designer.Workbook.Worksheets[0];
-                designer.SetDataSource("result", data);
-                designer.Process();
-                ws.AutoFitColumns();
-                ws.PageSetup.CenterHorizontally = true;
-                ws.PageSetup.FitToPagesWide = 1;
-                ws.PageSetup.FitToPagesTall = 0;
-                designer.Workbook.Save(stream, SaveFormat.Xlsx);
+                var exportutility = new ExportExcelUtility<StorageSumReportDetai>();
+                exportutility.ExportData(data, path, stream);
             }
             return stream.ToArray();
         }
@@ -89,18 +77,10 @@ namespace API._Services.Services.report
         {
             var data = await GetData(pagination,param,false);
             MemoryStream stream = new MemoryStream();
-            if(data.Result.Count > 0){
+            if(data.Result.Any()){
                 var path = Path.Combine(_enviroment.ContentRootPath, "Resources\\Template\\StorageSumReport.xlsx");
-                WorkbookDesigner design = new WorkbookDesigner();
-                design.Workbook = new Workbook(path);
-                Worksheet ws = design.Workbook.Worksheets[0];
-                design.SetDataSource("result", data.Result);
-                design.Process();
-                design.Workbook.Save(stream, SaveFormat.Xlsx);
-                ws.AutoFitColumns();
-                ws.PageSetup.CenterHorizontally  = true;
-                ws.PageSetup.FitToPagesWide = 1;
-                ws.PageSetup.FitToPagesTall = 0;
+                var exportutility = new ExportExcelUtility<StorageSumReportDTO>();
+                exportutility.ExportData(data.Result, path, stream);
             }
             return stream.ToArray();
         }

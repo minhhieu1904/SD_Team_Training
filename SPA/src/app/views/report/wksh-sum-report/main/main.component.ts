@@ -26,6 +26,7 @@ export class MainComponent extends InjectBase implements OnInit {
     pageNumber: 1, 
     pageSize: 10
   };
+  date: Date = new Date();
   param: WkshSumReport = <WkshSumReport>{
     mdat_start: '',
     mdat_end: '', 

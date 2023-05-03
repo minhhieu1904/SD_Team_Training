@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace API.DTOs.report
 {
     public class SortSumReportDetail
@@ -24,6 +19,7 @@ namespace API.DTOs.report
         public string article { get; set; }
         public string kind { get; set; }
         public  DateTime? eta { get; set; }
+        
         
     }
     public class SortSumDetailReportParam {
