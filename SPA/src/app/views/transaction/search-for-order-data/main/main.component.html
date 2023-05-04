@@ -1,1 +1,299 @@
-<p>main works!</p>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <!-- Title -->
+            <div class="col-md-10">
+                <h5>{{'Roles.Menu_Child.BQRC.SearchForOrderData' | translate}}</h5>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row border-shadow">
+            <!--  dòng 1 -->
+            <div class="row">
+                <!-- Brand -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Transaction.SearchForOrderData.Brand' |translate}}</span>
+                    <div class="form-group">
+                        <ng-select name="brandname" [(ngModel)]="param.brandname" (clear)="param.brandname = 'All'"
+                            [clearable]="param.brandname != 'All'">
+                            <ng-option *ngFor="let item of listBrandName" [value]="item.key">{{item.value}}</ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+
+                <!-- Mold Number -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Transaction.SearchForOrderData.MoldNumber' |translate}}</span>
+                    <input placeholder="Enter Mold Number..." type="text" name="rmodel" class="form-control"
+                        [(ngModel)]="param.rmodel">
+                </div>
+
+                <!-- Material Code -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Transaction.SearchForOrderData.MaterialCode'
+                        |translate}}</span>
+                    <input placeholder="Enter Material Code..." type="text" name="bitnbr" class="form-control"
+                        [(ngModel)]="param.bitnbr">
+                </div>
+
+                <!-- Size -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Transaction.SearchForOrderData.Size' |translate}}</span>
+                    <input placeholder="Enter Size..." type="text" name="size" class="form-control"
+                        [(ngModel)]="param.size">
+                </div>
+
+                <!--  dòng 2 -->
+                <!-- Code Of Customer -->
+                <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Transaction.SearchForOrderData.CodeOfCustomer'
+                        |translate}}</span>
+                    <input placeholder="Enter Code of Customer..." type="text" name="cusid" class="form-control"
+                        [(ngModel)]="param.cusid">
+                </div>
+
+                <!-- Planning No -->
+                <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Transaction.SearchForOrderData.PlanningNo' |translate}}</span>
+                    <input placeholder="Enter Planning No..." type="text" name="manno" class="form-control"
+                        [(ngModel)]="param.manno">
+                </div>
+
+                <!-- Status -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Transaction.SearchForOrderData.Status' |translate}}</span>
+                    <div class="form-group">
+                        <ng-select name="endcod" [(ngModel)]="param.endcod" (clear)="param.endcod = 'N'"
+                            [clearable]="param.endcod != 'N'">
+                            <ng-option *ngFor="let item of listStatus" [value]="item.key">{{item.value}}</ng-option>
+                        </ng-select>
+                    </div>
+
+                </div>
+
+                <!-- Name Of Customer -->
+                <div class="pb-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Transaction.SearchForOrderData.NameOfCustomer'
+                        |translate}}</span>
+                    <input placeholder="Enter Name of Customer..." type="text" name="cusna" class="form-control"
+                        [(ngModel)]="param.cusna">
+                </div>
+
+                <!-- Prtno -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <span class="badge badge-warning">{{'Transaction.SearchForOrderData.prtno' |translate}}</span>
+                    <input placeholder="Enter Prtno..." type="text" name="prtno" class="form-control"
+                        [(ngModel)]="param.prtno">
+                </div>
+
+                <div class="pt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12 d-flex">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="remark" name="remark"
+                            [(ngModel)]="dataPrint.remark">
+                        <label class="custom-control-label font-weight-bold" for="remark">Remark LR</label>
+                    </div>
+                </div>
+
+                <div class="pt-4 col-md-6">
+                    <!-- Button Search -->
+                    <button class="btn btn-success mr-2 " (click)="search()">
+                        <i class="{{iconButton.SEARCH}}"></i> {{ 'System.Action.Search' | translate}} </button>
+
+                    <!-- Button Clear -->
+                    <button class="btn btn-danger mr-2 " (click)="clear()">
+                        <i class="{{iconButton.CLEAR}}"></i> {{ 'System.Action.Clear' | translate}} </button>
+
+                    <!-- Button Print  -->
+                    <button class="btn btn-primary mr-2 " (click)="print()">
+                        <i class="{{iconButton.PRINT}}"></i> {{ 'System.Action.Print' | translate}} </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <!--  -->
+        <div style="overflow-x: auto">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">
+                                <div class="custom-control custom-checkbox checkAll">
+                                    <input type="checkbox" class="custom-control-input" id="checkAll"
+                                        [(ngModel)]="checkAll" (change)="changCheckAll()" [disabled]="!isCheckAll">
+                                    <label class="custom-control-label" for="checkAll"></label>
+                                </div>
+                            </th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.Brand' | translate}}
+                            </th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.MoldNumber' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.ReprintSticker.MaterialCodeBottom' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.Size' | translate}}
+                            </th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.CodeOfCustomer' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.PlanningNo' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.PurchaseNo' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.Status' | translate}}
+                            </th>
+                            <th class="text-center" scope="col">{{'Transaction.ReprintPackingScan.wkshno' | translate}}
+                            </th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.NameOfCustomer' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.TypeOfOrder' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.ConfirmedDeliveryDate'
+                                | translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.Article' | translate}}
+                            </th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.OrderQuantity' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.ReprintPackingScan.wkshqty' | translate}}
+                            </th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.IncreaseOrderQuantity'
+                                | translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.ReduceOrderQuantity' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">
+                                {{'Transaction.SearchForOrderData.AvailableQuantityForPrint' | translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.PrintedQuantity' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.CancelPritingQuantity'
+                                | translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.MaterialCodeShoes' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.ModelName' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.ToolingSize' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.Remark' | translate}}
+                            </th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.TimeOfUpdating' |
+                                translate}}</th>
+                            <th class="text-center" scope="col">{{'Transaction.SearchForOrderData.UpdatedBy' |
+                                translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="data.length == 0">
+                        <tr>
+                            <td colspan="100%">
+                                <alert class="text-center" type='danger'>
+                                    <strong>{{'System.Message.Nodata' | translate}}</strong>
+                                </alert>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr *ngFor="let items of data; let i= index" (click)="changeChecked(items)"
+                            [ngClass]="{'table-warning': items.checked , 'table-disabled': items.isDisabled} ">
+                            <td class="text-center">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" [id]="'checked_'+i"
+                                        [name]="'checked_'+i" [disabled]="items.isDisabled"
+                                        (click)="changeChecked(items)" [(ngModel)]="items.isChecked">
+                                    <label class="custom-control-label" [for]="'checked_'+i"></label>
+                                </div>
+                            </td>
+
+                            <td class="text-center" scope="col">{{items.brandname}}</td>
+                            <td class="text-center" scope="col">{{items.rmodel}}</td>
+                            <td class="text-center" scope="col">{{items.bitnbr}}</td>
+                            <td class="text-center" scope="col">{{items.size}}</td>
+                            <td class="text-center" scope="col">{{items.cusid}}</td>
+                            <td class="text-center" scope="col">{{items.manno}}</td>
+                            <td class="text-center" scope="col">{{items.purno}}</td>
+                            <td class="text-center" scope="col">{{items.endcod}}</td>
+                            <td class="text-center" scope="col">{{items.wkshno}}</td>
+                            <td class="text-center" scope="col">{{items.cusna}}</td>
+                            <td class="text-center" scope="col">{{items.kind}}</td>
+                            <td class="text-center" scope="col">{{items.eta | date: "yyyy-MM-dd"}}</td>
+                            <td class="text-center" scope="col">{{items.article}}</td>
+                            <td class="text-center" scope="col">{{items.qty}}</td>
+                            <td class="text-center" scope="col">{{items.wkshqty}}</td>
+                            <td class="text-center" scope="col">{{items.addqty}}</td>
+                            <td class="text-center" scope="col">{{items.lessqty}}</td>
+                            <td class="text-center" scope="col">{{items.apqty}}</td>
+                            <td class="text-center" scope="col">{{items.pqty}}</td>
+                            <td class="text-center" scope="col">{{items.cqty}}</td>
+                            <td class="text-center" scope="col">{{items.ritnbr}}</td>
+                            <td class="text-center" scope="col">{{items.style}}</td>
+                            <td class="text-center" scope="col">{{items.tsize}}</td>
+                            <td class="text-center" scope="col">{{items.remark}}</td>
+                            <td class="text-center" scope="col">{{items.update_time | date: "yyyy-MM-dd"}}</td>
+                            <td class="text-center" scope="col">{{items.updated_by}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="d-flex" *ngIf="data.length > 0">
+            <pagination [totalItems]="pagination.totalCount" [itemsPerPage]="pagination.pageSize" [maxSize]="5"
+                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+            </pagination>
+            <span class="cs-page ml-2">
+                Page - {{pagination.pageNumber}} / {{pagination.totalPage}}
+            </span>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class=" row">
+            <!-- Standard packing quantity -->
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                <span class="badge badge-warning">{{'Transaction.SearchForOrderData.StandardPackingQuantity' |
+                    translate}}</span>
+                <div class="form-group">
+                    <ng-select name="packageQty" (clear)="dataPrint.packageQty = 5" [(ngModel)]="dataPrint.packageQty"
+                        [clearable]="dataPrint.packageQty != 5">
+                        <ng-option *ngFor="let item of listPackage" [value]="item.key">{{item.value}}</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+
+            <!-- Quantity of print -->
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12">
+                <span class="badge badge-warning">{{'Transaction.SearchForOrderData.QuantityOfPrint' |
+                    translate}}</span>
+                <input type="number" class="form-control" min="1" name="printQty"
+                    onkeypress="return /[0-9]/i.test(event.key)" onpaste="return false;"
+                    [(ngModel)]="dataPrint.printQty" placeholder="Enter Quantity of print..."
+                    (ngModelChange)="onCheckValuePrint($event)" [disabled]="!isQtyOfPrint">
+            </div>
+
+            <!-- Balance -->
+            <div class="pt-4 col-xl-1 col-lg-1 col-md-2 col-sm-12 d-flex">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="balance" name="balance"
+                        [(ngModel)]="dataPrint.balance" [disabled]="!isBalance">
+                    <label class="custom-control-label font-weight-bold" for="balance">Balance</label>
+                </div>
+            </div>
+
+            <!-- Empno -->
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12">
+                <span class="badge badge-warning">{{'Transaction.SearchForOrderData.empno' | translate}}</span>
+                <input placeholder="Enter Empno..." type="text" name="empno" class="form-control" autocomplete="off"
+                    [(ngModel)]="dataPrint.empno">
+            </div>
+
+            <div class="pt-4 col-xl-1 col-lg-1 col-md-2 col-sm-12 d-flex">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="isB_grade" name="isB_grade"
+                        [(ngModel)]="dataPrint.isB_grade">
+                    <label class="custom-control-label font-weight-bold" for="isB_grade">isB_grade</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-qrcode-printer #qrcodeprinter></app-qrcode-printer>
+</div>

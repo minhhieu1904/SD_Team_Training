@@ -22,8 +22,8 @@ namespace API._Services.Services.report
         {
 
             return await _reposioryAccessor.MS_QR_Order.FindAll().Select(x=>new getBrand{
-                brandname = x.brandname,
-                id = x.brandname
+                brandname = x.Brandname,
+                id = x.Brandname
             }).Distinct().ToListAsync();
         }
 

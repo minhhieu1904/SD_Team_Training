@@ -46,8 +46,8 @@ namespace API._Services.Services.report
         {
 
             return await _reposioryAccessor.MS_QR_Order.FindAll().Select(x=>new getBrand{
-                brandname = x.brandname,
-                id = x.brandname
+                brandname = x.Brandname,
+                id = x.Brandname
             }).Distinct().ToListAsync();
         }
 
@@ -65,7 +65,7 @@ namespace API._Services.Services.report
             var data = await _reposioryAccessor.MS_QR_Label.FindAll(pred_MS_QR_Label)
                         .GroupJoin(_reposioryAccessor.MS_QR_Order.FindAll(), 
                             l => new { ManNo = l.ManNo,PurNo= l.PurNo,Size= l.Size },
-                            s => new { ManNo = s.manno, PurNo = s.purno, Size = s.size },
+                            s => new { ManNo = s.Manno, PurNo = s.Purno, Size = s.Size },
                             (l,s) => new { T1 = l, T2 = s }
                         ).SelectMany(x => x.T2.DefaultIfEmpty(), (x,y) => new { x.T1, T2 = y }) 
                         .GroupJoin(_reposioryAccessor.MS_QR_Sort.FindAll(),
@@ -76,21 +76,21 @@ namespace API._Services.Services.report
                         .Select(x => new SortSumReportDetail(){
                             IsScanSort = x.T3.QRCodeID != null ? "Y" : "N",
                             CrDay = x.T3.CrDay.ToString("dd/MM/yyyy"),
-                            brandname = x.T2.brandname,
+                            brandname = x.T2.Brandname,
                             QRCodeID = x.T1.QRCodeID,
                             ManNo = x.T1.ManNo,
                             PurNo = x.T1.PurNo,
                             Size = x.T1.Size,
                             Serial = x.T1.Serial,
                             Qty = x.T1.Qty,
-                            cusna = x.T2.cusna,
-                            rmodel = x.T2.rmodel,
-                            tolcls = x.T2.tolcls,
-                            ritnbr = x.T2.ritnbr,
-                            bitnbr = x.T2.bitnbr,
-                            article= x.T2.article,
-                            kind = x.T2.kind,
-                            eta = x.T2.eta
+                            cusna = x.T2.Cusna,
+                            rmodel = x.T2.Rmodel,
+                            tolcls = x.T2.Tolcls,
+                            ritnbr = x.T2.Ritnbr,
+                            bitnbr = x.T2.Bitnbr,
+                            article= x.T2.Article,
+                            kind = x.T2.Kind,
+                            eta = x.T2.Eta
                         }).ToListAsync();
             return data;
             

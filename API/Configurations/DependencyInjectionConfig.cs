@@ -1,11 +1,15 @@
 
 using API._Repositories;
 using API._Services.Interfaces;
+using API._Services.Interfaces.Common;
 using API._Services.Interfaces.report;
+using API._Services.Interfaces.Transaction;
 using API._Services.Services;
+using API._Services.Services.Common;
 using API._Services.Services.DepartmentDataMaintenance;
 using API._Services.Services.login;
 using API._Services.Services.report;
+using API._Services.Services.Transaction;
 
 namespace API.Configurations
 {
@@ -34,6 +38,9 @@ namespace API.Configurations
             services.AddScoped<I_SortSumReport, S_SortSumReport>();
             services.AddScoped<I_StorageSumReport, S_StorageSumReport>();
             services.AddScoped<I_QRCodeWipReport, S_QRCodeWipReport>();
+            services.AddScoped<I_CommonServices, S_CommonServices>();
+            services.AddScoped<I_SearchForOrderDataServices, S_SearchForOrderDataServices>();
+
         }
     }
 }
