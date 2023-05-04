@@ -5,6 +5,7 @@ import { LocalStorageConstant } from '../../../_core/constants/localStorge.const
 import { NgSnotifyService } from '@services/ng-snotify.service';
 import { CaptionConstants, MessageConstants } from "@constants/message.enum";
 import { NgxSpinnerService } from 'ngx-spinner';
+import { LangConstant } from '@constants/lang.constants';
 
 @Component({
   selector: 'app-login',
@@ -20,24 +21,26 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() { 
+  login() {
     console.log(this.user)
     this.spinnerService.show();
     this.service.login(this.user).subscribe({
-      next: res => { 
+      next: res => {
         console.log(res);
         localStorage.setItem(LocalStorageConstant.Token, res.token);
         localStorage.setItem(LocalStorageConstant.User, JSON.stringify(res.user));
         localStorage.setItem(LocalStorageConstant.Role, JSON.stringify(res.user.roles));
+        localStorage.setItem(LocalStorageConstant.Role_All, JSON.stringify(res.user.role_all));
+        localStorage.setItem(LocalStorageConstant.Lang, LangConstant.EN);
         this.snotifyService.success(MessageConstants.LOGGED_IN, CaptionConstants.SUCCESS);
-        
+
         this.router.navigate(['/default'])
         this.spinnerService.hide()
       },
-      error: () => { 
+      error: () => {
         this.snotifyService.error(MessageConstants.LOGIN_FAILED, CaptionConstants.ERROR);
         this.spinnerService.hide();
-      } 
+      }
     })
   }
 

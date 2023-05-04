@@ -7,6 +7,7 @@ import { EditComponent } from './edit/edit.component';
 import { AddComponent } from './add/add.component';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination'
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination'
     CommonModule,
     DepartmentDataMaintenanceRoutingModule,
     FormsModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    TranslateModule
   ]
 })
 export class DepartmentDataMaintenanceModule { }

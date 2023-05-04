@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     FormsModule,
     BsDatepickerModule,
     NgSelectModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    TranslateModule
   ]
 })
 export class QrcodeWipReportModule { }

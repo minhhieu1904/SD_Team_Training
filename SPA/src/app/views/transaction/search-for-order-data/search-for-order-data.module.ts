@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SortSumReportRoutingModule } from './sort-sum-report-routing.module';
+import { SearchForOrderDataRoutingModule } from './search-for-order-data-routing.module';
 import { MainComponent } from './main/main.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { TranslateModule } from '@ngx-translate/core';
-import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 @NgModule({
@@ -17,13 +15,11 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   ],
   imports: [
     CommonModule,
-    SortSumReportRoutingModule,
+    SearchForOrderDataRoutingModule,
     PaginationModule.forRoot(),
     FormsModule,
     BsDatepickerModule,
-    NgSelectModule,
-    TranslateModule,
-    AlertModule.forRoot(),
+    NgSelectModule
   ]
 })
-export class SortSumReportModule { }
+export class SearchForOrderDataModule { }

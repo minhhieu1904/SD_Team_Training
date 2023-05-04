@@ -2,11 +2,11 @@
   <div class="card-header">
     <div class="row">
       <div class="col-md-10">
-        <h5>1.2 Warehouse Basic Data Maintenance - Edit</h5>
+        <h5>{{'Roles.Menu_Child.BQRC.WarehouseBasicDataMaintenance' | translate}} - {{'System.Action.Edit' | translate}}</h5>
       </div>
       <div class="col-md-2">
         <button class="btn btn-primary float-right" (click)="backlist()">
-          <i class="fa fa-arrow-left"></i> Back</button>
+          <i class="fa fa-arrow-left"></i> {{'System.Action.Back' | translate}}</button>
       </div>
     </div>
   </div>
@@ -15,7 +15,8 @@
       <div class="col-md-4">
         <div class="row align-items-center">
           <div class="col-md-auto">
-            <span style="font-size: 20px;">ParNo </span>
+            <span style="font-size: 20px;">{{'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' |
+              translate}} </span>
           </div>
           <div class="col">
             <input type="text" disabled="disabled" [(ngModel)]="msLocation.storeH" class="form-control">
@@ -25,7 +26,8 @@
       <div class="col-md-4">
         <div class="row align-items-center">
           <div class="col-md-auto">
-            <span style="font-size: 20px;">Shift Name <span style="color: red;" class="i_required">*</span></span>
+            <span style="font-size: 20px;">{{'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' |
+              translate}}<span style="color: red;" class="i_required">*</span></span>
           </div>
           <div class="col">
             <input type="text" [(ngModel)]="msLocation.locationName" class="form-control">
@@ -36,7 +38,7 @@
     </div>
   </div>
   <div class="card-footer">
-    <button class="btn btn-primary mr-2 " (click)="saveUpdate()"> Save </button>
+    <button class="btn btn-primary mr-2 " (click)="saveUpdate()"> {{'System.Action.Save' | translate}}  </button>
   </div>
 
 </div>

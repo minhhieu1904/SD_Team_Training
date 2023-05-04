@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ReportRoutingModule } from './report-routing.module';
+import { TransactionRoutingModule } from './transaction-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 
@@ -9,8 +9,8 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [],
   imports: [
     CommonModule,
-    ReportRoutingModule,
+    TransactionRoutingModule,
     TranslateModule
   ]
 })
-export class ReportModule { }
+export class TransactionModule { }

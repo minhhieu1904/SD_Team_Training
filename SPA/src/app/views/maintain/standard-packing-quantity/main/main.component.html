@@ -2,30 +2,32 @@
     <div class="card-header">
       <div class="row">
         <div class="col-md-10">
-          <h5>1.4 Standard Packing Quantity</h5>
+          <h5>{{'Roles.Menu_Child.BQRC.StandardPackingQuantitySetting' | translate}}</h5>
         </div>
         <div class="col-md-2"></div>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <span class="badge badge-warning">PackageNo</span>
+          <span class="badge badge-warning">{{'Maintain.StandardPackingQuantitySetting.PackingNo' |
+            translate}}</span>
           <input type="text"   class="form-control" [(ngModel)]="param.packageNo">
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">PackageQty</span>
+          <span class="badge badge-warning">{{'Maintain.StandardPackingQuantitySetting.PackingQuantity' |
+            translate}}</span>
           <input type="number"   class="form-control" [(ngModel)]="param.packageQty">
         </div>
         <div class="col-md-6 wrapperButton">
           <button type="button" class="btn btn-primary mr-2" (click)="search()">
             <i class="fa fa-search"></i>
-            Search</button>
+            {{ 'System.Action.Search' | translate}}</button>
           <button class="btn btn-danger mr-2" (click)="clear()" type="button">
             <i class="fa fa-ban"></i>
-            Clear
+            {{ 'System.Action.Clear' | translate}}
           </button>
           <button type="button" class="btn btn-success" (click)="add()">
             <i class="fa fa-plus"></i>
-            Add</button>
+            {{ 'System.Action.AddNew' | translate}}</button>
         </div>
           
         
@@ -35,8 +37,8 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th class="text-center" scope="col">PackageNo</th>
-            <th class="text-center" scope="col">PackageQty</th>
+            <th class="text-center" scope="col">{{'Maintain.StandardPackingQuantitySetting.PackingNo' | translate}}</th>
+            <th class="text-center" scope="col">{{'Maintain.StandardPackingQuantitySetting.PackingQuantity' | translate}}</th>
             <th class="text-center" scope="col"></th>
           </tr>
         </thead>

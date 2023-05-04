@@ -7,6 +7,7 @@ import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination'
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     MainComponent,
@@ -17,7 +18,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination'
     CommonModule,
     StandardPackingQuantityRoutingModule,
     FormsModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    TranslateModule
   ]
 })
 export class StandardPackingQuantityModule { }

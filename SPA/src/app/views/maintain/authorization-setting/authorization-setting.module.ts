@@ -9,6 +9,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     MainComponent,
@@ -21,7 +22,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     FormsModule,
     PaginationModule.forRoot(),
     NgSelectModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TranslateModule
 
   ]
 })

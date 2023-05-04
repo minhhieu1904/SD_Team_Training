@@ -2,30 +2,30 @@
     <div class="card-header">
       <div class="row">
         <div class="col-md-10">
-          <h5>1.2 Warehouse Basic Data Maintenance</h5>
+          <h5>{{'Roles.Menu_Child.BQRC.WarehouseBasicDataMaintenance' | translate}}</h5>
         </div>
         <div class="col-md-2"></div>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <span class="badge badge-warning">StoreH</span>
+          <span class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' | translate}}</span>
           <input type="text" name="shift"  class="form-control" [(ngModel)]="param.StoreH">
         </div>
         <div class="col-md-3">
-          <span class="badge badge-warning">LocationName</span>
+          <span class="badge badge-warning">{{'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' | translate}}</span>
           <input type="text" name="shift-name"  class="form-control" [(ngModel)]="param.LocationName">
         </div>
         <div class="col-md-6 wrapperButton">
           <button type="button" class="btn btn-primary mr-2" (click)="search()">
             <i class="fa fa-search"></i>
-            Search</button>
+            {{ 'System.Action.Search' | translate}}</button>
           <button class="btn btn-danger mr-2" (click)="clear()" type="button">
             <i class="fa fa-ban"></i>
-            Clear
+            {{ 'System.Action.Clear' | translate}}
           </button>
           <button type="button" class="btn btn-success" (click)="add()">
             <i class="fa fa-plus"></i>
-            Add</button>
+            {{ 'System.Action.AddNew' | translate}}</button>
         </div>
         
       </div>
@@ -34,8 +34,8 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th class="text-center" scope="col">StoreH</th>
-            <th class="text-center" scope="col">LocationName</th>
+            <th class="text-center" scope="col">{{'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' | translate}}</th>
+            <th class="text-center" scope="col">{{'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' | translate}}</th>
             <th class="text-center" scope="col"></th>
           </tr>
         </thead>
