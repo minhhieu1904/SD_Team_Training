@@ -1,0 +1,65 @@
+<div class="card">
+  <div class="card-header">
+    <h4>1.3 Department Data Maintenance</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <span class="badge badge-warning">Department</span>
+        <input type="text" class="form-control" [(ngModel)]="param.parNo">
+      </div>
+      <div class="col-md-2">
+        <span class="badge badge-warning">Name of Department</span>
+        <input type="text" class="form-control" [(ngModel)]="param.parName">
+      </div>
+      <div class="row col pt-4">
+        <div class="col-md-auto">
+          <button class="btn btn-primary" (click)="search()">
+            <i class="fa fa-search"></i>
+            Search</button>
+        </div>
+        <div class="col-md-auto">
+          <button class="btn button" class="btn btn-danger"  (click)="clear()">
+            <i class="fa fa-refresh"></i>
+            Clear
+          </button>
+        </div>
+        <div class="col-md-auto">
+          <button class="btn btn-success" (click)="add()">
+            <i class="fa fa-plus"></i>
+             Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body border-shadow">
+    <table class="table table-bordered border-primary">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col"></th>
+          <th class="text-center" scope="col">Department</th>
+          <th class="text-center" scope="col">Name of Department</th>
+        </tr>
+      </thead>
+  
+      <tbody >
+        <tr *ngFor="let msDepartment of data ">
+            <td class="text-center">
+              <button type="button" class="btn btn-primary btn-sm" >
+                <i class="fa fa-edit fa-lg" (click)="edit(msDepartment)"></i></button>
+            </td>
+            <td class="text-center"> {{msDepartment.parNo}}</td>
+            <td class="text-center"> {{msDepartment.parName}}</td>
+        </tr>
+        <tr *ngIf="data?.length === 0">
+          <td class="table-warning text-center font-weight-bold" colspan="100%">No Data!</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalCount" [(ngModel)]="pagination.pageNumber"
+          (pageChanged)="pageChanged($event)"  >
+          <span class="cs-page ml-2"> Page -  {{pagination.pageNumber}} /
+            {{pagination.totalPage}}</span>
+    </pagination>
+</div>
+</div>

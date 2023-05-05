@@ -6,11 +6,6 @@ import { LoginComponent } from './views/login/login.component';
 import { DefaultLayoutComponent } from './containers';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
    {
 
     path: '',
@@ -29,6 +24,16 @@ export const routes: Routes = [
         path: 'maintain',
         loadChildren: () => import('./views/maintain/maintain.module')
           .then(m => m.MaintainModule),
+      },
+      {
+        path: 'transaction',
+        loadChildren: () =>
+          import('./views/transaction/transaction.module').then((m) => m.TransactionModule),
+      },
+      {
+        path: 'report',
+        loadChildren: () =>
+          import('./views/report/report.module').then((m) => m.ReportModule),
       },
     ]
   },

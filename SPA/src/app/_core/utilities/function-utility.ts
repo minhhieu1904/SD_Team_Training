@@ -6,7 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { BsLocaleService } from "ngx-bootstrap/datepicker";
 import { defineLocale, enGbLocale, idLocale, viLocale, zhCnLocale } from "ngx-bootstrap/chronos";
 import { LocalStorageConstants } from "@constants/localStorge.constants";
-import { RoleInformation } from "@models/maintain/application-user";
+import { RoleInformation } from "@models/auth/auth";
 
 @Injectable({
   providedIn: "root",

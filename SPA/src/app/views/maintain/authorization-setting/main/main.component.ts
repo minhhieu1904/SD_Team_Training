@@ -1,11 +1,12 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { AuthorizationSettingService } from '../../../../_core/services/maintain/authorization-setting.service'
+import { AuthorizationSettingService } from '@services/maintain/authorization-setting.service'
 import { InjectBase } from '@utilities/inject-base-app';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { User, UserParam } from '@models/maintain/role';
 import { IconButton } from '@constants/common.constants';
 import { List_RoleUserParam } from '@models/maintain/list_RoleUserParam';
 import { Pagination } from '@utilities/pagination-utility';
+import { CaptionConstants } from '@constants/message.enum';
 
 @Component({
   selector: 'app-main',
@@ -56,12 +57,15 @@ export class MainComponent extends InjectBase implements OnInit {
     this.param.account = '';
     this.param.name = '';
     this.getData();
+    this.snotifyService.success('Làm mới thành công', CaptionConstants.SUCCESS)
+
   }
   update(user: User){
     this.router.navigate([`maintain/authorization-setting/edit/${user.account}`])
   }
   search(){
     this.pagination.pageNumber = 1;
+    this.snotifyService.success('Tìm kiếm thành công', CaptionConstants.SUCCESS)
     this.getData();
   }
   pageChanged(e: any){

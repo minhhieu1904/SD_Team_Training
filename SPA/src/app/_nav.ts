@@ -1,4 +1,4 @@
-import { RoleInformation } from '@models/maintain/application-user';
+import { RoleInformation } from '@models/auth/auth';
 import { NavConstants } from './_core/constants/nav.constants';
 import { Injectable } from '@angular/core';
 import { INavData } from '@coreui/angular';
