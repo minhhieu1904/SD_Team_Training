@@ -59,10 +59,7 @@ public partial class DBContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<__MigrationHistory> __MigrationHistories { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=10.4.4.229;Database=BottomQRCode_T;MultipleActiveResultSets=true;User Id=sd_local;Password=shc@ssb1234;TrustServerCertificate=True");
-
+ 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AspNetRole>(entity =>
