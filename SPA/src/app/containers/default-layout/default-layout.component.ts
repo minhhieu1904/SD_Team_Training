@@ -4,7 +4,7 @@ import { Role } from '@models/maintain/user';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { LocalStorageConstants } from '@constants/local-storage.constants';
 import { Nav } from './../../_nav';
-import { UserLoginParam } from '@models/auth/application-user';
+import { UserForLogged, UserLoginParam } from '@models/auth/application-user';
 import { AuthService } from '@services/auth/auth.service';
 import { InjectBase } from '@utilities/inject-base-app';
 import { CaptionConstants } from '@constants/message.enum';
@@ -17,7 +17,7 @@ export class DefaultLayoutComponent extends InjectBase implements OnInit {
   bsModalRef?: BsModalRef;
   public sidebarMinimized = false;
   public navItems: INavData[];
-  user: UserLoginParam =
+  user: UserForLogged =
     JSON.parse(localStorage.getItem(LocalStorageConstants.USER)) ?? '{}';
 
   constructor(private navItem: Nav, private service: AuthService) { super ()}

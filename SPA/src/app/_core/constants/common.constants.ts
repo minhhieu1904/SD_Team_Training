@@ -28,5 +28,6 @@ export const IconButton = <const>{
   DISABLED: 'fa fa-eye-slash',
   ARROW_RIGHT: 'fa fa-arrow-circle-right',
   AUTHOR: 'fa fa-key',
-  PRINT: 'fa fa-print'
+  PRINT: 'fa fa-print',
+  SCAN: 'fa fa-qrcode'
 };

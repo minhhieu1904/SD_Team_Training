@@ -16,6 +16,8 @@ namespace API._Repositories
         IRoleRepository Role { get; }
         IMS_QR_OrderRepository MS_QR_Order { get; }
         IMS_QR_LabelRepository MS_QR_Label { get; }
+        IMS_QR_CycleRepository MS_QR_Cycle {get;}
+        IMS_QR_SortRepository MS_QR_Sort {get;}
         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

@@ -1,0 +1,40 @@
+<div class="modal" bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header bg-primary">
+              <h5 class="modal-title">{{'Transaction.PackingScan.ScanFromProduction'|translate}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text font-weight-bold"
+                          id="scan-code">{{'Transaction.PackingScan.ScanCode' | translate}}</span>
+                  </div>
+                  <input type="text" [(ngModel)]="scanText" #autofocus (keydown.enter)="checkScanText()"
+                      autocomplete="off" class="form-control"
+                      placeholder="{{'Transaction.PackingScan.PleaseScanQRCode'|translate}}">
+              </div>
+              <div *ngIf="listScanText.length > 0" class="scroll">
+                  <div *ngFor="let item of listScanText">
+                      <div class="alert alert-secondary p-2 mb-2">
+                          <button class="close" type="button" (click)="delete(item)"><i
+                                  class="{{iconButton.DELETE}} text-danger"></i></button>
+                          {{item}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger mr-1" data-dismiss="modal" (click)="closeModal()">
+                  <i class="{{iconButton.CLOSE}}"></i>
+                  {{'System.Action.Cancel' | translate}}</button>
+              <button type="button" class="btn btn-primary" [disabled]="listScanText.length === 0" (click)="save()">
+                  <i class="{{iconButton.SAVE}}"></i>
+                  {{'System.Action.Save'| translate}}</button>
+          </div>
+      </div>
+  </div>
+</div>

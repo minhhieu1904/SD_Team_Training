@@ -213,6 +213,26 @@ export class FunctionUtility {
     localeService.use('lang');
   }
 
+   /**
+   * Audio play failed
+   */
+   playAudioSuccess() {
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/YES.wav";
+    audio.load();
+    audio.play();
+  }
+
+  /**
+   * Audio play successful
+   */
+  playAudioFail() {
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/NO.wav";
+    audio.load();
+    audio.play();
+  }
+
 }
 
 export function getInfoMenu(str: string): RoleInformation {
