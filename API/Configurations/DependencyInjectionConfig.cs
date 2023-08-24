@@ -1,6 +1,6 @@
-
 using API._Repositories;
 using API._Services.Interfaces;
+using API._Services.Interfaces.Maintain;
 using API._Services.Services;
 
 namespace API.Configurations
@@ -15,7 +15,8 @@ namespace API.Configurations
             services.AddScoped<IRepositoryAccessor, RepositoryAccessor>();
 
             // Add Service
-            services.AddScoped<I_Shift_Data_Maintain, S_Shift_Data_Maintain>();
+            services.AddScoped<I_1_1_ShiftDataMaintenance, S_1_1_ShiftDataMaintenance>();
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'shift-data-maintenance',
-    loadChildren:()=> import('./shift-data-maintenance/shift-data-maintenance.module').then (m=> m.ShiftDataMaintenanceModule)
-  }
+    loadChildren: () => import('./1_1_shift-data-maintainance/shift-data-maintainance.module').then(m => m.ShiftDataMaintainanceModule)
+  },
 ];
 
 @NgModule({

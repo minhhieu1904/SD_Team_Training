@@ -1,6 +1,4 @@
 
-using API.DTOs;
-using API.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace SD3_API.Helpers.Utilities
@@ -32,11 +30,6 @@ namespace SD3_API.Helpers.Utilities
             var items = isPaging ? source.Skip(skip).Take(pageSize).ToList() : source.ToList();
 
             return new PaginationUtility<T>(items, count, pageNumber, pageSize, skip);
-        }
-
-        internal static PaginationUtility<MS_Shift_DTO> CreateAsync(IQueryable<MS_Shift> data, int pageNumber, int pageSize)
-        {
-            throw new NotImplementedException();
         }
 
         public class PaginationResult

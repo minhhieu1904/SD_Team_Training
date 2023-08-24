@@ -9,7 +9,6 @@ import { MaintainRoutingModule } from './maintain-routing.module';
   imports: [
     CommonModule,
     MaintainRoutingModule,
-
   ]
 })
 export class MaintainModule { }

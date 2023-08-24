@@ -4,30 +4,14 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@services/*": [
-        "src/app/_core/services/*"
-      ],
-      "@models/*": [
-        "src/app/_core/models/*"
-      ],
-      "@constants/*": [
-        "src/app/_core/constants/*"
-      ],
-      "@utilities/*": [
-        "src/app/_core/utilities/*"
-      ],
-      "@guards/*": [
-        "src/app/_core/guards/*"
-      ],
-      "@resolvers/*": [
-        "src/app/_core/resolvers/*"
-      ],
-      "@pipes/*": [
-        "src/app/_core/pipe/*"
-      ],
-      "@env/*": [
-        "src/environments/*"
-      ]
+      "@services/*": ["src/app/_core/services/*"],
+      "@models/*": ["src/app/_core/models/*"],
+      "@constants/*": ["src/app/_core/constants/*"],
+      "@utilities/*": ["src/app/_core/utilities/*"],
+      "@guards/*": ["src/app/_core/guards/*"],
+      "@resolvers/*": ["src/app/_core/resolvers/*"],
+      "@pipes/*": ["src/app/_core/pipe/*"],
+      "@env/*": ["src/environments/*"]
     },
     "outDir": "./dist/out-tsc",
     "experimentalDecorators": true,
@@ -44,10 +28,7 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -58,6 +39,6 @@
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.spec.json" },
+    { "path": "./tsconfig.spec.json" }
   ]
 }

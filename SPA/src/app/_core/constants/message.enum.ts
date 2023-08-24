@@ -6,7 +6,10 @@ export enum MessageConstants {
   LOGGED_OUT = 'You have been logged out',
   NEW_VERSION_AVAILABLE = 'New Version Available! Try re-login again',
 
+  CONFIRM_CREATE = 'Are you sure create?',
+  CONFIRM_UPDATE = 'Are you sure update?',
   CONFIRM_DELETE = 'Are you sure delete?',
+  CONFIRM_CLOSE = 'Are you sure close ?',
   CONFIRM_DELETE_MSG = 'Are you sure you want to delete this record?',
   CONFIRM_DELETE_RANGE_MSG = 'Are you sure you want to delete these records?',
   CONFIRM_CHANGE_STATE = 'Are you sure you want to change this state?',

@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Pagination } from "./pagination-utility";
-import { NgSnotifyService } from "@services/common/ng-snotify.service";
+import { NgSnotifyService } from "./../services/common/ng-snotify.service";
 import { NgxSpinnerService } from "ngx-spinner";
+import { enGbLocale, idLocale, viLocale, zhCnLocale } from "ngx-bootstrap/locale";
+import { defineLocale } from "ngx-bootstrap/chronos";
 import { BsLocaleService } from "ngx-bootstrap/datepicker";
-import { defineLocale, enGbLocale, idLocale, viLocale, zhCnLocale } from "ngx-bootstrap/chronos";
-
 @Injectable({
   providedIn: "root",
 })
@@ -20,6 +20,17 @@ export class FunctionUtility {
     private spinnerService: NgxSpinnerService
   ) { }
 
+  setDatepickerLanguage(localeService: BsLocaleService, country: string) {
+    country = country.toUpperCase();
+    let dateLangs = {
+      VI: viLocale,
+      EN: enGbLocale,
+      ZH: zhCnLocale,
+      ID: idLocale
+    }
+    defineLocale('lang', dateLangs[country]);
+    localeService.use('lang');
+  }
   /**
    *Trả ra ngày hiện tại, chỉ lấy năm tháng ngày: yyyy/MM/dd
    */
@@ -48,27 +59,6 @@ export class FunctionUtility {
     );
   }
 
-  /**
-   *Trả ra ngày với tham số truyền vào là ngày muốn format string: yyyy/MM/dd HH:mm:ss
-   */
-  getDateTimeFormat(date: Date) {
-    return (
-      date.getFullYear() +
-      "/" +
-      (date.getMonth() + 1 < 10
-        ? "0" + (date.getMonth() + 1)
-        : date.getMonth() + 1) +
-      "/" +
-      (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) +
-      " " +
-      (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) +
-      ":" +
-      (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) +
-      ":" +
-      (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds())
-    );
-  }
-
   getUTCDate(d?: Date) {
     let date = d ? d : new Date();
     return new Date(
@@ -84,9 +74,34 @@ export class FunctionUtility {
   }
 
   /**
+   * Convert input date to date without time
+   * @param date
+   * @returns Date
+   */
+  returnDayNotTime(date: Date) {
+    return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0));
+  }
+
+  returnDayNotTimeOfString(date: string) {
+    var a = new Date(date.substr(0, 4) + '/' + date.substr(5, 2) + '/' + date.substr(8, 2));
+
+    return new Date(Date.UTC(a.getFullYear(), a.getMonth(), a.getDate(), 0, 0, 0));
+  }
+
+  /**
+   * Nhập vào kiểu chuỗi hoặc số dạng 123456789 sẽ trả về 123,456,789
+   */
+  // convertNumber(amount) {
+  //   return String(amount).replace(
+  //     /(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g,
+  //     "$1,"
+  //   );
+  // }
+
+  /**
    * Check 1 string có phải empty hoặc null hoặc undefined ko.
    */
-  checkEmpty(str) {
+  checkEmpty(str: any) {
     return !str || /^\s*$/.test(str);
   }
 
@@ -118,45 +133,31 @@ export class FunctionUtility {
    * * @param className
    * * @param type => Value bằng true thì add class. Value bằng false thì xóa class
    */
-  changeDomClassList(id: string, className: string, type: boolean) {
-    type
-      ? document.getElementById(id).classList.add(className)
-      : document.getElementById(id).classList.remove(className);
-  }
+  // changeDomClassList(id: string, className: string, type: boolean) {
+  //   type
+  //     ? document.getElementById(id).classList.add(className)
+  //     : document.getElementById(id).classList.remove(className);
+  // }
 
-  toFormData(obj: any, form?: FormData, namespace?: string) {
-    let fd = form || new FormData();
-    let formKey: string;
-    for (var property in obj) {
-      if (obj.hasOwnProperty(property)) {
-        // namespaced key property
-        if (!isNaN(property as any)) {
-          // obj is an array
-          formKey = namespace ? `${namespace}[${property}]` : property;
-        } else {
-          // obj is an object
-          formKey = namespace ? `${namespace}.${property}` : property;
-        }
-        if (obj[property] instanceof Date) {
-          // the property is a date, so convert it to a string
-          fd.append(formKey, obj[property].toISOString());
-        } else if (typeof obj[property] === 'object' && !(obj[property] instanceof File)) {
-          // the property is an object or an array, but not a File, use recursivity
-          this.toFormData(obj[property], fd, formKey);
-        } else {
-          // the property is a string, number or a File object
-          fd.append(formKey, obj[property]);
-        }
-      }
+  /**
+   * Append property FormData
+   * If property type Date => Convert value to String
+   * * @param formValue
+   */
+  ToFormData(formValue: any) {
+    const formData = new FormData();
+    for (const key of Object.keys(formValue)) {
+      const value = formValue[key];
+      formData.append(key, value);
     }
-    return fd;
+    return formData;
   }
 
   /**
    * Append property HttpParams
    * * @param formValue
    */
-  toParams(formValue: any) {
+  ToParams(formValue: any) {
     let params = new HttpParams();
     for (const key of Object.keys(formValue)) {
       const value = formValue[key];
@@ -165,15 +166,44 @@ export class FunctionUtility {
     return params;
   }
 
-  exportExcel(result: Blob, fileName: string, type?: string) {
-    if(!type)
-      type = 'xlsx';
+  /**
+   * Append property HttpParams
+   * * @param value role_unique
+   */
+  convertUrlMenu(str: string, parentId: number, routerParents: string[]): string {
+    let valueStr: string = '';
+    str.split('.')[1].split('').forEach(character => {
+      valueStr += /[A-Z]/.test(character) ? `-${character.toLowerCase()}` : character;
+    });
+    return `${routerParents[parentId]}/${valueStr.substring(1)}`;
+  }
 
+  /**
+  * Append property HttpParams
+  * * @param str str
+  * * Viết Hoa chữ cái đầu tiên trong chuỗi
+  */
+  toUpperCaseFirst(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  getTime(date: Date): string {
+    const hours = date.getHours() < 10 ? ('0' + date.getHours()) : date.getHours();
+    const minutes = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes();
+    const seconds = date.getSeconds() < 10 ? ('0' + date.getSeconds()) : date.getSeconds();
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
+  dateNotTimeSecond(date: Date) {
+    return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}:00`;
+  }
+
+  exportExcel(result: Blob, fileName: string) {
     if (result.size == 0) {
       this.spinnerService.hide();
       return this.snotify.warning('No Data', "Warning")
     }
-    if (result.type !== `application/${type}`) {
+    if (result.type !== 'application/xlsx') {
       this.spinnerService.hide();
       return this.snotify.error(result.type.toString(), "Error");
     }
@@ -181,7 +211,7 @@ export class FunctionUtility {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `${fileName}.${type}`);
+    link.setAttribute('download', `${fileName}.xlsx`);
     document.body.appendChild(link);
     link.click();
   }
@@ -200,16 +230,23 @@ export class FunctionUtility {
     iframe.contentWindow.print();
   }
 
-  setDatepickerLanguage(localeService: BsLocaleService, country: string) {
-    let dateLangs = {
-      VI: viLocale,
-      EN: enGbLocale,
-      CN: zhCnLocale,
-      ID: idLocale
-    }
-    defineLocale('lang', dateLangs[country]);
-    localeService.use('lang');
+  /**
+   * Audio play failed
+   */
+  playAudioSuccess() {
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/YES.wav";
+    audio.load();
+    audio.play();
+  }
+
+  /**
+   * Audio play successful
+   */
+  playAudioFail() {
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/NO.wav";
+    audio.load();
+    audio.play();
   }
 }
-
-
