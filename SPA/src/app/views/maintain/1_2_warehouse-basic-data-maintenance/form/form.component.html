@@ -1,0 +1,64 @@
+<div class="modal-content">
+  <div class="modal-header bg-primary">
+    <!-- Header -->
+    <h5 class="modal-title" id="modal-basic-title">
+      1.2 {{ 'Maintain.WarehouseBasicDataMaintenance.Title' | translate }} -
+      <span>{{ warehouseType.type === 'add' ? ('System.Action.AddNew' | translate) : 'System.Action.Edit' | translate
+        }}</span>
+    </h5>
+    <button type="button" class="btn-close close pull-right" (click)="closeModal(false)">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <!-- Body -->
+    <form #form="ngForm" autocomplete="off">
+      <div class="row g-3 align-items-center mb-2">
+        <!-- StoreH -->
+        <div class="col-md-4">
+          <label for="storeH" class="col-form-label">
+            <strong>
+              {{ 'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' | translate }}
+              <span class="text-danger" *ngIf="warehouseType.type === 'add'"> *</span>
+            </strong>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control"
+            placeholder="{{ 'Maintain.WarehouseBasicDataMaintenance.KodeOfWarehouse' | translate }}..." name="storeH"
+            [(ngModel)]="warehouseType.ms_Location.storeH" [disabled]="warehouseType.type == 'edit'"
+            [required]="warehouseType.type === 'add'" />
+        </div>
+      </div>
+      <div class="row g-3 align-items-center mb-2">
+        <!-- Location Name -->
+        <div class="col-md-4">
+          <label for="locationName" class="col-form-label">
+            <strong>
+              {{ 'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' | translate }}
+              <span class="text-danger"> *</span>
+            </strong>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control"
+            placeholder="{{ 'Maintain.WarehouseBasicDataMaintenance.NameOfWarehouse' | translate }}..."
+            name="locationName" [(ngModel)]=" warehouseType.ms_Location.locationName" [required]="true" />
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <!-- Footer -->
+    <button type="button" class="btn btn-danger text-white" (click)="close()">
+      <i class="{{iconButton.CLOSE}}"></i>
+      {{ 'System.Action.Close' | translate }}
+    </button>
+    <button type="button" class="btn btn-success text-white" (click)="saveChange()" [disabled]="!form.valid">
+      <i class="{{iconButton.SAVE}}"></i>
+      {{ 'System.Action.Save' | translate }}
+    </button>
+  </div>
+</div>

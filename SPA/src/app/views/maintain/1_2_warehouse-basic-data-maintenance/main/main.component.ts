@@ -1,13 +1,13 @@
+import { WarehouseBasicDataMaintenanceService } from '@services/maintain/warehouse-basic-data-maintenance.service';
+import { WarehouseParam, WarehouseType } from '@models/maintain/warehouse-basic-data-maintenance';
 import { IconButton } from '@constants/common.constants';
 import { Pagination } from '@utilities/pagination-utility';
 import { InjectBase } from '@utilities/inject-base-app';
 import { Component, OnInit } from '@angular/core';
-import { MS_Shift } from '@models/common/mS_Shift_DTO';
-import { ShiftParam, ShiftType } from '@models/maintain/shift-data-maintenance';
-import { ShiftDataMaintainanceService } from '@services/maintain/shift-data-maintainance.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormComponent } from '../form/form.component';
+import { MS_Location } from '@models/common/mS_Location_DTO';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-main',
@@ -15,21 +15,21 @@ import { FormComponent } from '../form/form.component';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent extends InjectBase implements OnInit {
-  param: ShiftParam = <ShiftParam>{
-    shift: '',
-    shiftName: ''
+  param: WarehouseParam = <WarehouseParam>{
+    storeH: '',
+    locationName: ''
   }
-  shiftType: ShiftType = <ShiftType>{}
+  warehouseType: WarehouseType = <WarehouseType>{}
   pagination: Pagination = <Pagination>{
     pageNumber: 1,
     pageSize: 10
   }
-  data: MS_Shift[] = [];
+  data: MS_Location[] = [];
   title: string = '';
   bsModalRef?: BsModalRef;
   iconButton = IconButton;
   constructor(
-    private service: ShiftDataMaintainanceService,
+    private service: WarehouseBasicDataMaintenanceService,
     private modalService: BsModalService
   ) {
     super();
@@ -68,25 +68,25 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   clear() {
-    this.param.shift = '';
-    this.param.shiftName = '';
+    this.param.storeH = '';
+    this.param.locationName = '';
     this.pagination.pageNumber = 1;
     this.getData();
   }
 
   //Mở form modal (add hoặc edit)
-  openModal(type: 'add' | 'edit', msShift?: MS_Shift) {
+  openModal(type: 'add' | 'edit', msLocation?: MS_Location) {
     //Tạo modal
     this.bsModalRef = this.modalService.show(FormComponent, { //Truyền FormComponent để hiển thị form modal (form.component.html)
       //Truyền dữ liệu ban đầu cho modal
       initialState: {
         //Truyền loại thao tác (add hoặc edit)
-        shiftType: { type, ms_Shift: msShift || { manuf: '', shift: '', shiftName: '' } } //Nếu msShift không có, tạo mới với giá trị MS_Shift
+        warehouseType: { type, ms_Location: msLocation || { manuf: '', storeH: '', locationName: '' } } //Nếu msShift không có, tạo mới với giá trị MS_Shift
       }
     });
 
     //Đăng ký sự kiện từ modal khi có sự kiện shiftEmitter được phát ra
-    this.bsModalRef.content.shiftEmitter.subscribe((isSuccess: boolean) => {
+    this.bsModalRef.content.warehouseEmitter.subscribe((isSuccess: boolean) => {
       if (isSuccess) this.search();
     });
   }
@@ -97,7 +97,7 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   //Chỉnh sửa
-  edit(msShift: MS_Shift) {
-    this.openModal('edit', { ...msShift, shiftName: '' });//Có msShift, chỉnh sửa
+  edit(msLocation: MS_Location) {
+    this.openModal('edit', { ...msLocation, locationName: '' });//Có msShift, chỉnh sửa
   }
 }

@@ -1,0 +1,16 @@
+/* Trình bày mức độ mạnh của mật khẩu */
+.password-strength {
+  margin-top: 5px;
+}
+
+.password-strength-weak {
+  color: red;
+}
+
+.password-strength-medium {
+  color: orange;
+}
+
+.password-strength-strong {
+  color: green;
+}

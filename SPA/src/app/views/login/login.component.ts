@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserLoginParam } from '@models/auth/application-user'
+import { UserLoginParam } from '@models/auth/application-user';
 import { AuthService } from "@services/auth/auth.service";
 import { InjectBase } from "@utilities/inject-base-app";
 @Component({

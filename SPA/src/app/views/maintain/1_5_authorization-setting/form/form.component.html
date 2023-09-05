@@ -1,0 +1,109 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-12">
+              <strong class="title-card-cs">
+                1.5 {{ 'Maintain.AuthorizationSetting.Title' | translate }} -
+                <span>
+                  {{ user.type === 'add' ? ('System.Action.AddNew' | translate) : 'System.Action.Edit' | translate }}
+                </span>
+              </strong>
+              <button type="button" class="btn btn-sm btn-primary float-right" (click)="back()">
+                <i class="{{ iconButton.BACK }}"></i>
+                {{ 'System.Action.Back' | translate }}</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-style">
+          <form class="form-horizontal" [formGroup]="userForm">
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                  <div class="form-group row p-2">
+
+                    <!-- Account Input -->
+                    <label for="account" class="col-sm-2 col-form-label lb form-group required control-label">
+                      <strong>{{ 'Maintain.AuthorizationSetting.Account' | translate }}</strong>
+                      <span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control" id="account" formControlName="account" autocomplete="off"
+                        placeholder="{{ 'Maintain.AuthorizationSetting.Account' | translate }}"
+                        [readOnly]="user.type === 'edit'">
+                    </div>
+                    <div class="col-sm-2">&nbsp;</div>
+
+                    <!-- Password Input -->
+                    <label for="password" class="col-sm-2 col-form-label lb form-group required control-label">
+                      <strong>{{ 'Maintain.AuthorizationSetting.Password' | translate }}</strong>
+                      <span class="text-danger" *ngIf="userForm.get('type').value === 'add'">*</span>
+                    </label>
+                    <div class="col-sm-3 style_2">
+                      <input type="password" class="form-control" id="password" formControlName="password"
+                        placeholder="{{ 'Maintain.AuthorizationSetting.Password' | translate }}" autocomplete="off"
+                        required>
+                      <div class="password-strength" *ngIf="isPasswordNotEmpty()">
+                        <span [ngClass]="getPasswordStrengthClass(userForm.get('password').value)">
+                          {{ getPasswordStrengthMessage(userForm.get('password').value) }}
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- Name Input -->
+                    <label for="name" class="col-sm-2 col-form-label lb form-group required control-label">
+                      <strong>{{ 'Maintain.AuthorizationSetting.UserName' | translate }}</strong>
+                      <span class="text-danger" *ngIf="userForm.get('type').value === 'add'">*</span>
+                    </label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control" id="name" formControlName="name"
+                        placeholder="{{ 'Maintain.AuthorizationSetting.UserName'| translate }}" autocomplete="off"
+                        [readOnly]="user.type == 'edit'" required maxlength="50">
+                    </div>
+                    <div class="col-sm-2">&nbsp;</div>
+
+                    <!-- Email Input -->
+                    <label for="email" class="col-sm-2 col-form-label lb form-group control-label">
+                      <strong>{{ 'Maintain.AuthorizationSetting.Email' | translate }}</strong>
+                    </label>
+                    <div class="col-sm-3 style_2">
+                      <input type="text" class="form-control" id="email" formControlName="email"
+                        placeholder="{{ 'Maintain.AuthorizationSetting.Email' | translate }}" autocomplete="off"
+                        maxlength="50">
+                    </div>
+
+                    <!-- Active Select -->
+                    <label class="col-sm-2 col-form-label lb form-group control-label" for="is_active">
+                      <strong>{{ 'Maintain.AuthorizationSetting.Active' | translate }}</strong>
+                    </label>
+                    <div class="col-sm-3 pt-1">
+                      <ng-select formControlName="is_active" name="is_active" placeholder="Y">
+                        <ng-option [value]="true">Y</ng-option>
+                        <ng-option [value]="false">N</ng-option>
+                      </ng-select>
+                    </div>
+                    <div class="col-sm-2">&nbsp;</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <ng-container>
+                    <button type="button" class="btn btn-success mr-2" (click)="saveChange()"
+                      [disabled]="!userForm.valid">
+                      <i class="{{ iconButton.SAVE }}"></i>
+                      {{ 'System.Action.Save' | translate }}</button>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

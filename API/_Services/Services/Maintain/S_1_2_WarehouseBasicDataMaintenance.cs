@@ -9,14 +9,14 @@ using SDCores;
 
 namespace API._Services.Services.Maintain
 {
-    public class S_1_1_ShiftDataMaintenance : I_1_1_ShiftDataMaintenance
+    public class S_1_2_WarehouseBasicDataMaintenance : I_1_2_WarehouseBasicDataMaintenance
     {
         // Khai báo Repository Accessor
         private readonly IRepositoryAccessor _repository;
         private readonly IConfiguration _configuration;
         private readonly string _manuf;
         // Thêm vào hàm khởi tạo
-        public S_1_1_ShiftDataMaintenance(
+        public S_1_2_WarehouseBasicDataMaintenance(
             IRepositoryAccessor repository,
             IConfiguration configuration)
         {
@@ -26,53 +26,54 @@ namespace API._Services.Services.Maintain
         }
 
         #region Search
-        public async Task<PaginationUtility<ShiftDataMaintenanceDto>> GetDataPagination(PaginationParam pagination, ShiftDataMaintenanceParam param)
+        public async Task<PaginationUtility<WarehouseDto>> GetDataPagination(PaginationParam pagination, WarehouseParam param)
         {
             //Tạo biểu thức tìm kiếm(Predicate)
-            var pred = PredicateBuilder.New<MS_Shift>(true); //PredicateBuilder dùng để xây dựng các biểu thức tìm kiếm động
+            var pred = PredicateBuilder.New<MS_Location>(true); //PredicateBuilder dùng để xây dựng các biểu thức tìm kiếm động
 
             //Kiểm tra dữ liệu
-            if (!string.IsNullOrWhiteSpace(param.Shift))
-                pred.And(x => x.Shift == param.Shift);
-            if (!string.IsNullOrWhiteSpace(param.ShiftName))
-                pred.And(x => x.ShiftName == param.ShiftName);
+            if (!string.IsNullOrWhiteSpace(param.StoreH))
+                pred.And(x => x.StoreH == param.StoreH);
+            if (!string.IsNullOrWhiteSpace(param.LocationName))
+                pred.And(x => x.LocationName == param.LocationName);
 
             //Tạo truy vấn cơ sở dữ liệu
-            var query = _repository.MS_Shift.FindAll(pred).AsNoTracking();
+            var query = _repository.MS_Location.FindAll(pred).AsNoTracking();
 
             //Thực hiện câu truy vấn và chuyển đổi
-            var data = await query.Select(x => new ShiftDataMaintenanceDto
+            var data = await query.Select(x => new WarehouseDto
             {
                 Manuf = x.Manuf,
-                Shift = x.Shift,
-                ShiftName = x.ShiftName
+                StoreH = x.StoreH,
+                LocationName = x.LocationName
             }).ToListAsync();
 
             //Tạo và trả về đối tượng Pagination để phân trang
-            return PaginationUtility<ShiftDataMaintenanceDto>.Create(data, pagination.PageNumber, pagination.PageSize);
+            return PaginationUtility<WarehouseDto>.Create(data, pagination.PageNumber, pagination.PageSize);
+
         }
         #endregion
 
         #region Add New
-        public async Task<OperationResult> AddNew(ShiftDataMaintenanceDto data)
+        public async Task<OperationResult> AddNew(WarehouseDto data)
         {
             data.Manuf = _manuf;
             //Kiểm tra input không được để trống
-            if (string.IsNullOrWhiteSpace(data.Shift))
-                return new OperationResult(false, "Shift cannot be empty or whitespace.");
-            if (string.IsNullOrWhiteSpace(data.ShiftName))
-                return new OperationResult(false, "Shift Name cannot be empty or whitespace.");
+            if (string.IsNullOrWhiteSpace(data.StoreH))
+                return new OperationResult(false, "Kode Of Warehouse cannot be empty or whitespace.");
+            if (string.IsNullOrWhiteSpace(data.LocationName))
+                return new OperationResult(false, "Name Of Warehouse cannot be empty or whitespace.");
 
             //Kiểm tra dữ liệu dựa trên khóa chính
-            if (await _repository.MS_Shift.AnyAsync(x => x.Manuf.Trim() == _manuf.Trim() && x.Shift.Trim() == data.Shift.Trim()))
+            if (await _repository.MS_Location.AnyAsync(x => x.Manuf.Trim() == _manuf.Trim() && x.StoreH.Trim() == data.StoreH.Trim()))
                 //Xuất thông báo
                 return new OperationResult(false, "Shift already exist");
 
             //Tạo mới
-            var item = Mapper.Map(data).ToANew<MS_Shift>(x => x.MapEntityKeys());
+            var item = Mapper.Map(data).ToANew<MS_Location>(x => x.MapEntityKeys());
 
             //Thêm vào cơ sở dữ liệu
-            _repository.MS_Shift.Add(item);
+            _repository.MS_Location.Add(item);
 
             //Lưu thay đổi
             await _repository.Save();
@@ -82,17 +83,17 @@ namespace API._Services.Services.Maintain
         #endregion
 
         #region Edit
-        public async Task<OperationResult> Edit(ShiftDataMaintenanceDto data)
+        public async Task<OperationResult> Edit(WarehouseDto data)
         {
             //Kiểm tra input không được để trống
-            if (string.IsNullOrWhiteSpace(data.ShiftName))
-                return new OperationResult(false, "Shift Name cannot be empty or whitespace.");
+            if (string.IsNullOrWhiteSpace(data.LocationName))
+                return new OperationResult(false, "Name Of Warehouse cannot be empty or whitespace.");
 
             //Tạo mới
-            var item = Mapper.Map(data).ToANew<MS_Shift>(x => x.MapEntityKeys());
+            var item = Mapper.Map(data).ToANew<MS_Location>(x => x.MapEntityKeys());
 
             //Cập nhật dữ liệu
-            _repository.MS_Shift.Update(item);
+            _repository.MS_Location.Update(item);
 
             //Lưu thay đổi
             await _repository.Save();
@@ -101,5 +102,6 @@ namespace API._Services.Services.Maintain
             return new OperationResult(true, "Update Succesfully");
         }
         #endregion
+
     }
 }

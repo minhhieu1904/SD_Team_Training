@@ -1,0 +1,48 @@
+<div bsModal #modalAuthorizationUser="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h4 class="modal-title pull-left">{{'AuthorizationSetting.Authorization' | translate }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalAuthorizationUser.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-2">
+          <label class="col-md-2 col-form-label" for="account">
+            <strong class="float-right">{{'AuthorizationSetting.UserAccount' | translate }}</strong>
+          </label>
+          <div class="col-md-3">
+            <input type="text" name="account" class="form-control" disabled [ngModel]="userAuthorization?.account" />
+          </div>
+          <label class="col-md-3 col-form-label" for="username">
+            <strong class="float-right">{{'AuthorizationSetting.UserName' | translate }}</strong>
+          </label>
+          <div class="col-md-4">
+            <input type="text" name="username" class="form-control" disabled [ngModel]="userAuthorization?.name" />
+          </div>
+        </div>
+        <div class="row mb-2 mt-3" *ngFor="let item of rolesUser">
+          <div class="col-md-2 offset-md-3">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="{{item.role_name}}" [(ngModel)]="item.status">
+              <label class="custom-control-label" for="{{item.role_name}}"></label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="{{item.role_name}}">{{('Roles.Menu_Child.' + item.role_unique) | translate }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-start">
+        <button class="btn btn-danger btn-sm whiteClass" (click)="modalAuthorizationUser.hide()">
+          <i class="{{iconButton.CLEAR}}" aria-hidden="true"></i> {{'System.Action.Cancel' | translate }}
+        </button>
+        <button class="btn btn-success btn-sm whiteClass" (click)="updateRolesUser()">
+          <i class="{{iconButton.SAVE}}" aria-hidden="true"></i> {{'System.Action.Save' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
