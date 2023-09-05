@@ -1,10 +1,17 @@
+import { AppGuard } from '@guards/app.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { getInfoMenu } from '@utilities/function-utility';
 
 const routes: Routes = [
   {
     path: 'shift-data-maintenance',
-    loadChildren: () => import('./1_1_shift-data-maintainance/shift-data-maintainance.module').then(m => m.ShiftDataMaintainanceModule)
+    canLoad: [AppGuard],
+    loadChildren: () => import('./1_1_shift-data-maintainance/shift-data-maintainance.module')
+      .then(m => m.ShiftDataMaintainanceModule),
+    data: {
+      role: getInfoMenu('0')?.unique,
+    }
   },
   {
     path: 'warehouse-basic-data-maintenance',

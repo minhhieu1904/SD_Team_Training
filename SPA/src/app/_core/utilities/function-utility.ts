@@ -6,6 +6,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { enGbLocale, idLocale, viLocale, zhCnLocale } from "ngx-bootstrap/locale";
 import { defineLocale } from "ngx-bootstrap/chronos";
 import { BsLocaleService } from "ngx-bootstrap/datepicker";
+import { RoleInfomation } from "@models/auth/auth";
+import { LocalStorageConstants } from "@constants/local-storage.constants";
 @Injectable({
   providedIn: "root",
 })
@@ -249,4 +251,11 @@ export class FunctionUtility {
     audio.load();
     audio.play();
   }
+}
+
+export function getInfoMenu(str: string): RoleInfomation {
+  const roles: RoleInfomation[] = JSON.parse(
+    localStorage.getItem(LocalStorageConstants.ROLES)
+  );
+  return roles?.find(x => x.name.includes(str + " "))
 }
