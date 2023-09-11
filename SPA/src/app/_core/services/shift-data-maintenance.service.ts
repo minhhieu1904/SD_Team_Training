@@ -14,20 +14,34 @@ export class ShiftDataMaintenanceService {
   dataSource = new BehaviorSubject<ShiftDataMaintainParam>(null)
   currentDataSource = this.dataSource.asObservable();
 
-
   constructor(private http: HttpClient) { }
 
-  getAll(pagination: Pagination, param: ShiftDataMaintainParam) {
+  getData(pagination: Pagination, param: ShiftDataMaintainParam) {
     let params = new HttpParams().appendAll({...pagination, ...param});
-    return this.http.get<PaginationResult<MS_Shift>>(this.apiUrl + "ShiftDataMaintain/GetAll", { params });
+    return this.http.get<PaginationResult<MS_Shift>>(this.apiUrl + "ShiftDataMaintain/GetDataPagination", { params });
   }
 
-  create(model: MS_Shift): Observable<OperationResult> {
+  create(model: MS_Shift){
     return this.http.post<OperationResult>(this.apiUrl + "ShiftDataMaintain/Create", model);
   }
 
-  update(model: MS_Shift): Observable<OperationResult>{
+  update(model: MS_Shift){
     return this.http.put<OperationResult>(this.apiUrl + "ShiftDataMaintain/Update", model);
+  }
+
+  delete(model: MS_Shift){
+    let params = new HttpParams().appendAll({ ...model})
+    return this.http.delete<OperationResult>(this.apiUrl + "ShiftDataMaintain/Delete", { params });
+  }
+
+  download(param: ShiftDataMaintainParam) {
+    let params = new HttpParams().appendAll({ ...param });
+
+    return this.http.get(this.apiUrl + 'ShiftDataMaintain/DownloadExcel', { params , responseType: 'blob',})
+  }
+
+  upload(file: FormData) {
+    return this.http.post<OperationResult>(this.apiUrl + 'ShiftDataMaintain/UploadExcel', file ,{});
   }
 
 }

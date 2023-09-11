@@ -1,19 +1,10 @@
-using System.Security.Cryptography.X509Certificates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AgileObjects.AgileMapper;
-using AgileObjects.AgileMapper.Configuration;
 using API._Repositories;
 using API._Services.Interfaces;
-using API.DTOs;
 using API.Helper.Params.ShiftDataMaintain;
 using API.Models;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
-using SD3_API.Helpers.Utilities;
-
+using SDCores;
 namespace API._Services.Services
 {
     public class WarehouseBasicDataMaintenanceService : IWarehouseBasicDataMaintenanceService

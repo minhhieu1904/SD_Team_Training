@@ -1,24 +1,25 @@
 
-using API._Repositories.Interfaces;
+using API.Models;
 using Microsoft.EntityFrameworkCore.Storage;
-
+using SDCores;
 namespace API._Repositories
-{
+{  
+    //Bước 3
+    [DependencyInjectionAttribute(ServiceLifetime.Scoped)]
     public interface IRepositoryAccessor
     {
-        // IERP_ISSUE_DTL_Repository ERP_ISSUE_DTL {get;}
-        IMS_ShiftRepository MS_Shift { get; }
-        IMS_WarehouseRepository MS_Warehouse { get; }
-        IMS_DepartmentRepository MS_Department { get; }
-        IMS_PackageRepository MS_Package { get; }
-        IUserRepository User { get; }
-        IRoleUserRepository RoleUser { get; }
-        IRoleRepository Role { get; }
-        IMS_QR_OrderRepository MS_QR_Order { get; }
-        IMS_QR_LabelRepository MS_QR_Label { get; }
-        IMS_QR_CycleRepository MS_QR_Cycle {get;}
-        IMS_QR_SortRepository MS_QR_Sort {get;}
-        Task<bool> Save();
+         Task<bool> Save();
         Task<IDbContextTransaction> BeginTransactionAsync();
+        IRepository<MS_Shift> MS_Shift { get; }
+        IRepository<MS_Warehouse> MS_Warehouse { get; }
+        IRepository<MS_Department> MS_Department { get; }
+        IRepository<MS_Package> MS_Package { get; }
+        IRepository<User> User { get; }
+        IRepository<Role> Role { get; }
+        IRepository<RoleUser> RoleUser { get; }
+        IRepository<MS_QR_Order> MS_QR_Order { get; }
+        IRepository<MS_QR_Label> MS_QR_Label { get; }
+        IRepository<MS_QR_Cycle> MS_QR_Cycle { get; }
+        IRepository<MS_QR_Sort> MS_QR_Sort { get; }
     }
 }

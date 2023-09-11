@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Helper.Params.ShiftDataMaintain;
 using API.Models;
-using SD3_API.Helpers.Utilities;
-
+using SDCores;
 namespace API._Services.Interfaces
 {
+    [DependencyInjectionAttribute(ServiceLifetime.Scoped)]
     public interface IDepartmentDataMaintenanceService
     {
         Task<PaginationUtility<MS_Department>> GetAll(PaginationParam pagination, DepartmentDataMaintenanceParam param);

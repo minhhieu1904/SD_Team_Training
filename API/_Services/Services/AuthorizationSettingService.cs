@@ -1,18 +1,12 @@
-using System.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces;
 using API.Helper.Params;
 using API.Models;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
-using SD3_API.Helpers.Utilities;
 using AgileObjects.AgileMapper;
 using API.DTOs.Role;
-
+using SDCores;
 namespace API._Services.Services
 {
     public class AuthorizationSettingService : IAuthorizationSettingService

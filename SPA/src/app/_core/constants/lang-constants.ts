@@ -1,7 +1,6 @@
-export const LangConstants = <const> {
-  VI: 'vi_VN',
-  EN: 'en',
-  ID: 'id',
-  ZH: 'zh_TW',
-  LANG: 'MSP_For_ciMES_lang'
+export class LangConstants {
+  public static VN = "vi";
+  public static EN = "en";
+  public static ZH_TW = "zh-TW";
+  public static  LANG: 'MSP_For_ciMES_lang';
 }

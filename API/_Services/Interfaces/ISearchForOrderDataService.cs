@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.DTOs.MS_QR_Order;
 using API.Helper.Params;
-using API.Models;
-using SD3_API.Helpers.Utilities;
-
+using SDCores;
 namespace API._Services.Interfaces
 {
+    [DependencyInjectionAttribute(ServiceLifetime.Scoped)]
     public interface ISearchForOrderDataService
     {
         Task<List<KeyValuePair<decimal, decimal>>> GetListPackage();

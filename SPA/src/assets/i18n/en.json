@@ -65,7 +65,8 @@
       "Scan": "Scan",
       "Export": "Export",
       "Reprint": "Reprint",
-      "Release": "Release"
+      "Release": "Release",
+      "Text": "Action"
     },
     "Button": {
       "T1Apply": "T1 Apply",
@@ -254,13 +255,13 @@
       "PleaseSelectDate": "Please select From Date and To Date."
     },
     "ReprintSticker": {
-      "StartMdat": "Start mdat",
-      "EndMdat": "End mdat",
+      "StartMdat": "Start Production_Date",
+      "EndMdat": "End Production_Date",
       "prtno": "prtno",
       "PlanningNo": "Planning No.",
       "PurchaseNo": "Purchase No.",
       "serial": "serial",
-      "mdat": "mdat",
+      "mdat": "Production_Date",
       "ManNo": "Planning No.",
       "PurNo": "Purchase No.",
       "Grade": "Grade",
@@ -332,7 +333,8 @@
       "29AlreadyPickingQRCODE": "2.9 Already Picking QRCODE",
       "QRCODEAlreadyRelease": "QRCODE Already Release",
       "QRCODEAlreadyStorageOut": "QRCODE Already StorageOut",
-      "InvalidUpdateData": "Invalid Update Data"
+      "InvalidUpdateData": "Invalid Update Data",
+      "NoData": "No Data"
     },
     "WarehouseOutScan": {
       "Kind": "Kind",
@@ -356,7 +358,7 @@
       "QRCODEAlreadySelect": "This QRCODE Already Select",
       "alreadyStorageOut": "Already StorageOut",
       "Alreadyselect": "This Picking List already select",
-      "29AlreadyPickingQRCODE":"2.9 Already Picking QRCODE"
+      "29AlreadyPickingQRCODE": "2.9 Already Picking QRCODE"
     }
   },
   "Maintain": {
@@ -405,7 +407,7 @@
       "Date": "Date",
       "Crday": "crday",
       "Sdat": "Create day",
-      "Mdat": "mdat",
+      "Mdat": "Production_Date",
       "Brand": "Brand",
       "CodeOfCustomer": "Code Of Customer",
       "NameOfCustomer": "Name of Customer",
@@ -437,7 +439,7 @@
       "Date": "Date",
       "Endmdat": "End mdat",
       "Sdat": "Create day",
-      "Mdat": "mdat",
+      "Mdat": "Production_Date",
       "Kind": "Kind",
       "Brand": "Brand",
       "EtaFrom": "Confirmed Delivery Date",
@@ -480,7 +482,7 @@
     },
     "WkshSumReport": {
       "Title": "4.1 wksh Sum Report",
-      "mdat": "mdat",
+      "mdat": "Production_Date",
       "CloseStatus": "Close Status",
       "Brand": "Brand",
       "CodeOfCustomer": "Code of Customer",
@@ -505,9 +507,10 @@
       "TypeOfOrder": "Type of Order"
     },
     "QRCodeWIPReport": {
+      "yymmdd": "yymmdd",
       "MoldNumber": "MoldNumber",
       "Tolcls": "Tolcls",
-      "Mdat": "Mdat",
+      "Mdat": "Production_Date",
       "Manuf": "Manuf",
       "Type": "Type",
       "PlanNo": "Plan No.",

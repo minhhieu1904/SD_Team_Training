@@ -1,17 +1,10 @@
-using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using API._Repositories;
 using API._Services.Interfaces;
 using API.DTOs.PackingScan;
 using API.Models;
-using LinqKit;
 using Microsoft.EntityFrameworkCore;
-using SD3_API.Helpers.Utilities;
-
+using SDCores;
 namespace API._Services.Services
 {
     public class PackingScanService : IPackingScanService
@@ -78,15 +71,15 @@ namespace API._Services.Services
             var sortItem = await _repository.MS_QR_Sort.FindSingle(x => x.PurNo.Trim() == PurNo.Trim() && x.ManNo.Trim() == ManNo.Trim() && x.Serial == Serial && x.Size == Size);
             // if (labelItem == null)
             // {
-            //     return new OperationResult(false, "LabelNotBePrinted");
+            //     return new SDCores.OperationResult(false, "LabelNotBePrinted");
             // }
             // else if (sortItem != null)
             // {
-            //     return new OperationResult(false, "AlreadyScannedIn2.3");
+            //     return new SDCores.OperationResult(false, "AlreadyScannedIn2.3");
             // }
             // else if (labelItem.Flag == "C")
             // {
-            //     return new OperationResult(false, "Cancelled");
+            //     return new SDCores.OperationResult(false, "Cancelled");
             // }
             return new OperationResult(true);
         }

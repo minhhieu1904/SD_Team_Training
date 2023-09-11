@@ -17,7 +17,7 @@ export class FormComponent extends InjectBase implements OnInit {
   title: string;
 
   paramData: MS_Shift = <MS_Shift>{
-    nanuf: 'N',
+    manuf: 'N',
     shift: '',
     shiftName: '',
   };

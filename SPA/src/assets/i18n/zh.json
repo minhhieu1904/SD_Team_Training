@@ -65,7 +65,8 @@
       "Scan": "掃描",
       "Export": "轉出",
       "Reprint": "重印",
-      "Release": "放行"
+      "Release": "放行",
+      "Text": "操作"
     },
     "Button": {
       "T1Apply": "T1申請",
@@ -254,13 +255,13 @@
       "PleaseSelectDate": "Please select From Date and To Date"
     },
     "ReprintSticker": {
-      "StartMdat": "Start mdat",
-      "EndMdat": "End mdat",
+      "StartMdat": "Start Production_Date",
+      "EndMdat": "End Production_Date",
       "prtno": "prtno",
       "PlanningNo": "企劃單號",
       "PurchaseNo": "訂購單號",
       "serial": "序號",
-      "mdat": "派工日期",
+      "mdat": "Production_Date",
       "ManNo": "企劃單號",
       "PurNo": "訂購單號",
       "Grade": "Grade",
@@ -332,7 +333,8 @@
       "29AlreadyPickingQRCODE": "2.9 Already Picking QRCODE",
       "QRCODEAlreadyRelease": "QRCODE Already Release",
       "QRCODEAlreadyStorageOut": "QRCODE Already StorageOut",
-      "InvalidUpdateData": "Invalid Update Data"
+      "InvalidUpdateData": "Invalid Update Data",
+      "NoData": "No Data"
     },
     "WarehouseOutScan": {
       "Kind": "Kind",
@@ -356,7 +358,7 @@
       "QRCODEAlreadySelect": "This QRCODE Already Select",
       "alreadyStorageOut": "Already StorageOut",
       "Alreadyselect": "This Picking List already select",
-      "29AlreadyPickingQRCODE":"2.9 Already Picking QRCODE"
+      "29AlreadyPickingQRCODE": "2.9 Already Picking QRCODE"
     }
   },
   "Maintain": {
@@ -437,7 +439,7 @@
       "Date": "日期",
       "Endmdat": "从生产/交货日期",
       "sdat": "倉庫掃描日期",
-      "mdat": "生產/派工日期",
+      "mdat": "派工日期",
       "Kind": "訂單類別",
       "EtaFrom": "確認交期",
       "MaterialCodeBottom": "品號",
@@ -509,6 +511,7 @@
       "TypeOfOrder": "訂單類別"
     },
     "QRCodeWIPReport": {
+      "yymmdd": "日期",
       "MoldNumber": "模具編號",
       "Tolcls": "工具代碼",
       "Mdat": "派工日期",

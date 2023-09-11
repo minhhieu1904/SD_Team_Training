@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // thêm các loại ngôn ngữ và set ngôn ngữ mặc định
-    this.translate.addLangs([LangConstants.ZH, LangConstants.EN, LangConstants.ID, LangConstants.VI]);
+    this.translate.addLangs([LangConstants.ZH_TW, LangConstants.EN,  LangConstants.VN]);
     this.lang = this.lang ?? LangConstants.EN;
     this.translate.setDefaultLang(this.lang);
     this.translate.use(this.lang);

@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar-next';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar-next';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar-next';
+
 
 import {
   IconModule,
@@ -38,8 +39,8 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ChartsModule } from 'ng2-charts';
-import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-alt-snotify';
+import { NgChartsModule } from 'ng2-charts';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxBreadcrumbModule } from 'ngx-dynamic-breadcrumb';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -48,11 +49,11 @@ import {
   HttpClientModule,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
+import { NgxPrintElementModule } from 'ngx-print-element';
 import { HeaderContainerComponent } from './containers/header-container/header-container.component';
 import { FooterContainerComponent } from './containers/footer-container/footer-container.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NgxPrintModule } from 'ngx-print';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { LoginComponent } from './views/login/login.component';
@@ -80,15 +81,16 @@ export function tokenGetter() {
     AppFooterModule,
     AppHeaderModule,
     AppSidebarModule,
-    PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
+    PerfectScrollbarModule,
     TabsModule.forRoot(),
-    ChartsModule,
+    NgChartsModule,
     IconModule,
     IconSetModule.forRoot(),
     SnotifyModule,
     NgxSpinnerModule,
-    NgxPrintModule,
+    NgxPrintElementModule,
+    TranslateModule,
     RouterModule,
     NgxBreadcrumbModule.forRoot(),
     TranslateModule.forRoot({

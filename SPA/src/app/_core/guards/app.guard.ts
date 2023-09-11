@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, Router, UrlTree } from '@angular/router';
+import { Route, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RoleInformation } from '../models/auth/application-user';
 import { LocalStorageConstants } from '../constants/local-storage.constants';
@@ -8,7 +8,7 @@ import { LocalStorageConstants } from '../constants/local-storage.constants';
   providedIn: 'root'
 })
 
-export class AppGuard implements CanLoad {
+export class AppGuard  {
   constructor(private router: Router) { }
 
   canLoad(route: Route): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

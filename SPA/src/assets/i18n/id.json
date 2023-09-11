@@ -65,7 +65,8 @@
       "Scan": "Scan",
       "Export": "Export",
       "Reprint": "Print ulang",
-      "Release": "Release"
+      "Release": "Release",
+      "Text": "Tindakan"
     },
     "Button": {
       "T1Apply": "T1 Mengajukan",
@@ -254,13 +255,13 @@
       "PleaseSelectDate": "Please select From Date and To Date"
     },
     "ReprintSticker": {
-      "StartMdat": "Start mdat",
-      "EndMdat": "End mdat",
+      "StartMdat": "Start Production_Date",
+      "EndMdat": "End Production_Date",
       "prtno": "prtno",
       "PlanningNo": "nomor spk",
       "PurchaseNo": "nomor seri orderan",
       "serial": "serial",
-      "mdat": "mdat",
+      "mdat": "Production_Date",
       "ManNo": "Nomor spk",
       "PurNo": "Nomor seri orderan",
       "Grade": "Grade",
@@ -332,7 +333,8 @@
       "29AlreadyPickingQRCODE": "2.9 Already Picking QRCODE",
       "QRCODEAlreadyRelease": "QRCODE Already Release",
       "QRCODEAlreadyStorageOut": "QRCODE Already StorageOut",
-      "InvalidUpdateData": "Invalid Update Data"
+      "InvalidUpdateData": "Invalid Update Data",
+      "NoData": "No Data"
     },
     "WarehouseOutScan": {
       "Kind": "Kind",
@@ -356,7 +358,7 @@
       "QRCODEAlreadySelect": "This QRCODE Already Select",
       "alreadyStorageOut": "Already StorageOut",
       "Alreadyselect": "This Picking List already select",
-      "29AlreadyPickingQRCODE":"2.9 Already Picking QRCODE"
+      "29AlreadyPickingQRCODE": "2.9 Already Picking QRCODE"
     }
   },
   "Maintain": {
@@ -405,7 +407,7 @@
       "Date": "Date",
       "Crday": "crday",
       "Sdat": "sdat",
-      "Mdat": "mdat",
+      "Mdat": "Production_Date",
       "Brand": "Merek",
       "CodeOfCustomer": "Kode customer",
       "NameOfCustomer": "Nama customer",
@@ -437,7 +439,7 @@
       "Date": "Tanggal",
       "Endmdat": "End mdat",
       "sdat": "sdat",
-      "mdat": "mdat",
+      "mdat": "Production_Date",
       "Kind": "jenis",
       "EtaFrom": "confirmasi pengiriman",
       "MaterialCodeBottom": "Kode Bahan Bawah",
@@ -462,7 +464,7 @@
       "DateKind": "jenis tanggal",
       "Crday": "crday",
       "Sdat": "sdat",
-      "Mdat": "mdat",
+      "Mdat": "Production_Date",
       "Brand": "Merek",
       "CodeOfCustomer": "Kode customer",
       "NameOfCustomer": "Nama customer",
@@ -482,7 +484,7 @@
     },
     "WkshSumReport": {
       "Title": "4.1 wksh Sum Report",
-      "mdat": "mdat",
+      "mdat": "Production_Date",
       "CloseStatus": "Close Status",
       "Brand": "merek",
       "CodeOfCustomer": "kode customer",
@@ -507,9 +509,10 @@
       "TypeOfOrder": "Jenis po"
     },
     "QRCodeWIPReport": {
+      "yymmdd": "yymmdd",
       "MoldNumber": "no seri mold",
       "Tolcls": "Tolcls",
-      "Mdat": "Mdat",
+      "Mdat": "Production_Date",
       "Manuf": "Manuf",
       "Type": "Type",
       "PlanNo": "Plan No.",

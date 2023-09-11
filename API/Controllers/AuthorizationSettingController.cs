@@ -1,14 +1,8 @@
-using System.Net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API._Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using SD3_API.Helpers.Utilities;
-using API.Models;
 using API.Helper.Params;
 using API.DTOs.Role;
+
 
 namespace API.Controllers
 {
@@ -21,7 +15,7 @@ namespace API.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationParam pagination, [FromQuery] AuthorizationSettingParam param)
+        public async Task<IActionResult> GetAll([FromQuery] SDCores.PaginationParam pagination, [FromQuery] AuthorizationSettingParam param)
         {
             var result = await _service.GetAll(pagination, param);
             return Ok(result);

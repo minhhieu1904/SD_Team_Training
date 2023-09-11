@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.DTOs.Author;
-
+using SDCores;
 namespace API._Services.Interfaces
-{
+{ 
+    [DependencyInjectionAttribute(ServiceLifetime.Scoped)]
     public interface IAuthorService
     {
         Task<UserLoginDTO> Login (UserLogin userLogin);

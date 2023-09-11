@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces.Common;
-using API.DTOs.PackingScan;
 using Microsoft.EntityFrameworkCore;
 
 namespace API._Services.Services.Common

@@ -1,11 +1,7 @@
-using System.Security.Claims;
 using API._Services.Interfaces;
 using API.DTOs.MS_QR_Order;
 using API.Helper.Params;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SD3_API.Helpers.Utilities;
-
 namespace API.Controllers
 {
     public class SearchForOrderDataController : APIController
@@ -18,7 +14,7 @@ namespace API.Controllers
         }
 
         [HttpGet("GetDataPagination")]
-        public async Task<IActionResult> GetDataPagination([FromQuery] PaginationParam pagination, [FromQuery] SearchForOrderDataParam param)
+        public async Task<IActionResult> GetDataPagination([FromQuery] SDCores.PaginationParam pagination, [FromQuery] SearchForOrderDataParam param)
         {
             return Ok(await _service.GetDataPagination(pagination, param));
         }

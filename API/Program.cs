@@ -1,5 +1,5 @@
 using API.Configurations;
-using API.Helpers.Utilities;
+using SDCores;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +16,7 @@ builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddAuthenticationConfigufation(builder.Configuration);
 
 // RepositoryAccessor and Service
-builder.Services.AddDependencyInjectionConfiguration();
-
+builder.Services.AddDependencyInjectionConfiguration(typeof(Program));
 // Swagger Config
 builder.Services.AddSwaggerGenConfiguration();
 

@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API._Services.Interfaces;
 using API.Helper.Params.ShiftDataMaintain;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
-using SD3_API.Helpers.Utilities;
+
 
 namespace API.Controllers
 {
@@ -18,14 +14,14 @@ namespace API.Controllers
             _service = service;
         }
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationParam pagination, [FromQuery] DepartmentDataMaintenanceParam param)
+        public async Task<IActionResult> GetAll([FromQuery] SDCores.PaginationParam pagination, [FromQuery] DepartmentDataMaintenanceParam param)
         {
             var result = await _service.GetAll(pagination, param);
             return Ok(result);
         }
         
         [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] PaginationParam pagination, string text)
+        public async Task<IActionResult> Search([FromQuery] SDCores.PaginationParam pagination, string text)
         {
             var result = await _service.Search(pagination, text);
             return Ok(result);

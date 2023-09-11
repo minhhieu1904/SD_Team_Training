@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Helper.Params.ShiftDataMaintain;
 using API.Models;
-using SD3_API.Helpers.Utilities;
-
+using SDCores;
 namespace API._Services.Interfaces
 {
+    [DependencyInjectionAttribute(ServiceLifetime.Scoped)]
     public interface IStandardPackingQuantitySettingService
     {
         Task<PaginationUtility<MS_Package>> GetAll(PaginationParam pagination, StandardPackingQuantitySettingParam param);

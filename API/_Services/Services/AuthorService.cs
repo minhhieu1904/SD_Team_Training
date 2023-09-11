@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API._Repositories;
 using API._Services.Interfaces;
 using API.DTOs.Author;
 using Microsoft.EntityFrameworkCore;
-
 namespace API._Services.Services
 {
     public class AuthorService : IAuthorService

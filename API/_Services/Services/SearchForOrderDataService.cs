@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AgileObjects.AgileMapper;
 using API._Repositories;
 using API._Services.Interfaces;
@@ -10,22 +6,19 @@ using API.Helper.Params;
 using API.Models;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
-using SD3_API.Helpers.Utilities;
-
+using SDCores;
 namespace API._Services.Services
 {
     public class SearchForOrderDataService : ISearchForOrderDataService
     {
         private readonly IRepositoryAccessor _repositoryAccessor;
         private readonly IConfiguration _configuration;
-        private readonly IFunctionUtility _functionUtility;
         protected readonly string _manuf;
-        public SearchForOrderDataService(IRepositoryAccessor repositoryAccessor, IConfiguration configuration, IFunctionUtility functionUtility)
+        public SearchForOrderDataService(IRepositoryAccessor repositoryAccessor, IConfiguration configuration)
         {
             _repositoryAccessor = repositoryAccessor;
             _configuration = configuration;
             _manuf = _configuration.GetSection("Appsettings:FactoryCode").Value;
-            _functionUtility = functionUtility;
         }
 
         public async Task<PaginationUtility<SearchForOrderDataViewModel>> GetDataPagination(PaginationParam pagination, SearchForOrderDataParam param, bool isPaging = true)
@@ -66,7 +59,7 @@ namespace API._Services.Services
         {
             var labelLast = await _repositoryAccessor.MS_QR_Label.FindAll().OrderBy(x => x.CrDay).ThenBy(x => x.QRCodeID).LastOrDefaultAsync();
             string QRCodeIDDay = DateTime.Now.ToString("yyyyMMdd");
-            string code = (labelLast == null || labelLast.QRCodeID.Substring(0, 8) != QRCodeIDDay) ? "00001" : _functionUtility.GenerateCodeIdentity(labelLast.QRCodeID.Substring(8));
+            string code = (labelLast == null || labelLast.QRCodeID.Substring(0, 8) != QRCodeIDDay) ? "00001" : FunctionUtility.GenerateCodeIdentity(labelLast.QRCodeID.Substring(8));
             if (dataPrint.Is_Remark && dataPrint.Items.Count() == 1)
                 return await OrderPrintRemark(dataPrint, QRCodeIDDay, code);
             else
@@ -125,7 +118,7 @@ namespace API._Services.Services
                             data.pqty += orderData.qty;
                             printDataResult.Add(orderData);
 
-                            code = _functionUtility.GenerateCodeIdentity(code);
+                            code = FunctionUtility.GenerateCodeIdentity(code);
                         }
                     }
 
@@ -200,7 +193,7 @@ namespace API._Services.Services
                         data.pqty += orderData.qty;
                         printDataResult.Add(orderData);
 
-                        code = _functionUtility.GenerateCodeIdentity(code);
+                        code = FunctionUtility.GenerateCodeIdentity(code);
                     }
 
                     data.update_time = DateTime.Now;
@@ -327,7 +320,7 @@ namespace API._Services.Services
             orderData.qrCodeName = newLabel.QRCodeValue;
             printDataResult.Add(orderData);
 
-            code = _functionUtility.GenerateCodeIdentity(code);
+            code = FunctionUtility.GenerateCodeIdentity(code);
 
             data.pqty = dataPrint.PrintQty;
             data.update_time = DateTime.Now;
