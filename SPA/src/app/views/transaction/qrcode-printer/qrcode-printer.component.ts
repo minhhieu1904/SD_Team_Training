@@ -7,7 +7,7 @@ import {
 import { interval, take } from 'rxjs';
 import { OrderPrintResult } from '@models/transaction/search-for-order-data';
 import { CommonModule } from '@angular/common';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { QRCodeModule } from 'angularx-qrcode';
 import { InjectBase } from '@utilities/inject-base-app';
 
 @Component({
@@ -15,7 +15,7 @@ import { InjectBase } from '@utilities/inject-base-app';
   templateUrl: './qrcode-printer.component.html',
   styleUrls: ['./qrcode-printer.component.scss'],
   standalone: true,
-  imports: [CommonModule, NgxQRCodeModule, NgxPrintElementModule],
+  imports: [CommonModule, QRCodeModule, NgxPrintElementModule],
 })
 export class QrcodePrinterComponent extends InjectBase implements OnInit {
   data: OrderPrintResult[] = [];

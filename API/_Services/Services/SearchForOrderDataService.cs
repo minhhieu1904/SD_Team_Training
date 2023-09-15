@@ -59,7 +59,7 @@ namespace API._Services.Services
         {
             var labelLast = await _repositoryAccessor.MS_QR_Label.FindAll().OrderBy(x => x.CrDay).ThenBy(x => x.QRCodeID).LastOrDefaultAsync();
             string QRCodeIDDay = DateTime.Now.ToString("yyyyMMdd");
-            string code = (labelLast == null || labelLast.QRCodeID.Substring(0, 8) != QRCodeIDDay) ? "00001" : FunctionUtility.GenerateCodeIdentity(labelLast.QRCodeID.Substring(8));
+            string code = (labelLast == null || labelLast.QRCodeID.Substring(0, 8) != QRCodeIDDay) ? "00001" : (Convert.ToInt32(labelLast.QRCodeID.Substring(8)) + 1).ToString().PadLeft(5, '0');
             if (dataPrint.Is_Remark && dataPrint.Items.Count() == 1)
                 return await OrderPrintRemark(dataPrint, QRCodeIDDay, code);
             else
@@ -118,7 +118,7 @@ namespace API._Services.Services
                             data.pqty += orderData.qty;
                             printDataResult.Add(orderData);
 
-                            code = FunctionUtility.GenerateCodeIdentity(code);
+                            code = (Convert.ToInt32(code) + 1).ToString().PadLeft(5, '0');
                         }
                     }
 
@@ -193,7 +193,7 @@ namespace API._Services.Services
                         data.pqty += orderData.qty;
                         printDataResult.Add(orderData);
 
-                        code = FunctionUtility.GenerateCodeIdentity(code);
+                        code = (Convert.ToInt32(code) + 1).ToString().PadLeft(5, '0');
                     }
 
                     data.update_time = DateTime.Now;
@@ -320,7 +320,7 @@ namespace API._Services.Services
             orderData.qrCodeName = newLabel.QRCodeValue;
             printDataResult.Add(orderData);
 
-            code = FunctionUtility.GenerateCodeIdentity(code);
+            code = (Convert.ToInt32(code) + 1).ToString().PadLeft(5, '0');
 
             data.pqty = dataPrint.PrintQty;
             data.update_time = DateTime.Now;

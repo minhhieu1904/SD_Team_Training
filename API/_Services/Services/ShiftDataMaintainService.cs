@@ -1,3 +1,4 @@
+
 using AgileObjects.AgileMapper;
 using API._Repositories;
 using API._Services.Interfaces;
@@ -150,7 +151,7 @@ namespace API._Services.Services
                     await _maintain.CommitAsync();
 
                     string path = @"uploaded/excels/Maintain/1_1_Shift_Data_Maintain/1_1_Shift_Data_Maintain_Create";
-                    await FunctionUtility.UploadAsync(param.File, path, $"ShiftDataMaintain_{DateTime.Now.ToString("yyyyMMddHHmmss")}"); ;
+                    await FilesUtility.UploadAsync(param.File, path, $"ShiftDataMaintain_{DateTime.Now.ToString("yyyyMMddHHmmss")}"); ;
 
                     return new OperationResult { IsSuccess = true };
                 }

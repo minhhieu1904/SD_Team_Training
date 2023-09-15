@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SnotifyPosition, SnotifyService, SnotifyToastConfig } from 'ng-snotify';
+import { SnotifyPosition, SnotifyService, SnotifyToastConfig } from 'ng-alt-snotify';
 
 @Injectable({ providedIn: 'root' })
 export class NgSnotifyService {
