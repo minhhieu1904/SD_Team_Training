@@ -559,7 +559,8 @@
       "StorageScanQty": "Storge scan Qty",
       "DifferencesQty": "Differences Qty",
       "CancelPritingQuantity": "Cancel Priting Quantity",
-      "TypeOfOrder": "Type of Order"
+      "TypeOfOrder": "Type of Order",
+      "ProductionDate": "Production Date"
     },
     "QRCodeWIPReport": {
       "yymmdd": "yymmdd",

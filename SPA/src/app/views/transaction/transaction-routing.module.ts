@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./warehouse-scan/warehouse-scan.module').then(m => m.WarehouseScanModule)
   },
   {
+    path: 'warehouse-out-scan',
+    loadChildren: () => import('./warehouse-out-scan/warehouse-out-scan.module').then(m => m.WarehouseOutScanModule)
+  },
+  {
     path: 'reprint-sticker',
     loadChildren: () => import('./reprint-sticker/reprint-sticker.module').then(m => m.ReprintStickerModule)
   },

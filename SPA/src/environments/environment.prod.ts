@@ -1,13 +1,13 @@
-const port: string = `:${+window.location.port - 1}`;
 const protocol: string = window.location.protocol;
 const hostname: string = window.location.hostname;
+const port: string = ':5000';
 const ip: string = `${hostname}${port}`;
-const apiUrl: string = `${protocol}//${ip}`;
+const baseUrl: string = `${protocol}//${ip}`;
 
 export const environment = {
-  production: true,
-  baseUrl: `${apiUrl}/`,
-  apiUrl: `${apiUrl}/api/`,
+  production: false,
+  apiUrl: `${baseUrl}/api/`,
+  baseUrl: `${baseUrl}/`,
   allowedDomains: [ip],
-  disallowedRoutes: [`${apiUrl}/api/auth`],
+  disallowedRoutes: [`${ip}/api/auth`],
 };
