@@ -1,0 +1,239 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-12">
+              <strong class="title-card-cs">2.11.
+                {{'Transaction.OrderDataStatusAdjust.Title' | translate
+                }}</strong>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row border-shadow">
+
+
+            <div class="col-md-2">
+              <label
+                class="badge badge-warning">{{'Transaction.OrderDataStatusAdjust.PlanningNo'
+                | translate}} <i class="i-required">*</i></label>
+              <div class="input-group">
+                <input type="text" class="form-control"
+                  placeholder="Enter Planning No" autocomplete="off"
+                  name="planningNo" [(ngModel)]="param.planningNo" required />
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <label
+                class="badge badge-warning">{{'Transaction.OrderDataStatusAdjust.PurNo'
+                | translate}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control"
+                  placeholder="Enter PurNo" autocomplete="off" name="purno"
+                  [(ngModel)]="param.purno" />
+
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <label
+                class="badge badge-warning">{{'Transaction.OrderDataStatusAdjust.Tolcls'
+                | translate }} <i class="i-required">*</i></label>
+              <ng-select name="tolcls" [(ngModel)]="param.tolcls"
+                placeholder="{{'Transaction.OrderDataStatusAdjust.Tolcls' | translate}}"
+                required>
+                <ng-option [value]="''">{{'System.SelectAll' | translate
+                  }}</ng-option>
+                <ng-option *ngFor="let tolcl of listTolcls"
+                  [value]="tolcl.key">{{tolcl.value}}</ng-option>
+              </ng-select>
+            </div>
+
+
+            <!-- Actions -->
+            <div class="col-md-6">
+              <label class="d-block">&nbsp;</label>
+              <!-- Search -->
+              <button class="btn btn-success mr-2"
+                [disabled]="(isNullOrEmpty(param.planningNo) || isNullOrEmpty(param.tolcls))"
+                (click)="onSearch()">
+                <i class="{{iconButton.SEARCH}}"></i>
+                {{'System.Action.Search' | translate }}
+              </button>
+
+              <!-- Cancel -->
+              <button class="btn btn-danger mr-2"
+                [disabled]="!isHasItemsChecked"
+                (click)="onCancelOrReOpen(true)">
+                <i class="{{iconButton.CLEAR}}"></i> {{'System.Action.Cancel'
+                |translate }}
+              </button>
+
+              <!-- ReOpen -->
+              <button class="btn btn-primary" [disabled]="!isHasItemsChecked"
+                (click)="onCancelOrReOpen(false)">
+                <i class="{{iconButton.REOPEN}}"></i> {{'System.Action.ReOpen'
+                |translate }}
+              </button>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-12">
+              <div class="table-responsive mb-3">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input"
+                            id="checkAll" name="isCheckAll"
+                            [(ngModel)]="isCheckAll"
+                            (ngModelChange)="onChooseAll()">
+                          <label for="checkAll"
+                            class="custom-control-label"></label>
+                        </div>
+                      </th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.Brand' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.MoldNumber' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.Tolcls' |
+                        translate}}</th>
+                      <th>
+                        {{'Transaction.OrderDataStatusAdjust.MaterialCodeBottom'
+                        | translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.Size' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.CodeOfCustomer' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.PlanningNo' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.PurchaseNo' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.Status' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.WkshNo' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.NameOfCustomer' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.TypeOfOrder' |
+                        translate}}</th>
+                      <th>
+                        {{'Transaction.OrderDataStatusAdjust.ConfirmedDeliveryDate'
+                        | translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.Article' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.OrderQuantity' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.WkshQty' |
+                        translate}}</th>
+                      <th>
+                        {{'Transaction.OrderDataStatusAdjust.IncreaseOrderQuantity'
+                        | translate}}</th>
+                      <th>
+                        {{'Transaction.OrderDataStatusAdjust.ReduceOrderQuantity'
+                        | translate}}</th>
+                      <th>
+                        {{'Transaction.OrderDataStatusAdjust.AvailableQuantityForPrint'
+                        | translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.PrintedQuantity'
+                        | translate}}</th>
+                      <th>
+                        {{'Transaction.OrderDataStatusAdjust.CancelPritingQuantity'
+                        | translate}}</th>
+                      <th>
+                        {{'Transaction.OrderDataStatusAdjust.MaterialCodeShoes'
+                        | translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.ModelName' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.ToolingSize' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.Remark' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.TimeOfUpdating' |
+                        translate}}</th>
+                      <th>{{'Transaction.OrderDataStatusAdjust.UpdatedBy' |
+                        translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container
+                      *ngIf="orderDataStatusAdjusts.length > 0; else elseBlock">
+                      <tr [ngClass]="{'table-warning': item.isDisabledReOpen}"
+                        *ngFor="let item of orderDataStatusAdjusts; let i = index">
+                        <td (click)="onChooseItem(item)">
+                          <div class="custom-control custom-checkbox">
+                            <!-- Nếu số lượng = số lượng in (đơn hàng là [Cancel: Y]) -->
+                            <input type="checkbox" [id]="'checkItem' + i"
+                              class="custom-control-input" name="isChecked"
+                              [(ngModel)]="item.isChecked"
+                              (click)="onChooseItem(item)"
+                              [disabled]="item.isDisabledReOpen">
+                            <label [for]="'checkItem' + i"
+                              class="custom-control-label"></label>
+                          </div>
+                        </td>
+                        <td>{{item.brand}}</td>
+                        <td>{{item.moldNumber}}</td>
+                        <td>{{item.tolcls}}</td>
+                        <td>{{item.materialCodeBottom}}</td>
+                        <td>{{item.size}}</td>
+                        <td>{{item.codeOfCustomer}}</td>
+                        <td>{{item.planningNo}}</td>
+                        <td>{{item.purchaseNo}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.wkshNo}}</td>
+                        <td>{{item.nameOfCustomer}}</td>
+                        <td>{{item.typeOfOrder}}</td>
+                        <td>{{item.confirmedDeliveryDate | date: 'yyyy-MM-dd'}}
+                        </td>
+                        <td>{{item.article}}</td>
+                        <td>{{item.orderQuantity}}</td>
+                        <td>{{item.wkshQty}}</td>
+                        <td>{{item.increaseOrderQuantity}}</td>
+                        <td>{{item.reduceOrderQuantity}}</td>
+                        <td>{{item.availableQuantityForPrint}}</td>
+                        <td>{{item.printedQuantity}}</td>
+                        <td>{{item.cancelPritingQuantity}}</td>
+                        <td>{{item.materialCodeShoes}}</td>
+                        <td>{{item.modelName}}</td>
+                        <td>{{item.toolingSize}}</td>
+                        <td>{{item.remark}}</td>
+                        <td>{{item.timeOfUpdating}}</td>
+                        <td>{{item.updatedBy}}</td>
+                      </tr>
+
+                    </ng-container>
+                    <ng-template #elseBlock>
+                      <tr>
+                        <td class="table-warning text-center font-weight-bold"
+                          colspan="100%">
+                          {{'System.Message.Nodata' | translate }}
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </table>
+              </div>
+              <div class="d-flex justify-content-start"
+                *ngIf="orderDataStatusAdjusts.length > 0">
+                <pagination [boundaryLinks]="true"
+                  [totalItems]="pagination.totalCount"
+                  [itemsPerPage]="pagination.pageSize" previousText="&lsaquo;"
+                  [(ngModel)]="pagination.pageNumber"
+                  (pageChanged)="pageChanged($event)" nextText="&rsaquo;"
+                  firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+                </pagination>
+                <span class="cs-page ml-2"> Page - {{pagination.pageNumber}} /
+                  {{pagination.totalPage}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'reprint-warehouse-scan',
     loadChildren: () => import('./reprint-warehouse-scan/reprint-warehouse-scan.module').then(m => m.ReprintWarehouseScanModule)
+  },
+  {
+    path: 'order-data-status-adjust',
+    loadChildren: () => import('./order-data-status-adjust/order-data-status-adjust.module').then(m => m.OrderDataStatusAdjustModule)
   }
 ];
 
