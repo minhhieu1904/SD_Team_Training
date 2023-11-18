@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IconButton } from '@constants/common.constants';
+import { CaptionConstants, MessageConstants } from '@constants/message.enum';
 import { ModalService } from '@services/common/modal.service';
 import { PackingScanService } from '@services/transaction/packing-scan.service';
 import { InjectBase } from '@utilities/inject-base-app';
@@ -27,7 +28,7 @@ export class FormComponent extends InjectBase implements OnInit {
   ) { super() }
 
   ngOnInit(): void {
-
+    this.modalService.add(this);
   }
 
 
@@ -35,11 +36,11 @@ export class FormComponent extends InjectBase implements OnInit {
     if (this.scanText.split(',').map(x => x.trim()).length !== 9) {
       this.functionUtility.playAudioFail();
       this.autofocusElement.nativeElement.select();
-      return this.snotifyService.warning("WARNING");
+      return this.snotifyService.warning("", CaptionConstants.WARNING);
     } else if (this.listScanText.some(x => x === this.scanText)) {
       this.functionUtility.playAudioFail();
       this.autofocusElement.nativeElement.select();
-      return this.snotifyService.warning("ERROR CMNR");
+      return this.snotifyService.warning("ERROR CMNR", CaptionConstants.WARNING);
     }
     this.spinnerService.show();
     this.service.checkScanItem(this.scanText).subscribe({
@@ -54,13 +55,13 @@ export class FormComponent extends InjectBase implements OnInit {
           this.functionUtility.playAudioFail();
           this.spinnerService.hide();
           this.autofocusElement.nativeElement.select();
-          this.snotifyService.error("ERROR KIA ONG NOI");
+          this.snotifyService.error(res.error, CaptionConstants.ERROR);
         }
       },
       error: () => {
         this.functionUtility.playAudioFail();
         this.spinnerService.hide();
-        this.snotifyService.error("ERROR ROI");
+        this.snotifyService.error("ERROR ROI", CaptionConstants.ERROR);
       }
     })
   }

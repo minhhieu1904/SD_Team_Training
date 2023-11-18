@@ -200,20 +200,36 @@ export class FunctionUtility {
     return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}:00`;
   }
 
-  exportExcel(result: Blob, fileName: string) {
+  exportExcel(result: Blob | string, fileName: string, type?: string) {
+    debugger
+    if (typeof result === "string") {
+      let byteCharacters = atob(result);
+      let byteArrays = [];
+      for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+        let slice = byteCharacters.slice(offset, offset + 512);
+        let byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+          byteNumbers[i] = slice.charCodeAt(i);
+        }
+        let byteArray = new Uint8Array(byteNumbers);
+        byteArrays.push(byteArray);
+      }
+      result = new Blob(byteArrays, { type: 'application/xlsx' });
+    }
+    if (!type) type = 'xlsx';
     if (result.size == 0) {
       this.spinnerService.hide();
-      return this.snotify.warning('No Data', "Warning")
+      return this.snotify.warning('No Data', 'Warning');
     }
-    if (result.type !== 'application/xlsx') {
+    if (result.type !== `application/${type}`) {
       this.spinnerService.hide();
-      return this.snotify.error(result.type.toString(), "Error");
+      return this.snotify.error(result.type.toString(), 'Error');
     }
     const blob = new Blob([result]);
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `${fileName}.xlsx`);
+    link.setAttribute('download', `${fileName}.${type}`);
     document.body.appendChild(link);
     link.click();
   }

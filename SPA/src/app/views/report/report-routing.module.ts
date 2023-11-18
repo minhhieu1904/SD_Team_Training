@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'qrcode-wip-report',
     loadChildren: () => import('./report-qrcode-wip/report-qrcode-wip.module').then(m => m.ReportQrcodeWipModule)
+  },
+  {
+    path: 'new45-by-midas-report',
+    loadChildren: () => import('./sort-newreport-by-midas-provide/sort-newreport-by-midas-provide.module').then(m => m.SortNewreportByMidasProvideModule)
   }
 ];
 

@@ -317,7 +317,6 @@ namespace API._Services.Services.Transaction
                                                     serial = x.pickingDetail.serial,
                                                     size = x.pickingDetail.size,
                                                     qty = x.pickingDetail.qty,
-
                                                     wkshno = x.pickingDetail.wkshno,
                                                     prtno = x.pickingDetail.prtno,
                                                     wkshqty = x.pickingDetail.wkshqty,

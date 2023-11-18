@@ -18,7 +18,7 @@ import { NgxPrintElementService } from 'ngx-print-element';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent extends InjectBase implements OnInit {
   @ViewChild('printTemplate') packingScanExportTemplate: PackingScanExportComponent;
@@ -84,33 +84,37 @@ export class MainComponent extends InjectBase implements OnInit {
   }
 
   openScanModal(id: string) {
+    debugger
+    console.log(id);
     this.modalService.open(id);
   }
 
   modalChange(event: OperationResult) {
     this.spinnerService.show();
-    let stringDate = this.functionUtility.getDateFormat(new Date(this.scanDate));
+    let stringdate = this.functionUtility.getDateFormat(new Date(this.scanDate));
     let data: PackingScanDto = {
       shift: this.shift,
-      scan_Date: this.scanDate,
+      scan_Date: stringdate,
       listData: event.data
     };
     this.service.saveScanList(data).subscribe({
-      next: (res: OperationResult) => {
-        if (res.isSuccess) {
+      next: (result: OperationResult) => {
+        if (result.isSuccess) {
           this.spinnerService.hide();
-          this.transactionNo = res.data;
+          this.transactionNo = result.data;
           this.getList();
-          this.snotifyService.success("SUCCESS");
+          this.snotifyService.success(
+            this.translateService.instant('System.Message.CreateOKMsg'),
+            this.translateService.instant('System.Caption.Success'));
         } else {
           this.spinnerService.hide();
-          this.snotifyService.error("ERROR");
+          this.snotifyService.error(this.translateService.instant('Transaction.PackingScan.' + result.error), this.translateService.instant('System.Caption.Error'));
         }
       },
-      error: (err) => {
+      error: () => {
         this.spinnerService.hide();
-        this.snotifyService.error("ERROR");
-      },
+        this.snotifyService.error(this.translateService.instant('System.Message.UnknowError'), this.translateService.instant('System.Caption.Error'));
+      }
     })
   }
 

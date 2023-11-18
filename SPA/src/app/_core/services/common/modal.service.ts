@@ -9,6 +9,7 @@ export class ModalService {
   constructor() { }
 
   add(modal: any) {
+    debugger
     this.modals.push(modal);
   }
 
@@ -17,11 +18,12 @@ export class ModalService {
   }
 
   open(id: string) {
-    let modal: any = this.modals.filter(x => x.id == id)[0];
+    const modal: any = this.modals.filter((x) => x.id === id)[0];
     modal.open();
   }
+
   close(id: string) {
-    let modal: any = this.modals.filter(x => x.id == id)[0];
+    const modal: any = this.modals.filter((x) => x.id === id)[0];
     modal.close();
   }
 }

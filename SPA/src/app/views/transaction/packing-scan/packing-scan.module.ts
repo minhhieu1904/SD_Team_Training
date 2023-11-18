@@ -12,6 +12,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPrintElementModule } from 'ngx-print-element';
+import { ModalService } from '@services/common/modal.service';
 
 
 @NgModule({
@@ -30,6 +31,6 @@ import { NgxPrintElementModule } from 'ngx-print-element';
     PaginationModule.forRoot(),
     NgxPrintElementModule,
     PackingScanExportComponent
-  ]
+  ],
 })
 export class PackingScanModule { }
